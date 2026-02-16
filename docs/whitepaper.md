@@ -2,29 +2,47 @@
 
 ## Abstract
 
-Web scraping remains a labor-intensive process, with XPath expression authoring constituting a major bottleneck. A single website typically requires 5–6 hours of manual XPath construction by experienced engineers, relying on tacit domain knowledge that resists systematization. We present XPathGenie, a system that fully automates XPath mapping generation from raw URLs using a pipeline of HTML structural compression, LLM-based XPath inference, multi-page cross-validation, and two-tier refinement. The HTML compression stage reduces typical pages from 695 KB to approximately 20 KB—a 97% reduction—enabling efficient LLM consumption within token budgets. The system employs Gemini 2.5 Flash in a single inference call to produce field-XPath mappings, which are then validated across multiple pages with confidence scoring. A novel two-tier refinement mechanism addresses the common problem of XPaths matching multiple DOM nodes: identical-value duplicates are resolved mechanically at zero additional AI cost through ancestor class chain analysis, while divergent-value duplicates trigger a targeted AI re-inference with contextual HTML snippets. A depth-weighted content scoring algorithm prioritizes deeply nested main-content elements over shallow sidebar or header duplicates. In production evaluation, XPathGenie achieved 100% field accuracy on all tested sites—20 fields across 4 pages in 27 seconds (Tsukui Staff), and 23 fields across 3 pages in 12 seconds (Cadical)—reducing total mapping effort for a 33-site portfolio from an estimated 150–200 hours to approximately 15 minutes.
+Web scraping remains labor-intensive, with XPath authoring as a major bottleneck. We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression, LLM-based inference, multi-page cross-validation, and two-tier refinement. The compression stage reduces typical pages by approximately 97%, enabling efficient LLM consumption within token budgets. The system employs a single LLM inference call to produce field-XPath mappings, which are validated across multiple pages with confidence scoring. A two-tier refinement mechanism resolves multi-match XPaths: identical-value duplicates are narrowed mechanically at zero AI cost, while divergent-value cases trigger targeted re-inference. In preliminary evaluation on production websites, XPathGenie generated mappings with 100% confidence across all tested pages, achieving a significant reduction in mapping effort compared to manual XPath authoring. The system's key architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures zero ongoing AI cost after initial generation.
 
 ## 1. Introduction
 
 Structured data extraction from websites is fundamental to competitive intelligence, job aggregation, price monitoring, and numerous data-driven applications. At the core of most extraction pipelines lies XPath—a query language for selecting nodes from HTML/XML documents. Despite its power, XPath authoring remains a predominantly manual craft.
 
-The challenges are threefold. First, **time cost**: constructing a reliable XPath mapping for a single website typically requires 5–6 hours of expert effort, involving page inspection, expression writing, edge-case handling, and cross-page validation. For organizations managing portfolios of 30+ target sites, this translates to 150–200 hours of specialized labor. Second, **tacit knowledge dependency**: effective XPath construction requires understanding of common HTML patterns (definition lists, table layouts, nested containers), site-specific idiosyncrasies, and the distinction between main content and peripheral elements such as sidebars and recommendation widgets. This knowledge resides in individual engineers and resists documentation. Third, **scalability**: as target sites evolve their HTML structures, previously valid XPaths break, necessitating ongoing maintenance that scales linearly with portfolio size.
+The challenges are threefold. First, **time cost**: constructing a reliable XPath mapping for a single website typically requires several hours of expert effort, involving page inspection, expression writing, edge-case handling, and cross-page validation. For organizations managing portfolios of dozens of target sites, this translates to hundreds of hours of specialized labor. Second, **tacit knowledge dependency**: effective XPath construction requires understanding of common HTML patterns (definition lists, table layouts, nested containers), site-specific idiosyncrasies, and the distinction between main content and peripheral elements such as sidebars and recommendation widgets. This knowledge is difficult to systematize. Third, **scalability**: as target sites evolve their HTML structures, previously valid XPaths break, necessitating ongoing maintenance that scales linearly with portfolio size.
 
-XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for the creative act of mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost.
+XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for initial mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost.
 
 ## 2. Related Work
 
-Automated web data extraction has been studied extensively, yielding several families of approaches.
+Automated web data extraction has been studied extensively, yielding several families of approaches. We organize prior work into five categories.
 
-**Visual scraping tools** (e.g., Octoparse, ParseHub, Import.io) provide point-and-click interfaces where users visually select elements. While reducing the need for XPath syntax knowledge, these tools still require manual element selection per field and per site, offering no automation of the mapping discovery itself.
+### 2.1 Visual Scraping and CSS Selector Tools
 
-**CSS selector generators** (e.g., SelectorGadget, browser DevTools) automatically suggest selectors for clicked elements but operate on single elements and single pages, lacking cross-page generalization and batch field discovery.
+**Visual scraping tools** (e.g., Octoparse, ParseHub, Import.io) provide point-and-click interfaces where users visually select elements. While reducing the need for XPath syntax knowledge, these tools still require manual element selection per field and per site, offering no automation of the mapping discovery itself. **CSS selector generators** (e.g., SelectorGadget, browser DevTools) automatically suggest selectors for clicked elements but operate on single elements and single pages, lacking cross-page generalization and batch field discovery.
 
-**Wrapper induction** systems (Kushmerick et al., 1997; Dalvi et al., 2011) learn extraction rules from labeled examples. These approaches require training data—typically hand-annotated pages—and struggle with sites that deviate from learned patterns.
+### 2.2 Wrapper Induction
 
-**LLM-based extraction** has emerged recently, with systems like ScrapeGraphAI sending entire pages to language models. However, most approaches either send raw HTML (incurring prohibitive token costs) or extract data directly (requiring an LLM call per page per extraction run).
+Wrapper induction systems learn extraction rules from labeled examples. Early work by Kushmerick et al. (1997) and Dalvi et al. (2011) established the paradigm of learning extraction patterns from annotated page sets. More recently, commercial systems such as **Diffbot** (Tong, 2014) and **Zyte Automatic Extraction** (formerly AutoExtract) apply machine learning to extract structured data from web pages without explicit rule authoring. These systems achieve strong results on common page types (articles, products) but rely on pre-trained models for specific verticals and may struggle with niche or unconventional layouts.
 
-XPathGenie differs from all of the above in a critical architectural decision: the LLM generates *reusable XPath expressions*, not extracted data. This means AI cost is incurred once at mapping time, and all subsequent extractions are pure DOM queries—deterministic, fast, and free. The HTML compression pipeline further distinguishes our approach by enabling LLM analysis within practical token budgets.
+### 2.3 HTML-Aware Language Models
+
+A family of language models has been developed specifically for understanding HTML/DOM structure. **MarkupLM** (Li et al., 2022) extends pre-trained language models with XPath-based position embeddings, enabling tasks such as web page classification and information extraction from semi-structured documents. **WebFormer** (Wang et al., 2022) proposes a Transformer architecture that models the relationship between HTML tokens and DOM structure for web page understanding. **DOM-LM** (Deng et al., 2022) pre-trains on DOM trees with structure-aware objectives. These models demonstrate that encoding HTML structure explicitly improves downstream extraction tasks, but they typically require fine-tuning on labeled data for each target schema.
+
+### 2.4 LLM-Based Web Extraction
+
+The emergence of large language models has enabled new approaches to web data extraction. **ScrapeGraphAI** (Perini et al., 2024) orchestrates LLM calls via a graph-based pipeline to extract structured data from web pages, supporting multiple LLM backends. However, ScrapeGraphAI invokes the LLM at extraction time for each page, meaning AI cost scales linearly with the number of pages processed. In contrast, XPathGenie uses the LLM solely to generate reusable XPath expressions, incurring AI cost only once per site mapping.
+
+**Zero-shot extraction** approaches apply LLMs to extract structured data without task-specific training. Lockard et al. (2020) demonstrated zero-shot closed information extraction from semi-structured web pages (ZeroShotCeres). More recent work has explored using LLMs to generate CSS selectors or XPath expressions from natural-language descriptions of desired fields (Gur et al., 2023; Zhou et al., 2024), though these typically operate on single pages without cross-page validation.
+
+Open-source crawling frameworks such as **FireCrawl** (2024) and **crawl4ai** (2024) convert web pages to LLM-friendly formats (Markdown, structured text) for downstream extraction. These tools focus on content conversion rather than reusable selector generation, and they invoke LLMs per page during extraction.
+
+### 2.5 Boilerplate Detection and Content Extraction
+
+Content extraction from web pages has a long history. Kohlschütter et al. (2010) proposed boilerplate detection using shallow text features, achieving effective separation of main content from peripheral elements. XPathGenie's HTML compression pipeline (Section 3.1) draws on similar intuitions—identifying and removing non-content elements—but operates at the DOM structural level to preserve the hierarchy needed for XPath construction.
+
+### 2.6 Positioning
+
+XPathGenie differs from all prior approaches in a critical architectural decision: the LLM generates *reusable XPath expressions*, not extracted data. This means AI cost is incurred once at mapping time, and all subsequent extractions are pure DOM queries—deterministic, fast, and free. The HTML compression pipeline further distinguishes our approach by enabling LLM analysis within practical token budgets. Unlike HTML-aware language models that require fine-tuning, XPathGenie leverages general-purpose LLMs with carefully engineered prompts. Unlike wrapper induction, it requires no labeled training data—only a small set of example URLs.
 
 ## 3. System Architecture
 
@@ -64,7 +82,7 @@ Raw HTML pages from modern websites routinely exceed 500 KB, far exceeding pract
 
 2. **Structural strip**: Layout-only containers (`header`, `footer`, `nav`, `aside`) are removed, as they rarely contain target data fields.
 
-3. **Main section detection**: The algorithm locates the primary content region by searching for `<main>` or `<article>` elements first, then falling back to the `<div>` or `<section>` with the most text content. Noise patterns—elements whose class or ID matches `recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|ad-|popup|cookie`—are excluded from consideration.
+3. **Main section detection**: The algorithm locates the primary content region by searching for `<main>` or `<article>` elements first, then falling back to the `<div>` or `<section>` with the most text content. Noise patterns—elements whose class or ID matches `\brecommend\b|\brelated\b|\bsidebar\b|\bwidget\b|\bbreadcrumb\b|\bmodal\b|\bslide\b|\bfooter\b|\bbanner\b|\bad-|\bpopup\b|\bcookie\b` (with `\b` word boundaries to avoid false positives)—are excluded from consideration.
 
 4. **Noise subtree removal**: Within the identified main section, child subtrees matching noise patterns are recursively removed.
 
@@ -78,7 +96,7 @@ The result is a structural skeleton that preserves the DOM hierarchy, class name
 
 ### 3.2 LLM-Based XPath Generation
 
-The system offers two inference modes, both implemented as single-call prompts to Gemini 2.5 Flash with `temperature=0.1` for deterministic output and `responseMimeType=application/json` for structured responses.
+The system offers two inference modes, both implemented as single-call prompts to Gemini 2.5 Flash with `temperature=0.1` for near-deterministic output and `responseMimeType=application/json` for structured responses.
 
 **Auto Discover mode** sends compressed HTML samples with instructions to identify all meaningful data fields and return a JSON mapping of field names to XPath expressions. The prompt enforces constraints critical for downstream reliability:
 
@@ -88,7 +106,7 @@ The system offers two inference modes, both implemented as single-call prompts t
 - Output is limited to the 20 most important fields
 - Field names must be lowercase English and semantically generic
 
-**Want List mode** accepts a user-provided JSON schema where keys are desired field names and values are natural-language descriptions of the intended data. For example: `{"contract": "雇用形態（正社員、契約社員、パート等）"}`. The LLM matches fields by *meaning* rather than literal label text, enabling cross-language semantic matching. This mode consumes approximately 30% fewer tokens than Auto Discover.
+**Want List mode** accepts a user-provided JSON schema where keys are desired field names and values are natural-language descriptions of the intended data. For example: `{"contract": "雇用形態 (employment type: 正社員/full-time, 契約社員/contract, パート/part-time, etc.)"}`. The LLM matches fields by *meaning* rather than literal label text, enabling cross-language semantic matching. This mode consumes approximately 30% fewer tokens than Auto Discover.
 
 After LLM response, the system performs **automatic root prefixing**: the first compressed HTML's root element is inspected for a meaningful class name, which is prepended to all generated XPaths as a scoping container. This ensures XPaths are anchored to the main content region.
 
@@ -96,7 +114,7 @@ After LLM response, the system performs **automatic root prefixing**: the first 
 
 Generated XPaths are evaluated against the original (uncompressed) HTML of every fetched page. For each field, the validator computes:
 
-- **Confidence score**: The fraction of pages where the XPath returns at least one non-empty result. A score of 1.0 indicates the XPath works across all analyzed pages.
+- **Confidence score**: The fraction of pages where the XPath returns at least one non-empty result. A score of 1.0 indicates the XPath works across all analyzed pages. Note that this metric measures *extraction coverage*, not accuracy against ground-truth labels; the system does not compare extracted values to a gold standard.
 - **Sample values**: The first 100 characters of extracted text from each page, enabling quick human inspection.
 - **Multi-match warnings**: Fields where an XPath matches more than one DOM node on any page are flagged for refinement.
 
@@ -109,6 +127,8 @@ Job listing sites and similar structured-content websites frequently repeat labe
 XPathGenie's refinement mechanism addresses this through a two-tier strategy:
 
 **Tier 1: Mechanical narrowing (zero AI cost).** When all matched values are identical (e.g., the same job ID appearing in three places), the system performs deterministic DOM analysis. For each matched element, it traverses the ancestor chain looking for elements with class attributes. It then constructs candidate XPaths by inserting intermediate container selectors (e.g., `//div[contains(@class,'p-jobDetail-body')]`) between the root container and the core expression. The first candidate that produces exactly one match is adopted. This operation requires no LLM call and adds negligible computation.
+
+**Design note on `narrow_by_first_match`:** The mechanical narrowing algorithm validates candidate XPaths against only the first page in the input set. This is a deliberate trade-off for performance—checking all pages for every candidate would be prohibitively slow. The subsequent re-validation stage (which runs against all pages) catches any narrowing that fails to generalize.
 
 ```
 Before: //div[contains(@class,'p-offerContainer')]//div[contains(@class,'c-favoriteBtn')]/@data-job_id
@@ -157,35 +177,39 @@ While XPathGenie automates mapping generation, production deployment benefits fr
 
 This architecture embodies a deliberate role reversal: traditionally, humans write XPaths and machines validate them; in XPathGenie's workflow, machines write XPaths and humans validate them.
 
-## 4. Evaluation
+## 4. Preliminary Evaluation
 
-### 4.1 Accuracy and Performance
+The evaluation presented here is preliminary, based on a small number of sites in a single domain (Japanese job listings). A more comprehensive evaluation across 20+ sites and multiple domains is planned as future work.
+
+### 4.1 Confidence and Performance
 
 XPathGenie was evaluated on production job-listing websites with the following results:
 
 | Site | Pages Analyzed | Tokens Used | Elapsed Time | Fields Generated | Fields at 100% Confidence |
 |------|---------------|-------------|--------------|-----------------|--------------------------|
-| Tsukui Staff | 4 | 15,032 | 27.1 s | 20 | 20/20 (100%) |
-| Cadical | 3 | 8,749 | 12.3 s | 23 | 23/23 (100%) |
+| Site A | 4 | 15,032 | 27.1 s | 20 | 20/20 (100%) |
+| Site B | 3 | 8,749 | 12.3 s | 23 | 23/23 (100%) |
 
-All generated fields achieved 100% confidence, meaning every XPath successfully extracted values from every analyzed page. Token consumption remained within practical budgets (8,000–18,000 tokens depending on mode and page complexity), enabled by the compression pipeline.
+All generated fields achieved 100% confidence, defined as the fraction of analyzed pages on which the XPath returned a non-empty value. **This metric measures extraction coverage, not accuracy against ground-truth annotations.** Whether the extracted values are semantically correct for the intended field requires human verification via the Aladdin tool (Section 3.6). The time reported above does not include the subsequent Aladdin verification step, which typically adds 5–15 minutes of human review per site.
+
+Token consumption remained within practical budgets (8,000–18,000 tokens depending on mode and page complexity), enabled by the compression pipeline.
 
 ### 4.2 Effort Reduction
 
-The system was evaluated in the context of a web scraping operation targeting 33 job-listing websites:
+The system was evaluated in the context of a web scraping operation targeting 33 job-listing websites. The manual time estimate of 5–6 hours per site is based on the authors' experience with this specific 33-site medical job scraping portfolio and may not generalize to other domains or engineer skill levels.
 
 | Metric | Manual Process | XPathGenie |
 |--------|---------------|------------|
-| Time per site | 5–6 hours | ~30 seconds |
-| Total for 33 sites | 150–200 hours | ~15 minutes |
+| Time per site (generation only) | 5–6 hours | ~30 seconds |
+| Total for 33 sites (generation only) | 150–200 hours | ~15 minutes |
 | Skill requirement | Senior engineer with domain expertise | Any operator with URL access |
 | Ongoing AI cost | N/A | Zero (XPaths are reusable) |
 
-The reduction factor exceeds 600×, transforming a multi-week engineering project into a sub-hour task.
+The reported XPathGenie times measure only the automated generation step. End-to-end time including Aladdin verification and any manual XPath corrections is not included in these measurements and will vary depending on site complexity and operator experience.
 
 ### 4.3 Token Efficiency
 
-The HTML compression pipeline is critical to cost-effectiveness. Without compression, sending 4 pages of raw HTML (695 KB each) would consume approximately 700,000+ tokens per request—impractical for any LLM API. After compression to ~20 KB per page (capped at 8,000 characters per page in the prompt), total token consumption falls to 8,000–18,000 per analysis run.
+The HTML compression pipeline is critical to cost-effectiveness. Without compression, sending 4 pages of raw HTML (695 KB each) would consume approximately 700,000+ tokens per request—unreliable or infeasible for most LLM APIs. After compression to ~20 KB per page (capped at 8,000 characters per page in the prompt), total token consumption falls to 8,000–18,000 per analysis run. This achieves a significant reduction in token cost, making multi-page LLM analysis practical within standard API rate limits and budgets.
 
 ## 5. Design Principles
 
@@ -193,7 +217,7 @@ The HTML compression pipeline is critical to cost-effectiveness. Without compres
 
 A central design principle in XPathGenie's prompt engineering is providing the LLM with *why* a constraint exists rather than merely *what* the constraint is. For example, the instruction to use `contains(@class, ...)` is accompanied by the explanation "because classes often have multiple values." Similarly, the prohibition on container prefixes is explained with contrasting examples showing correct and incorrect output.
 
-This principle extends to the Want List mode, where field descriptions serve as semantic intent signals: `"contract": "雇用形態（正社員、契約社員、パート等）"` tells the LLM not just to find a "contract" field, but *why* specific HTML elements qualify—they contain employment type information. The LLM can then match `雇用形態`, `就業形態`, or `Employment Type` to the same field.
+This principle extends to the Want List mode, where field descriptions serve as semantic intent signals: `"contract": "雇用形態 (employment type)"` tells the LLM not just to find a "contract" field, but *why* specific HTML elements qualify—they contain employment type information such as 正社員 (full-time), 契約社員 (contract employee), or パート (part-time). The LLM can then match 雇用形態 (employment type), 就業形態 (work style), or "Employment Type" to the same field.
 
 The auto-detection of intermediate containers during mechanical refinement (Section 3.4, Tier 1) is another manifestation: rather than hardcoding container class names, the system discovers them dynamically by traversing ancestor chains, allowing it to adapt to arbitrary site structures without site-specific configuration.
 
@@ -219,19 +243,31 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 ## 6. Limitations and Future Work
 
-**Single-Page Application (SPA) support.** XPathGenie currently fetches raw HTML via HTTP requests. Sites that render content dynamically via JavaScript (React, Vue, Angular SPAs) return empty or skeleton HTML, making XPath generation impossible. Integration with a headless browser (e.g., Playwright) for JavaScript-rendered HTML is a planned enhancement.
+**Single-Page Application (SPA) support.** XPathGenie currently fetches raw HTML via HTTP requests. Sites that render content dynamically via JavaScript (React, Vue, Angular SPAs) return empty or skeleton HTML, making XPath generation unreliable or infeasible. Integration with a headless browser (e.g., Playwright) for JavaScript-rendered HTML is a planned enhancement.
 
 **Site structure evolution.** Generated XPaths are inherently tied to a site's DOM structure at the time of analysis. When sites undergo redesigns or structural changes, XPaths may break. A periodic re-analysis mechanism or change-detection system would improve production robustness.
+
+**Main section detection fallback.** The `_find_main_section` algorithm falls back to selecting the `<div>` or `<section>` with the most text content when no `<main>` or `<article>` element is found. This heuristic can be fragile on pages where the highest-text-volume element is not the primary content area (e.g., pages with large comment sections or extensive footer content). Misidentifying the main section can cause the compressor to discard relevant content, leading to incomplete XPath mappings.
 
 **teddy_crawler integration.** The YAML export format is designed for compatibility with the teddy_crawler web crawling framework. Deeper integration—such as automatic pipeline configuration generation—would further reduce the gap between mapping generation and production extraction.
 
 **Compression fidelity.** The aggressive compression (text truncation at 30 characters, noise pattern removal) occasionally eliminates structural elements that are relevant for XPath construction. Adaptive compression that preserves more structure for complex pages could improve accuracy on edge cases.
 
-**Multi-language generalization.** Current evaluation focuses on Japanese job-listing sites. While the architecture is language-agnostic, broader evaluation across languages and domains would strengthen generalizability claims.
+**Multi-language and multi-domain generalization.** Current evaluation focuses on Japanese job-listing sites. While the architecture is language-agnostic, broader evaluation across languages and domains would strengthen generalizability claims.
+
+**Comprehensive evaluation.** The current evaluation (Section 4) covers only 2 sites with 7 pages total. A rigorous evaluation on 20+ sites across multiple domains, with ground-truth comparison, is needed to substantiate the system's claims more broadly. This is planned as future work.
+
+### 6.1 Threats to Validity
+
+Several factors limit the validity of the current evaluation:
+
+- **LLM non-determinism.** Although the system uses `temperature=0.1` for near-deterministic output, LLM responses can still vary across runs due to model updates, API-level batching, and inherent sampling stochasticity. The reported results reflect single runs and may not be perfectly reproducible.
+- **Limited evaluation scope.** The evaluation covers only 2 websites (7 pages total) in a single domain (Japanese job listings). The extent to which results generalize to other domains (e-commerce, news, real estate) and languages is unknown.
+- **Subjectivity of manual effort estimates.** The 5–6 hour manual baseline is based on the authors' own experience with a specific site portfolio and engineering workflow. Different engineers, tools, or site complexities could yield substantially different baselines, making the effort reduction comparison inherently approximate.
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can reduce web scraping mapping effort by over 600× while maintaining 100% field accuracy on production websites. The system's key architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after the initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can significantly reduce web scraping mapping effort while achieving high confidence on production websites. The system's key architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after the initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction. A comprehensive multi-domain evaluation remains as important future work.
 
 ## References
 
@@ -241,8 +277,26 @@ XPathGenie demonstrates that LLM-based XPath generation, when combined with aggr
 
 3. Ferrara, E., De Meo, P., Fiumara, G., & Baumgartner, R. (2014). Web data extraction, applications and techniques: A survey. *Knowledge-Based Systems*, 70, 301–323.
 
-4. Google. (2025). Gemini 2.5 Flash. *Google DeepMind*. https://deepmind.google/technologies/gemini/
+4. Kohlschütter, C., Fankhauser, P., & Nejdl, W. (2010). Boilerplate detection using shallow text features. *Proceedings of the Third ACM International Conference on Web Search and Data Mining (WSDM)*, 441–450.
 
-5. lxml Project. (2024). lxml — XML and HTML with Python. https://lxml.de/
+5. Lockard, C., Dong, X. L., Einolghozati, A., & Shiralkar, P. (2020). ZeroShotCeres: Zero-shot relation extraction from semi-structured webpages. *Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (ACL)*, 8105–8117.
 
-6. Clark, J., & DeRose, S. (1999). XML Path Language (XPath) Version 1.0. *W3C Recommendation*. https://www.w3.org/TR/xpath/
+6. Li, J., Xu, Y., Cui, L., & Wei, F. (2022). MarkupLM: Pre-training of text and markup language for visually rich document understanding. *Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)*, 6078–6087.
+
+7. Wang, X., Jiang, Y., Bach, N., Wang, T., Huang, Z., Huang, F., & Tu, K. (2022). WebFormer: The web-page transformer for structure information extraction. *Proceedings of the ACM Web Conference 2022*, 3124–3133.
+
+8. Deng, X., Sun, Y., Galley, M., & Gao, J. (2022). DOM-LM: Learning generalizable representations for HTML documents. *arXiv preprint arXiv:2201.10608*.
+
+9. Tong, M. (2014). Diffbot: A visual learning agent for the web. *Diffbot Technologies*. https://www.diffbot.com/
+
+10. Gur, I., Furuta, H., Huang, A., Saber, M., Matsuo, Y., Eck, D., & Faust, A. (2023). A real-world WebAgent with planning, long context understanding, and program synthesis. *arXiv preprint arXiv:2307.12856*.
+
+11. Perini, M., Samardzic, L., & Pozzoli, M. (2024). ScrapeGraphAI: A web scraping python library that uses LLM and direct graph logic to create scraping pipelines. *arXiv preprint arXiv:2411.13104*.
+
+12. FireCrawl. (2024). FireCrawl: Turn websites into LLM-ready data. https://firecrawl.dev/
+
+13. crawl4ai. (2024). crawl4ai: Open-source LLM-friendly web crawler. https://github.com/unclecode/crawl4ai
+
+14. Google. (2025). Gemini 2.5 Flash. *Google DeepMind*. https://deepmind.google/technologies/gemini/
+
+15. Clark, J., & DeRose, S. (1999). XML Path Language (XPath) Version 1.0. *W3C Recommendation*. https://www.w3.org/TR/xpath/

@@ -43,19 +43,21 @@ def validate(mappings: dict, pages: list) -> dict:
                 nodes = doc.xpath(xpath)
                 if nodes:
                     hits += 1
-                    # Extract text value from first match
-                    node = nodes[0]
-                    if isinstance(node, str):
-                        val = node.strip()
-                    elif hasattr(node, "text_content"):
-                        val = node.text_content().strip()
-                    else:
-                        val = str(node).strip()
-                    if val:
-                        samples.append(val[:100])
+                    # Pick the longest match (main content tends to be more detailed)
+                    best_val = ""
+                    for node in nodes:
+                        if isinstance(node, str):
+                            val = node.strip()
+                        elif hasattr(node, "text_content"):
+                            val = node.text_content().strip()
+                        else:
+                            val = str(node).strip()
+                        if len(val) > len(best_val):
+                            best_val = val
+                    if best_val:
+                        samples.append(best_val[:100])
                     else:
                         samples.append("(empty)")
-                    # Warn if multiple matches (likely hitting sidebar/recommended)
                     if len(nodes) > 1:
                         multi_hits.append(url)
                 else:

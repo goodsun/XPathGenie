@@ -73,6 +73,10 @@ createApp({
           error.value = data.error || 'Unknown error';
         } else {
           result.value = data;
+          // Auto-save mappings for Aladdin
+          const m = {};
+          for (const [k, v] of Object.entries(data.mappings)) { m[k] = v.xpath; }
+          localStorage.setItem('xpathgenie_mappings', JSON.stringify(m, null, 2));
         }
       } catch (e) {
         error.value = e.message;

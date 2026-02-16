@@ -76,6 +76,7 @@
               </td>
               <td class="samples-cell">
                 <span v-for="(s, i) in info.samples" :key="i" class="sample" :class="{missing: !s}">{{ s || '---' }}</span>
+                <div v-if="info.warning" class="warning-msg">{{ info.warning }}</div>
               </td>
             </tr>
           </tbody>

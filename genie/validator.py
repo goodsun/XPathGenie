@@ -37,12 +37,13 @@ def validate(mappings: dict, pages: list) -> dict:
     for field, xpath in mappings.items():
         hits = 0
         samples = []
+        multi_hits = []
         for url, doc in docs:
             try:
                 nodes = doc.xpath(xpath)
                 if nodes:
                     hits += 1
-                    # Extract text value
+                    # Extract text value from first match
                     node = nodes[0]
                     if isinstance(node, str):
                         val = node.strip()
@@ -54,17 +55,23 @@ def validate(mappings: dict, pages: list) -> dict:
                         samples.append(val[:100])
                     else:
                         samples.append("(empty)")
+                    # Warn if multiple matches (likely hitting sidebar/recommended)
+                    if len(nodes) > 1:
+                        multi_hits.append(url)
                 else:
                     samples.append(None)
             except Exception as e:
                 samples.append(f"(error: {e})")
 
         confidence = hits / total if total > 0 else 0
-        results[field] = {
+        result_entry = {
             "xpath": xpath,
             "confidence": round(confidence, 2),
             "samples": samples,
             "optional": confidence < 1.0,
         }
+        if multi_hits:
+            result_entry["warning"] = f"Multiple matches on {len(multi_hits)}/{total} pages — may include sidebar/recommended items"
+        results[field] = result_entry
 
     return results

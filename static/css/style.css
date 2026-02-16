@@ -30,6 +30,7 @@ body {
   animation: float 3s ease-in-out infinite;
   border-radius: 50%;
   object-fit: cover;
+  background: #0a0a0f;
 }
 
 @keyframes float {

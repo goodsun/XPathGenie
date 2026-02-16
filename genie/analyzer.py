@@ -33,11 +33,9 @@ Rules:
 - Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
 - Include all extractable fields you can identify
 - Do NOT include navigation, header, footer, sidebar, or boilerplate fields
-- ONLY extract from the MAIN content area of the page (the primary detail/article section)
-- EXCLUDE recommended items, related listings, sidebar widgets, "other jobs", "similar posts" sections
-- XPaths MUST be scoped to the main content container. Always start with the parent element that wraps the main detail section (e.g. //div[contains(@class,'detail')]//dt[text()='給与']/following-sibling::dd[1], NOT just //dt[text()='給与']/following-sibling::dd[1])
-- First identify the OUTERMOST element in the provided HTML samples — this is the main content container. ALL XPaths must start with this container (e.g. if the HTML starts with <div class="p-offerContainer l-centering">, every XPath must begin with //div[contains(@class,'p-offerContainer')]//...)
-- NEVER output bare XPaths like //dt[text()='給与']/following-sibling::dd[1]. Always prefix with the main container.
+- Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
+- Example: //dt[text()='給与']/following-sibling::dd[1] (correct)
+- Example: //div[contains(@class,'xxx')]//dt[...] (WRONG — do not add container)
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:
@@ -59,6 +57,9 @@ Rules:
 - Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
 - Match fields by MEANING, not by label text (e.g. "price" matches "給与", "時給", "報酬", "salary")
 - The VALUES in the schema are hints/descriptions of what the user wants for that field. Use them to understand the intent (e.g. "contract": "雇用形態（正社員、契約社員、パート等）" means find the employment type field)
+- Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
+- Example: //dt[text()='給与']/following-sibling::dd[1] (correct)
+- Example: //div[contains(@class,'xxx')]//dt[...] (WRONG — do not add container)
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:
@@ -108,6 +109,52 @@ def _parse_response(data: dict) -> dict:
     return {"mappings": mappings, "tokens_used": tokens_used}
 
 
+def _detect_root_prefix(compressed_html: str) -> str:
+    """Detect the root container element from compressed HTML and return an XPath prefix."""
+    import re
+    # Match the first opening tag with class
+    m = re.match(r'<(\w+)\s+class="([^"]+)"', compressed_html.strip())
+    if m:
+        tag, classes = m.group(1), m.group(2)
+        # Use the first meaningful class name
+        cls_list = classes.split()
+        for cls in cls_list:
+            if len(cls) > 2 and cls not in ('l-centering', 'is-bg', 'wow', 'fadeInUp'):
+                return f"//{tag}[contains(@class,'{cls}')]"
+    return ""
+
+
+def _add_prefix(mappings: dict, prefix: str) -> dict:
+    """Ensure all XPaths are scoped under the container with // (descendant)."""
+    if not prefix:
+        return mappings
+    # Extract the class name from prefix for stripping AI-added prefixes
+    # e.g. "//div[contains(@class,'p-offerContainer')]" → "p-offerContainer"
+    import re
+    cls_match = re.search(r"contains\(@class,'([^']+)'\)", prefix)
+    cls_name = cls_match.group(1) if cls_match else ""
+    
+    result = {}
+    for field, xpath in mappings.items():
+        # Strip any container prefix the AI may have added
+        if cls_name and cls_name in xpath:
+            # Find where the container selector ends and the real xpath begins
+            idx = xpath.find(cls_name)
+            # Skip past the closing )] and any /
+            rest = xpath[idx + len(cls_name):]
+            bracket_end = rest.find(']')
+            if bracket_end >= 0:
+                rest = rest[bracket_end + 1:].lstrip('/')
+                xpath = "//" + rest if rest else xpath
+        
+        # Add the correct prefix with // (descendant axis)
+        if xpath.startswith("//"):
+            result[field] = prefix + "//" + xpath[2:]
+        else:
+            result[field] = xpath
+    return result
+
+
 def analyze(compressed_htmls: list, wantlist: dict = None) -> dict:
     """Call Gemini API with compressed HTMLs, return {field: xpath} dict.
     
@@ -137,4 +184,13 @@ def analyze(compressed_htmls: list, wantlist: dict = None) -> dict:
     resp = requests.post(url, json=payload, timeout=120)
     resp.raise_for_status()
 
-    return _parse_response(resp.json())
+    result = _parse_response(resp.json())
+
+    # Auto-prefix XPaths with main content container
+    if compressed_htmls:
+        prefix = _detect_root_prefix(compressed_htmls[0])
+        if prefix:
+            result["mappings"] = _add_prefix(result["mappings"], prefix)
+            result["container"] = prefix
+
+    return result

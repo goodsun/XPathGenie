@@ -109,6 +109,72 @@ def _parse_response(data: dict) -> dict:
     return {"mappings": mappings, "tokens_used": tokens_used}
 
 
+PROMPT_REFINE = """You are an expert web scraper. Some XPath expressions matched MULTIPLE nodes on the same page.
+For each field, examine the surrounding HTML context of the multiple matches, determine which match is the PRIMARY/most important one (the main job detail, not sidebar/recommendations/summary), and return a MORE SPECIFIC XPath that matches only that one.
+
+Strategy:
+- Look for intermediate structural containers (divs with meaningful class names) between the page-level container and the target dt/dd
+- Use these intermediate containers to narrow down to the correct section
+- For example: if both "job detail" and "job summary" sections have dt[text()='勤務地'], add the job-detail section's parent class
+- Pick the match that contains the MOST DETAILED information (full description > summary)
+- Keep XPaths as simple as possible while being unique
+
+Fields that need refinement:
+{fields_json}
+
+Rules:
+- Return ONLY a JSON object: {{"field_name": "refined_xpath", ...}}
+- Include ONLY the fields listed above (the ones that need fixing)
+- XPaths must start with // and use contains(@class,...) for class matching
+- Do NOT use functions like substring-after or normalize-space
+- Return valid JSON only, no markdown, no explanation
+"""
+
+
+def refine(multi_matches: dict) -> dict:
+    """
+    Call Gemini to refine XPaths that have multiple matches.
+    
+    Args:
+        multi_matches: {field: {xpath, contexts: [{url, count, snippets}]}}
+    
+    Returns:
+        {field: refined_xpath} for successfully refined fields
+    """
+    if not multi_matches:
+        return {}
+
+    api_key = _get_api_key()
+
+    # Build context for the AI
+    fields_info = {}
+    for field, info in multi_matches.items():
+        ctx = info["contexts"][0]  # Use first page's context
+        fields_info[field] = {
+            "current_xpath": info["xpath"],
+            "match_count": ctx["count"],
+            "surrounding_html": ctx["snippets"],
+        }
+
+    content = PROMPT_REFINE.format(fields_json=json.dumps(fields_info, ensure_ascii=False, indent=2))
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={api_key}"
+    payload = {
+        "contents": [{"parts": [{"text": content}]}],
+        "generationConfig": {
+            "temperature": 0.1,
+            "maxOutputTokens": 4096,
+            "responseMimeType": "application/json",
+        }
+    }
+
+    resp = requests.post(url, json=payload, timeout=120)
+    resp.raise_for_status()
+
+    result = _parse_response(resp.json())
+    return result.get("mappings", {})
+
+
 def _detect_root_prefix(compressed_html: str) -> str:
     """Detect the root container element from compressed HTML and return an XPath prefix."""
     import re

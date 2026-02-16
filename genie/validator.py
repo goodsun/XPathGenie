@@ -33,6 +33,61 @@ def _content_score(node):
     return score
 
 
+def find_multi_matches(mappings: dict, pages: list) -> dict:
+    """
+    Find fields where XPath matches multiple nodes on any page.
+    Returns {field: {xpath, contexts: [{url, count, snippets: [html_context, ...]}]}}
+    for fields that need refinement.
+    """
+    valid_pages = [p for p in pages if p.get("html")]
+    if not valid_pages:
+        return {}
+
+    docs = []
+    for p in valid_pages:
+        try:
+            doc = fromstring(p["html"])
+            docs.append((p["url"], doc))
+        except Exception:
+            pass
+
+    multi = {}
+    for field, xpath in mappings.items():
+        field_contexts = []
+        for url, doc in docs:
+            try:
+                nodes = doc.xpath(xpath)
+                if len(nodes) > 1:
+                    snippets = []
+                    for node in nodes[:4]:  # max 4 matches
+                        # Get the parent chain (up to 2 levels) as context
+                        parent = node.getparent()
+                        if parent is not None:
+                            grandparent = parent.getparent()
+                            context_node = grandparent if grandparent is not None else parent
+                        else:
+                            context_node = node
+                        try:
+                            html_snippet = etree.tostring(context_node, encoding="unicode", method="html")
+                            # Truncate long snippets
+                            if len(html_snippet) > 1500:
+                                html_snippet = html_snippet[:1500] + "..."
+                            snippets.append(html_snippet)
+                        except Exception:
+                            snippets.append("(could not serialize)")
+                    field_contexts.append({
+                        "url": url,
+                        "count": len(nodes),
+                        "snippets": snippets,
+                    })
+            except Exception:
+                pass
+        if field_contexts:
+            multi[field] = {"xpath": xpath, "contexts": field_contexts}
+
+    return multi
+
+
 def validate(mappings: dict, pages: list) -> dict:
     """
     Validate XPath mappings against HTML pages.

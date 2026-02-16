@@ -65,7 +65,9 @@
             <tr v-for="(info, field) in result.mappings" :key="field" :class="{'low-confidence': info.confidence < 0.5}">
               <td>
                 <input v-if="editing === field" v-model="editName" @keyup.enter="renameField(field)" @blur="renameField(field)" class="edit-input" ref="editInput">
-                <span v-else @dblclick="startEdit(field)" class="field-name" :title="'Double-click to rename'">{{ field }}</span>
+                <span v-else @dblclick="startEdit(field)" class="field-name" :title="'Double-click to rename'">{{ field }}
+                  <span v-if="result.refined_fields && result.refined_fields.includes(field)" class="refined-badge">refined</span>
+                </span>
               </td>
               <td class="xpath-cell" :title="info.xpath">{{ info.xpath }}</td>
               <td>

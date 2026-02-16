@@ -7,8 +7,8 @@ import time
 
 from genie.fetcher import fetch_all
 from genie.compressor import compress
-from genie.analyzer import analyze
-from genie.validator import validate
+from genie.analyzer import analyze, refine
+from genie.validator import validate, find_multi_matches
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 
@@ -69,18 +69,36 @@ def api_analyze():
     # 4. Validate
     validated = validate(result["mappings"], pages)
 
+    # 5. Refine — if any fields have multiple matches, ask AI to narrow down
+    refined_fields = []
+    multi = find_multi_matches(result["mappings"], pages)
+    if multi:
+        try:
+            refined_xpaths = refine(multi)
+            if refined_xpaths:
+                # Merge refined XPaths back and re-validate
+                updated_mappings = dict(result["mappings"])
+                updated_mappings.update(refined_xpaths)
+                validated = validate(updated_mappings, pages)
+                refined_fields = list(refined_xpaths.keys())
+        except Exception:
+            pass  # Refinement failed; keep original results
+
     # Build response
     site = urlparse(urls[0]).netloc
     elapsed = round(time.time() - t0, 1)
 
-    return jsonify({
+    resp_data = {
         "site": site,
         "mappings": validated,
         "pages_analyzed": len(fetched),
         "pages_failed": len(pages) - len(fetched),
         "tokens_used": result.get("tokens_used", 0),
         "elapsed_seconds": elapsed,
-    })
+    }
+    if refined_fields:
+        resp_data["refined_fields"] = refined_fields
+    return jsonify(resp_data)
 
 
 if __name__ == "__main__":

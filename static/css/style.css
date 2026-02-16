@@ -304,6 +304,16 @@ textarea:focus { outline: none; border-color: #7c5cfc; }
 .nav-pair .current { color: #c084fc; font-weight: 600; }
 
 /* Warning message */
+.refined-badge {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border-radius: 8px;
+  vertical-align: middle;
+}
 .warning-msg {
   color: #ff9800;
   font-size: 12px;

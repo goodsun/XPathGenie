@@ -122,6 +122,13 @@ createApp({
       flashCopied();
     }
 
+    function openInAladdin() {
+      const m = getMappingsOnly();
+      localStorage.setItem('xpathgenie_mappings', JSON.stringify(m, null, 2));
+      // URLs are already shared via xpathgenie_urls
+      window.location.href = 'aladdin.html';
+    }
+
     function flashCopied() {
       copied.value = true;
       setTimeout(() => copied.value = false, 2000);
@@ -136,7 +143,7 @@ createApp({
       loading, error, result, elapsed, elapsedStr, copied,
       editing, editName,
       analyzeUrls, startEdit, renameField, confidenceColor,
-      copyJSON, copyYAML,
+      copyJSON, copyYAML, openInAladdin,
     };
   }
 }).mount('#app');

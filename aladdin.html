@@ -27,29 +27,24 @@
       color: #e0e0e0;
     }
     .input-group textarea:focus { border-color: #7c5cfc; outline: none; }
-    .url-row { display: flex; gap: 10px; margin-bottom: 16px; }
-    .url-row input {
-      flex: 1;
-      padding: 10px 14px;
+    .urls-group textarea {
+      min-height: 80px;
+      padding: 12px;
       border: 1px solid rgba(124,92,252,0.3);
       border-radius: 8px;
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 13px;
+      resize: vertical;
+      line-height: 1.6;
       background: rgba(255,255,255,0.03);
       color: #e0e0e0;
-      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .url-row input:focus { border-color: #7c5cfc; outline: none; }
-    .url-row button {
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #7c5cfc, #9f7aea);
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .url-row button:hover { opacity: 0.9; }
-    .url-hint { font-size: 12px; color: #666; margin-top: -12px; margin-bottom: 12px; }
+    .urls-group textarea:focus { border-color: #7c5cfc; outline: none; }
+    .urls-group { margin-bottom: 16px; }
+    .urls-group label { font-weight: 600; margin-bottom: 6px; color: #c084fc; font-size: 14px; display: block; }
+    .url-hint { font-size: 12px; color: #666; margin-top: 4px; }
     .button-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
     .button-group .btn-run {
       padding: 12px 28px;
@@ -62,6 +57,7 @@
       cursor: pointer;
     }
     .button-group .btn-run:hover { opacity: 0.9; }
+    .button-group .btn-run:disabled { opacity: 0.5; cursor: not-allowed; }
     .button-group .btn-secondary {
       padding: 12px 20px;
       background: rgba(255,255,255,0.06);
@@ -72,6 +68,35 @@
       cursor: pointer;
     }
     .button-group .btn-secondary:hover { background: rgba(124,92,252,0.1); }
+    .page-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .page-tabs button {
+      padding: 6px 14px;
+      border: 1px solid rgba(124,92,252,0.3);
+      border-radius: 6px 6px 0 0;
+      background: rgba(255,255,255,0.03);
+      color: #888;
+      font-size: 12px;
+      cursor: pointer;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .page-tabs button.active {
+      background: rgba(124,92,252,0.15);
+      color: #c084fc;
+      font-weight: 600;
+      border-bottom-color: transparent;
+    }
+    .page-tabs button:hover:not(.active) { background: rgba(124,92,252,0.08); }
+    .page-tabs .tab-status { font-size: 10px; margin-left: 4px; }
+    .page-tabs .tab-status.ok { color: #4caf50; }
+    .page-tabs .tab-status.fail { color: #f44336; }
     .results-table {
       width: 100%;
       border-collapse: collapse;
@@ -123,6 +148,9 @@
     }
     .result-value:hover { background: rgba(124,92,252,0.15); }
     .result-value.empty { color: #666; font-style: italic; }
+    .result-value.multi { color: #ff9800; }
+    .match-count { font-size: 11px; color: #666; margin-left: 6px; }
+    .match-count.warn { color: #ff9800; }
     .msg { padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; display: none; font-size: 14px; }
     .msg.error { background: rgba(244,67,54,0.15); color: #f44336; }
     .msg.success { background: rgba(76,175,80,0.15); color: #4caf50; }
@@ -142,6 +170,30 @@
       pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 1000;
     }
     .copy-toast.show { opacity: 1; }
+    .progress-bar {
+      height: 3px;
+      background: rgba(124,92,252,0.2);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar .fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7c5cfc, #9f7aea);
+      transition: width 0.3s;
+    }
+    .summary-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #888;
+    }
+    .summary-bar .stat { padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 12px; }
+    .summary-bar .stat.good { color: #4caf50; }
+    .summary-bar .stat.warn { color: #ff9800; }
     @media (max-width: 768px) { .input-section { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -158,37 +210,41 @@
     </header>
 
     <div class="card">
-      <label style="color:#c084fc;font-weight:600;display:block;margin-bottom:6px;">URL</label>
-      <div class="url-row">
-        <input type="url" id="urlInput" placeholder="https://example.com/page/123">
-        <button onclick="fetchHTML()">Fetch HTML</button>
+      <div class="urls-group">
+        <label>URLs (one per line, max 10)</label>
+        <textarea id="urlsInput" placeholder="https://example.com/page/1
+https://example.com/page/2
+https://example.com/page/3"></textarea>
+        <p class="url-hint">Enter multiple URLs to test XPaths across pages. Fetched via server proxy.</p>
       </div>
-      <p class="url-hint">CORS restriction may block some sites. Paste HTML manually if fetch fails.</p>
 
       <div class="input-section">
         <div class="input-group">
-          <label>HTML Source</label>
-          <textarea id="htmlInput" placeholder="Paste HTML source here, or fetch from URL above..."></textarea>
+          <label>HTML Source <span id="htmlLabel" style="font-weight:normal;color:#888;font-size:12px;">(auto-fetched)</span></label>
+          <textarea id="htmlInput" placeholder="HTML is auto-fetched from URLs above. You can also paste manually for a single page."></textarea>
         </div>
         <div class="input-group">
           <label>XPath Mapping (JSON)</label>
           <textarea id="xpathInput" placeholder='{
   "facility_name": "//dt[text()=&apos;勤務先&apos;]/following-sibling::dd[1]",
-  "salary": "//dt[text()=&apos;給与&apos;]/following-sibling::dd[1]",
-  "occupation": "//dt[text()=&apos;職種&apos;]/following-sibling::dd[1]"
+  "salary": "//dt[text()=&apos;給与&apos;]/following-sibling::dd[1]"
 }'></textarea>
         </div>
       </div>
 
       <div class="button-group">
-        <button class="btn-run" onclick="executeXPath()">Extract</button>
+        <button class="btn-run" id="btnRun" onclick="runAll()">Fetch &amp; Extract</button>
+        <button class="btn-secondary" onclick="extractCurrent()">Extract (current HTML)</button>
         <button class="btn-secondary" onclick="clearAll()">Clear</button>
       </div>
 
+      <div id="progressBar" class="progress-bar"><div class="fill" id="progressFill"></div></div>
       <div id="errorMsg" class="msg error"></div>
       <div id="successMsg" class="msg success"></div>
 
       <div id="resultsContainer" style="display:none">
+        <div id="summaryBar" class="summary-bar"></div>
+        <div id="pageTabs" class="page-tabs"></div>
         <h3 style="color:#c084fc;margin-bottom:8px;">Results</h3>
         <table class="results-table">
           <thead>
@@ -203,76 +259,212 @@
   <div id="copyToast" class="copy-toast">Copied!</div>
 
   <script>
-    let currentDoc = null;
+    // State
+    let pages = [];       // [{url, html, doc, error}]
+    let activePage = 0;
     let currentConfig = {};
     let debounce = null;
     const toast = document.getElementById('copyToast');
 
-    async function fetchHTML() {
-      const url = document.getElementById('urlInput').value.trim();
-      if (!url) { showMsg('error', 'Enter a URL'); return; }
-      hideMsg();
-      showMsg('success', 'Fetching...');
+    // Init from localStorage (shared with Genie)
+    (function init() {
+      const urls = localStorage.getItem('xpathgenie_urls') || '';
+      const mappings = localStorage.getItem('xpathgenie_mappings') || '';
+      if (urls) document.getElementById('urlsInput').value = urls;
+      if (mappings) {
+        document.getElementById('xpathInput').value = mappings;
+        try { currentConfig = JSON.parse(mappings); } catch(e) {}
+      }
+    })();
+
+    async function fetchOne(url) {
       try {
-        // Try server-side proxy first (same-origin)
-        const proxyResp = await fetch('api/fetch?url=' + encodeURIComponent(url));
-        if (proxyResp.ok) {
-          const data = await proxyResp.json();
+        const resp = await fetch('api/fetch?url=' + encodeURIComponent(url));
+        if (resp.ok) {
+          const data = await resp.json();
           if (data.html) {
-            document.getElementById('htmlInput').value = data.html;
-            showMsg('success', 'Fetched via server proxy (' + new URL(url).hostname + ')');
-            return;
+            const parser = new DOMParser();
+            return { url, html: data.html, doc: parser.parseFromString(data.html, 'text/html'), error: null };
           }
         }
-      } catch(e) {}
-      // Fallback: CORS proxies
-      const proxies = [
-        'https://api.allorigins.win/get?url=' + encodeURIComponent(url),
-        'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
-      ];
-      for (const p of proxies) {
-        try {
-          const r = await fetch(p);
-          if (r.ok) {
-            let html;
-            if (p.includes('allorigins')) { html = (await r.json()).contents; }
-            else { html = await r.text(); }
-            if (html) {
-              document.getElementById('htmlInput').value = html;
-              showMsg('success', 'Fetched (' + new URL(url).hostname + ')');
-              return;
-            }
-          }
-        } catch(e) { continue; }
+        return { url, html: null, doc: null, error: 'Fetch failed' };
+      } catch(e) {
+        return { url, html: null, doc: null, error: e.message };
       }
-      showMsg('error', 'Failed to fetch. Paste HTML manually.');
     }
 
-    function executeXPath() {
+    async function runAll() {
+      const urlsText = document.getElementById('urlsInput').value.trim();
+      const xpathStr = document.getElementById('xpathInput').value.trim();
+      hideMsg();
+      if (!urlsText) { showMsg('error', 'Enter at least one URL'); return; }
+      if (!xpathStr) { showMsg('error', 'Enter XPath mapping JSON'); return; }
+      try { currentConfig = JSON.parse(xpathStr); } catch(e) { showMsg('error', 'Invalid JSON: ' + e.message); return; }
+
+      const urls = urlsText.split('\n').map(u => u.trim()).filter(Boolean).slice(0, 10);
+      const btn = document.getElementById('btnRun');
+      btn.disabled = true;
+      btn.textContent = 'Fetching...';
+      const bar = document.getElementById('progressBar');
+      const fill = document.getElementById('progressFill');
+      bar.style.display = 'block';
+      fill.style.width = '0%';
+
+      pages = [];
+      for (let i = 0; i < urls.length; i++) {
+        fill.style.width = ((i + 1) / urls.length * 100) + '%';
+        btn.textContent = `Fetching ${i + 1}/${urls.length}...`;
+        const p = await fetchOne(urls[i]);
+        pages.push(p);
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Fetch & Extract';
+      bar.style.display = 'none';
+
+      const ok = pages.filter(p => p.doc).length;
+      const fail = pages.length - ok;
+      if (ok === 0) { showMsg('error', 'All fetches failed'); return; }
+
+      // Show first fetched page HTML
+      activePage = pages.findIndex(p => p.doc);
+      document.getElementById('htmlInput').value = pages[activePage].html || '';
+      showMsg('success', `Fetched ${ok}/${pages.length} pages`);
+
+      renderTabs();
+      renderSummary();
+      renderResults();
+    }
+
+    function extractCurrent() {
       const html = document.getElementById('htmlInput').value;
       const xpathStr = document.getElementById('xpathInput').value;
       hideMsg();
-      if (!html.trim()) { showMsg('error', 'Paste HTML source'); return; }
+      if (!html.trim()) { showMsg('error', 'Paste HTML source or fetch URLs first'); return; }
       if (!xpathStr.trim()) { showMsg('error', 'Enter XPath JSON'); return; }
-      try {
-        currentConfig = JSON.parse(xpathStr);
-        const parser = new DOMParser();
-        currentDoc = parser.parseFromString(html, 'text/html');
-        const tbody = document.getElementById('resultsBody');
-        tbody.innerHTML = '';
-        for (const [key, xpath] of Object.entries(currentConfig)) {
-          addRow(key, xpath);
+      try { currentConfig = JSON.parse(xpathStr); } catch(e) { showMsg('error', 'Invalid JSON: ' + e.message); return; }
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      pages = [{ url: '(pasted)', html, doc, error: null }];
+      activePage = 0;
+      renderTabs();
+      renderSummary();
+      renderResults();
+      showMsg('success', Object.keys(currentConfig).length + ' fields extracted');
+    }
+
+    function renderTabs() {
+      const container = document.getElementById('pageTabs');
+      container.innerHTML = '';
+      if (pages.length <= 1) return;
+      pages.forEach((p, i) => {
+        const btn = document.createElement('button');
+        const hostname = p.url.startsWith('http') ? new URL(p.url).pathname.slice(-30) : p.url;
+        btn.textContent = hostname;
+        if (p.doc) {
+          btn.innerHTML += ' <span class="tab-status ok">OK</span>';
+        } else {
+          btn.innerHTML += ' <span class="tab-status fail">FAIL</span>';
         }
-        document.getElementById('resultsContainer').style.display = 'block';
-        showMsg('success', Object.keys(currentConfig).length + ' fields extracted');
-      } catch(e) {
-        showMsg('error', e.message);
+        if (i === activePage) btn.classList.add('active');
+        btn.onclick = () => switchTab(i);
+        container.appendChild(btn);
+      });
+    }
+
+    function renderSummary() {
+      const bar = document.getElementById('summaryBar');
+      if (pages.length <= 1) { bar.innerHTML = ''; return; }
+      const validPages = pages.filter(p => p.doc);
+      const fields = Object.keys(currentConfig);
+      let allMatch = 0, someMatch = 0, noMatch = 0;
+      fields.forEach(key => {
+        const xpath = currentConfig[key];
+        let hits = 0;
+        validPages.forEach(p => {
+          const r = evalXPath(xpath, p.doc);
+          if (r.values) hits++;
+        });
+        if (hits === validPages.length) allMatch++;
+        else if (hits > 0) someMatch++;
+        else noMatch++;
+      });
+      bar.innerHTML = `
+        <span class="stat">${pages.length} pages (${validPages.length} OK)</span>
+        <span class="stat good">${allMatch} fields 100%</span>
+        ${someMatch ? `<span class="stat warn">${someMatch} fields partial</span>` : ''}
+        ${noMatch ? `<span class="stat" style="color:#f44336">${noMatch} fields 0%</span>` : ''}
+      `;
+    }
+
+    function switchTab(idx) {
+      if (!pages[idx] || !pages[idx].doc) return;
+      activePage = idx;
+      document.getElementById('htmlInput').value = pages[idx].html || '';
+      renderTabs();
+      renderResults();
+    }
+
+    function renderResults() {
+      const tbody = document.getElementById('resultsBody');
+      tbody.innerHTML = '';
+      document.getElementById('resultsContainer').style.display = 'block';
+      const doc = pages[activePage]?.doc;
+      if (!doc) return;
+
+      const validPages = pages.filter(p => p.doc);
+      for (const [key, xpath] of Object.entries(currentConfig)) {
+        const tr = document.createElement('tr');
+        // Key
+        const tdKey = document.createElement('td');
+        tdKey.className = 'key-col';
+        tdKey.textContent = key;
+        // Cross-page hit count
+        if (validPages.length > 1) {
+          let hits = 0;
+          validPages.forEach(p => { if (evalXPath(xpath, p.doc).values) hits++; });
+          const span = document.createElement('span');
+          span.className = 'match-count' + (hits < validPages.length ? ' warn' : '');
+          span.textContent = ` ${hits}/${validPages.length}`;
+          tdKey.appendChild(span);
+        }
+        // XPath (editable)
+        const tdXpath = document.createElement('td');
+        tdXpath.className = 'xpath-col';
+        const editor = document.createElement('textarea');
+        editor.className = 'xpath-editor';
+        editor.value = xpath;
+        editor.rows = 1;
+        editor.dataset.key = key;
+        editor.addEventListener('input', function() {
+          clearTimeout(debounce);
+          debounce = setTimeout(() => {
+            currentConfig[key] = this.value;
+            document.getElementById('xpathInput').value = JSON.stringify(currentConfig, null, 2);
+            updateResultCell(key, this.value, tr.querySelector('.result-col'));
+            renderSummary();
+          }, 400);
+          this.style.height = 'auto';
+          this.style.height = this.scrollHeight + 'px';
+        });
+        setTimeout(() => { editor.style.height = 'auto'; editor.style.height = editor.scrollHeight + 'px'; }, 0);
+        tdXpath.appendChild(editor);
+        // Result
+        const tdResult = document.createElement('td');
+        tdResult.className = 'result-col';
+        tr.appendChild(tdKey);
+        tr.appendChild(tdXpath);
+        tr.appendChild(tdResult);
+        tbody.appendChild(tr);
+        updateResultCell(key, xpath, tdResult);
       }
     }
 
-    function evalXPath(xpath) {
+    function evalXPath(xpath, doc) {
+      if (!doc) return { values: null, error: 'No document' };
       try {
-        const r = currentDoc.evaluate(xpath, currentDoc, null, XPathResult.ANY_TYPE, null);
+        const r = doc.evaluate(xpath, doc, null, XPathResult.ANY_TYPE, null);
         const vals = [];
         let n = r.iterateNext();
         while (n) {
@@ -286,45 +478,11 @@
       }
     }
 
-    function addRow(key, xpath) {
-      const tbody = document.getElementById('resultsBody');
-      const tr = document.createElement('tr');
-      // Key
-      const tdKey = document.createElement('td');
-      tdKey.className = 'key-col';
-      tdKey.textContent = key;
-      // XPath (editable)
-      const tdXpath = document.createElement('td');
-      tdXpath.className = 'xpath-col';
-      const editor = document.createElement('textarea');
-      editor.className = 'xpath-editor';
-      editor.value = xpath;
-      editor.rows = 1;
-      editor.addEventListener('input', function() {
-        clearTimeout(debounce);
-        debounce = setTimeout(() => {
-          currentConfig[key] = this.value;
-          document.getElementById('xpathInput').value = JSON.stringify(currentConfig, null, 2);
-          updateResultCell(key, this.value, tr.querySelector('.result-col'));
-        }, 400);
-        this.style.height = 'auto';
-        this.style.height = this.scrollHeight + 'px';
-      });
-      setTimeout(() => { editor.style.height = 'auto'; editor.style.height = editor.scrollHeight + 'px'; }, 0);
-      tdXpath.appendChild(editor);
-      // Result
-      const tdResult = document.createElement('td');
-      tdResult.className = 'result-col';
-      tr.appendChild(tdKey);
-      tr.appendChild(tdXpath);
-      tr.appendChild(tdResult);
-      tbody.appendChild(tr);
-      updateResultCell(key, xpath, tdResult);
-    }
-
     function updateResultCell(key, xpath, cell) {
+      if (!cell) return;
       cell.innerHTML = '';
-      const { values, error } = evalXPath(xpath);
+      const doc = pages[activePage]?.doc;
+      const { values, error } = evalXPath(xpath, doc);
       if (error) {
         const s = document.createElement('span');
         s.textContent = 'XPath Error: ' + error;
@@ -340,10 +498,16 @@
           if (i > 0) cell.appendChild(document.createElement('br'));
           const s = document.createElement('span');
           s.textContent = v || '(empty)';
-          s.className = 'result-value' + (!v ? ' empty' : '');
+          s.className = 'result-value' + (!v ? ' empty' : '') + (values.length > 1 ? ' multi' : '');
           if (v) s.addEventListener('click', (e) => copyText(v, e));
           cell.appendChild(s);
         });
+        if (values.length > 1) {
+          const warn = document.createElement('span');
+          warn.className = 'match-count warn';
+          warn.textContent = ` (${values.length} matches)`;
+          cell.appendChild(warn);
+        }
       }
     }
 
@@ -358,8 +522,12 @@
     function clearAll() {
       document.getElementById('htmlInput').value = '';
       document.getElementById('xpathInput').value = '';
-      document.getElementById('urlInput').value = '';
+      document.getElementById('urlsInput').value = '';
       document.getElementById('resultsContainer').style.display = 'none';
+      document.getElementById('summaryBar').innerHTML = '';
+      document.getElementById('pageTabs').innerHTML = '';
+      pages = [];
+      currentConfig = {};
       hideMsg();
     }
 
@@ -373,7 +541,7 @@
       document.getElementById('successMsg').style.display = 'none';
     }
 
-    document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.key === 'Enter') executeXPath(); });
+    document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.key === 'Enter') runAll(); });
   </script>
 </body>
 </html>

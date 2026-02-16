@@ -87,6 +87,7 @@
         <div class="export-bar">
           <button @click="copyJSON" class="btn-export">Copy JSON</button>
           <button @click="copyYAML" class="btn-export">Copy YAML</button>
+          <button @click="openInAladdin" class="btn-export" style="background:linear-gradient(135deg,#7c5cfc,#9f7aea);color:#fff;">Open in Aladdin</button>
           <span v-if="copied" class="copied-msg">Copied!</span>
         </div>
       </div>

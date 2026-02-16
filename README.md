@@ -338,6 +338,10 @@ Aladdin用のサーバーサイドHTMLフェッチ（CORS回避）。
 }
 ```
 
+## ホワイトペーパー
+
+技術的な詳細は [Technical Whitepaper](docs/whitepaper.md) を参照。
+
 ## ライセンス
 
 MIT License — see [LICENSE](LICENSE)

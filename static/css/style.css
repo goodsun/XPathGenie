@@ -19,8 +19,16 @@ body {
 }
 
 .lamp {
-  font-size: 3rem;
+  display: none;
+}
+
+.genie {
+  display: block;
+  font-size: 6rem;
+  line-height: 1;
+  margin-bottom: 0.2rem;
   animation: float 3s ease-in-out infinite;
+  -webkit-text-fill-color: initial;
 }
 
 @keyframes float {
@@ -35,8 +43,6 @@ h1 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.genie { -webkit-text-fill-color: initial; }
 
 .tagline {
   color: #888;

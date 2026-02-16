@@ -1,0 +1,13 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]: 🧞
+    - heading "XPathGenie" [level=1] [ref=e6]
+    - paragraph [ref=e7]: Rub the lamp, get the XPath.
+  - generic [ref=e8]:
+    - generic [ref=e9]: Enter URLs (one per line, 2-10 recommended)
+    - textbox "https://example.com/page/1 https://example.com/page/2 https://example.com/page/3" [ref=e10]:
+      - /placeholder: "https://example.com/page/1\nhttps://example.com/page/2\nhttps://example.com/page/3"
+    - generic [ref=e11]:
+      - button "Auto Discover" [ref=e12] [cursor=pointer]
+      - button "Want List" [ref=e13] [cursor=pointer]
+    - button "Analyze" [disabled] [ref=e14]

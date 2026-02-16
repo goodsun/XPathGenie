@@ -32,7 +32,10 @@ Rules:
 - For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
 - Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
 - Include all extractable fields you can identify
-- Do NOT include navigation, header, footer, or boilerplate fields
+- Do NOT include navigation, header, footer, sidebar, or boilerplate fields
+- ONLY extract from the MAIN content area of the page (the primary detail/article section)
+- EXCLUDE recommended items, related listings, sidebar widgets, "other jobs", "similar posts" sections
+- XPaths should be SPECIFIC enough to match only the main content, not repeated sidebar elements (e.g. use a parent container class that wraps only the main detail)
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:

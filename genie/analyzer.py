@@ -24,7 +24,9 @@ Identify all meaningful data fields that can be extracted, and provide XPath exp
 
 Rules:
 - Return ONLY a JSON object: {"field_name": "xpath_expression", ...}
+- Keep XPaths SHORT and SIMPLE. Avoid deeply nested conditions. Prefer: //dt[text()='ラベル']/following-sibling::dd[1]
 - Field names must be lowercase English, descriptive, generic (e.g. price, title, facility_name, prefecture, address, phone, description, salary, job_type, access, working_hours)
+- Limit to the 20 most important fields maximum
 - XPaths must use // prefix and select element nodes (not text() nodes)
 - For class matching, ALWAYS use contains() because classes often have multiple values (e.g. //div[contains(@class,'price')], NOT //div[@class='price'])
 - For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
@@ -83,7 +85,18 @@ def analyze(compressed_htmls: list) -> dict:
             try:
                 mappings = json.loads(text[start:end+1])
             except json.JSONDecodeError:
-                raise RuntimeError(f"Failed to parse Gemini response as JSON: {text[:500]}")
+                # Truncated JSON — try to salvage by closing it
+                truncated = text[start:]
+                # Remove last incomplete key-value pair
+                last_comma = truncated.rfind('",')
+                if last_comma > 0:
+                    truncated = truncated[:last_comma+1] + "}"
+                    try:
+                        mappings = json.loads(truncated)
+                    except json.JSONDecodeError:
+                        raise RuntimeError(f"Failed to parse Gemini response as JSON: {text[:500]}")
+                else:
+                    raise RuntimeError(f"Failed to parse Gemini response as JSON: {text[:500]}")
         else:
             raise RuntimeError(f"Failed to parse Gemini response as JSON: {text[:500]}")
 

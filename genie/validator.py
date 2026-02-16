@@ -12,8 +12,10 @@ SIDE_SIGNALS = {'aside', 'sidebar', 'recommend', 'related', 'sub', 'widget', 'fo
 def _content_score(node):
     """Score a node by structural context. Higher = more likely main content."""
     score = 0
+    depth = 0
     ancestor = node.getparent()
     while ancestor is not None:
+        depth += 1
         tag = ancestor.tag or ""
         cls = (ancestor.get("class") or "").lower()
         aid = (ancestor.get("id") or "").lower()
@@ -30,6 +32,8 @@ def _content_score(node):
         elif tag in ("aside", "nav", "footer"):
             score -= 20
         ancestor = ancestor.getparent()
+    # Deeper nesting = more specific context = slight preference
+    score += depth
     return score
 
 

@@ -49,6 +49,7 @@
             <span>{{ result.pages_analyzed }} pages</span>
             <span>{{ result.tokens_used }} tokens</span>
             <span>{{ result.elapsed_seconds }}s</span>
+            <span v-if="savedAtStr" style="opacity:0.6">{{ savedAtStr }}</span>
           </div>
         </div>
 

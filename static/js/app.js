@@ -16,6 +16,10 @@ createApp({
     let timer = null;
 
     const elapsedStr = computed(() => elapsed.value + 's');
+    const savedAtStr = computed(() => {
+      if (!result.value?._savedAt) return '';
+      return new Date(result.value._savedAt).toLocaleString();
+    });
 
     const wantlistPlaceholder = `{
   "original_id": "求人ID・管理番号",
@@ -75,6 +79,7 @@ createApp({
         } else {
           result.value = data;
           // Persist full result for page reload + save flat mappings for Aladdin
+          data._savedAt = new Date().toISOString();
           localStorage.setItem('xpathgenie_result', JSON.stringify(data));
           const m = {};
           for (const [k, v] of Object.entries(data.mappings)) { m[k] = v.xpath; }
@@ -146,7 +151,7 @@ createApp({
 
     return {
       urlText, wantlistText, mode, wantlistPlaceholder,
-      loading, error, result, elapsed, elapsedStr, copied,
+      loading, error, result, elapsed, elapsedStr, savedAtStr, copied,
       editing, editName,
       analyzeUrls, startEdit, renameField, confidenceColor,
       copyJSON, copyYAML, openInAladdin,

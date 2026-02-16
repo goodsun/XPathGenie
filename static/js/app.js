@@ -7,7 +7,8 @@ createApp({
     const mode = ref(localStorage.getItem('xpathgenie_mode') || 'discover');  // 'discover' or 'wantlist'
     const loading = ref(false);
     const error = ref(null);
-    const result = ref(null);
+    const savedResult = localStorage.getItem('xpathgenie_result');
+    const result = ref(savedResult ? JSON.parse(savedResult) : null);
     const elapsed = ref(0);
     const copied = ref(false);
     const editing = ref(null);
@@ -73,7 +74,8 @@ createApp({
           error.value = data.error || 'Unknown error';
         } else {
           result.value = data;
-          // Auto-save mappings for Aladdin
+          // Persist full result for page reload + save flat mappings for Aladdin
+          localStorage.setItem('xpathgenie_result', JSON.stringify(data));
           const m = {};
           for (const [k, v] of Object.entries(data.mappings)) { m[k] = v.xpath; }
           localStorage.setItem('xpathgenie_mappings', JSON.stringify(m, null, 2));

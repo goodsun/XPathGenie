@@ -494,34 +494,19 @@ https://example.com/page/3"></textarea>
         s.className = 'result-value empty';
         cell.appendChild(s);
       } else {
-        const uniqueVals = new Set(values);
-        const allSame = uniqueVals.size === 1;
-        if (allSame && values.length > 1) {
-          // All identical — show single value with count
+        values.forEach((v, i) => {
+          if (i > 0) cell.appendChild(document.createElement('br'));
           const s = document.createElement('span');
-          s.textContent = values[0] || '(empty)';
-          s.className = 'result-value';
-          if (values[0]) s.addEventListener('click', (e) => copyText(values[0], e));
+          s.textContent = v || '(empty)';
+          s.className = 'result-value' + (!v ? ' empty' : '') + (values.length > 1 ? ' multi' : '');
+          if (v) s.addEventListener('click', (e) => copyText(v, e));
           cell.appendChild(s);
-          const note = document.createElement('span');
-          note.className = 'match-count';
-          note.textContent = ` (${values.length} identical)`;
-          cell.appendChild(note);
-        } else {
-          values.forEach((v, i) => {
-            if (i > 0) cell.appendChild(document.createElement('br'));
-            const s = document.createElement('span');
-            s.textContent = v || '(empty)';
-            s.className = 'result-value' + (!v ? ' empty' : '') + (values.length > 1 ? ' multi' : '');
-            if (v) s.addEventListener('click', (e) => copyText(v, e));
-            cell.appendChild(s);
-          });
-          if (values.length > 1) {
-            const warn = document.createElement('span');
-            warn.className = 'match-count warn';
-            warn.textContent = ` (${values.length} different matches)`;
-            cell.appendChild(warn);
-          }
+        });
+        if (values.length > 1) {
+          const warn = document.createElement('span');
+          warn.className = 'match-count warn';
+          warn.textContent = ` (${values.length} matches)`;
+          cell.appendChild(warn);
         }
       }
     }

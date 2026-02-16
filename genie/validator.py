@@ -58,15 +58,14 @@ def find_multi_matches(mappings: dict, pages: list) -> dict:
             try:
                 nodes = doc.xpath(xpath)
                 if len(nodes) > 1:
-                    # Skip if all values are identical (harmless duplication)
+                    # Check if values are all identical
                     vals = set()
                     for node in nodes:
                         if isinstance(node, str):
                             vals.add(node.strip())
                         elif hasattr(node, "text_content"):
                             vals.add(node.text_content().strip())
-                    if len(vals) <= 1:
-                        continue  # Same value everywhere, no need to refine
+                    all_identical = len(vals) <= 1
                     snippets = []
                     for node in nodes[:4]:  # max 4 matches
                         # Get the parent chain (up to 2 levels) as context
@@ -92,9 +91,83 @@ def find_multi_matches(mappings: dict, pages: list) -> dict:
             except Exception:
                 pass
         if field_contexts:
-            multi[field] = {"xpath": xpath, "contexts": field_contexts}
+            multi[field] = {"xpath": xpath, "contexts": field_contexts, "all_identical": all_identical}
 
     return multi
+
+
+def narrow_by_first_match(mappings: dict, multi_matches: dict, pages: list) -> dict:
+    """
+    For fields where all matched values are identical, narrow the XPath
+    by adding an intermediate class-bearing ancestor to get exactly 1 match.
+    Searches all matched elements' ancestors for a class that narrows to 1.
+    Returns {field: narrowed_xpath} for fields that were successfully narrowed.
+    """
+    valid_pages = [p for p in pages if p.get("html")]
+    if not valid_pages:
+        return {}
+
+    try:
+        doc = fromstring(valid_pages[0]["html"])
+    except Exception:
+        return {}
+
+    narrowed = {}
+    for field, info in multi_matches.items():
+        if not info.get("all_identical"):
+            continue  # Different values — needs AI refine
+
+        xpath = info["xpath"]
+
+        # Split xpath into container // core
+        parts = xpath.split("//", 2)  # ['', 'container[...]', 'core...']
+        if len(parts) < 3:
+            continue
+        container_part = parts[1]
+        core_part = "//" + parts[2]  # includes /@attr if present
+
+        # Get element xpath (strip trailing /@attr if present) for element lookup
+        elem_xpath = xpath.rsplit("/@", 1)[0] if "/@" in xpath else xpath
+
+        try:
+            elems = doc.xpath(elem_xpath)
+        except Exception:
+            continue
+        if len(elems) < 2:
+            continue
+
+        # Extract container class name to skip it
+        import re
+        container_cls_m = re.search(r"contains\(@class,'([^']+)'\)", container_part)
+        container_cls = container_cls_m.group(1) if container_cls_m else ""
+
+        # Collect all intermediate classes from all matched elements
+        found = False
+        for elem in elems:
+            for anc in elem.iterancestors():
+                cls = anc.get("class")
+                if not cls:
+                    continue
+                if container_cls and container_cls in cls:
+                    break  # Reached the container level, stop
+                for c in cls.split():
+                    if len(c) < 3:
+                        continue
+                    candidate = f"//{container_part}//{anc.tag}[contains(@class,'{c}')]{core_part}"
+                    try:
+                        test_nodes = doc.xpath(candidate)
+                        if len(test_nodes) == 1:
+                            narrowed[field] = candidate
+                            found = True
+                            break
+                    except Exception:
+                        continue
+                if found:
+                    break
+            if found:
+                break
+
+    return narrowed
 
 
 def validate(mappings: dict, pages: list) -> dict:
@@ -157,16 +230,7 @@ def validate(mappings: dict, pages: list) -> dict:
                     else:
                         samples.append("(empty)")
                     if len(nodes) > 1:
-                        # Check if all matched values are identical
-                        all_vals = set()
-                        for node in nodes:
-                            if isinstance(node, str):
-                                all_vals.add(node.strip())
-                            elif hasattr(node, "text_content"):
-                                all_vals.add(node.text_content().strip())
-                        if len(all_vals) > 1:
-                            multi_hits.append(url)  # Different values = real problem
-                        # Same values = harmless, skip warning
+                        multi_hits.append(url)
                 else:
                     samples.append(None)
             except Exception as e:

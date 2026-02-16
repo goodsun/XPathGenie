@@ -8,7 +8,7 @@ import time
 from genie.fetcher import fetch_all
 from genie.compressor import compress
 from genie.analyzer import analyze, refine
-from genie.validator import validate, find_multi_matches
+from genie.validator import validate, find_multi_matches, narrow_by_first_match
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 
@@ -69,20 +69,31 @@ def api_analyze():
     # 4. Validate
     validated = validate(result["mappings"], pages)
 
-    # 5. Refine — if any fields have multiple matches, ask AI to narrow down
+    # 5. Refine — multi-match fields
     refined_fields = []
     multi = find_multi_matches(result["mappings"], pages)
     if multi:
-        try:
-            refined_xpaths = refine(multi)
-            if refined_xpaths:
-                # Merge refined XPaths back and re-validate
-                updated_mappings = dict(result["mappings"])
-                updated_mappings.update(refined_xpaths)
-                validated = validate(updated_mappings, pages)
-                refined_fields = list(refined_xpaths.keys())
-        except Exception:
-            pass  # Refinement failed; keep original results
+        updated_mappings = dict(result["mappings"])
+
+        # 5a. Identical values — mechanical narrowing (add intermediate class path)
+        narrowed = narrow_by_first_match(result["mappings"], multi, pages)
+        if narrowed:
+            updated_mappings.update(narrowed)
+            refined_fields.extend(narrowed.keys())
+
+        # 5b. Different values — AI refine
+        ai_targets = {k: v for k, v in multi.items() if not v.get("all_identical") and k not in narrowed}
+        if ai_targets:
+            try:
+                ai_refined = refine(ai_targets)
+                if ai_refined:
+                    updated_mappings.update(ai_refined)
+                    refined_fields.extend(ai_refined.keys())
+            except Exception:
+                pass
+
+        if refined_fields:
+            validated = validate(updated_mappings, pages)
 
     # Build response
     site = urlparse(urls[0]).netloc

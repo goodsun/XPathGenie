@@ -1,0 +1,277 @@
+# XPathGenie 評価用 詳細ページURLリスト
+# 各サイト10件（取得可能分）。Genie/Aladdinにそのまま貼れる形式。
+# アクセス不可: #3(403), #17(500), #23(ログイン必須)
+# SPA(詳細): #7, #11, #15, #21, #22, #27, #28, #29
+# 未取得: #33(詳細リンク不明)
+
+#1 tsukui-staff (介護, dt/dd)
+https://www.tsukui-staff.net/offer/108813/
+https://www.tsukui-staff.net/offer/117479/
+https://www.tsukui-staff.net/offer/156612/
+https://www.tsukui-staff.net/offer/240262/
+https://www.tsukui-staff.net/offer/328170/
+https://www.tsukui-staff.net/offer/328176/
+https://www.tsukui-staff.net/offer/328181/
+https://www.tsukui-staff.net/offer/381096/
+https://www.tsukui-staff.net/offer/381169/
+https://www.tsukui-staff.net/offer/385198/
+
+#2 selva-i (薬剤師, dt/dd)
+https://phama.selva-i.co.jp/job_1334881
+https://phama.selva-i.co.jp/job_1334882
+https://phama.selva-i.co.jp/job_1334886
+https://phama.selva-i.co.jp/job_1334896
+https://phama.selva-i.co.jp/job_1334899
+https://phama.selva-i.co.jp/job_1334902
+https://phama.selva-i.co.jp/job_1334904
+https://phama.selva-i.co.jp/job_1334906
+https://phama.selva-i.co.jp/job_1335040
+https://phama.selva-i.co.jp/job_1335041
+
+#4 yakumatch (薬剤師, th/td)
+https://yakuzaishi.yakumatch.com/jobs/385796
+https://yakuzaishi.yakumatch.com/jobs/493825
+https://yakuzaishi.yakumatch.com/jobs/549850
+https://yakuzaishi.yakumatch.com/jobs/565104
+https://yakuzaishi.yakumatch.com/jobs/582488
+https://yakuzaishi.yakumatch.com/jobs/667898
+https://yakuzaishi.yakumatch.com/jobs/780845
+https://yakuzaishi.yakumatch.com/jobs/800482
+https://yakuzaishi.yakumatch.com/jobs/907786
+https://yakuzaishi.yakumatch.com/jobs/967474
+
+#5 mynavi (薬剤師, dt/dd)
+https://pharma.mynavi.jp/d/10152882/
+https://pharma.mynavi.jp/d/10152884/
+https://pharma.mynavi.jp/d/10184249/
+https://pharma.mynavi.jp/d/10202954/
+https://pharma.mynavi.jp/d/10221175/
+https://pharma.mynavi.jp/d/10244309/
+https://pharma.mynavi.jp/d/236217/
+https://pharma.mynavi.jp/d/255635/
+https://pharma.mynavi.jp/d/256398/
+https://pharma.mynavi.jp/d/264157/
+
+#6 phget (薬剤師, th/td)
+https://www.phget.com/bs/hiroshima/257767.html
+https://www.phget.com/bs/hyogo/142104.html
+https://www.phget.com/bs/ibaraki/113116.html
+https://www.phget.com/bs/ibaraki/155581.html
+https://www.phget.com/bs/ibaraki/187983.html
+https://www.phget.com/bs/kanagawa/225909.html
+https://www.phget.com/bs/oosaka/192150.html
+https://www.phget.com/bs/tochigi/246030.html
+https://www.phget.com/bs/tokyo/250169.html
+https://www.phget.com/bs/tokyo/259463.html
+
+#8 apuro (薬剤師, dt/dd+th/td)
+https://www.apuro.com/search/detail/?job_id=223771
+https://www.apuro.com/search/detail/?job_id=223772
+https://www.apuro.com/search/detail/?job_id=223773
+https://www.apuro.com/search/detail/?job_id=223774
+https://www.apuro.com/search/detail/?job_id=223775
+https://www.apuro.com/search/detail/?job_id=223776
+https://www.apuro.com/search/detail/?job_id=223777
+https://www.apuro.com/search/detail/?job_id=223778
+https://www.apuro.com/search/detail/?job_id=223779
+https://www.apuro.com/search/detail/?job_id=223780
+
+#9 oshigoto-lab (医療, dt/dd+th/td)
+https://chiba.oshigoto-lab.com/job/j1044834
+https://chiba.oshigoto-lab.com/job/j1159331
+https://chiba.oshigoto-lab.com/job/j1159374
+https://fukuoka.oshigoto-lab.com/job/j1159519
+https://fukuoka.oshigoto-lab.com/job/j1159520
+https://osaka.oshigoto-lab.com/job/j1159353
+https://osaka.oshigoto-lab.com/job/j1159355
+https://osaka.oshigoto-lab.com/job/j1159358
+https://tochigi.oshigoto-lab.com/job/j1159521
+https://tochigi.oshigoto-lab.com/job/j1159522
+
+#10 yakuzaishisyusyoku (薬剤師, th/td)
+https://www.yakuzaishisyusyoku.net/kyujin/detail/22500/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/22504/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/33326/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/33646/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/34697/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/36695/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/36802/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/36803/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/36805/
+https://www.yakuzaishisyusyoku.net/kyujin/detail/36806/
+
+#12 bestcareer (薬剤師, th/td, Shift_JIS)
+https://yakuzaishibestcareer.com/kyujin/87944/
+https://yakuzaishibestcareer.com/kyujin/87947/
+https://yakuzaishibestcareer.com/kyujin/87949/
+https://yakuzaishibestcareer.com/kyujin/87983/
+https://yakuzaishibestcareer.com/kyujin/87987/
+https://yakuzaishibestcareer.com/kyujin/87997/
+https://yakuzaishibestcareer.com/kyujin/88003/
+https://yakuzaishibestcareer.com/kyujin/88004/
+https://yakuzaishibestcareer.com/kyujin/88005/
+https://yakuzaishibestcareer.com/kyujin/88051/
+
+#13 pharmapremium (薬剤師, th/td 分割テーブル)
+https://pharmapremium.jp/detail/27903
+https://pharmapremium.jp/detail/27904
+https://pharmapremium.jp/detail/27905
+https://pharmapremium.jp/detail/27906
+https://pharmapremium.jp/detail/27907
+https://pharmapremium.jp/detail/27908
+https://pharmapremium.jp/detail/27909
+https://pharmapremium.jp/detail/27910
+https://pharmapremium.jp/detail/27911
+https://pharmapremium.jp/detail/27912
+
+#14 caresta (介護, th/td)
+https://www.caresta.jp/search/detail.php?offer=3HG0127
+https://www.caresta.jp/search/detail.php?offer=3HG0129
+https://www.caresta.jp/search/detail.php?offer=3HM0043
+https://www.caresta.jp/search/detail.php?offer=3HM0044
+https://www.caresta.jp/search/detail.php?offer=3HM0045
+https://www.caresta.jp/search/detail.php?offer=3HM0046
+https://www.caresta.jp/search/detail.php?offer=3MH1121
+https://www.caresta.jp/search/detail.php?offer=3MH1122
+https://www.caresta.jp/search/detail.php?offer=3MH1123
+https://www.caresta.jp/search/detail.php?offer=3MH1124
+
+#16 pharmalink (薬剤師, th/td)
+https://www.k-pharmalink.co.jp/job/area11/10286/
+https://www.k-pharmalink.co.jp/job/area13/10282/
+https://www.k-pharmalink.co.jp/job/area13/10284/
+https://www.k-pharmalink.co.jp/job/area14/10285/
+https://www.k-pharmalink.co.jp/job/area14/7918/
+https://www.k-pharmalink.co.jp/job/area14/7921/
+https://www.k-pharmalink.co.jp/job/area14/8047/
+https://www.k-pharmalink.co.jp/job/area14/8890/
+https://www.k-pharmalink.co.jp/job/area14/9541/
+https://www.k-pharmalink.co.jp/job/area14/9805/
+
+#18 nikken-care (介護, dt/dd)
+https://nikken-mc.com/care_information/1172034.html
+https://nikken-mc.com/care_information/1234665.html
+https://nikken-mc.com/care_information/1234666.html
+https://nikken-mc.com/care_information/1234757.html
+https://nikken-mc.com/care_information/1234771.html
+https://nikken-mc.com/care_information/1234772.html
+https://nikken-mc.com/care_information/1234868.html
+https://nikken-mc.com/care_information/1234882.html
+https://nikken-mc.com/care_information/1234883.html
+https://nikken-mc.com/care_information/1234934.html
+
+#19 nikken-nurse (看護, dt/dd)
+https://nikken-mc.com/nurse_information/1234064.html
+https://nikken-mc.com/nurse_information/1234241.html
+https://nikken-mc.com/nurse_information/1234516.html
+https://nikken-mc.com/nurse_information/1234568.html
+https://nikken-mc.com/nurse_information/1234628.html
+https://nikken-mc.com/nurse_information/1234693.html
+https://nikken-mc.com/nurse_information/1234758.html
+https://nikken-mc.com/nurse_information/1234777.html
+
+#20 cocofump (介護, dt/dd+th/td)
+https://cocofump-job.net/jobfind-pc/job/All/19731
+https://cocofump-job.net/jobfind-pc/job/All/20523
+https://cocofump-job.net/jobfind-pc/job/All/30372
+https://cocofump-job.net/jobfind-pc/job/All/31527
+https://cocofump-job.net/jobfind-pc/job/All/33867
+https://cocofump-job.net/jobfind-pc/job/All/36600
+https://cocofump-job.net/jobfind-pc/job/All/36603
+https://cocofump-job.net/jobfind-pc/job/All/36606
+https://cocofump-job.net/jobfind-pc/job/All/36609
+https://cocofump-job.net/jobfind-pc/job/All/36612
+
+#21 MRT-nurse (看護, SPA詳細)
+https://nurse.medrt.com/nurse/fulltime/14563
+https://nurse.medrt.com/nurse/fulltime/14799
+https://nurse.medrt.com/nurse/fulltime/14990
+https://nurse.medrt.com/nurse/fulltime/19406
+https://nurse.medrt.com/nurse/fulltime/19412
+https://nurse.medrt.com/nurse/fulltime/23036
+https://nurse.medrt.com/nurse/fulltime/23037
+https://nurse.medrt.com/nurse/fulltime/23038
+https://nurse.medrt.com/nurse/fulltime/23039
+https://nurse.medrt.com/nurse/fulltime/23040
+
+#24 kaigo-work (介護, th/td)
+https://kaigo-work.jp/248469/
+https://kaigo-work.jp/248786/
+https://kaigo-work.jp/260943/
+https://kaigo-work.jp/270593/
+https://kaigo-work.jp/271889/
+https://kaigo-work.jp/273208/
+https://kaigo-work.jp/277852/
+https://kaigo-work.jp/278027/
+https://kaigo-work.jp/278664/
+https://kaigo-work.jp/278895/
+
+#25 w-medical-9 (医療, th/td)
+https://w-medical-9.com/kyujin_shosai.html?no=W10045
+
+#26 firstnavi (看護, th/td)
+https://kango.firstnavi.jp/detail.php?facility_id=175
+https://kango.firstnavi.jp/detail.php?facility_id=3493
+https://kango.firstnavi.jp/detail.php?facility_id=5029
+https://kango.firstnavi.jp/detail.php?facility_id=709
+https://kango.firstnavi.jp/detail.php?facility_id=7299
+
+#30 mc-pharma (薬剤師, th/td テーブル)
+https://mc-pharma.net/jobs/detail/201200000100011555/
+https://mc-pharma.net/jobs/detail/201200000110720038/
+https://mc-pharma.net/jobs/detail/201200000121990188/
+https://mc-pharma.net/jobs/detail/204000001043037560/
+https://mc-pharma.net/jobs/detail/204000001046126100/
+https://mc-pharma.net/jobs/detail/204000001057448018/
+https://mc-pharma.net/jobs/detail/204000001146824752/
+https://mc-pharma.net/jobs/detail/204000001801898288/
+https://mc-pharma.net/jobs/detail/204000001885515674/
+https://mc-pharma.net/jobs/detail/204000002148021940/
+
+#31 ph-10 (薬剤師, dt/dd+th/td)
+https://www.ph-10.com/search/area_staff/1/as1929/offer/115408-00060/
+https://www.ph-10.com/search/area_staff/1/as1929/offer/115408-00061/
+https://www.ph-10.com/search/area_staff/10/as0/offer/124287-00004/
+https://www.ph-10.com/search/area_staff/10/as2399/offer/124287-00002/
+https://www.ph-10.com/search/area_staff/10/as2404/offer/180481-00008/
+https://www.ph-10.com/search/area_staff/10/as2407/offer/180481-00010/
+https://www.ph-10.com/search/area_staff/12/as2505/offer/115627-00888/
+https://www.ph-10.com/search/area_staff/12/as2512/offer/272396-00001/
+https://www.ph-10.com/search/area_staff/12/as2513/offer/115627-00242/
+https://www.ph-10.com/search/area_staff/12/as2513/offer/115627-00913/
+
+#32 yakusta (薬剤師, dt/dd+th/td)
+https://yakusta.com/job/detail.php?id=11036
+https://yakusta.com/job/detail.php?id=11126
+https://yakusta.com/job/detail.php?id=12474
+https://yakusta.com/job/detail.php?id=12662
+https://yakusta.com/job/detail.php?id=12695
+https://yakusta.com/job/detail.php?id=12725
+https://yakusta.com/job/detail.php?id=12726
+https://yakusta.com/job/detail.php?id=12727
+https://yakusta.com/job/detail.php?id=13248
+https://yakusta.com/job/detail.php?id=13258
+
+#34 cadical (医療, dt/dd) ※一覧SPA
+https://iryoushoku.cadical.jp/search/details/?job_id=100135
+https://iryoushoku.cadical.jp/search/details/?job_id=100136
+https://iryoushoku.cadical.jp/search/details/?job_id=100137
+https://iryoushoku.cadical.jp/search/details/?job_id=100138
+https://iryoushoku.cadical.jp/search/details/?job_id=100139
+https://iryoushoku.cadical.jp/search/details/?job_id=100140
+https://iryoushoku.cadical.jp/search/details/?job_id=100141
+https://iryoushoku.cadical.jp/search/details/?job_id=100142
+https://iryoushoku.cadical.jp/search/details/?job_id=100143
+https://iryoushoku.cadical.jp/search/details/?job_id=100144
+
+#35 kaigokango (介護看護, SPA)
+https://kaigokango.jp/recruit/detail/111134501
+https://kaigokango.jp/recruit/detail/111143171
+https://kaigokango.jp/recruit/detail/111143995
+https://kaigokango.jp/recruit/detail/111144014
+https://kaigokango.jp/recruit/detail/111144015
+https://kaigokango.jp/recruit/detail/111144016
+https://kaigokango.jp/recruit/detail/111144017
+https://kaigokango.jp/recruit/detail/111144018
+https://kaigokango.jp/recruit/detail/111144021
+https://kaigokango.jp/recruit/detail/111144022

@@ -59,12 +59,20 @@ def fetch(url: str) -> str:
 
 
 def fetch_all(urls: list) -> list:
-    """Fetch all URLs. Returns list of {url, html, error}."""
-    results = []
-    for url in urls:
+    """Fetch all URLs in parallel. Returns list of {url, html, error}."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def _fetch_one(url):
         try:
             html = fetch(url)
-            results.append({"url": url, "html": html, "error": None})
+            return {"url": url, "html": html, "error": None}
         except Exception as e:
-            results.append({"url": url, "html": None, "error": str(e)})
+            return {"url": url, "html": None, "error": str(e)}
+
+    results = [None] * len(urls)
+    with ThreadPoolExecutor(max_workers=min(len(urls), 5)) as executor:
+        future_to_idx = {executor.submit(_fetch_one, url): i for i, url in enumerate(urls)}
+        for future in as_completed(future_to_idx):
+            idx = future_to_idx[future]
+            results[idx] = future.result()
     return results

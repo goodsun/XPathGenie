@@ -221,6 +221,19 @@ def _add_prefix(mappings: dict, prefix: str) -> dict:
     return result
 
 
+def _sanitize_wantlist(wantlist: dict) -> dict:
+    """Sanitize wantlist values to prevent prompt injection."""
+    sanitized = {}
+    for k, v in wantlist.items():
+        # Keys: only allow alphanumeric + underscore
+        clean_key = "".join(c for c in str(k) if c.isalnum() or c == "_")[:50]
+        # Values: truncate and strip control characters
+        clean_val = str(v)[:200].replace("\n", " ").replace("\r", " ")
+        if clean_key:
+            sanitized[clean_key] = clean_val
+    return sanitized
+
+
 def analyze(compressed_htmls: list, wantlist: dict = None) -> dict:
     """Call Gemini API with compressed HTMLs, return {field: xpath} dict.
     
@@ -230,6 +243,7 @@ def analyze(compressed_htmls: list, wantlist: dict = None) -> dict:
     api_key = _get_api_key()
 
     if wantlist:
+        wantlist = _sanitize_wantlist(wantlist)
         content = PROMPT_WANTLIST.format(wantlist=json.dumps(wantlist, ensure_ascii=False, indent=2))
     else:
         content = PROMPT_DISCOVER

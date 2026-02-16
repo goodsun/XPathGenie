@@ -8,7 +8,7 @@ REMOVE_TAGS = {"script", "style", "noscript", "iframe", "svg", "link", "meta", "
 STRIP_TAGS = {"header", "footer", "nav", "aside"}
 # Class patterns that indicate non-main content (sidebar, recommendations, etc.)
 NOISE_PATTERNS = re.compile(
-    r'recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|ad-|popup|cookie',
+    r'recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|\bad[-_]|popup|cookie',
     re.IGNORECASE
 )
 TEXT_LIMIT = 30

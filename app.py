@@ -12,6 +12,40 @@ from genie.validator import validate, find_multi_matches, narrow_by_first_match
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 
+# Simple rate limiting for API endpoints
+_rate_limit = {}
+RATE_LIMIT_WINDOW = 60  # seconds
+RATE_LIMIT_MAX = 30  # requests per window
+
+def _check_rate_limit(key: str) -> bool:
+    now = time.time()
+    if key not in _rate_limit:
+        _rate_limit[key] = []
+    _rate_limit[key] = [t for t in _rate_limit[key] if now - t < RATE_LIMIT_WINDOW]
+    if len(_rate_limit[key]) >= RATE_LIMIT_MAX:
+        return False
+    _rate_limit[key].append(now)
+    return True
+
+ALLOWED_ORIGINS = {"corp.bon-soleil.com", "bizendao.github.io", "localhost", "127.0.0.1"}
+
+def _check_origin() -> bool:
+    """Check Referer/Origin to prevent open proxy abuse."""
+    referer = request.headers.get("Referer", "")
+    origin = request.headers.get("Origin", "")
+    for header in (referer, origin):
+        if header:
+            try:
+                host = urlparse(header).hostname or ""
+                if any(host == allowed or host.endswith("." + allowed) for allowed in ALLOWED_ORIGINS):
+                    return True
+            except Exception:
+                pass
+    # Allow direct server-side calls (no Referer)
+    if not referer and not origin:
+        return True
+    return False
+
 
 @app.route("/")
 def index():
@@ -21,6 +55,10 @@ def index():
 @app.route("/api/fetch")
 def api_fetch():
     """Fetch HTML for Aladdin page (server-side to avoid CORS)."""
+    if not _check_origin():
+        return jsonify({"error": "Forbidden"}), 403
+    if not _check_rate_limit(request.remote_addr):
+        return jsonify({"error": "Rate limit exceeded"}), 429
     url = request.args.get("url", "").strip()
     if not url:
         return jsonify({"error": "url required"}), 400

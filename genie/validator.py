@@ -58,18 +58,17 @@ def find_multi_matches(mappings: dict, pages: list) -> dict:
     multi = {}
     for field, xpath in mappings.items():
         field_contexts = []
+        all_vals_across_pages = set()  # Track unique values across ALL pages
         for url, doc in docs:
             try:
                 nodes = doc.xpath(xpath)
                 if len(nodes) > 1:
-                    # Check if values are all identical
-                    vals = set()
+                    # Collect values from this page
                     for node in nodes:
                         if isinstance(node, str):
-                            vals.add(node.strip())
+                            all_vals_across_pages.add(node.strip())
                         elif hasattr(node, "text_content"):
-                            vals.add(node.text_content().strip())
-                    all_identical = len(vals) <= 1
+                            all_vals_across_pages.add(node.text_content().strip())
                     snippets = []
                     for node in nodes[:4]:  # max 4 matches
                         # Get the parent chain (up to 2 levels) as context
@@ -95,6 +94,8 @@ def find_multi_matches(mappings: dict, pages: list) -> dict:
             except Exception:
                 pass
         if field_contexts:
+            # all_identical = True only if ALL matched values across ALL pages are the same
+            all_identical = len(all_vals_across_pages) <= 1
             multi[field] = {"xpath": xpath, "contexts": field_contexts, "all_identical": all_identical}
 
     return multi

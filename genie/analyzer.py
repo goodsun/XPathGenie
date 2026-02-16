@@ -53,6 +53,7 @@ Rules:
 - For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
 - Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
 - Match fields by MEANING, not by label text (e.g. "price" matches "給与", "時給", "報酬", "salary")
+- The VALUES in the schema are hints/descriptions of what the user wants for that field. Use them to understand the intent (e.g. "contract": "雇用形態（正社員、契約社員、パート等）" means find the employment type field)
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:

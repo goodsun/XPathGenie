@@ -17,18 +17,19 @@ createApp({
     const elapsedStr = computed(() => elapsed.value + 's');
 
     const wantlistPlaceholder = `{
-  "original_id": "",
-  "facility_name": "",
-  "prefecture": "",
-  "station": "",
-  "access": "",
-  "price": "",
-  "occupation": "",
-  "contract": "",
-  "detail": "",
-  "working_hours": "",
-  "holiday": "",
-  "welfare_program": ""
+  "original_id": "求人ID・管理番号",
+  "title": "求人タイトル",
+  "facility_name": "勤務先の施設名・会社名",
+  "prefecture": "都道府県・市区町村",
+  "station": "最寄り駅",
+  "access": "アクセス方法・徒歩何分",
+  "price": "給与・時給・月給・年収",
+  "occupation": "職種（看護師、介護職、薬剤師等）",
+  "contract": "雇用形態（正社員、契約社員、パート等）",
+  "detail": "仕事内容・業務内容",
+  "working_hours": "勤務時間・シフト",
+  "holiday": "休日・休暇",
+  "welfare_program": "福利厚生・社会保険"
 }`;
 
     function confidenceColor(c) {

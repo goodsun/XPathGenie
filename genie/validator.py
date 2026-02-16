@@ -58,6 +58,15 @@ def find_multi_matches(mappings: dict, pages: list) -> dict:
             try:
                 nodes = doc.xpath(xpath)
                 if len(nodes) > 1:
+                    # Skip if all values are identical (harmless duplication)
+                    vals = set()
+                    for node in nodes:
+                        if isinstance(node, str):
+                            vals.add(node.strip())
+                        elif hasattr(node, "text_content"):
+                            vals.add(node.text_content().strip())
+                    if len(vals) <= 1:
+                        continue  # Same value everywhere, no need to refine
                     snippets = []
                     for node in nodes[:4]:  # max 4 matches
                         # Get the parent chain (up to 2 levels) as context
@@ -148,7 +157,16 @@ def validate(mappings: dict, pages: list) -> dict:
                     else:
                         samples.append("(empty)")
                     if len(nodes) > 1:
-                        multi_hits.append(url)
+                        # Check if all matched values are identical
+                        all_vals = set()
+                        for node in nodes:
+                            if isinstance(node, str):
+                                all_vals.add(node.strip())
+                            elif hasattr(node, "text_content"):
+                                all_vals.add(node.text_content().strip())
+                        if len(all_vals) > 1:
+                            multi_hits.append(url)  # Different values = real problem
+                        # Same values = harmless, skip warning
                 else:
                     samples.append(None)
             except Exception as e:

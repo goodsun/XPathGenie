@@ -14,7 +14,36 @@ URLを入力するだけで、ページから取得可能なデータ要素とXP
 
 AIを使うのは**マッピング生成時の1回だけ**。生成されたXPathで以降はAI不要のデータ取得が可能。
 
-## 2つのモード
+## Genie & Aladdin — 2つのツール
+
+### XPathGenie（生成）
+
+AIがXPathマッピングを自動生成する。2つのモードを持つ：
+
+- **Auto Discover** — URLだけ渡せばAIが全要素を自動発見
+- **Want List** — 欲しいフィールドのJSONスキーマを渡して狙い撃ち
+
+### XPathAladdin（検証）
+
+Genieが生成したXPathを実ページで検証するリサーチツール。
+
+- **最大10 URLを一括テスト** — 全ページでXPathが通るか確認
+- **タブ切り替え** — ページごとの抽出結果を比較
+- **クロスページヒット率** — フィールドごとに何ページで値が取れたか表示
+- **XPathリアルタイム編集** — その場で修正して即再評価
+- **Genieとの連携** — 「Open in Aladdin」ボタンでURL+マッピングを自動引き継ぎ
+
+### ワークフロー
+
+```
+Genie: URL入力 → AI分析 → XPathマッピング生成 → [Open in Aladdin]
+                                                        ↓
+Aladdin: 10ページ一括Fetch → XPath検証 → 手修正 → Export (JSON/YAML)
+```
+
+localStorage共有でシームレスに連携。
+
+## 2つのモード（Genie）
 
 ### Auto Discover（自動発見）
 
@@ -42,6 +71,53 @@ URLを入れるだけ。AIがページを見て「このサイトからはこれ
 - **値を空にする** → フィールド名から意味を推論してマッピング
 - Auto Discoverよりトークン消費が少ない（約30%減）
 
+## 自動精度向上（Refine機能）
+
+XPathGenieは生成後に**自動で精度を上げる**仕組みを持つ。
+
+### 問題: 1つのXPathが複数の要素にマッチする
+
+求人サイトでは同じラベル（「勤務地」「求人ID」等）がヘッダー、詳細セクション、サイドバーなど複数箇所に出現する。単純なXPathだと全箇所にマッチしてしまう。
+
+### 解決: 2段階のRefine
+
+```
+AI生成 → Validate → 複数マッチ検出 → Refine → 再Validate
+```
+
+#### 同じ値の重複 → 機械的絞り込み（AI不要、コスト0）
+
+求人IDがヘッダー、お気に入りボタン、詳細に3回出る場合：
+
+```
+Before: //div[contains(@class,'p-offerContainer')]//div[contains(@class,'c-favoriteBtn')]/@data-job_id
+→ 3 matches (same value)
+
+After:  //div[contains(@class,'p-offerContainer')]//div[contains(@class,'p-jobDetail-body')]//div[contains(@class,'c-favoriteBtn')]/@data-job_id
+→ 1 match
+```
+
+全マッチ要素の祖先チェーンからクラスを探索し、1件に絞れる中間コンテナを自動挿入する。
+
+#### 異なる値の重複 → AIにRefine依頼
+
+詳細の「勤務地」とサイドバーの「おすすめ求人の勤務地」で値が異なる場合、周辺HTML構造をAIに渡して「どちらがメインか」を判断させる。
+
+```
+AI: "p-jobDetail-body内の方が詳細情報 → こちらを採用"
+→ 中間パスを含むより具体的なXPathを返却
+```
+
+### 深さ優先スコアリング
+
+複数マッチの重みづけにはDOM階層の深さも考慮される。浅い要素（ヘッダーのショートカット等）より深い要素（詳細セクション内）が優先される。
+
+```python
+score += depth  # 深いほどスコア加算（main/article等の構造シグナルと併用）
+```
+
+**設計思想:** 人間がスクレイピングする時と同じ。まずAIが全部やって、判断が必要なところだけ人間がAladdinで確認する。役割が逆転しただけで、ワークフローの構造は同じ。
+
 ## 結果の見方
 
 | 項目 | 説明 |
@@ -50,6 +126,7 @@ URLを入れるだけ。AIがページを見て「このサイトからはこれ
 | XPath | 生成されたXPath式 |
 | Confidence | 信頼度（全URLで値が取れた割合）。100%=全ページで取得成功 |
 | Samples | 各URLから実際に取得された値のプレビュー |
+| refined バッジ | Refine機能で自動修正されたフィールド |
 
 ### 信頼度の読み方
 
@@ -59,7 +136,7 @@ URLを入れるだけ。AIがページを見て「このサイトからはこれ
 
 ## エクスポート
 
-結果は2形式でコピーできる:
+結果は3つの方法で利用できる:
 
 ### JSON
 ```json
@@ -75,6 +152,9 @@ mapping:
   facility_name: "//dt[text()='勤務先']/following-sibling::dd[1]"
   salary: "//dt[text()='給与']/following-sibling::dd[1]"
 ```
+
+### Open in Aladdin
+結果をそのままAladdinに引き渡して実ページ検証。
 
 ## 使い方のコツ
 
@@ -107,6 +187,26 @@ mapping:
 | AI | Gemini 2.5 Flash |
 | HTML解析 | lxml |
 | テーマ | ダークテーマ + glassmorphism |
+
+## アーキテクチャ
+
+```
+[Genie Web UI]  URL + (Want List) → Analyze → 結果テーブル → [Open in Aladdin]
+    ↓                                                              ↓
+[Flask API]  POST /api/analyze                              [Aladdin Web UI]
+    ↓                                                        10 URLs一括Fetch
+[fetcher]    URL → HTML取得（SSRF防御付き）                    → タブ切り替え検証
+    ↓                                                        → XPath手修正
+[compressor] HTML → 構造圧縮（数KB、トークン節約）              → JSON/YAML Export
+    ↓
+[analyzer]   Gemini API → {field: xpath} マッピング生成
+    ↓
+[validator]  全URLで各XPath実行 → 信頼度スコア + サンプル値
+    ↓
+[refine]     複数マッチ検出 → 同値:機械的絞込 / 異値:AI再推論
+    ↓
+             最終マッピング + refined バッジ
+```
 
 ## セットアップ
 
@@ -201,24 +301,21 @@ ProxyPassReverse /xpathgenie/api/ http://127.0.0.1:8789/api/
   "pages_analyzed": 2,
   "pages_failed": 0,
   "tokens_used": 8749,
-  "elapsed_seconds": 12.3
+  "elapsed_seconds": 12.3,
+  "refined_fields": ["original_id"]
 }
 ```
 
-## アーキテクチャ
+### GET /api/fetch?url=...
 
-```
-[Web UI]  URL + (Want List) → Analyze → 結果テーブル → JSON/YAML Export
-    ↓
-[Flask API]  POST /api/analyze
-    ↓
-[fetcher]    URL → HTML取得（SSRF防御付き）
-    ↓
-[compressor] HTML → 構造圧縮（数KB、トークン節約）
-    ↓
-[analyzer]   Gemini API → {field: xpath} マッピング生成
-    ↓
-[validator]  全URLで各XPath実行 → 信頼度スコア + サンプル値
+Aladdin用のサーバーサイドHTMLフェッチ（CORS回避）。
+
+```json
+// Response
+{
+  "html": "<html>...",
+  "url": "https://example.com/page"
+}
 ```
 
 ## ライセンス

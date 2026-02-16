@@ -188,24 +188,44 @@ mapping:
 | HTML解析 | lxml |
 | テーマ | ダークテーマ + glassmorphism |
 
+## 実績
+
+| サイト | ページ数 | トークン | 所要時間 | フィールド数 | 信頼度100% |
+|--------|----------|----------|----------|-------------|-----------|
+| ツクイスタッフ | 4 | 15,032 | 27.1秒 | 20 | 20/20 (100%) |
+| キャディカル | 3 | 8,749 | 12.3秒 | 23 | 23/23 (100%) |
+
+従来の手作業: **1サイト5〜6時間** × 33サイト = **150〜200時間**
+XPathGenie: **1サイト30秒** × 33サイト = **約15分**
+
 ## アーキテクチャ
 
-```
-[Genie Web UI]  URL + (Want List) → Analyze → 結果テーブル → [Open in Aladdin]
-    ↓                                                              ↓
-[Flask API]  POST /api/analyze                              [Aladdin Web UI]
-    ↓                                                        10 URLs一括Fetch
-[fetcher]    URL → HTML取得（SSRF防御付き）                    → タブ切り替え検証
-    ↓                                                        → XPath手修正
-[compressor] HTML → 構造圧縮（数KB、トークン節約）              → JSON/YAML Export
-    ↓
-[analyzer]   Gemini API → {field: xpath} マッピング生成
-    ↓
-[validator]  全URLで各XPath実行 → 信頼度スコア + サンプル値
-    ↓
-[refine]     複数マッチ検出 → 同値:機械的絞込 / 異値:AI再推論
-    ↓
-             最終マッピング + refined バッジ
+```mermaid
+graph TD
+    A["Genie: URL入力 (2~10個)"] --> B[fetcher: HTML取得<br/>SSRF防御付き]
+    B --> C[compressor: 構造圧縮<br/>695KB → 20KB]
+    C --> D[analyzer: Gemini 2.5 Flash<br/>XPathマッピング生成]
+    D --> E[validator: 全ページで<br/>XPath実行・信頼度スコア]
+    E --> F{複数マッチ<br/>検出?}
+    F -- 同じ値 --> G[機械的絞込<br/>中間クラス自動挿入<br/>コスト0]
+    F -- 異なる値 --> H[AI Refine<br/>周辺HTMLで再推論]
+    F -- なし --> I[最終結果]
+    G --> J[再Validate]
+    H --> J
+    J --> I
+
+    I --> K["Open in Aladdin"]
+    K --> L["Aladdin: 10ページ一括Fetch"]
+    L --> M[タブ切り替え検証<br/>クロスページヒット率]
+    M --> N[XPath手修正<br/>リアルタイム再評価]
+    N --> O["Export: JSON / YAML"]
+
+    style A fill:#7c5cfc,color:#fff
+    style D fill:#9f7aea,color:#fff
+    style G fill:#4caf50,color:#fff
+    style H fill:#ff9800,color:#fff
+    style K fill:#7c5cfc,color:#fff
+    style O fill:#4caf50,color:#fff
 ```
 
 ## セットアップ

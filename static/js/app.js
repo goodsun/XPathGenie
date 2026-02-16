@@ -3,6 +3,8 @@ const { createApp, ref, computed } = Vue;
 createApp({
   setup() {
     const urlText = ref('');
+    const wantlistText = ref('');
+    const mode = ref('discover');  // 'discover' or 'wantlist'
     const loading = ref(false);
     const error = ref(null);
     const result = ref(null);
@@ -13,6 +15,21 @@ createApp({
     let timer = null;
 
     const elapsedStr = computed(() => elapsed.value + 's');
+
+    const wantlistPlaceholder = `{
+  "original_id": "",
+  "facility_name": "",
+  "prefecture": "",
+  "station": "",
+  "access": "",
+  "price": "",
+  "occupation": "",
+  "contract": "",
+  "detail": "",
+  "working_hours": "",
+  "holiday": "",
+  "welfare_program": ""
+}`;
 
     function confidenceColor(c) {
       if (c >= 0.8) return '#4caf50';
@@ -30,11 +47,25 @@ createApp({
       elapsed.value = 0;
       timer = setInterval(() => elapsed.value++, 1000);
 
+      const body = { urls };
+
+      // Parse wantlist if in wantlist mode
+      if (mode.value === 'wantlist' && wantlistText.value.trim()) {
+        try {
+          body.wantlist = JSON.parse(wantlistText.value.trim());
+        } catch (e) {
+          error.value = 'Invalid JSON in Want List: ' + e.message;
+          loading.value = false;
+          clearInterval(timer);
+          return;
+        }
+      }
+
       try {
         const resp = await fetch('api/analyze', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ urls }),
+          body: JSON.stringify(body),
         });
         const data = await resp.json();
         if (!resp.ok) {
@@ -60,7 +91,7 @@ createApp({
       editing.value = null;
       if (!newName || newName === oldName || !result.value) return;
       const m = result.value.mappings;
-      if (m[newName]) return; // name collision
+      if (m[newName]) return;
       const val = m[oldName];
       delete m[oldName];
       m[newName] = val;
@@ -96,7 +127,8 @@ createApp({
     }
 
     return {
-      urlText, loading, error, result, elapsed, elapsedStr, copied,
+      urlText, wantlistText, mode, wantlistPlaceholder,
+      loading, error, result, elapsed, elapsedStr, copied,
       editing, editName,
       analyzeUrls, startEdit, renameField, confidenceColor,
       copyJSON, copyYAML,

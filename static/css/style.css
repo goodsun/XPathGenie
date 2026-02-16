@@ -235,3 +235,52 @@ textarea:focus { outline: none; border-color: #7c5cfc; }
   .xpath-cell { max-width: 200px; }
   .samples-cell { max-width: 150px; }
 }
+
+/* Mode toggle */
+.mode-toggle {
+  display: flex;
+  gap: 0;
+  margin: 16px 0 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 92, 252, 0.3);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.mode-btn.active {
+  background: rgba(124, 92, 252, 0.25);
+  color: #fff;
+  font-weight: 600;
+}
+
+.mode-btn:hover:not(.active) {
+  background: rgba(124, 92, 252, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Wantlist */
+.wantlist-section {
+  margin-top: 12px;
+}
+
+.wantlist-section label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.wantlist-input {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+}

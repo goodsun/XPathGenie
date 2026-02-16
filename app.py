@@ -45,8 +45,9 @@ def api_analyze():
         compressed.append(c)
 
     # 3. Analyze with Gemini
+    wantlist = data.get("wantlist")  # optional: {"field": "", ...}
     try:
-        result = analyze(compressed)
+        result = analyze(compressed, wantlist=wantlist)
     except Exception as e:
         return jsonify({"error": f"AI analysis failed: {e}"}), 500
 

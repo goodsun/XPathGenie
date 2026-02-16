@@ -3,35 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XPathGenie 🧞</title>
-  <link rel="stylesheet" href="/static/css/style.css">
+  <title>XPathGenie</title>
+  <link rel="stylesheet" href="static/css/style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
   <div id="app">
     <div class="container">
       <header class="hero">
-        <div class="lamp">🪔</div>
-        <h1>XPathGenie <span class="genie">🧞</span></h1>
+        <div class="lamp">&#128684;</div>
+        <h1>XPathGenie <span class="genie">&#129518;</span></h1>
         <p class="tagline">Rub the lamp, get the XPath.</p>
       </header>
 
       <div class="card input-card">
         <label>Enter URLs <span class="hint">(one per line, 2-10 recommended)</span></label>
         <textarea v-model="urlText" placeholder="https://example.com/page/1&#10;https://example.com/page/2&#10;https://example.com/page/3" rows="5" :disabled="loading"></textarea>
+
+        <div class="mode-toggle">
+          <button @click="mode='discover'" :class="{active: mode==='discover'}" class="mode-btn">Auto Discover</button>
+          <button @click="mode='wantlist'" :class="{active: mode==='wantlist'}" class="mode-btn">Want List</button>
+        </div>
+
+        <div v-if="mode==='wantlist'" class="wantlist-section">
+          <label>Want List <span class="hint">(JSON schema — keys = desired field names)</span></label>
+          <textarea v-model="wantlistText" :placeholder="wantlistPlaceholder" rows="8" :disabled="loading" class="wantlist-input"></textarea>
+        </div>
+
         <button @click="analyzeUrls" :disabled="loading || !urlText.trim()" class="btn-analyze">
-          <span v-if="!loading">✨ Analyze</span>
-          <span v-else>🧞 Genie is working… {{ elapsedStr }}</span>
+          <span v-if="!loading">Analyze</span>
+          <span v-else>Genie is working... {{ elapsedStr }}</span>
         </button>
       </div>
 
       <div v-if="error" class="card error-card">
-        <strong>⚠️ Error:</strong> {{ error }}
+        <strong>Error:</strong> {{ error }}
       </div>
 
       <div v-if="result" class="card result-card">
         <div class="result-header">
-          <h2>📋 {{ result.site }}</h2>
+          <h2>{{ result.site }}</h2>
           <div class="stats">
             <span>{{ result.pages_analyzed }} pages</span>
             <span>{{ result.tokens_used }} tokens</span>
@@ -62,20 +73,20 @@
                 </div>
               </td>
               <td class="samples-cell">
-                <span v-for="(s, i) in info.samples" :key="i" class="sample" :class="{missing: !s}">{{ s || '—' }}</span>
+                <span v-for="(s, i) in info.samples" :key="i" class="sample" :class="{missing: !s}">{{ s || '---' }}</span>
               </td>
             </tr>
           </tbody>
         </table>
 
         <div class="export-bar">
-          <button @click="copyJSON" class="btn-export">📋 Copy JSON</button>
-          <button @click="copyYAML" class="btn-export">📋 Copy YAML</button>
-          <span v-if="copied" class="copied-msg">✅ Copied!</span>
+          <button @click="copyJSON" class="btn-export">Copy JSON</button>
+          <button @click="copyYAML" class="btn-export">Copy YAML</button>
+          <span v-if="copied" class="copied-msg">Copied!</span>
         </div>
       </div>
     </div>
   </div>
-  <script src="/static/js/app.js"></script>
+  <script src="static/js/app.js"></script>
 </body>
 </html>

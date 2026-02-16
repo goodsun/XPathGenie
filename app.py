@@ -18,6 +18,21 @@ def index():
     return send_from_directory("templates", "index.html")
 
 
+@app.route("/api/fetch")
+def api_fetch():
+    """Fetch HTML for Aladdin page (server-side to avoid CORS)."""
+    url = request.args.get("url", "").strip()
+    if not url:
+        return jsonify({"error": "url required"}), 400
+    try:
+        pages = fetch_all([url])
+        if pages and pages[0].get("html"):
+            return jsonify({"html": pages[0]["html"], "url": url})
+        return jsonify({"error": pages[0].get("error", "fetch failed")}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
     data = request.get_json()

@@ -292,3 +292,15 @@ textarea:focus { outline: none; border-color: #7c5cfc; }
   font-size: 13px;
   line-height: 1.5;
 }
+
+/* Nav pair */
+.nav-pair {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.nav-pair a { color: #7c5cfc; text-decoration: none; }
+.nav-pair a:hover { text-decoration: underline; }
+.nav-pair .current { color: #c084fc; font-weight: 600; }

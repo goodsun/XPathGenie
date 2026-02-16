@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - img "Aladdin" [ref=e4]
+      - heading "XPathAladdin" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Your wish is my XPath.
+      - navigation [ref=e7]:
+        - link "Genie (Generate)" [ref=e8] [cursor=pointer]:
+          - /url: index.html
+        - generic [ref=e9]: Aladdin (Research)
+    - generic [ref=e10]:
+      - generic [ref=e11]: URL
+      - generic [ref=e12]:
+        - textbox "https://example.com/page/123" [ref=e13]
+        - button "Fetch HTML" [ref=e14] [cursor=pointer]
+      - paragraph [ref=e15]: CORS restriction may block some sites. Paste HTML manually if fetch fails.
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: HTML Source
+          - textbox "Paste HTML source here, or fetch from URL above..." [ref=e19]
+        - generic [ref=e20]:
+          - generic [ref=e21]: XPath Mapping (JSON)
+          - 'textbox "{ \"facility_name\": \"//dt[text()=''勤務先'']/following-sibling::dd[1]\", \"salary\": \"//dt[text()=''給与'']/following-sibling::dd[1]\", \"occupation\": \"//dt[text()=''職種'']/following-sibling::dd[1]\" }" [ref=e22]':
+            - /placeholder: "{\n  \"facility_name\": \"//dt[text()='勤務先']/following-sibling::dd[1]\",\n  \"salary\": \"//dt[text()='給与']/following-sibling::dd[1]\",\n  \"occupation\": \"//dt[text()='職種']/following-sibling::dd[1]\"\n}"
+      - generic [ref=e23]:
+        - button "Extract" [ref=e24] [cursor=pointer]
+        - button "Clear" [ref=e25] [cursor=pointer]
+  - generic: Copied!

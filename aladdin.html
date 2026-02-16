@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XPathAladdin</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    .input-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .input-group { display: flex; flex-direction: column; }
+    .input-group label { font-weight: 600; margin-bottom: 6px; color: #c084fc; font-size: 14px; }
+    .input-group textarea {
+      min-height: 250px;
+      padding: 12px;
+      border: 1px solid rgba(124,92,252,0.3);
+      border-radius: 8px;
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 13px;
+      resize: vertical;
+      line-height: 1.5;
+      background: rgba(255,255,255,0.03);
+      color: #e0e0e0;
+    }
+    .input-group textarea:focus { border-color: #7c5cfc; outline: none; }
+    .url-row { display: flex; gap: 10px; margin-bottom: 16px; }
+    .url-row input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid rgba(124,92,252,0.3);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      color: #e0e0e0;
+      font-size: 14px;
+    }
+    .url-row input:focus { border-color: #7c5cfc; outline: none; }
+    .url-row button {
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #7c5cfc, #9f7aea);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .url-row button:hover { opacity: 0.9; }
+    .url-hint { font-size: 12px; color: #666; margin-top: -12px; margin-bottom: 12px; }
+    .button-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+    .button-group .btn-run {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #7c5cfc, #9f7aea);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .button-group .btn-run:hover { opacity: 0.9; }
+    .button-group .btn-secondary {
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(124,92,252,0.3);
+      border-radius: 8px;
+      color: #c084fc;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .button-group .btn-secondary:hover { background: rgba(124,92,252,0.1); }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .results-table th {
+      background: rgba(124,92,252,0.15);
+      color: #c084fc;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(124,92,252,0.3);
+    }
+    .results-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+      word-break: break-word;
+    }
+    .key-col { width: 15%; font-weight: 600; color: #c084fc; }
+    .xpath-col {
+      width: 35%;
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .xpath-editor {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: 'SF Mono','Fira Code','Consolas',monospace;
+      font-size: 12px;
+      color: #aaa;
+      padding: 4px;
+      resize: vertical;
+      min-height: 20px;
+      outline: none;
+      border-radius: 4px;
+    }
+    .xpath-editor:focus { background: rgba(124,92,252,0.1); color: #e0e0e0; }
+    .result-col { width: 50%; }
+    .result-value {
+      cursor: pointer;
+      padding: 3px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .result-value:hover { background: rgba(124,92,252,0.15); }
+    .result-value.empty { color: #666; font-style: italic; }
+    .msg { padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; display: none; font-size: 14px; }
+    .msg.error { background: rgba(244,67,54,0.15); color: #f44336; }
+    .msg.success { background: rgba(76,175,80,0.15); color: #4caf50; }
+    .nav-pair {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .nav-pair a { color: #7c5cfc; text-decoration: none; }
+    .nav-pair a:hover { text-decoration: underline; }
+    .nav-pair .current { color: #c084fc; font-weight: 600; }
+    .copy-toast {
+      position: fixed; background: #333; color: #fff;
+      padding: 5px 10px; border-radius: 4px; font-size: 12px;
+      pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 1000;
+    }
+    .copy-toast.show { opacity: 1; }
+    @media (max-width: 768px) { .input-section { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <img src="static/images/genie.png" class="genie" alt="Aladdin" style="width:120px;height:120px;">
+      <h1>XPathAladdin</h1>
+      <p class="tagline">Your wish is my XPath.</p>
+      <nav class="nav-pair">
+        <a href="index.html">Genie (Generate)</a>
+        <span class="current">Aladdin (Research)</span>
+      </nav>
+    </header>
+
+    <div class="card">
+      <label style="color:#c084fc;font-weight:600;display:block;margin-bottom:6px;">URL</label>
+      <div class="url-row">
+        <input type="url" id="urlInput" placeholder="https://example.com/page/123">
+        <button onclick="fetchHTML()">Fetch HTML</button>
+      </div>
+      <p class="url-hint">CORS restriction may block some sites. Paste HTML manually if fetch fails.</p>
+
+      <div class="input-section">
+        <div class="input-group">
+          <label>HTML Source</label>
+          <textarea id="htmlInput" placeholder="Paste HTML source here, or fetch from URL above..."></textarea>
+        </div>
+        <div class="input-group">
+          <label>XPath Mapping (JSON)</label>
+          <textarea id="xpathInput" placeholder='{
+  "facility_name": "//dt[text()=&apos;勤務先&apos;]/following-sibling::dd[1]",
+  "salary": "//dt[text()=&apos;給与&apos;]/following-sibling::dd[1]",
+  "occupation": "//dt[text()=&apos;職種&apos;]/following-sibling::dd[1]"
+}'></textarea>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-run" onclick="executeXPath()">Extract</button>
+        <button class="btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div id="errorMsg" class="msg error"></div>
+      <div id="successMsg" class="msg success"></div>
+
+      <div id="resultsContainer" style="display:none">
+        <h3 style="color:#c084fc;margin-bottom:8px;">Results</h3>
+        <table class="results-table">
+          <thead>
+            <tr><th class="key-col">Field</th><th class="xpath-col">XPath</th><th class="result-col">Value</th></tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="copyToast" class="copy-toast">Copied!</div>
+
+  <script>
+    let currentDoc = null;
+    let currentConfig = {};
+    let debounce = null;
+    const toast = document.getElementById('copyToast');
+
+    async function fetchHTML() {
+      const url = document.getElementById('urlInput').value.trim();
+      if (!url) { showMsg('error', 'Enter a URL'); return; }
+      hideMsg();
+      showMsg('success', 'Fetching...');
+      try {
+        // Try server-side proxy first (same-origin)
+        const proxyResp = await fetch('api/fetch?url=' + encodeURIComponent(url));
+        if (proxyResp.ok) {
+          const data = await proxyResp.json();
+          if (data.html) {
+            document.getElementById('htmlInput').value = data.html;
+            showMsg('success', 'Fetched via server proxy (' + new URL(url).hostname + ')');
+            return;
+          }
+        }
+      } catch(e) {}
+      // Fallback: CORS proxies
+      const proxies = [
+        'https://api.allorigins.win/get?url=' + encodeURIComponent(url),
+        'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(url),
+      ];
+      for (const p of proxies) {
+        try {
+          const r = await fetch(p);
+          if (r.ok) {
+            let html;
+            if (p.includes('allorigins')) { html = (await r.json()).contents; }
+            else { html = await r.text(); }
+            if (html) {
+              document.getElementById('htmlInput').value = html;
+              showMsg('success', 'Fetched (' + new URL(url).hostname + ')');
+              return;
+            }
+          }
+        } catch(e) { continue; }
+      }
+      showMsg('error', 'Failed to fetch. Paste HTML manually.');
+    }
+
+    function executeXPath() {
+      const html = document.getElementById('htmlInput').value;
+      const xpathStr = document.getElementById('xpathInput').value;
+      hideMsg();
+      if (!html.trim()) { showMsg('error', 'Paste HTML source'); return; }
+      if (!xpathStr.trim()) { showMsg('error', 'Enter XPath JSON'); return; }
+      try {
+        currentConfig = JSON.parse(xpathStr);
+        const parser = new DOMParser();
+        currentDoc = parser.parseFromString(html, 'text/html');
+        const tbody = document.getElementById('resultsBody');
+        tbody.innerHTML = '';
+        for (const [key, xpath] of Object.entries(currentConfig)) {
+          addRow(key, xpath);
+        }
+        document.getElementById('resultsContainer').style.display = 'block';
+        showMsg('success', Object.keys(currentConfig).length + ' fields extracted');
+      } catch(e) {
+        showMsg('error', e.message);
+      }
+    }
+
+    function evalXPath(xpath) {
+      try {
+        const r = currentDoc.evaluate(xpath, currentDoc, null, XPathResult.ANY_TYPE, null);
+        const vals = [];
+        let n = r.iterateNext();
+        while (n) {
+          if (n.nodeType === Node.ATTRIBUTE_NODE) vals.push(n.value);
+          else vals.push((n.textContent || '').trim());
+          n = r.iterateNext();
+        }
+        return { values: vals.length ? vals : null, error: null };
+      } catch(e) {
+        return { values: null, error: e.message };
+      }
+    }
+
+    function addRow(key, xpath) {
+      const tbody = document.getElementById('resultsBody');
+      const tr = document.createElement('tr');
+      // Key
+      const tdKey = document.createElement('td');
+      tdKey.className = 'key-col';
+      tdKey.textContent = key;
+      // XPath (editable)
+      const tdXpath = document.createElement('td');
+      tdXpath.className = 'xpath-col';
+      const editor = document.createElement('textarea');
+      editor.className = 'xpath-editor';
+      editor.value = xpath;
+      editor.rows = 1;
+      editor.addEventListener('input', function() {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => {
+          currentConfig[key] = this.value;
+          document.getElementById('xpathInput').value = JSON.stringify(currentConfig, null, 2);
+          updateResultCell(key, this.value, tr.querySelector('.result-col'));
+        }, 400);
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+      });
+      setTimeout(() => { editor.style.height = 'auto'; editor.style.height = editor.scrollHeight + 'px'; }, 0);
+      tdXpath.appendChild(editor);
+      // Result
+      const tdResult = document.createElement('td');
+      tdResult.className = 'result-col';
+      tr.appendChild(tdKey);
+      tr.appendChild(tdXpath);
+      tr.appendChild(tdResult);
+      tbody.appendChild(tr);
+      updateResultCell(key, xpath, tdResult);
+    }
+
+    function updateResultCell(key, xpath, cell) {
+      cell.innerHTML = '';
+      const { values, error } = evalXPath(xpath);
+      if (error) {
+        const s = document.createElement('span');
+        s.textContent = 'XPath Error: ' + error;
+        s.style.color = '#f44336';
+        cell.appendChild(s);
+      } else if (!values) {
+        const s = document.createElement('span');
+        s.textContent = '(no match)';
+        s.className = 'result-value empty';
+        cell.appendChild(s);
+      } else {
+        values.forEach((v, i) => {
+          if (i > 0) cell.appendChild(document.createElement('br'));
+          const s = document.createElement('span');
+          s.textContent = v || '(empty)';
+          s.className = 'result-value' + (!v ? ' empty' : '');
+          if (v) s.addEventListener('click', (e) => copyText(v, e));
+          cell.appendChild(s);
+        });
+      }
+    }
+
+    async function copyText(text, e) {
+      await navigator.clipboard.writeText(text);
+      toast.style.left = e.pageX + 'px';
+      toast.style.top = (e.pageY - 30) + 'px';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+
+    function clearAll() {
+      document.getElementById('htmlInput').value = '';
+      document.getElementById('xpathInput').value = '';
+      document.getElementById('urlInput').value = '';
+      document.getElementById('resultsContainer').style.display = 'none';
+      hideMsg();
+    }
+
+    function showMsg(type, text) {
+      const el = document.getElementById(type === 'error' ? 'errorMsg' : 'successMsg');
+      el.textContent = text;
+      el.style.display = 'block';
+    }
+    function hideMsg() {
+      document.getElementById('errorMsg').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.key === 'Enter') executeXPath(); });
+  </script>
+</body>
+</html>

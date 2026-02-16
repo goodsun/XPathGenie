@@ -36,7 +36,8 @@ Rules:
 - ONLY extract from the MAIN content area of the page (the primary detail/article section)
 - EXCLUDE recommended items, related listings, sidebar widgets, "other jobs", "similar posts" sections
 - XPaths MUST be scoped to the main content container. Always start with the parent element that wraps the main detail section (e.g. //div[contains(@class,'detail')]//dt[text()='給与']/following-sibling::dd[1], NOT just //dt[text()='給与']/following-sibling::dd[1])
-- First identify the main content wrapper element (usually a div/section with a class like 'detail', 'content', 'main', 'article'), then scope ALL XPaths under it
+- First identify the OUTERMOST element in the provided HTML samples — this is the main content container. ALL XPaths must start with this container (e.g. if the HTML starts with <div class="p-offerContainer l-centering">, every XPath must begin with //div[contains(@class,'p-offerContainer')]//...)
+- NEVER output bare XPaths like //dt[text()='給与']/following-sibling::dd[1]. Always prefix with the main container.
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:

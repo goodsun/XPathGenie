@@ -28,9 +28,7 @@ body {
   height: 160px;
   margin: 0 auto 0.5rem;
   animation: float 3s ease-in-out infinite;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #0a0a0f;
+  object-fit: contain;
 }
 
 @keyframes float {

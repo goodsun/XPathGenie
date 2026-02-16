@@ -44,7 +44,7 @@ createApp({
     }
 
     async function analyzeUrls() {
-      const urls = urlText.value.split('\n').map(u => u.trim()).filter(Boolean);
+      const urls = urlText.value.split('\n').map(u => u.trim().replace(/^\d+[\.\)\]\s:]+\s*/, '')).filter(u => u.startsWith('http'));
       if (!urls.length) return;
 
       loading.value = true;

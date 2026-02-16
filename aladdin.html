@@ -301,7 +301,7 @@ https://example.com/page/3"></textarea>
       if (!xpathStr) { showMsg('error', 'Enter XPath mapping JSON'); return; }
       try { currentConfig = JSON.parse(xpathStr); } catch(e) { showMsg('error', 'Invalid JSON: ' + e.message); return; }
 
-      const urls = urlsText.split('\n').map(u => u.trim()).filter(Boolean).slice(0, 10);
+      const urls = urlsText.split('\n').map(u => u.trim().replace(/^\d+[\.\)\]\s:]+\s*/, '')).filter(u => u.startsWith('http')).slice(0, 10);
       const btn = document.getElementById('btnRun');
       btn.disabled = true;
       btn.textContent = 'Fetching...';

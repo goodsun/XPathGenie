@@ -1,10 +1,10 @@
-const { createApp, ref, computed } = Vue;
+const { createApp, ref, computed, watch } = Vue;
 
 createApp({
   setup() {
     const urlText = ref('');
-    const wantlistText = ref('');
-    const mode = ref('discover');  // 'discover' or 'wantlist'
+    const wantlistText = ref(localStorage.getItem('xpathgenie_wantlist') || '');
+    const mode = ref(localStorage.getItem('xpathgenie_mode') || 'discover');  // 'discover' or 'wantlist'
     const loading = ref(false);
     const error = ref(null);
     const result = ref(null);
@@ -126,6 +126,9 @@ createApp({
       copied.value = true;
       setTimeout(() => copied.value = false, 2000);
     }
+
+    watch(wantlistText, (v) => localStorage.setItem('xpathgenie_wantlist', v));
+    watch(mode, (v) => localStorage.setItem('xpathgenie_mode', v));
 
     return {
       urlText, wantlistText, mode, wantlistPlaceholder,

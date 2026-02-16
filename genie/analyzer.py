@@ -35,7 +35,8 @@ Rules:
 - Do NOT include navigation, header, footer, sidebar, or boilerplate fields
 - ONLY extract from the MAIN content area of the page (the primary detail/article section)
 - EXCLUDE recommended items, related listings, sidebar widgets, "other jobs", "similar posts" sections
-- XPaths should be SPECIFIC enough to match only the main content, not repeated sidebar elements (e.g. use a parent container class that wraps only the main detail)
+- XPaths MUST be scoped to the main content container. Always start with the parent element that wraps the main detail section (e.g. //div[contains(@class,'detail')]//dt[text()='給与']/following-sibling::dd[1], NOT just //dt[text()='給与']/following-sibling::dd[1])
+- First identify the main content wrapper element (usually a div/section with a class like 'detail', 'content', 'main', 'article'), then scope ALL XPaths under it
 - Return valid JSON only, no markdown, no explanation
 
 HTML samples:

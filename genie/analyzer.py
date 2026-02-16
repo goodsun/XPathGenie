@@ -26,8 +26,9 @@ Rules:
 - Return ONLY a JSON object: {"field_name": "xpath_expression", ...}
 - Field names must be lowercase English, descriptive, generic (e.g. price, title, facility_name, prefecture, address, phone, description, salary, job_type, access, working_hours)
 - XPaths must use // prefix and select element nodes (not text() nodes)
-- Prefer robust XPaths using class names or structure (e.g. //div[@class='price'], //dl[3]/dd)
-- Do NOT use XPath functions like substring-after, normalize-space, etc. Just select the element.
+- For class matching, ALWAYS use contains() because classes often have multiple values (e.g. //div[contains(@class,'price')], NOT //div[@class='price'])
+- For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
+- Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
 - Include all extractable fields you can identify
 - Do NOT include navigation, header, footer, or boilerplate fields
 - Return valid JSON only, no markdown, no explanation
@@ -49,7 +50,8 @@ def analyze(compressed_htmls: list) -> dict:
         "contents": [{"parts": [{"text": content}]}],
         "generationConfig": {
             "temperature": 0.1,
-            "maxOutputTokens": 4096,
+            "maxOutputTokens": 8192,
+            "responseMimeType": "application/json",
         }
     }
 

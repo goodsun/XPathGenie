@@ -31,7 +31,7 @@ createApp({
       timer = setInterval(() => elapsed.value++, 1000);
 
       try {
-        const resp = await fetch('/api/analyze', {
+        const resp = await fetch('api/analyze', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ urls }),

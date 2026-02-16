@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XPathGenie 🧞</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <header class="hero">
+        <div class="lamp">🪔</div>
+        <h1>XPathGenie <span class="genie">🧞</span></h1>
+        <p class="tagline">Rub the lamp, get the XPath.</p>
+      </header>
+
+      <div class="card input-card">
+        <label>Enter URLs <span class="hint">(one per line, 2-10 recommended)</span></label>
+        <textarea v-model="urlText" placeholder="https://example.com/page/1&#10;https://example.com/page/2&#10;https://example.com/page/3" rows="5" :disabled="loading"></textarea>
+        <button @click="analyzeUrls" :disabled="loading || !urlText.trim()" class="btn-analyze">
+          <span v-if="!loading">✨ Analyze</span>
+          <span v-else>🧞 Genie is working… {{ elapsedStr }}</span>
+        </button>
+      </div>
+
+      <div v-if="error" class="card error-card">
+        <strong>⚠️ Error:</strong> {{ error }}
+      </div>
+
+      <div v-if="result" class="card result-card">
+        <div class="result-header">
+          <h2>📋 {{ result.site }}</h2>
+          <div class="stats">
+            <span>{{ result.pages_analyzed }} pages</span>
+            <span>{{ result.tokens_used }} tokens</span>
+            <span>{{ result.elapsed_seconds }}s</span>
+          </div>
+        </div>
+
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>XPath</th>
+              <th>Confidence</th>
+              <th>Samples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(info, field) in result.mappings" :key="field" :class="{'low-confidence': info.confidence < 0.5}">
+              <td>
+                <input v-if="editing === field" v-model="editName" @keyup.enter="renameField(field)" @blur="renameField(field)" class="edit-input" ref="editInput">
+                <span v-else @dblclick="startEdit(field)" class="field-name" :title="'Double-click to rename'">{{ field }}</span>
+              </td>
+              <td class="xpath-cell" :title="info.xpath">{{ info.xpath }}</td>
+              <td>
+                <div class="confidence-bar">
+                  <div class="confidence-fill" :style="{width: (info.confidence*100)+'%', background: confidenceColor(info.confidence)}"></div>
+                  <span>{{ Math.round(info.confidence*100) }}%</span>
+                </div>
+              </td>
+              <td class="samples-cell">
+                <span v-for="(s, i) in info.samples" :key="i" class="sample" :class="{missing: !s}">{{ s || '—' }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="export-bar">
+          <button @click="copyJSON" class="btn-export">📋 Copy JSON</button>
+          <button @click="copyYAML" class="btn-export">📋 Copy YAML</button>
+          <span v-if="copied" class="copied-msg">✅ Copied!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="static/js/app.js"></script>
+</body>
+</html>

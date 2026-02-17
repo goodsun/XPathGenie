@@ -145,16 +145,82 @@ Aladdin（検証UI）: 結果検証＋修正
 
 ---
 
-## 推奨: A + B の組み合わせ
+## 推奨: A + B の統合 — Escalation Model
 
-| モード | 用途 | 実装 |
+### コンセプト: 「困った時だけ助けを求めるAI」
+
+普段は完全自動。失敗した時だけ人間に聞く。
+
+### 統合フロー
+
+```
+URL → Fetch → 候補セクション抽出
+                 │
+           候補が1個のみ?
+           │YES                    │NO（複数候補）
+           ↓                       ↓
+    [確認モード]               [選択モード]
+    ブラックアウト             候補を切り替えながら
+    プレビュー表示             ブラックアウト確認
+    「これでOK?」             「どれ?」
+           │                       │
+           ↓                       ↓
+    選択セクションで Compress → Gemini分析 → Validate
+                                              │
+                                        全フィールド0%?
+                                        │NO → ✅ 完了
+                                        │YES ↓
+                                   [エスカレーション]
+                                   ブラックアウトプレビュー再表示
+                                   「うまくいかなかった。別の部分を選んで」
+                                   ユーザーが別候補を選択 → 再分析
+```
+
+### モード切り替え
+
+| モード | 挙動 | 用途 |
 |--------|------|------|
-| **Auto（提案A）** | API/バッチ利用、プログラマティック実行 | ヒット率0%フォールバック |
-| **Interactive（提案B）** | Aladdin UI / SaaS利用、初回セットアップ | ユーザー選択 |
+| `auto` | 候補1で自動実行 → 0%なら候補2で自動リトライ（最大2回） | API/バッチ/CLI |
+| `confirm` | 候補1をブラックアウトプレビューで確認 → OK/変更 | 初回セットアップ |
+| `auto+escalate` | 普段はauto、失敗時のみプレビューでユーザーに聞く | **SaaS推奨** |
 
-- APIは `mode=auto`（デフォルト）と `mode=interactive` を切り替え可能
-- Auto で十分な精度が出る場合はユーザー介入不要
-- 困難なサイトや高精度が必要な場合は Interactive を選択
+### ブラックアウト表示
+
+削除される部分を暗転させることで「Geminiに見える範囲」を直感的に可視化。
+
+```css
+/* 削除される部分 */
+.xpg-removed {
+  opacity: 0.1;
+  filter: grayscale(1);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* メインセクション（残る部分） */
+.xpg-main-section {
+  outline: 3px solid #b366ff;
+  outline-offset: 2px;
+  position: relative;
+}
+
+/* 候補切り替え時のアニメーション */
+@keyframes xpg-pulse {
+  0%   { outline-color: rgba(179, 102, 255, 1.0); }
+  50%  { outline-color: rgba(179, 102, 255, 0.3); }
+  100% { outline-color: rgba(179, 102, 255, 1.0); }
+}
+.xpg-main-section.active {
+  animation: xpg-pulse 1.5s infinite;
+}
+```
+
+### 副次効果
+
+- **compression-generation gapの可視化ツール**としても機能
+- 論文の図（Before/After）をこのプレビューからスクショで作れる
+- ノイズパターン調整のデバッグが直感的に
+- ユーザーが「なぜ失敗したか」を自分で理解できる → サポートコスト減
 
 ## 実装見積もり
 

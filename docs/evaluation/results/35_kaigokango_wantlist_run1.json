@@ -2,37 +2,13 @@
   "site": "#35 kaigokango",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 29.3,
-  "fields_total": 29,
-  "fields_perfect": 19,
-  "avg_hit_rate": 0.669,
+  "genie_time_sec": 27.6,
+  "fields_total": 27,
+  "fields_perfect": 21,
+  "avg_hit_rate": 0.778,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "access_label": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "access_minutes": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
+      "xpath": "//div[p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text') and contains(text(), '駅より徒歩')]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -44,7 +20,7 @@
       ]
     },
     "address": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
+      "xpath": "//div[p[normalize-space()='勤務地']]/p[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -56,7 +32,7 @@
       ]
     },
     "bonus": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(text(), '賞与')][1]",
+      "xpath": "//div[p[normalize-space()='待遇']]/p[contains(@class, 'rii_text') and contains(text(), '賞与')]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -79,20 +55,8 @@
         "・介護施設で働く介護スタッフ（介護職員）さん募集♪\n\n・介護の資格をお持ちの方の募集となります\n\n・日給2万9000～3万2000円（実務者研修以上）\n\n・月10回勤務で月収32万円以上可能（介護福祉"
       ]
     },
-    "city": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "勤務地",
-        "勤務地",
-        "勤務地"
-      ]
-    },
     "contract": {
-      "xpath": "//div[contains(@class, 'result-detail')]/div[contains(@class, 'fr-box')]/p[contains(@class, 'p3')]",
+      "xpath": "//h1[contains(@class, 'p2')]/following-sibling::p[contains(@class, 'p3')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -104,7 +68,7 @@
       ]
     },
     "dept": {
-      "xpath": "//div[contains(@class, 'facility_info')]/p[contains(text(), '配属先') or contains(text(), '配属部署')]",
+      "xpath": "//div[contains(@class, 'facility_info')]/p[contains(@class, 'fi_text') and contains(text(), '配属先')]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -116,7 +80,7 @@
       ]
     },
     "detail": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='仕事内容（詳細）']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='仕事内容（詳細）']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -128,7 +92,7 @@
       ]
     },
     "facility_name": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='勤務先の企業名']]/p[contains(@class, 'fw_text')]",
+      "xpath": "//div[h2[normalize-space()='勤務先の企業名']]/p[contains(@class, 'fw_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -140,7 +104,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='施設形態']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='施設形態']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -152,7 +116,7 @@
       ]
     },
     "holiday": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='休日']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='休日']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -164,7 +128,7 @@
       ]
     },
     "license": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='必要資格']]/p[contains(@class, 'rii_text')][1]",
+      "xpath": "//div[p[normalize-space()='必要資格']]/p[contains(@class, 'rii_text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -176,7 +140,7 @@
       ]
     },
     "line": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '線')][1]",
+      "xpath": "//div[p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text') and contains(text(), '線')][1]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -187,8 +151,20 @@
         null
       ]
     },
+    "name": {
+      "xpath": "//h1[contains(@class, 'p2')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "「大阪市中央区」福祉関連企業の介護事務/リーダー募集",
+        "「大阪市中央区」福祉関連企業の介護事務/レセプト業務",
+        "「東京都大田区」3ユニット定員27名グループホームの夜勤専従介護職"
+      ]
+    },
     "occupation": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='職種']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='職種']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -212,7 +188,7 @@
       ]
     },
     "position": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='職種']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='職種']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -223,20 +199,8 @@
         "夜勤専従介護スタッフ"
       ]
     },
-    "prefecture": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "勤務地",
-        "勤務地",
-        "勤務地"
-      ]
-    },
     "price": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='給与']]/p[contains(@class, 'rii_text')][1]",
+      "xpath": "//div[p[normalize-space()='給与']]/p[contains(@class, 'rii_text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -248,7 +212,7 @@
       ]
     },
     "price_rule": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='給与']]/p[contains(@class, 'rii_text')][2]",
+      "xpath": "//div[p[normalize-space()='給与']]/p[contains(@class, 'rii_text')][2]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -260,7 +224,7 @@
       ]
     },
     "required_skill": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='必要資格']]/p[contains(@class, 'rii_text')][2]",
+      "xpath": "//div[p[normalize-space()='必要資格']]/p[contains(@class, 'rii_text')][2]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -272,31 +236,31 @@
       ]
     },
     "staff_comment": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='応募方法・選考プロセス']]/p[contains(@class, 'fw_text')][1]",
+      "xpath": "//div[contains(@class, 'point-box')]/p[contains(@class, 'pb20')]",
       "confidence": 1.0,
-      "hits": 2,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.2,
+      "hit_rate": 1.0,
       "sample_values": [
-        "／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となります。\n＼\n\n【株式会社エタンセル】\n〒541",
-        "／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となります。\n＼\n\n【株式会社エタンセル】\n〒541",
-        null
+        "福祉関連企業での介護事務（リーダー）を募集\n￣V￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n■月給25万4700～26万1200円\n■想定年収326万8400円～335万2400円\n■賞与年1回あり（21",
+        "正社員として新しい一歩を踏み出しませんか？\n￣V￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣\n■資格不問、未経験OK！正社員のお仕事\n■月給20万7400円～21万5000円\n■賞与年1回（16万円～16万",
+        "・介護施設で働く介護スタッフ（介護職員）さん募集♪\n\n・介護の資格をお持ちの方の募集となります\n\n・日給2万9000～3万2000円（実務者研修以上）\n\n・月10回勤務で月収32万円以上可能（介護福祉"
       ]
     },
     "staff_comment_title": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='応募方法・選考プロセス']]",
+      "xpath": "//div[contains(@class, 'point-box')]/h2",
       "confidence": 1.0,
-      "hits": 2,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.2,
+      "hit_rate": 1.0,
       "sample_values": [
-        "応募方法・選考プロセス\n          ／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となりま",
-        "応募方法・選考プロセス\n          ／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となりま",
-        null
+        "ここがポイント",
+        "ここがポイント",
+        "ここがポイント"
       ]
     },
     "station": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
+      "xpath": "//div[p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text') and contains(text(), '駅より徒歩')][1]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -308,7 +272,7 @@
       ]
     },
     "test_period": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(text(), '試用期間')][1]",
+      "xpath": "//div[p[normalize-space()='待遇']]/p[contains(@class, 'rii_text') and contains(text(), '試用期間')]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -332,7 +296,7 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -344,7 +308,7 @@
       ]
     },
     "working_hours": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務時間']]/p[contains(@class, 'rii_text')][1]",
+      "xpath": "//div[p[normalize-space()='勤務時間']]/p[contains(@class, 'rii_text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -353,6 +317,18 @@
         "9:00〜18:00(休憩1:00)",
         "9:00〜18:00(休憩1:00)",
         "17:00〜翌10:00(休憩2:00)"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[p[normalize-space()='勤務時間']]/ul[contains(@class, 'cct_merits')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "フルタイム\n                                  日勤のみOK",
+        "フルタイム\n                                  日勤のみOK",
+        "残業ほぼなし\n                                  フルタイム\n                                  夜勤専従OK\n            "
       ]
     }
   }

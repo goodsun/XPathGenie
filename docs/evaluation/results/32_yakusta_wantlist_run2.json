@@ -2,10 +2,10 @@
   "site": "#32 yakusta",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 17.1,
-  "fields_total": 15,
-  "fields_perfect": 14,
-  "avg_hit_rate": 0.98,
+  "genie_time_sec": 18.1,
+  "fields_total": 14,
+  "fields_perfect": 13,
+  "avg_hit_rate": 0.979,
   "fields": {
     "access": {
       "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
@@ -20,7 +20,7 @@
       ]
     },
     "address": {
-      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "xpath": "//div[contains(@class,'detail-03')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -164,18 +164,6 @@
       ]
     },
     "working_hours": {
-      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='就業時間']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制",
-        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制",
-        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制"
-      ]
-    },
-    "working_style": {
       "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='就業時間']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,

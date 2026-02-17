@@ -2,13 +2,13 @@
   "site": "#6 phget",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 10.2,
-  "fields_total": 5,
+  "genie_time_sec": 22.2,
+  "fields_total": 4,
   "fields_perfect": 0,
   "avg_hit_rate": 0.0,
   "fields": {
     "contract": {
-      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務形態']/following-sibling::td[1]/select",
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務形態']/following-sibling::td[1]/select/option[@selected]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -20,7 +20,7 @@
       ]
     },
     "license": {
-      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='資格']/following-sibling::td[1]/select",
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='資格']/following-sibling::td[1]/select/option[@selected]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -32,7 +32,7 @@
       ]
     },
     "occupation": {
-      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務職種']/following-sibling::td[1]",
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務職種']/following-sibling::td[1]/label[contains(@class, 'labelJobCategoryEntry')]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -46,18 +46,6 @@
     "original_id": {
       "xpath": "//div[contains(@class,'contBox')]//input[@name='jobIds']",
       "confidence": 1.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "working_style": {
-      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務形態']/following-sibling::td[1]/select",
-      "confidence": 0.0,
       "hits": 0,
       "total": 10,
       "hit_rate": 0.0,

@@ -2,12 +2,36 @@
   "site": "#32 yakusta",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 17.1,
-  "fields_total": 15,
-  "fields_perfect": 14,
-  "avg_hit_rate": 0.98,
+  "genie_time_sec": 22.9,
+  "fields_total": 22,
+  "fields_perfect": 20,
+  "avg_hit_rate": 0.973,
   "fields": {
     "access": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR函館本線「余市駅」から車で7分",
+        "京王線「府中駅」より徒歩2分",
+        "JR函館本線「小沢駅」から車で20分程度"
+      ]
+    },
+    "access_label": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR函館本線「余市駅」から車で7分",
+        "京王線「府中駅」より徒歩2分",
+        "JR函館本線「小沢駅」から車で20分程度"
+      ]
+    },
+    "access_minutes": {
       "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -31,8 +55,20 @@
         "北海道岩内郡岩内町"
       ]
     },
+    "bonus": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='手当その他']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 7,
+      "total": 10,
+      "hit_rate": 0.7,
+      "sample_values": [
+        "管理薬剤師手当(5,000円)、各種資格、時間外、役職、通勤交通費(全額支給)ほか",
+        "管理薬剤師手当(5,000円)、各種資格、時間外、役職、通勤交通費(全額支給)ほか",
+        "各種資格、時間外、役職ほか"
+      ]
+    },
     "caractoristic": {
-      "xpath": "//div[contains(@class,'detail-03')]//h2[normalize-space()='お仕事のポイント']/following-sibling::p[contains(@class, 'desc')]",
+      "xpath": "//div[contains(@class,'detail-03')]//section[contains(@class, 'desc-03')]/p[contains(@class, 'desc')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -41,6 +77,18 @@
         "《求人のポイント》\n ホワイト500認定企業！マツキヨココカラ＆カンパニー\n◇余市駅から車で7分ほどのところにある、大手ドラッグストア運営の調剤薬局です。\n◇全国に展開する大手グループですが、転居を伴",
         "≪求人のポイント≫\nホワイト500認定企業！マツキヨココカラ＆カンパニー\n◇京王線「府中駅」から徒歩2分、駅チカで通勤も便利です。\n◇門前のクリニックから「皮膚科」の処方箋をメインに応需しています。\n",
         "《求人のポイント》\n ホワイト500認定企業！マツキヨココカラ＆カンパニー\n・大手ドラッグストアグループの「ココカラファイン」が運営する調剤専門店です。\n・充実したサポート体制でブランクのある方も安心"
+      ]
+    },
+    "city": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道余市郡余市町",
+        "東京都府中市",
+        "北海道岩内郡岩内町"
       ]
     },
     "contract": {
@@ -103,6 +151,18 @@
         "薬剤師免許をお持ちの方\n調剤経験がある方"
       ]
     },
+    "line": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR函館本線「余市駅」から車で7分",
+        "京王線「府中駅」より徒歩2分",
+        "JR函館本線「小沢駅」から車で20分程度"
+      ]
+    },
     "original_id": {
       "xpath": "//div[contains(@class,'detail-03')]//li[contains(@class, 'id')]",
       "confidence": 1.0,
@@ -113,6 +173,18 @@
         "求人ID：11036",
         "求人ID：11126",
         "求人ID：12474"
+      ]
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道余市郡余市町",
+        "東京都府中市",
+        "北海道岩内郡岩内町"
       ]
     },
     "price": {
@@ -149,6 +221,18 @@
         "薬剤師資格保有者\n・調剤の実務経験がある方",
         "薬剤師資格保有者\n・調剤の実務経験がある方",
         "薬剤師免許をお持ちの方\n調剤経験がある方"
+      ]
+    },
+    "station": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[normalize-space()='最寄りアクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR函館本線「余市駅」から車で7分",
+        "京王線「府中駅」より徒歩2分",
+        "JR函館本線「小沢駅」から車で20分程度"
       ]
     },
     "welfare_program": {

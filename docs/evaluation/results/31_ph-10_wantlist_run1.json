@@ -2,37 +2,13 @@
   "site": "#31 ph-10",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 34.8,
-  "fields_total": 17,
-  "fields_perfect": 15,
-  "avg_hit_rate": 0.988,
+  "genie_time_sec": 38.1,
+  "fields_total": 13,
+  "fields_perfect": 10,
+  "avg_hit_rate": 0.908,
   "fields": {
     "access": {
-      "xpath": "//td[normalize-space()='アクセス']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
-        "ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
-        "東武小泉線（館林-西小泉） 東小泉駅 徒歩11分"
-      ]
-    },
-    "access_label": {
-      "xpath": "//td[normalize-space()='アクセス']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
-        "ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
-        "東武小泉線（館林-西小泉） 東小泉駅 徒歩11分"
-      ]
-    },
-    "access_minutes": {
-      "xpath": "//td[normalize-space()='アクセス']/following-sibling::td[1]",
+      "xpath": "//table[.//td[normalize-space()='勤務地']]//td[normalize-space()='アクセス']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -68,15 +44,15 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class,'checkpoint_icons')]/ul/li",
+      "xpath": "//div[contains(@class, 'checkpoint_icons')][following-sibling::table[1][.//td[normalize-space()='給与']]]",
       "confidence": 1.0,
       "hits": 9,
       "total": 10,
       "hit_rate": 0.9,
       "sample_values": [
-        "昇給あり",
-        "昇給あり",
-        "昇給あり"
+        "昇給あり\n              \n                賞与あり",
+        "昇給あり\n              \n                賞与あり",
+        "昇給あり\n              \n                賞与あり\n              \n                高収入"
       ]
     },
     "contract": {
@@ -127,18 +103,6 @@
         "土曜半日 日 祝日"
       ]
     },
-    "occupation": {
-      "xpath": "//td[normalize-space()='役職']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "管理薬剤師",
-        "勤務薬剤師",
-        "管理薬剤師"
-      ]
-    },
     "position": {
       "xpath": "//td[normalize-space()='役職']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -176,15 +140,15 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//td[normalize-space()='各種制度']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class, 'checkpoint_icons')][preceding-sibling::table/tr/th[normalize-space()='待遇・福利厚生']]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
-        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
-        "■加入保険：健康保険 厚生年金 雇用保険 労災保険■定期昇給：あり■賞与：あり■通勤交通費：別途支給（30,000円まで支給）■車・バイク通勤：可"
+        null,
+        null,
+        null
       ]
     },
     "working_hours": {
@@ -197,18 +161,6 @@
         "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
         "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
         "・月、火、水、木、金 09:00～ 18:00・土 09:00～ 13:00週40時間勤務"
-      ]
-    },
-    "working_style": {
-      "xpath": "//td[normalize-space()='雇用形態']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "正社員",
-        "正社員",
-        "正社員"
       ]
     }
   }

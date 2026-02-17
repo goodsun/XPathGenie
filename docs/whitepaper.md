@@ -346,6 +346,37 @@ To understand systematic failure modes, we analyzed the two lowest-performing si
 
 These failure modes suggest two primary improvement directions: (1) systematic adoption of `normalize-space()` over `text()=` (already implemented in v3), and (2) adaptive compression that preserves wrapper-div structure for CSS-framework-heavy sites.
 
+### 4.10 Reproducibility
+
+To assess the stability of LLM-generated XPath mappings across runs, we executed the Want List evaluation 3 times on all 23 sites (with `temperature=0.1`). Results are summarized below.
+
+| Stability Category | Sites | Description |
+|-------------------|-------|-------------|
+| Stable (σ < 0.05) | 16/23 (70%) | Consistent results across runs (e.g., yakumatch, pharmapremium, w-medical-9: 100% ×3) |
+| Moderate (0.05 ≤ σ < 0.15) | 5/23 (22%) | Minor variation (e.g., kaigo-work: 83–100%, bestcareer: 91–100%) |
+| Unstable (σ ≥ 0.15) | 2/23 (9%) | High variance (phget: 0–100%, MRT-nurse: 0–100%) |
+
+**Overall mean hit rate across 3 runs: 86.2% (σ̄ = 0.082).** The majority of sites produce stable results, but two sites (phget, MRT-nurse) exhibit extreme variance where the LLM occasionally generates entirely different field sets. This instability correlates with non-standard HTML structures (div/span-based layouts) where the LLM has less structural signal to anchor its XPath generation. These findings confirm the LLM non-determinism concern raised in Section 6.1 and suggest that for production deployment, running multiple analyses and selecting the consensus mapping would improve robustness.
+
+### 4.11 Ablation Study
+
+To quantify the contribution of each pipeline component, we evaluated 5 representative sites under 4 conditions: full pipeline, without HTML compression, without two-tier refinement, and without `normalize-space()` prompt guidance.
+
+| Condition | Mean Hit Rate | Δ vs Full | Notes |
+|-----------|--------------|-----------|-------|
+| **Full pipeline** | **88.1%** | — | Baseline |
+| w/o compression | 65.0% | **−23.1pp** | 2/5 sites failed (JSON parse error from truncated LLM output) |
+| w/o refinement | 88.8% | +0.7pp | Hit rate stable, but fewer fields detected per site |
+| w/o normalize-space | 82.9% | **−5.2pp** | caresta dropped from 81.5% to 46.2% |
+
+**Key findings:**
+
+1. **HTML compression is the most critical component** (−23.1pp without it). Raw HTML exceeds practical token limits, causing the LLM to produce truncated or unparseable JSON responses. Even when parsing succeeds, the LLM detects fewer fields (12 vs 30 on tsukui-staff) because it processes only the first 8,000 characters of uncompressed HTML, missing structured content deeper in the page.
+
+2. **`normalize-space()` provides targeted but significant improvement** (−5.2pp without it). The impact is concentrated on sites with whitespace-heavy HTML: caresta's hit rate halved (81.5% → 46.2%) without normalize-space guidance, directly confirming the compression-generation gap described in Section 4.9. Sites with clean HTML (w-medical-9, MRT-nurse) were unaffected.
+
+3. **Two-tier refinement has minimal impact on hit rate** (+0.7pp) but affects field completeness. Without refinement, the system detects fewer fields per site (e.g., w-medical-9: 16 vs 24 fields) because multi-match XPaths are not narrowed to specific content sections. The refinement mechanism primarily improves field *quantity* rather than per-field *accuracy*.
+
 ## 5. Design Principles
 
 ### 5.1 "Why > What" — Communicating Intent to the LLM

@@ -2,68 +2,44 @@
   "site": "#35 kaigokango",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 29.3,
-  "fields_total": 29,
-  "fields_perfect": 19,
-  "avg_hit_rate": 0.669,
+  "genie_time_sec": 25.1,
+  "fields_total": 23,
+  "fields_perfect": 20,
+  "avg_hit_rate": 0.887,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "access_label": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "access_minutes": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "address": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text')][2]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "勤務地",
-        "勤務地",
-        "勤務地"
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "※バイク、自転車通勤可能\n※車通勤相談可能\n\n■受動喫煙対策\nあり（屋内禁煙）"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text')][1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大阪府大阪市中央区安土町1丁目8番15号　野村不動産大阪ビル12Ｆ\n                                                  大阪堺筋線「堺筋本町」駅より徒歩",
+        "大阪府大阪市中央区安土町1丁目8番15号　野村不動産大阪ビル12Ｆ\n                                                  大阪堺筋線「堺筋本町」駅より徒歩",
+        "東京都大田区池上\n                                                  東急池上線「池上」駅より徒歩10分\n                       "
       ]
     },
     "bonus": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(text(), '賞与')][1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')][contains(., '賞与年1回')]",
+      "confidence": 1.0,
+      "hits": 2,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 0.2,
       "sample_values": [
-        null,
-        null,
+        "＜社会保険完備＞\n■雇用保険\n■労災保険\n■健康保険\n■厚生年金\n\n\n＜待遇・手当・福利厚生＞\n■交通費全額支給\n■賞与年1回\n（21万2000円～21万8000円/前年度実績）\n■昇給あり\n　※毎年",
+        "＜社会保険完備＞\n■雇用保険\n■労災保険\n■健康保険\n■厚生年金\n\n\n＜待遇・手当・福利厚生＞\n■交通費全額支給\n■賞与年1回\n（16万円～16万7000円/前年度実績）\n■昇給あり\n　※毎年人事考課",
         null
       ]
     },
@@ -79,20 +55,8 @@
         "・介護施設で働く介護スタッフ（介護職員）さん募集♪\n\n・介護の資格をお持ちの方の募集となります\n\n・日給2万9000～3万2000円（実務者研修以上）\n\n・月10回勤務で月収32万円以上可能（介護福祉"
       ]
     },
-    "city": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "勤務地",
-        "勤務地",
-        "勤務地"
-      ]
-    },
     "contract": {
-      "xpath": "//div[contains(@class, 'result-detail')]/div[contains(@class, 'fr-box')]/p[contains(@class, 'p3')]",
+      "xpath": "//div[contains(@class, 'result-detail')]//p[contains(@class, 'p3')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -104,14 +68,14 @@
       ]
     },
     "dept": {
-      "xpath": "//div[contains(@class, 'facility_info')]/p[contains(text(), '配属先') or contains(text(), '配属部署')]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class, 'facility_info')]/p[contains(@class, 'fi_text')][contains(., '配属先')]",
+      "confidence": 1.0,
+      "hits": 2,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 0.2,
       "sample_values": [
-        null,
-        null,
+        "【就業場所】\n株式会社青山ケアサポート　本社\n（配属先：レセプト事業部）\n介護業務と事務業務に日々追われている事業所様を様々な角度より応援したいという思いから、「介護保険の請求事務代行」を行っておりま",
+        "【就業場所】\n株式会社青山ケアサポート　本社\n（配属先：レセプト事業部）\n介護業務と事務業務に日々追われている事業所様を様々な角度より応援したいという思いから、「介護保険の請求事務代行」を行っておりま",
         null
       ]
     },
@@ -128,15 +92,15 @@
       ]
     },
     "facility_name": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='勤務先の企業名']]/p[contains(@class, 'fw_text')]",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text')][contains(., '勤務地名')]/following-sibling::p[1]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "株式会社青山ケアサポート\n【HP】https://www.aoyama-care.jp/company/\n\n通所介護、訪問看護・介護、福祉用具、定期巡回・随時対応型訪問介護看護、シニアトラベル事業の展",
-        "株式会社青山ケアサポート\n【HP】https://www.aoyama-care.jp/company/\n\n通所介護、訪問看護・介護、福祉用具、定期巡回・随時対応型訪問介護看護、シニアトラベル事業の展",
-        "株式会社エタンセル\n\n　〒541-0048\n　大阪市中央区瓦町4丁目3番7号　VORT御堂筋本町3F\n　（御堂筋線『本町』駅　2番出口より徒歩約3分）\n【派遣許可番号】派27-301753\n【有料職業"
+        null,
+        null,
+        null
       ]
     },
     "facility_type": {
@@ -152,7 +116,7 @@
       ]
     },
     "holiday": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='休日']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='休日']]/p[contains(@class, 'rii_text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -176,15 +140,15 @@
       ]
     },
     "line": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '線')][1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text')][2]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "※バイク、自転車通勤可能\n※車通勤相談可能\n\n■受動喫煙対策\nあり（屋内禁煙）"
       ]
     },
     "occupation": {
@@ -209,30 +173,6 @@
         "111571000",
         "351001",
         "13504"
-      ]
-    },
-    "position": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='職種']]/p[contains(@class, 'rii_text')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "事務職/医療事務/介護事務/管理職・管理職候補",
-        "事務職/一般事務/医療事務/介護事務/受付",
-        "夜勤専従介護スタッフ"
-      ]
-    },
-    "prefecture": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "勤務地",
-        "勤務地",
-        "勤務地"
       ]
     },
     "price": {
@@ -271,52 +211,28 @@
         "※高齢者施設などでの夜勤経験"
       ]
     },
-    "staff_comment": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='応募方法・選考プロセス']]/p[contains(@class, 'fw_text')][1]",
-      "confidence": 1.0,
-      "hits": 2,
-      "total": 10,
-      "hit_rate": 0.2,
-      "sample_values": [
-        "／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となります。\n＼\n\n【株式会社エタンセル】\n〒541",
-        "／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となります。\n＼\n\n【株式会社エタンセル】\n〒541",
-        null
-      ]
-    },
-    "staff_comment_title": {
-      "xpath": "//div[contains(@class, 'free_work')][h2[normalize-space()='応募方法・選考プロセス']]",
-      "confidence": 1.0,
-      "hits": 2,
-      "total": 10,
-      "hit_rate": 0.2,
-      "sample_values": [
-        "応募方法・選考プロセス\n          ／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となりま",
-        "応募方法・選考プロセス\n          ／\nこの求人は、株式会社青山ケアサポートの依頼を受けて行う職業紹介のための求人です。\n人材派遣・職業紹介会社【株式会社エタンセル】を通じての応募受付となりま",
-        null
-      ]
-    },
     "station": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(text(), '駅より徒歩')][1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務地']]/p[contains(@class, 'rii_text')][2]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "━━━━━━\n　勤務地名\n━━━━━━\n株式会社青山ケアサポート　本社\n\n\n＜受動喫煙対策＞\nあり（屋内禁煙）\n■受動喫煙対策関する特記事項\n屋外に喫煙所あり",
+        "※バイク、自転車通勤可能\n※車通勤相談可能\n\n■受動喫煙対策\nあり（屋内禁煙）"
       ]
     },
     "test_period": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(text(), '試用期間')][1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')][contains(., '試用期間')]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "＜社会保険完備＞\n■雇用保険\n■労災保険\n■健康保険\n■厚生年金\n\n\n＜待遇・手当・福利厚生＞\n■交通費全額支給\n■賞与年1回\n（21万2000円～21万8000円/前年度実績）\n■昇給あり\n　※毎年",
+        "＜社会保険完備＞\n■雇用保険\n■労災保険\n■健康保険\n■厚生年金\n\n\n＜待遇・手当・福利厚生＞\n■交通費全額支給\n■賞与年1回\n（16万円～16万7000円/前年度実績）\n■昇給あり\n　※毎年人事考課",
+        "＜社会保険完備＞\n■雇用保険\n■労災保険\n■健康保険\n■厚生年金\n\n\n＜待遇・手当・福利厚生＞\n■交通費全額支給\n■車通勤応相談\n■バイク、自転車通勤可能\n■制服貸与\n■残業手当\n■有給休暇\n■介護休"
       ]
     },
     "title_original": {
@@ -332,7 +248,7 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')]",
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='待遇']]/p[contains(@class, 'rii_text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -353,6 +269,18 @@
         "9:00〜18:00(休憩1:00)",
         "9:00〜18:00(休憩1:00)",
         "17:00〜翌10:00(休憩2:00)"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class, 'ri_item')][p[normalize-space()='勤務時間']]/ul[contains(@class, 'cct_merits')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "フルタイム\n                                  日勤のみOK",
+        "フルタイム\n                                  日勤のみOK",
+        "残業ほぼなし\n                                  フルタイム\n                                  夜勤専従OK\n            "
       ]
     }
   }

@@ -1,0 +1,119 @@
+{
+  "site": "#6 phget",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 21.1,
+  "fields_total": 9,
+  "fields_perfect": 1,
+  "avg_hit_rate": 0.111,
+  "fields": {
+    "age": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='年齢']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_employment_type": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務形態']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_job_category": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務職種']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_work_location": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務地']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "email": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='メールアドレス']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_id": {
+      "xpath": "//div[contains(@class,'contBox')]//p[contains(text(), '求人情報番号')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人情報番号 257767 に対して問い合わせる",
+        "求人情報番号 142104 に対して問い合わせる",
+        "求人情報番号 113116 に対して問い合わせる"
+      ]
+    },
+    "name": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='お名前']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "phone": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='電話番号']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "qualification": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='資格']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

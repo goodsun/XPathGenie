@@ -1,0 +1,35 @@
+{
+  "site": "#10 yakuzaishisyusyoku",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 13.6,
+  "fields_total": 2,
+  "fields_perfect": 0,
+  "avg_hit_rate": 0.0,
+  "fields": {
+    "name": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='p_name']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "original_id": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='p_id']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

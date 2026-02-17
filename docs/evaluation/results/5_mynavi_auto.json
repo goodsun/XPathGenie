@@ -1,0 +1,251 @@
+{
+  "site": "#5 mynavi",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 44.0,
+  "fields_total": 20,
+  "fields_perfect": 19,
+  "avg_hit_rate": 0.98,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='アクセス']/following-sibling::div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京成松戸線「北習志野駅」 徒歩14分／東葉高速鉄道「北習志野駅」 徒歩14分",
+        "東葉高速鉄道「八千代緑が丘駅」 徒歩10分",
+        "車通勤可\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\tＪＲ山陽本線(神戸－門司)「尾道駅」"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='勤務地']/ancestor::div[contains(@class, 'detailBlock')]/div[contains(@class, 'detailBox')]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "千葉県船橋市習志野台6-3-25",
+        "千葉県八千代市緑が丘西1-15-6",
+        "広島県尾道市御調町市100"
+      ]
+    },
+    "advisor_report_details": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'content-advisor')]/p[contains(@class, 'pointText')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "関西を中心に、全国で400店舗以上（内、調剤店舗は200店舗以上）展開しています。\n調剤併設店も増やしながら、総合病院前や医療モールにも出店しており、調剤専門の薬局が多いことが特徴です。\n教育体制や認",
+        "関西を中心に、全国で400店舗以上（内、調剤店舗は200店舗以上）展開しています。\n調剤併設店も増やしながら、総合病院前や医療モールにも出店しており、調剤専門の薬局が多いことが特徴です。\n教育体制や認",
+        "広島県尾道市にある調剤薬局での薬剤師の募集です。\n日祝休み・17時半が定時なので、子育て中の方やプライベートを重視している方にもおすすめの求人です♪\nご興味のある方には、面接対策ポイントなど、さらに詳"
+      ]
+    },
+    "advisor_report_summary": {
+      "xpath": "//div[contains(@class,'container')]//h3[contains(@class, 'advisorRead')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "急成長中のドラッグストアです。今後は調剤にも力を入れていきます。",
+        "急成長中のドラッグストアです。今後は調剤にも力を入れていきます。",
+        "17時半定時！門前の病院との関係性良好◎土日祝休み♪"
+      ]
+    },
+    "allowances": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='手当']/following-sibling::div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "通勤手当　残業手当　資格手当　その他手当(家族手当、役職手当、管理薬剤師手当)",
+        "通勤手当　残業手当　資格手当　その他手当(家族手当、役職手当、管理薬剤師手当)",
+        "通勤手当(上限10,000円（社内規定有り）)"
+      ]
+    },
+    "application_requirements": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='応募条件']/following-sibling::div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "未経験者も応募可能\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "未経験者も応募可能\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "■薬剤師免許をお持ちの方（取得見込みの方を含む）"
+      ]
+    },
+    "benefits": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='福利厚生']/following-sibling::div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "雇用保険、労災保険、健康保険、厚生年金保険\n財形貯蓄、社員持株会制度、慶弔見舞金制度、育児休暇制度、介護休職制度、社員割引制度",
+        "雇用保険、労災保険、健康保険、厚生年金保険\n財形貯蓄、社員持株会制度、慶弔見舞金制度、育児休暇制度、介護休職制度、社員割引制度",
+        "雇用保険、労災保険、健康保険、厚生年金保険"
+      ]
+    },
+    "business_type": {
+      "xpath": "//p[contains(@class, 'search_tag_area')]//span[contains(@class, 'business')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "company_name": {
+      "xpath": "//div[contains(@class,'container')]//h1/a",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "株式会社キリン堂",
+        "株式会社キリン堂",
+        "株式会社せとうち"
+      ]
+    },
+    "company_points": {
+      "xpath": "(//div[contains(@class, 'pointArea') and contains(@class, 'sec-checkpoint')]//p[contains(@class, 'pointTxt')])[1]",
+      "confidence": 1.0,
+      "hits": 6,
+      "total": 10,
+      "hit_rate": 0.6,
+      "sample_values": [
+        "食事や生活環境を含め、幅広い分野でお客さまの健康相談に乗るアドバイザーとして地域の皆さんに貢献しています。時代は今、セルフメディケーションが求められています。病気になってからの対処ではなく、病気になら",
+        "食事や生活環境を含め、幅広い分野でお客さまの健康相談に乗るアドバイザーとして地域の皆さんに貢献しています。時代は今、セルフメディケーションが求められています。病気になってからの対処ではなく、病気になら",
+        null
+      ]
+    },
+    "employment_status": {
+      "xpath": "//p[contains(@class, 'search_tag_area')]//span[contains(@class, 'employ_status')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "features": {
+      "xpath": "(//div[contains(@class,'container')]//ul[contains(@class, 'tags')]/li/a)[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "4月入職可",
+        "4月入職可",
+        "積極採用中"
+      ]
+    },
+    "holidays_vacations": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='休日・休暇']/following-sibling::div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "週休2日制　有給休暇\n週休2日制（月9～10日※シフト制）",
+        "週休2日制　有給休暇\n週休2日制（月9～10日※シフト制）",
+        "年間休日120日以上\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t土曜日　日曜日　祝日　有給休暇\n■土・日・祝+シフトによる　■有給休暇：法定通り付与\n■年間休日120日以上"
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='求人内容']/ancestor::div[contains(@class, 'detailBlock')]/div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "4月入職可\n積極採用中\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t※こちらの店舗は調剤専門店舗となります。\n\n【仕事内容】\n調剤事業部とOTC事業部が分かれており、どちらかを選択できます。また、Ｗチェック体制を取",
+        "4月入職可\n積極採用中\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t※こちらの店舗は調剤専門店舗となります。\n\n【仕事内容】\n調剤事業部とOTC事業部が分かれており、どちらかを選択できます。また、Ｗチェック体制を取",
+        "積極採用中\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【仕事内容】\n薬局内における調剤業務・服薬指導など\n\n■所在地・・・広島県尾道市\n■営業時間・・・月～金08:30~17:30（休憩60分） ※週40時間シフ"
+      ]
+    },
+    "job_id": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'updateTxt')]/span[2]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人番号：10152882",
+        "求人番号：10152884",
+        "求人番号：10184249"
+      ]
+    },
+    "job_title": {
+      "xpath": "//div[contains(@class,'container')]//h2[contains(@class, 'mainText')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【千葉県船橋市／新京成線】　調剤も手掛ける大手ドラッグストアにて薬剤師の募集",
+        "【千葉県八千代市／ 東葉高速線】　調剤も手掛ける大手ドラッグストアにて薬剤師の募集",
+        "【広島県尾道市】17時半定時！門前の病院との関係性良好◎日・祝休み♪"
+      ]
+    },
+    "recruitment_job_type": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='募集職種']/ancestor::div[contains(@class, 'detailBlock')]/div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師",
+        "薬剤師",
+        "薬剤師"
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='給与']/ancestor::div[contains(@class, 'detailBlock')]/div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "年収600万円以上可\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【年収】470万円～630万円程度\n\n\t\t\t\t\t\t\t【年収例】32歳（管理薬剤師・薬局長）550万円　\n※昇給年1回（4月）、賞与年2回（7月・12",
+        "年収600万円以上可\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【年収】470万円～630万円程度\n\n\t\t\t\t\t\t\t【年収例】32歳（管理薬剤師・薬局長）550万円　\n※昇給年1回（4月）、賞与年2回（7月・12",
+        "年収700万円以上可\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t【年収】480万円～700万円ご経験に合わせて応相談※勤務1年経過して管理薬剤師となった際は、600万～700万を想定"
+      ]
+    },
+    "update_date": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'updateTxt')]/span[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "更新日：2026/02/16",
+        "更新日：2026/02/16",
+        "更新日：2026/02/16"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='勤務時間']/ancestor::div[contains(@class, 'detailBlock')]/div[contains(@class, 'detailBox')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月火水金:09時00分～19時00分（休憩60分）,土:09時00分～14時30分（休憩0分）\n※一日実働8時間／週40時間（シフト制）\n※週40時間を基本とした、1ヶ月単位の変形労働制\n勤務曜日備考",
+        "月火金:09時00分～21時30分（休憩60分）,水土日:09時00分～18時00分（休憩60分）\n※週40時間を基本とした、1ヶ月単位の変形労働制",
+        "月～金:08時30分～17時30分（休憩60分）\n■週40時間シフト勤務"
+      ]
+    }
+  }
+}

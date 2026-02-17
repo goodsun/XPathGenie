@@ -1,0 +1,191 @@
+{
+  "site": "#10 yakuzaishisyusyoku",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 8.7,
+  "fields_total": 15,
+  "fields_perfect": 1,
+  "avg_hit_rate": 0.067,
+  "fields": {
+    "address_detail": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='ご住所']/following-sibling::td/input[@name='address']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "birth_day": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='生年月日']/following-sibling::td/input[@name='birth_d']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "birth_month": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='生年月日']/following-sibling::td/input[@name='birth_m']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "birth_year": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='生年月日']/following-sibling::td/input[@name='birth_y']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_employment_type": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='希望雇用形態']/following-sibling::td",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_job_change_time": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='希望転職時期']/following-sibling::td",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "desired_job_type": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='希望職種']/following-sibling::td",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "email": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='メールアドレス']/following-sibling::td/input[@name='email']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "name": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='お名前']/following-sibling::td/input[@name='name']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "name_kana": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='おなまえ（かな）']/following-sibling::td/input[@name='name_kana']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "phone": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='電話番号']/following-sibling::td/input[@name='tel']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='ご住所']/following-sibling::td/select[@name='pref']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "privacy_policy_agreement": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='個人情報の利用目･取扱い']/following-sibling::td/label/input[@name='agree']",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "requests": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='ご要望']/following-sibling::td",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "terms_of_use": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='利用規約']/following-sibling::td/textarea",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "この利用規約(以下，「本規約」と表記)は，ジェイ・ネクスト株式会社(以下，｢当社｣と表記)がこのウェブサイト上で提供するサービス(以下，｢本サービス｣と表記)の利用条件を定めるものです。利用する薬剤師",
+        "この利用規約(以下，「本規約」と表記)は，ジェイ・ネクスト株式会社(以下，｢当社｣と表記)がこのウェブサイト上で提供するサービス(以下，｢本サービス｣と表記)の利用条件を定めるものです。利用する薬剤師",
+        "この利用規約(以下，「本規約」と表記)は，ジェイ・ネクスト株式会社(以下，｢当社｣と表記)がこのウェブサイト上で提供するサービス(以下，｢本サービス｣と表記)の利用条件を定めるものです。利用する薬剤師"
+      ]
+    }
+  }
+}

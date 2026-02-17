@@ -123,6 +123,15 @@ def api_analyze():
     # 2b. Check compressed size
     total_compressed = sum(len(c) for c in compressed)
     diagnostics["compressed_size_bytes"] = total_compressed
+    if total_compressed == 0:
+        return jsonify({
+            "status": "error",
+            "reason": "compression_empty",
+            "message": "HTML compression produced empty output — the page structure could not be parsed. "
+                       "This may indicate a JavaScript-rendered SPA or an unsupported HTML structure.",
+            "suggestion": "Try a page with server-rendered HTML content.",
+            "diagnostics": diagnostics,
+        }), 422
     if total_compressed < 100:
         diagnostics["compression_warning"] = "Compressed HTML is very small — page may lack structured content (SPA?)"
 

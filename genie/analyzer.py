@@ -24,17 +24,18 @@ Identify all meaningful data fields that can be extracted, and provide XPath exp
 
 Rules:
 - Return ONLY a JSON object: {"field_name": "xpath_expression", ...}
-- Keep XPaths SHORT and SIMPLE. Avoid deeply nested conditions. Prefer: //dt[text()='ラベル']/following-sibling::dd[1]
+- Keep XPaths SHORT and SIMPLE. Avoid deeply nested conditions. Prefer: //dt[normalize-space()='ラベル']/following-sibling::dd[1]
 - Field names must be lowercase English, descriptive, generic (e.g. price, title, facility_name, prefecture, address, phone, description, salary, job_type, access, working_hours)
 - Limit to the 20 most important fields maximum
 - XPaths must use // prefix and select element nodes (not text() nodes)
 - For class matching, ALWAYS use contains() because classes often have multiple values (e.g. //div[contains(@class,'price')], NOT //div[@class='price'])
-- For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
-- Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
+- For text matching, ALWAYS use normalize-space() to handle whitespace: //dt[normalize-space()='ラベル'] or //td[normalize-space()='ラベル']
+- For dt/dd patterns, use: //dl[dt[normalize-space()='ラベル']]/dd or //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- Do NOT use XPath functions like substring-after. contains(@class,...) and normalize-space() are OK.
 - Include all extractable fields you can identify
 - Do NOT include navigation, header, footer, sidebar, or boilerplate fields
 - Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
-- Example: //dt[text()='給与']/following-sibling::dd[1] (correct)
+- Example: //dt[normalize-space()='給与']/following-sibling::dd[1] (correct)
 - Example: //div[contains(@class,'xxx')]//dt[...] (WRONG — do not add container)
 - Return valid JSON only, no markdown, no explanation
 
@@ -50,15 +51,16 @@ Requested fields (JSON schema):
 Rules:
 - Return ONLY a JSON object with the EXACT same keys as the requested schema: {{"field_name": "xpath_expression", ...}}
 - You MUST include ALL requested field names in the output, even if you cannot find a match (use null for XPath in that case)
-- Keep XPaths SHORT and SIMPLE. Prefer: //dt[text()='ラベル']/following-sibling::dd[1]
+- Keep XPaths SHORT and SIMPLE. Prefer: //dt[normalize-space()='ラベル']/following-sibling::dd[1]
 - XPaths must use // prefix and select element nodes (not text() nodes)
 - For class matching, ALWAYS use contains() because classes often have multiple values
-- For dt/dd patterns, use: //dl[dt[text()='ラベル']]/dd or //dt[text()='ラベル']/following-sibling::dd[1]
-- Do NOT use XPath functions like substring-after or normalize-space. contains(@class,...) is OK.
+- For text matching, ALWAYS use normalize-space() to handle whitespace: //dt[normalize-space()='ラベル'] or //td[normalize-space()='ラベル']
+- For dt/dd patterns, use: //dl[dt[normalize-space()='ラベル']]/dd or //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- Do NOT use XPath functions like substring-after. contains(@class,...) and normalize-space() are OK.
 - Match fields by MEANING, not by label text (e.g. "price" matches "給与", "時給", "報酬", "salary")
 - The VALUES in the schema are hints/descriptions of what the user wants for that field. Use them to understand the intent (e.g. "contract": "雇用形態（正社員、契約社員、パート等）" means find the employment type field)
 - Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
-- Example: //dt[text()='給与']/following-sibling::dd[1] (correct)
+- Example: //dt[normalize-space()='給与']/following-sibling::dd[1] (correct)
 - Example: //div[contains(@class,'xxx')]//dt[...] (WRONG — do not add container)
 - Return valid JSON only, no markdown, no explanation
 
@@ -115,7 +117,7 @@ For each field, examine the surrounding HTML context of the multiple matches, de
 Strategy:
 - Look for intermediate structural containers (divs with meaningful class names) between the page-level container and the target dt/dd
 - Use these intermediate containers to narrow down to the correct section
-- For example: if both "job detail" and "job summary" sections have dt[text()='勤務地'], add the job-detail section's parent class
+- For example: if both "job detail" and "job summary" sections have dt[normalize-space()='勤務地'], add the job-detail section's parent class
 - Pick the match that contains the MOST DETAILED information (full description > summary)
 - Keep XPaths as simple as possible while being unique
 

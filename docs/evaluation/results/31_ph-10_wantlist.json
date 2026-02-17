@@ -1,0 +1,167 @@
+{
+  "site": "#31 ph-10",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 31.9,
+  "fields_total": 13,
+  "fields_perfect": 10,
+  "avg_hit_rate": 0.908,
+  "fields": {
+    "access": {
+      "xpath": "//table[.//td[text()='法人・施設名']]//td[text()='アクセス']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "address": {
+      "xpath": "//td[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道苫小牧市清水町1-5-9",
+        "北海道苫小牧市清水町1-5-9",
+        "群馬県邑楽郡邑楽町篠塚3197-3"
+      ]
+    },
+    "bonus": {
+      "xpath": "//td[normalize-space()='賞与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "有",
+        "有",
+        "有"
+      ]
+    },
+    "caractoristic": {
+      "xpath": "//div[contains(@class, 'checkpoint_icons') and .//li[text()='社保完備']]/ul/li",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "社保完備",
+        "社保完備",
+        "社保完備"
+      ]
+    },
+    "contract": {
+      "xpath": "//td[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "detail": {
+      "xpath": "//td[normalize-space()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤服薬指導薬歴管理薬剤管理",
+        "調剤服薬指導薬歴管理薬剤管理",
+        "調剤服薬指導薬歴管理在庫管理薬剤管理"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//td[normalize-space()='業種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "holiday": {
+      "xpath": "//td[normalize-space()='休日・休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "土曜半日 日 祝日",
+        "土曜半日 日 祝日",
+        "土曜半日 日 祝日"
+      ]
+    },
+    "position": {
+      "xpath": "//td[normalize-space()='役職']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師",
+        "勤務薬剤師",
+        "管理薬剤師"
+      ]
+    },
+    "price": {
+      "xpath": "//td[normalize-space()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "経験・スキル等により変動※詳細はお問い合わせください。",
+        "経験・スキル等により変動※詳細はお問い合わせください。",
+        "・ 月給40万円～・ 年収600万円～※経歴により考慮"
+      ]
+    },
+    "price_rule": {
+      "xpath": "//td[normalize-space()='各種制度']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険■定期昇給：あり■賞与：あり■通勤交通費：別途支給（30,000円まで支給）■車・バイク通勤：可"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//td[normalize-space()='各種制度']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険■定期昇給：あり■賞与：あり■通勤交通費：別途支給（30,000円まで支給）■車・バイク通勤：可"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//td[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
+        "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
+        "・月、火、水、木、金 09:00～ 18:00・土 09:00～ 13:00週40時間勤務"
+      ]
+    }
+  }
+}

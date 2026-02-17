@@ -1,0 +1,23 @@
+{
+  "site": "#6 phget",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 6.7,
+  "fields_total": 1,
+  "fields_perfect": 1,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "original_id": {
+      "xpath": "//div[contains(@class,'contBox')]//input[@name='jobIds']/@value",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "257767",
+        "142104",
+        "113116"
+      ]
+    }
+  }
+}

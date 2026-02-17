@@ -1,0 +1,239 @@
+{
+  "site": "#26 firstnavi",
+  "urls_total": 5,
+  "urls_fetched": 5,
+  "genie_time_sec": 11.2,
+  "fields_total": 19,
+  "fields_perfect": 19,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "address": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "練馬区大泉学園町2-11-6",
+        "東金市田間2-38-16",
+        "富士見市東みずほ台2-15-13"
+      ]
+    },
+    "benefits": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='福利厚生']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "・社会保険完備\n・退職金制度あり（勤続3年以上）",
+        "・社会保険完備\n・確定拠出年金あり（DC制度）\n・制服貸与\n・予防接種補助制度あり\n・ほっとラインあり（第3者相談通報窓口）\n・社員割引制度あり（余暇利用）\n・団体長期障害所得補償あり\n・子育て支援あ",
+        "・社会保険完備\n・特定処遇改善加算金支給（年3回）\n・住宅手当（10,000円 ※申請制、条件あり）\n・年末年始手当（2,000円～3,000円 / 日）\n・制服貸与\n・育児時短勤務制度あり\n・報奨金"
+      ]
+    },
+    "bonus_raise": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='昇給・賞与']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "賞与あり（年2回）\n昇給あり（年1回）",
+        "賞与あり（年2回）\n昇給あり（年1回）",
+        "賞与なし\n昇給あり"
+      ]
+    },
+    "commuting_means": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='通勤手段']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "車通勤： 応相談",
+        "車通勤： 可",
+        "車通勤： 可（許可制）\n※原則、公共交通機関を利用"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='雇用形態']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員（夜勤あり）",
+        "正社員（日勤のみ）",
+        "正社員（日勤のみ）"
+      ]
+    },
+    "holidays": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='休日']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "・月間休日 8日（シフト制）\n・夏季休暇 3日（6～9月）\n・冬季休暇 4日（11～3月）\n・有給休暇（6か月経過後10日付与 / 消化率90％以上）",
+        "・月間休日 8～10日（1か月変形労働シフト制）\n・年間休日 112日\n・有給休暇\n・産前産後休暇\n・育児休暇\n・介護休暇\n・家族休暇\n・特別休暇",
+        "・シフト制（1か月毎）\n・月間休日 9日（閏年を除く2月は8公休）\n・年間休日 107日\n・産前産後休暇 ※取得実績あり\n・育児休業 ※取得実績あり\n※産前産後休暇、育児休業取得率100％ / 復職率"
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='業務内容']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "有料老人ホームにおける看護師業務全般\n・お薬の管理やご入居者様のバイタルチェックなどの健康管理\n※身体介助などの介護業務は介護スタッフが専任している為、おむつ交換などの介護業務はなし【1日のスケジュー",
+        "小規模多機能型居宅介護における看護師業務全般\n・健康管理、服薬管理、病状管理\n・機能訓練\n・他職種や病院（ドクター等）やご家族さまとの連絡調整　など\n※就業場所の変更： 法人の定める範囲\n※業務内容の",
+        "有料老人ホームにおける看護業務全般\n・健康管理\n・簡単な医療処置\n・服薬管理\n・機能訓練など\n※就業場所変更の範囲： 通勤可能範囲\n※業務内容変更の範囲： 社内業務全般\n※契約期間： 期間の定めなし【"
+      ]
+    },
+    "job_type": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='募集職種']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師",
+        "看護師",
+        "准看護師"
+      ]
+    },
+    "last_updated": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最終更新日']/following-sibling::td",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2025/04/30",
+        "2025/06/30",
+        "2026/01/21"
+      ]
+    },
+    "nearest_station": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td/div",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大泉学園駅　徒歩10分",
+        "東金駅　徒歩12分",
+        "みずほ台駅　徒歩5分"
+      ]
+    },
+    "night_shift_system": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='夜勤体制']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "-",
+        "-",
+        "-"
+      ]
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='都道府県']/following-sibling::td/a",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "東京都",
+        "千葉県",
+        "埼玉県"
+      ]
+    },
+    "requirements": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "未経験可、ブランク可、見学のみ可\n〈資格〉正看護師",
+        "未経験可、ブランク可、見学のみ可、WEB面接可\n〈資格〉\n・正看護師\n・普通自動車運転免許（AT限定可）",
+        "准看護師可、未経験可、ブランク可\n〈資格〉准看護師"
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給： 350,000円～",
+        "月給： 331,000円～",
+        "月給： 298,460円～\n※年俸： 3,581,520円～を12分割して毎月支給"
+      ]
+    },
+    "salary_details": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与詳細']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "(1) 夜勤手当： 11,000円 / 回\n(2) 交通費実費支給（上限50,000円）",
+        "(1) 固定残業代： 20,000円（8時間分）\n※ 超過分は別途支給\n(2) オンコール手当： 1,700円 / 日\n(3) 交通費全額支給",
+        "(1) 基本給： 245,090円～\n(2) 固定残業代： 53,370円（30時間分）\n※ 30時間に満たない場合も固定で支給、超過した際は1分単位で残業代を支給\n(3) 交通費支給（上限50,00"
+      ]
+    },
+    "service_type": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='サービス形態']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "有料老人ホーム",
+        "小規模多機能型居宅介護",
+        "有料老人ホーム"
+      ]
+    },
+    "training_education": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='研修・教育']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "・資格取得支援制度あり",
+        "・資格取得支援制度あり\n・研修制度あり",
+        "・年間60回以上の研修開催（入社時研修、職階別研修、業務関連の研修、資格取得セミナーなど）\n・web会議システムを活用（遠隔研修実施）\n・著名な講師をお招きしたプログラム内容あり\n・資格取得支援制度あ"
+      ]
+    },
+    "trial_period": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='試用期間']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "-",
+        "あり（3か月）※条件変更なし",
+        "あり（6か月）※条件変更なし"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務時間']/following-sibling::td/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（1）9:30～18:00\n（2）16:45～翌9:45休憩時間： 日勤 60分 / 夜勤 120分",
+        "8:30～17:30休憩時間： 60分",
+        "9:00～18:00休憩時間： 60分"
+      ]
+    }
+  }
+}

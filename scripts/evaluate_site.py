@@ -156,18 +156,19 @@ def eval_xpath(xpath_str, doc):
         return None
 
 
-def evaluate_site(site_key):
+def evaluate_site(site_key, mode="wantlist"):
     urls = load_urls(site_key)
     if not urls:
         print(f"[Error] No URLs found for {site_key}")
         return
 
     print(f"\n{'='*60}")
-    print(f"Evaluating: {site_key} ({len(urls)} URLs)")
+    print(f"Evaluating: {site_key} ({len(urls)} URLs) [mode={mode}]")
     print(f"{'='*60}")
 
-    # Step 1: Genie analysis (1st URL) with default WantList
-    mappings, genie_time = analyze(urls[0], wantlist=DEFAULT_WANTLIST)
+    # Step 1: Genie analysis (1st URL)
+    wantlist = DEFAULT_WANTLIST if mode == "wantlist" else None
+    mappings, genie_time = analyze(urls[0], wantlist=wantlist)
     if not mappings:
         print("[Error] Genie analysis failed")
         return
@@ -236,7 +237,8 @@ def evaluate_site(site_key):
     # Step 5: Save
     os.makedirs(RESULTS_DIR, exist_ok=True)
     safe_name = re.sub(r'[^a-zA-Z0-9_-]', '_', site_key.strip('#'))
-    out_path = os.path.join(RESULTS_DIR, f"{safe_name}.json")
+    suffix = f"_{mode}" if mode != "wantlist" else "_wantlist"
+    out_path = os.path.join(RESULTS_DIR, f"{safe_name}{suffix}.json")
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"[Saved] {out_path}")
@@ -246,6 +248,11 @@ def evaluate_site(site_key):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python3 -u scripts/evaluate_site.py '#1 tsukui-staff'")
+        print("Usage: python3 -u scripts/evaluate_site.py '#1 tsukui-staff' [--mode auto|wantlist]")
         sys.exit(1)
-    evaluate_site(sys.argv[1])
+    mode = "wantlist"
+    if "--mode" in sys.argv:
+        idx = sys.argv.index("--mode")
+        if idx + 1 < len(sys.argv):
+            mode = sys.argv[idx + 1]
+    evaluate_site(sys.argv[1], mode=mode)

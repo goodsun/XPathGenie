@@ -1,0 +1,251 @@
+{
+  "site": "#1 tsukui-staff",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 23.9,
+  "fields_total": 20,
+  "fields_perfect": 13,
+  "avg_hit_rate": 0.83,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR「南大高駅」より徒歩15分",
+        "名鉄常滑線「柴田駅」より徒歩2分",
+        "地下鉄東山線上社駅徒歩12分"
+      ]
+    },
+    "benefits": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='その他待遇']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "■交通費支給\n■社会保険完備\n■有給休暇あり\n■年末年始手当あり\n■ユニフォーム貸与\n■駐車場無料\n■社会保険完備(法令に則る)\n■退職金制度あり（独立行政法人 福祉医療機構）",
+        "・制服あり（無償貸与）　\n・駐車場あり",
+        "・社会保険完備\n・食事無料\n・資格取得支援\n・車通勤可"
+      ]
+    },
+    "commitment_conditions": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='この求人のこだわり条件']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "車通勤OK,無資格可,未経験可,日勤のみ・夜勤なし,週3日～,残業なし・少なめ,社会保険完備,交通費支給,資格取得支援,働くママ・パパ応援",
+        "駅チカ,車通勤OK,無資格可,未経験可,残業なし・少なめ,社会保険完備,交通費支給,賞与あり,研修制度あり,働くママ・パパ応援",
+        "駅チカ,車通勤OK,無資格可,社会保険完備,交通費支給,賞与あり,資格取得支援"
+      ]
+    },
+    "company_name": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='法人名']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 2,
+      "total": 10,
+      "hit_rate": 0.2,
+      "sample_values": [
+        "社会福祉法人英楽会",
+        null,
+        null
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='雇用形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "パート",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "experience": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='経験']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 7,
+      "total": 10,
+      "hit_rate": 0.7,
+      "sample_values": [
+        "未経験の方も相談下さい",
+        "経験者優遇",
+        "不問"
+      ]
+    },
+    "facility_name": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='事業所名']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 2,
+      "total": 10,
+      "hit_rate": 0.2,
+      "sample_values": [
+        "特別養護老人ホーム楓林花の里南館",
+        null,
+        null
+      ]
+    },
+    "facility_type": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class,'table')]//dt[normalize-space()='施設形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特別養護老人ホーム",
+        "特別養護老人ホーム",
+        "グループホーム"
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='仕事内容']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特別養護老人ホーム（ユニット）における介護業務全般　■入浴介助　■食事介助　■排泄介助　■レクリエーション等",
+        "特別養護老人ホーム（ユニット）での介護業務全般　\n□食事介助\n□入浴介助\n□排泄介助\n□レクリエーションなど",
+        "グループホームでの介護業務\n\n・身体介助（食事介助、歩行介助）\n・入浴介助\n・排せつ介助（トイレ誘導、オムツ交換）\n・調理業務\n・口腔ケア、口腔体操\n・服薬支援\n・レクリエーション企画、実施\n・生活支"
+      ]
+    },
+    "job_title": {
+      "xpath": "//section[contains(@class, 'p-jobDetail')]//h2[contains(@class, 'head')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "緑区/特別養護老人ホーム/パート/車通勤OK　研修充実！介護を始めるならココ！",
+        "南区/特別養護老人ホーム/正社員/駅チカ　研修充実＆駅徒歩2分でアクセス抜群！",
+        "名古屋市名東区/グループホーム/正社員/勤務中の食事は全て無料！資格取得支援あり♪"
+      ]
+    },
+    "job_type": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職・ヘルパー",
+        "介護職・ヘルパー",
+        "介護職・ヘルパー"
+      ]
+    },
+    "location": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class,'table')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "愛知県名古屋市緑区大高町字上蝮池10番地",
+        "愛知県名古屋市南区",
+        "愛知県名古屋市名東区"
+      ]
+    },
+    "other_allowances": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='その他手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "年末年始手当",
+        "処遇改善手当：44,000円～53,000円\n夜勤手当：4,000円／回（月４回程度）\n資格手当：０～15,000円\n　初任者：2,500　実務者：7,500\n　介護福祉士：15,000円\n\n調整手当",
+        "■処遇改善手当：22,000円\n■改善支援手当：10,000円\n■特定処遇：7,000円\n■係手当：15,000円\n■精勤手当：15,000円\n■土日祝手当：4,000円/月(1時間100円)\n■夜勤"
+      ]
+    },
+    "qualifications": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='募集資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "無資格\n                                                            \n                                   ",
+        "介護初任者研修\n                                                            \n                               ",
+        "無資格\n                                                            \n                                   "
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class, 'c-jobContent')]//dt[text()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "時給 1,160\n                                                円～1,360円",
+        "月給 218,000\n                                                円～274,000円",
+        "月給 228,000\n                                                円～248,000円"
+      ]
+    },
+    "salary_details": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='給与詳細']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 6,
+      "total": 10,
+      "hit_rate": 0.6,
+      "sample_values": [
+        "※資格・経験により決定",
+        "上記月給には夜勤手当4回分を含みます。\n資格・経験によって給与異なります",
+        null
+      ]
+    },
+    "work_days_holidays": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='勤務日数・休日']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "シフト制\n週3日から相談可能\n早番・遅番勤務可能な方歓迎！",
+        "シフト制",
+        "4週8休制\n※希望休月3日まで事前申請可"
+      ]
+    },
+    "work_remarks": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='勤務備考']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 6,
+      "total": 10,
+      "hit_rate": 0.6,
+      "sample_values": [
+        "勤務時間は相談可能\n土日祝勤務可能な方歓迎！",
+        null,
+        null
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "1) 07:00～16:00 ( 休憩 60 分 )\n                                                                         ",
+        "1) 07:00～16:00 ( 休憩 60 分 )\n                                                                         ",
+        "1) 07:00～16:00 ( 休憩 60 分 )\n                                                                         "
+      ]
+    },
+    "workplace_description": {
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[h3[normalize-space()='職場情報']]//div[contains(@class, 'desc')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "＜特別養護老人ホームでの介護STAFF募集＞\n\n～特養は大変そう…　\n　そんなイメージを払拭できる施設♪～\n\n☆おススメポイント☆\n◇1からしっかり学びたい方\n ・先輩職員が親切に教えてくださいますよ",
+        "〈特別養護老人ホームでの介護職募集〉\n\n☆☆おススメポイント☆☆\n〇これから介護職としてスタートしたい方も安心\n　・しっかりとした研修制度を実施\n　・専門の教育部あり\n〇頑張りが給与に反映\n　・社内資",
+        "※本日から2か月以内で就業可能な方歓迎\n\n【おすすめポイント】\n・勤務中に施設で食べる朝食・昼食・夕食は自己負担なし！\n　すべて無料で支給されます☆\n・無資格の方も歓迎♪\n　資格取得支援制度を活用して"
+      ]
+    }
+  }
+}

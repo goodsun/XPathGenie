@@ -1,0 +1,275 @@
+{
+  "site": "#5 mynavi",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 38.7,
+  "fields_total": 22,
+  "fields_perfect": 15,
+  "avg_hit_rate": 0.718,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='アクセス']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京成松戸線「北習志野駅」 徒歩14分／東葉高速鉄道「北習志野駅」 徒歩14分",
+        "東葉高速鉄道「八千代緑が丘駅」 徒歩10分",
+        "ＪＲ山陽本線(神戸－門司)「尾道駅」"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='勤務地']/following-sibling::div[1]/p[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "area": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@style, 'display: none;')]/p[contains(@class, 'wkplc')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "千葉県 船橋市",
+        "千葉県 八千代市",
+        "広島県 尾道市"
+      ]
+    },
+    "bonus": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='手当']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "通勤手当　残業手当　資格手当　その他手当(家族手当、役職手当、管理薬剤師手当)",
+        "通勤手当　残業手当　資格手当　その他手当(家族手当、役職手当、管理薬剤師手当)",
+        "通勤手当(上限10,000円（社内規定有り）)"
+      ]
+    },
+    "caractoristic": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'sec-checkpoint')]//div[contains(@class, 'pointWrap')][1]//h3[contains(@class, 'pointH3')]",
+      "confidence": 1.0,
+      "hits": 6,
+      "total": 10,
+      "hit_rate": 0.6,
+      "sample_values": [
+        "病気の芽を摘むセルフメディケーション",
+        "病気の芽を摘むセルフメディケーション",
+        null
+      ]
+    },
+    "contract": {
+      "xpath": "//div[@id='10152882']//p[contains(@class, 'ico_employ_status')]//span[contains(@class, 'employ_status')]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 10,
+      "hit_rate": 0.1,
+      "sample_values": [
+        "正社員",
+        null,
+        null
+      ]
+    },
+    "detail": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='求人内容']/following-sibling::div[1]/p[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "facility_name": {
+      "xpath": "//div[contains(@class,'container')]//h1",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "株式会社キリン堂\n\t\t\t\t\t\t\t\t習志野台店の薬剤師求人",
+        "キリン堂薬局　八千代緑が丘店\t\t\t\t\t\t\t\t株式会社キリン堂の薬剤師求人",
+        "市薬局\t\t\t\t\t\t\t\t株式会社せとうちの薬剤師求人"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//div[@id='10152882']//p[contains(@class, 'ico_business')]//span[contains(@class, 'business')]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 10,
+      "hit_rate": 0.1,
+      "sample_values": [
+        "調剤薬局",
+        null,
+        null
+      ]
+    },
+    "holiday": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='休日・休暇']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "週休2日制　有給休暇\n週休2日制（月9～10日※シフト制）",
+        "週休2日制　有給休暇\n週休2日制（月9～10日※シフト制）",
+        "土曜日　日曜日　祝日　有給休暇\n■土・日・祝+シフトによる　■有給休暇：法定通り付与\n■年間休日120日以上"
+      ]
+    },
+    "license": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='応募条件']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "■薬剤師免許をお持ちの方（取得見込みの方を含む）"
+      ]
+    },
+    "name": {
+      "xpath": "//div[contains(@class,'container')]//h2[contains(@class, 'mainText')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【千葉県船橋市／新京成線】　調剤も手掛ける大手ドラッグストアにて薬剤師の募集",
+        "【千葉県八千代市／ 東葉高速線】　調剤も手掛ける大手ドラッグストアにて薬剤師の募集",
+        "【広島県尾道市】17時半定時！門前の病院との関係性良好◎日・祝休み♪"
+      ]
+    },
+    "occupation": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='募集職種']/following-sibling::div[1]/p[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "original_id": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'updateTxt')]/span[contains(normalize-space(), '求人番号')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人番号：10152882",
+        "求人番号：10152884",
+        "求人番号：10184249"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'container')]//dl[contains(@class, 'salaryInfo')]/dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【年収】470万円～630万円程度",
+        "【年収】470万円～630万円程度",
+        "【年収】480万円～700万円ご経験に合わせて応相談※勤務1年経過して管理薬剤師となった際は、600万～700万を想定"
+      ]
+    },
+    "price_rule": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='給与']/following-sibling::div[1]/p[2]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "required_skill": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='応募条件']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "【必須条件】\n■薬剤師免許\n※調剤経験必須。\n【あれば尚良し】\n・OTC販売経験",
+        "■薬剤師免許をお持ちの方（取得見込みの方を含む）"
+      ]
+    },
+    "staff_comment": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'content-advisor')]/p[contains(@class, 'pointText')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "関西を中心に、全国で400店舗以上（内、調剤店舗は200店舗以上）展開しています。\n調剤併設店も増やしながら、総合病院前や医療モールにも出店しており、調剤専門の薬局が多いことが特徴です。\n教育体制や認",
+        "関西を中心に、全国で400店舗以上（内、調剤店舗は200店舗以上）展開しています。\n調剤併設店も増やしながら、総合病院前や医療モールにも出店しており、調剤専門の薬局が多いことが特徴です。\n教育体制や認",
+        "広島県尾道市にある調剤薬局での薬剤師の募集です。\n日祝休み・17時半が定時なので、子育て中の方やプライベートを重視している方にもおすすめの求人です♪\nご興味のある方には、面接対策ポイントなど、さらに詳"
+      ]
+    },
+    "staff_comment_title": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class, 'sec-career-advisor')]/h3[contains(@class, 'advisorRead')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "急成長中のドラッグストアです。今後は調剤にも力を入れていきます。",
+        "急成長中のドラッグストアです。今後は調剤にも力を入れていきます。",
+        "17時半定時！門前の病院との関係性良好◎土日祝休み♪"
+      ]
+    },
+    "title_original": {
+      "xpath": "//div[contains(@class,'container')]//h1",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "株式会社キリン堂\n\t\t\t\t\t\t\t\t習志野台店の薬剤師求人",
+        "キリン堂薬局　八千代緑が丘店\t\t\t\t\t\t\t\t株式会社キリン堂の薬剤師求人",
+        "市薬局\t\t\t\t\t\t\t\t株式会社せとうちの薬剤師求人"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'container')]//p[normalize-space()='福利厚生']/following-sibling::div[1]/p[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "雇用保険、労災保険、健康保険、厚生年金保険\n財形貯蓄、社員持株会制度、慶弔見舞金制度、育児休暇制度、介護休職制度、社員割引制度",
+        "雇用保険、労災保険、健康保険、厚生年金保険\n財形貯蓄、社員持株会制度、慶弔見舞金制度、育児休暇制度、介護休職制度、社員割引制度",
+        "雇用保険、労災保険、健康保険、厚生年金保険"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'container')]//dl[contains(@class, 'worktimeInfo')]/dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月火水金:09時00分～19時00分（休憩60分）,土:09時00分～14時30分（休憩0分）",
+        "月火金:09時00分～21時30分（休憩60分）,水土日:09時00分～18時00分（休憩60分）",
+        "月～金:08時30分～17時30分（休憩60分）"
+      ]
+    }
+  }
+}

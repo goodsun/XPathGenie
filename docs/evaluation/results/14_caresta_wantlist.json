@@ -1,0 +1,203 @@
+{
+  "site": "#14 caresta",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 26.0,
+  "fields_total": 16,
+  "fields_perfect": 11,
+  "avg_hit_rate": 0.85,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'detailContent')]//table[.//th[text()='仕事内容']]//th[text()='アクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京都市営地下鉄烏丸線　今出川駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    バス10分",
+        "京都市営地下鉄烏丸線　今出川駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    バス10分",
+        "阪神本線　香櫨園駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    徒歩14分"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京都府京都市上京区",
+        "京都府京都市上京区",
+        "兵庫県西宮市"
+      ]
+    },
+    "bonus": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='昇給・賞与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 10,
+      "hit_rate": 0.5,
+      "sample_values": [
+        "＜昇給＞有\n＜賞与＞年3回",
+        null,
+        null
+      ]
+    },
+    "contract": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正職員",
+        "派遣",
+        "派遣"
+      ]
+    },
+    "detail": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特別養護老人ホームでの介護業務\n・入浴、食事、排せつ介助\n・生活介助（外出付き添いなど）\n・夜間の見守り等の夜勤業務\n・レクリエーションの実施\n・その他付随業務",
+        "特別養護老人ホームでの介護業務\n・入浴、食事、排せつ介助\n・生活介助（外出付き添いなど）\n・レクリエーションの実施\n・その他付随業務",
+        "介護老人保健施設での介護業務全般\n(排泄介助、食事介助、入浴介助、環境整備など)"
+      ]
+    },
+    "holiday": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='休日・休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "年間休日110日\n4週8休制\n時間有休制度\n夏季リフレッシュ休暇\n5年・10年（以降5年ごと）勤続休暇あり\n入職時5日付与　\n入職日が属する年度の10月1日に5日付与（※4〜9月入職の者）",
+        null,
+        null
+      ]
+    },
+    "license": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='応募資格・条件']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職員初任者研修・ホームヘルパー2級\n                        ※未経験の方もご応募可能",
+        "介護職員初任者研修・ホームヘルパー2級\n                        必須経験：介護経験(1年)",
+        "その他・不問\n                        ※無資格の方は認知症基礎研修の受講が必須\n※未経験の方もご応募可能"
+      ]
+    },
+    "occupation": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護・福祉関連",
+        "介護・福祉関連",
+        "介護・福祉関連"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給 \n              228,600 円               ～               255,600 円\n                        \t\t  基本給+",
+        "時給 \n              1,250 円               ～               1,450 円\n                        \t\t  初任者研修：1,",
+        "時給 \n              1,350 円               ～               1,600 円\n                        \t\t  認知症基礎研修："
+      ]
+    },
+    "price_rule": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='諸手当']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "処遇改善手当：33,500円\n資格手当：3,000円〜10,000円\n夜勤手当：5,000円/回\n日祝手当：700円/日\n住宅手当：7,500円　※世帯主のみ\n\n皆勤手当：10,000円\n（遅刻欠勤が",
+        null,
+        null
+      ]
+    },
+    "required_skill": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='応募資格・条件']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職員初任者研修・ホームヘルパー2級\n                        ※未経験の方もご応募可能",
+        "介護職員初任者研修・ホームヘルパー2級\n                        必須経験：介護経験(1年)",
+        "その他・不問\n                        ※無資格の方は認知症基礎研修の受講が必須\n※未経験の方もご応募可能"
+      ]
+    },
+    "test_period": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='契約期間等']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "期間の定めなし\n\t\t   \t\t試用期間あり",
+        "3～6ヶ月以内（更新あり）",
+        "3～6ヶ月以内（更新あり）"
+      ]
+    },
+    "title_original": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護・福祉関連",
+        "介護・福祉関連",
+        "介護・福祉関連"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='福利厚生等']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "・資格取得支援制度\n・勤続功労金制度（5年毎支給）\n\n・介護福祉士等の資格取得支援の為の貸付制度\n（※資格取得後、2年間の勤務で全額返済免除）",
+        null,
+        null
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（１）7:00～16:00　休憩：60 分\n（２）11:00～20:00　休憩：60 分\n（３）16:00～34:00　休憩：120 分\n\n※その他のシフトあり",
+        "（１）7:00～16:00　休憩：60 分\n（２）11:00～20:00　休憩：60 分\n（３）8:00～17:00　休憩：60 分",
+        "（１）7:30～16:30　休憩：60 分\n（２）8:30～17:30　休憩：60 分\n（３）10:30～19:30　休憩：60 分\n（４）11:30～20:30　休憩：60 分"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='勤務曜日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       ",
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       ",
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       "
+      ]
+    }
+  }
+}

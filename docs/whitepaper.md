@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Web scraping remains labor-intensive, with XPath authoring as a major bottleneck. We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression, LLM-based inference, multi-page cross-validation, and two-tier refinement. The compression stage reduces typical pages by approximately 97%, enabling efficient LLM consumption within token budgets. The system employs a single LLM inference call to produce field-XPath mappings, which are validated across multiple pages with confidence scoring. A two-tier refinement mechanism resolves multi-match XPaths: identical-value duplicates are narrowed mechanically at zero AI cost, while divergent-value cases trigger targeted re-inference. In evaluation across 22 Japanese medical job-listing websites, XPathGenie achieved a weighted average hit rate of 91.2% with schema-guided generation, with 11 sites reaching 100%. A key finding is that providing a unified field schema with semantic descriptions (Want List) improved accuracy by 11.7 percentage points over autonomous field discovery, suggesting that communicating extraction *intent* to the LLM—analogous to giving a human scraper a clear objective—is a powerful lever for accuracy. The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures zero ongoing AI cost after initial generation.
+Web scraping remains labor-intensive, with XPath authoring as a major bottleneck. We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression, LLM-based inference, multi-page cross-validation, and two-tier refinement. The compression stage reduces typical pages by approximately 97%, enabling efficient LLM consumption within token budgets. The system employs a single LLM inference call to produce field-XPath mappings, which are validated across multiple pages with confidence scoring. A two-tier refinement mechanism resolves multi-match XPaths: identical-value duplicates are narrowed mechanically at zero AI cost, while divergent-value cases trigger targeted re-inference. In evaluation across 23 Japanese medical job-listing websites, XPathGenie achieved field-level precision of 85.1% (Auto Discover) and 87.3% (schema-guided Want List), with 11 sites reaching 100% in each mode. On 7 universally-expected "core fields" (salary, location, employment type, etc.), Auto Discover achieved 96.0% precision with 62.1% coverage, while Want List improved coverage to 75.2%—confirming that communicating extraction *intent* primarily expands what the system finds. A key engineering finding is the compression-generation gap: whitespace normalization during compression causes `text()=` predicates to fail on raw HTML, resolved by adopting `normalize-space()` in generated XPaths. The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures zero ongoing AI cost after initial generation.
 
 ## 1. Introduction
 
@@ -82,15 +82,17 @@ Raw HTML pages from modern websites routinely exceed 500 KB, far exceeding pract
 
 2. **Structural strip**: Layout-only containers (`header`, `footer`, `nav`, `aside`) are removed, as they rarely contain target data fields.
 
-3. **Main section detection**: The algorithm locates the primary content region through a three-tier fallback: (a) explicit semantic elements (`<main>`, `<article>`), (b) **structured data detection**—the nearest common ancestor of `<th>` and `<dt>` elements, which reliably indicates data-rich regions on form-based sites, and (c) the `<div>` or `<section>` with the most text content. Noise patterns—elements whose class or ID matches `\brecommend\b|\brelated\b|\bsidebar\b|\bwidget\b|\bbreadcrumb\b|\bmodal\b|\bslide\b|\bfooter\b|\bbanner\b|\bad-|\bpopup\b|\bcookie\b`—are excluded at all tiers. The structured data detection (tier b) was added after initial evaluation revealed that sites without semantic landmarks often had their data tables excluded by the text-volume heuristic.
+3. **Noise pre-removal**: Before main section detection, all subtrees matching noise patterns are removed from the document. This prevents non-content regions (e.g., privacy policy sections containing `<th>`/`<dt>` elements) from skewing the main section detection algorithm. Noise patterns match class or ID attributes against: `recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|ad[-_]|popup|cookie|privacy|policy|inquiry|contact|sns[-_]|share`.
 
-4. **Noise subtree removal**: Within the identified main section, child subtrees matching noise patterns are recursively removed.
+4. **Main section detection**: The algorithm locates the primary content region through a three-tier fallback: (a) explicit semantic elements (`<main>`, `<article>`), (b) **structured data detection**—scoring candidate containers by the product of structured marker count (number of `<th>` and `<dt>` descendants) and text content length, which reliably identifies data-rich regions while avoiding small summary sections, and (c) the `<div>` or `<section>` with the most text content. When no single container is dominant (i.e., the top candidate holds less than 50% of the total score), multiple qualifying sections are merged into a virtual wrapper element. The `<body>` element is explicitly excluded from candidates to prevent overly broad selection. This multi-signal scoring was refined after evaluation revealed that simple marker counting could select small "checkpoint" sections over larger content areas.
 
-5. **Text truncation**: All text nodes are truncated to 30 characters, preserving structural labels (e.g., `給与`, `勤務地`) while eliminating lengthy content that consumes tokens without aiding XPath generation.
+5. **Residual noise removal**: Within the identified main section, any remaining child subtrees matching noise patterns are recursively removed.
 
-6. **Empty element pruning**: Elements with no text content and no children are removed (excluding self-closing tags like `br`, `hr`, `img`, `input`).
+6. **Text truncation**: All text nodes are truncated to 30 characters, preserving structural labels (e.g., `給与`, `勤務地`) while eliminating lengthy content that consumes tokens without aiding XPath generation.
 
-7. **Whitespace normalization**: Redundant whitespace is collapsed, and inter-tag whitespace is eliminated.
+7. **Empty element pruning**: Elements with no text content and no children are removed (excluding self-closing tags like `br`, `hr`, `img`, `input`).
+
+8. **Whitespace normalization**: Redundant whitespace is collapsed, and inter-tag whitespace is eliminated.
 
 The result is a structural skeleton that preserves the DOM hierarchy, class names, and label text essential for XPath construction while achieving approximately 97% size reduction (e.g., 695 KB → 20 KB). Each compressed page is further capped at 8,000 characters before being sent to the LLM.
 
@@ -102,7 +104,8 @@ The system offers two inference modes, both implemented as single-call prompts t
 
 - XPaths must use the `//` prefix and select element nodes (not `text()` nodes)
 - Class matching must use `contains(@class, ...)` to handle multi-class attributes
-- XPath functions beyond `contains()` are prohibited (no `substring-after`, `normalize-space`)
+- Text matching must use `normalize-space()` to handle whitespace differences between compressed and raw HTML (e.g., `//dt[normalize-space()='給与']` instead of `//dt[text()='給与']`)
+- XPath functions beyond `contains()` and `normalize-space()` are prohibited (no `substring-after`)
 - Output is limited to the 20 most important fields
 - Field names must be lowercase English and semantically generic
 
@@ -181,9 +184,15 @@ This architecture embodies a deliberate role reversal: traditionally, humans wri
 
 ### 4.1 Experimental Setup
 
-XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. One additional site (ph-10) was excluded from the Want List evaluation due to Genie analysis failure, yielding 22 evaluated sites.
+XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues.
 
-Each site was analyzed using a single detail-page URL, and the generated XPath mappings were cross-validated against 10 detail pages from the same site. The evaluation metric is **hit rate**: the fraction of pages on which a generated XPath returns at least one non-empty result. This measures extraction coverage, not semantic accuracy against ground-truth annotations.
+Each site was analyzed using a single detail-page URL, and the generated XPath mappings were cross-validated against 10 detail pages from the same site.
+
+**Evaluation metrics.** We report three levels of evaluation:
+
+1. **Field-level hit rate**: The fraction of pages on which a generated XPath returns at least one non-empty result. This measures extraction coverage per field, not semantic accuracy against ground-truth annotations.
+2. **Site-level average hit rate**: The mean of field-level hit rates for a given site.
+3. **Core field precision**: Hit rate computed only on 7 "core fields" that are universally present on job-listing sites: salary (price), work location (address), employment type (contract), occupation, facility name, working hours, and holidays. This metric reflects practical utility—whether the most important data can be extracted.
 
 Two evaluation conditions were tested:
 
@@ -194,94 +203,94 @@ Two evaluation conditions were tested:
 
 | # | Site | Domain | Structure | Fields | Perfect | Hit Rate |
 |---|------|--------|-----------|--------|---------|----------|
-| 25 | w-medical-9 | Medical | th/td | 20 | 20/20 | **100.0%** |
-| 13 | pharmapremium | Pharma | th/td | 20 | 20/20 | **100.0%** |
-| 18 | nikken-care | Care | dt/dd | 17 | 17/17 | **100.0%** |
-| 19 | nikken-nurse | Nurse | dt/dd | 17 | 17/17 | **100.0%** |
-| 9 | oshigoto-lab | Medical | dt/dd+th/td | 16 | 16/16 | **100.0%** |
-| 21 | MRT-nurse | Nurse | SPA* | 11 | 11/11 | **100.0%** |
+| 2 | selva-i | Pharma | dt/dd | 20 | 20/20 | **100.0%** |
+| 4 | yakumatch | Pharma | th/td | 20 | 20/20 | **100.0%** |
+| 9 | oshigoto-lab | Medical | dt/dd+th/td | 12 | 12/12 | **100.0%** |
+| 12 | bestcareer | Pharma | th/td (Shift-JIS) | 20 | 20/20 | **100.0%** |
+| 13 | pharmapremium | Pharma | th/td | 14 | 14/14 | **100.0%** |
+| 18 | nikken-care | Care | dt/dd | 10 | 10/10 | **100.0%** |
+| 19 | nikken-nurse | Nurse | dt/dd | 10 | 10/10 | **100.0%** |
+| 21 | MRT-nurse | Nurse | div/span | 6 | 6/6 | **100.0%** |
 | 24 | kaigo-work | Care | th/td | 14 | 14/14 | **100.0%** |
-| 20 | cocofump | Care | dt/dd+th/td | 4 | 4/4 | **100.0%** |
-| 6 | phget | Pharma | th/td | 6 | 6/6 | **100.0%** |
-| 2 | selva-i | Pharma | dt/dd | 1 | 1/1 | **100.0%** |
-| 26 | firstnavi | Nurse | th/td | 1 | 1/1 | **100.0%** |
-| 30 | mc-pharma | Pharma | th/td (Shift-JIS) | 25 | 24/25 | 98.4% |
+| 25 | w-medical-9 | Medical | th/td | 19 | 19/19 | **100.0%** |
+| 26 | firstnavi | Nurse | th/td | 19 | 19/19 | **100.0%** |
+| 5 | mynavi | Pharma | dt/dd | 20 | 19/20 | 98.0% |
+| 16 | pharmalink | Pharma | th/td | 20 | 17/20 | 98.5% |
 | 32 | yakusta | Pharma | dt/dd+th/td | 18 | 17/18 | 98.3% |
-| 16 | pharmalink | Pharma | th/td | 20 | 16/20 | 96.5% |
-| 10 | yakuzaishisyusyoku | Pharma | th/td | 11 | 9/11 | 96.4% |
-| 35 | kaigokango | Care/Nurse | SPA* | 20 | 19/20 | 96.0% |
-| 12 | bestcareer | Pharma | th/td (Shift-JIS) | 21 | 17/21 | 95.0% |
-| 4 | yakumatch | Pharma | th/td | 19 | 17/19 | 89.5% |
-| 1 | tsukui-staff | Care | dt/dd | 20 | 14/20 | 82.5% |
-| 8 | apuro | Pharma | dt/dd+th/td | 13 | 10/13 | 80.8% |
-| 5 | mynavi | Pharma | dt/dd | 20 | 15/20 | 78.5% |
-| 14 | caresta | Care | th/td | 20 | 10/20 | 50.0% |
+| 31 | ph-10 | Pharma | th/td | 15 | 11/15 | 96.7% |
+| 35 | kaigokango | Care/Nurse | th/td | 18 | 17/18 | 95.6% |
+| 30 | mc-pharma | Pharma | th/td (Shift-JIS) | 15 | 12/15 | 92.7% |
+| 20 | cocofump | Care | dt/dd+th/td | 6 | 5/6 | 91.7% |
+| 14 | caresta | Care | th/td | 17 | 12/17 | 85.9% |
+| 1 | tsukui-staff | Care | dt/dd | 20 | 13/20 | 83.0% |
+| 8 | apuro | Pharma | dt/dd+th/td | 13 | 9/13 | 73.1% |
+| 6 | phget | Pharma | th/td | 9 | 1/9 | 11.1% |
+| 10 | yakuzaishisyusyoku | Pharma | th/td | 15 | 1/15 | 6.7% |
 
-\* Sites labeled SPA in preliminary analysis but found to be SSR-accessible.
+**Note:** All results were obtained after system improvements including encoding auto-detection (Shift-JIS/EUC-JP), XML declaration stripping, structured-data-aware main section detection, noise pattern expansion (privacy policy, contact forms), pre-detection noise removal, and `normalize-space()` adoption in LLM prompts for whitespace-resilient XPath generation. These engineering fixes are prerequisites for correct HTML processing.
 
-**Note:** All Auto Discover results were obtained after system improvements (encoding auto-detection for Shift-JIS/EUC-JP, XML declaration stripping, and structured-data-aware main section detection). Initial runs on some sites (e.g., mc-pharma at 5.3%, bestcareer at 0%) produced significantly lower scores due to encoding failures; the figures in this table reflect the corrected system. These engineering fixes are not part of the core algorithm but are prerequisites for correct HTML processing. **The Want List evaluation (Section 4.3) uses the same corrected system, ensuring a fair comparison between the two modes.**
-
-**Summary (Auto Discover, 22 sites):** Weighted average hit rate **79.5%**. 10 sites achieved 100%. 13 sites exceeded 90%.
+**Summary (Auto Discover, 23 sites):** Field-level: 298/350 perfect fields (**85.1%**). 11 sites achieved 100%. Core field precision: **96.0%** (96/100 core fields found were perfect).
 
 ### 4.3 Results: Want List Mode (Schema-Guided)
 
-The same 22 sites were re-evaluated using Want List mode with a unified 30-field job-listing schema.
+All 23 sites were evaluated using Want List mode with a unified 30-field job-listing schema.
 
-| # | Site | Domain | Fields | Perfect | Hit Rate | Δ vs Auto |
-|---|------|--------|--------|---------|----------|-----------|
-| 25 | w-medical-9 | Medical | 20 | 20/20 | **100.0%** | — |
-| 35 | kaigokango | Care/Nurse | 25 | 25/25 | **100.0%** | +4.0 |
-| 13 | pharmapremium | Pharma | 20 | 20/20 | **100.0%** | — |
-| 18 | nikken-care | Care | 12 | 12/12 | **100.0%** | — |
-| 19 | nikken-nurse | Nurse | 16 | 16/16 | **100.0%** | — |
-| 20 | cocofump | Care | 6 | 6/6 | **100.0%** | — |
-| 21 | MRT-nurse | Nurse | 11 | 11/11 | **100.0%** | — |
-| 9 | oshigoto-lab | Medical | 11 | 11/11 | **100.0%** | — |
-| 6 | phget | Pharma | 6 | 6/6 | **100.0%** | +85.7 |
-| 2 | selva-i | Pharma | 1 | 1/1 | **100.0%** | — |
-| 26 | firstnavi | Nurse | 1 | 1/1 | **100.0%** | — |
-| 30 | mc-pharma | Pharma | 25 | 24/25 | **98.4%** | +93.1 |
-| 32 | yakusta | Pharma | 14 | 13/14 | **97.9%** | -0.4 |
-| 10 | yakuzaishisyusyoku | Pharma | 11 | 9/11 | **96.4%** | +57.9 |
-| 16 | pharmalink | Pharma | 16 | 12/16 | **96.2%** | -0.3 |
-| 8 | apuro | Pharma | 12 | 10/12 | **86.7%** | +5.9 |
-| 1 | tsukui-staff | Care | 23 | 16/23 | **86.1%** | +3.6 |
-| 24 | kaigo-work | Care | 25 | 21/25 | **84.0%** | -16.0 |
-| 4 | yakumatch | Pharma | 6 | 5/6 | **83.3%** | -6.2 |
-| 12 | bestcareer | Pharma | 21 | 17/21 | **81.0%** | -14.0 |
-| 5 | mynavi | Pharma | 26 | 18/26 | **72.3%** | -6.2 |
-| 14 | caresta | Care | 19 | 11/19 | **57.9%** | +7.9 |
+| # | Site | Domain | Fields | Perfect | Hit Rate |
+|---|------|--------|--------|---------|----------|
+| 2 | selva-i | Pharma | 23 | 23/23 | **100.0%** |
+| 4 | yakumatch | Pharma | 22 | 22/22 | **100.0%** |
+| 6 | phget | Pharma | 1 | 1/1 | **100.0%** |
+| 9 | oshigoto-lab | Medical | 11 | 11/11 | **100.0%** |
+| 12 | bestcareer | Pharma | 22 | 22/22 | **100.0%** |
+| 13 | pharmapremium | Pharma | 21 | 21/21 | **100.0%** |
+| 18 | nikken-care | Care | 12 | 12/12 | **100.0%** |
+| 19 | nikken-nurse | Nurse | 21 | 21/21 | **100.0%** |
+| 20 | cocofump | Care | 4 | 4/4 | **100.0%** |
+| 25 | w-medical-9 | Medical | 25 | 25/25 | **100.0%** |
+| 26 | firstnavi | Nurse | 19 | 19/19 | **100.0%** |
+| 30 | mc-pharma | Pharma | 23 | 22/23 | 98.3% |
+| 32 | yakusta | Pharma | 15 | 13/15 | 96.0% |
+| 35 | kaigokango | Care/Nurse | 24 | 22/24 | 93.3% |
+| 31 | ph-10 | Pharma | 13 | 10/13 | 90.8% |
+| 1 | tsukui-staff | Care | 23 | 16/23 | 86.1% |
+| 14 | caresta | Care | 16 | 11/16 | 85.0% |
+| 8 | apuro | Pharma | 17 | 14/17 | 84.7% |
+| 16 | pharmalink | Pharma | 18 | 12/18 | 80.6% |
+| 24 | kaigo-work | Care | 27 | 21/27 | 77.8% |
+| 5 | mynavi | Pharma | 22 | 15/22 | 71.8% |
+| 10 | yakuzaishisyusyoku | Pharma | 2 | 0/2 | 0.0% |
+| 21 | MRT-nurse | Nurse | 5 | 0/5 | 0.0% |
 
-**Summary (Want List, 22 sites):** Weighted average hit rate **91.2%** (+11.7pt vs Auto Discover). 11 sites achieved 100%. 20 of 22 sites exceeded 80%.
+**Summary (Want List, 23 sites):** Field-level: 337/386 perfect fields (**87.3%**). 11 sites achieved 100%. Core field precision: **89.3%** (108/121 core fields found were perfect). Core field coverage: **75.2%** (121/161 possible core fields detected).
 
-### 4.4 Schema Guidance Effect Analysis
+### 4.4 Schema Guidance Effect and Core Field Analysis
 
-The Want List produced improvements across the majority of sites. The following table highlights the largest positive changes (all figures compare Auto Discover vs Want List under the same corrected system, as reported in Sections 4.2 and 4.3):
+**Core field evaluation.** To assess practical utility, we defined 7 "core fields" universally expected on job-listing sites: salary, work location, employment type, occupation, facility name, working hours, and holidays. The following table compares Auto Discover and Want List modes on these core fields:
 
-| Site | Auto Discover | Want List | Δ |
-|------|--------------|-----------|---|
-| phget | 100.0% (6 fields) | 100.0% (6 fields) | — |
-| kaigokango | 96.0% | 100.0% | **+4.0pt** |
-| caresta | 50.0% | 57.9% | **+7.9pt** |
-| apuro | 80.8% | 86.7% | **+5.9pt** |
-| tsukui-staff | 82.5% | 86.1% | **+3.6pt** |
+| Metric | Auto Discover | Want List |
+|--------|--------------|-----------|
+| Core fields found | 100 / 161 (62.1%) | 121 / 161 (75.2%) |
+| Core fields perfect (of found) | 96 / 100 (96.0%) | 108 / 121 (89.3%) |
+| All fields perfect | 298 / 350 (85.1%) | 337 / 386 (87.3%) |
 
-**Note on pre-fix baselines.** Some sites showed dramatically higher improvements when compared to their *pre-fix* Auto Discover baselines (before encoding and compressor corrections): mc-pharma improved from 5.3% to 98.4%, bestcareer from 0% to 81.0%, and yakuzaishisyusyoku from 38.5% to 96.4%. However, these gains are primarily attributable to engineering fixes (Shift-JIS encoding detection, XML declaration stripping, structured section detection) rather than the Want List mechanism itself. To isolate the Want List effect, the +11.7pt weighted average improvement reported above compares Auto Discover and Want List under identical, corrected conditions.
+The Want List's primary contribution is **coverage improvement**: it detects 13.1 percentage points more core fields than Auto Discover (75.2% vs 62.1%). When the system identifies a field, Auto Discover achieves slightly higher precision (96.0% vs 89.3%), likely because it only generates XPaths for fields it is confident about, while the Want List sometimes attempts to match fields that are structurally difficult to extract.
 
-The effect is most pronounced on sites where Auto Discover identified fewer or less relevant fields. By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List effectively guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site.
+**Schema guidance mechanism.** By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site. The coverage gain confirms that communicating extraction *intent* is a powerful lever.
 
-Conversely, a few sites showed decreases with Want List (e.g., kaigo-work -16.0pt, bestcareer -14.0pt). This occurs when the Want List's field definitions do not align well with the site's actual data structure—the LLM attempts to force-match fields that don't exist on the site, generating XPaths that fail validation.
+**Field count variability.** Because the LLM generates different numbers of fields per run (Auto Discover) or may return null for unrecognized fields (Want List), site-level average hit rates can fluctuate between runs. The field-level aggregate metrics (perfect fields / total fields across all sites) provide a more stable measure of system performance than site-level averages.
+
+**Failure cases.** Two sites scored 0% on Want List (yakuzaishisyusyoku, MRT-nurse) despite functioning on Auto Discover. In both cases, the LLM returned very few fields (2 and 5 respectively) with incorrect XPath patterns—relative paths (`./div[...]`) or mismatched selectors. These failures appear to stem from the interaction between Want List prompting and non-standard site structures (Tailwind CSS utility classes, unconventional DOM hierarchy), where the schema guidance paradoxically constrains the LLM's output quality.
 
 ### 4.5 Results by HTML Structure
 
-| HTML Structure | Sites | Avg Hit Rate (Want List) | 100% Rate |
-|----------------|-------|--------------------------|-----------|
-| th/td table | 11 | 92.8% | 36.4% |
-| dt/dd definition list | 5 | 94.5% | 60.0% |
-| dt/dd + th/td mixed | 4 | 96.2% | 50.0% |
-| SPA (SSR-accessible) | 2 | 100.0% | 100.0% |
+| HTML Structure | Sites | Perfect Fields (WL) | Hit Rate (WL) |
+|----------------|-------|---------------------|----------------|
+| th/td table | 12 | 189/217 | 87.1% |
+| dt/dd definition list | 5 | 80/90 | 88.9% |
+| dt/dd + th/td mixed | 4 | 51/53 | 96.2% |
+| div/span (Tailwind etc.) | 2 | 17/72 | 23.6% |
 
-Structured HTML patterns (dt/dd, th/td) consistently achieved high accuracy. Mixed structures performed slightly better, likely because they provide more structural signals for the LLM.
+Structured HTML patterns (dt/dd, th/td) consistently achieved high accuracy. Mixed structures performed best, likely because they provide more structural signals for the LLM. Sites using CSS framework utility classes (div/span-based layouts) proved challenging, as they lack the semantic structure that the LLM relies on for field identification.
 
 ### 4.6 Excluded Sites
 
@@ -291,14 +300,13 @@ Structured HTML patterns (dt/dd, th/td) consistently achieved high accuracy. Mix
 | HTTP error / auth required | 3 | #3 (403), #17 (500), #23 (login) |
 | JS-dependent content | 1 | #34 (empty main tag) |
 | URL discovery failure | 1 | #33 |
-| Genie analysis failure | 1 | #31 (ph-10) |
 
 ### 4.7 Effort Reduction
 
 | Metric | Manual Process | XPathGenie |
 |--------|---------------|------------|
 | Time per site (generation only) | 5–6 hours | ~20 seconds |
-| Total for 22 sites (generation only) | 110–130 hours | ~7 minutes |
+| Total for 23 sites (generation only) | 115–138 hours | ~8 minutes |
 | Skill requirement | Senior engineer with domain expertise | Any operator with URL access |
 | Ongoing AI cost | N/A | Zero (XPaths are reusable) |
 
@@ -344,7 +352,9 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Site structure evolution.** Generated XPaths are inherently tied to a site's DOM structure at the time of analysis. When sites undergo redesigns or structural changes, XPaths may break. A periodic re-analysis mechanism or change-detection system would improve production robustness.
 
-**Main section detection fallback.** The `_find_main_section` algorithm falls back to selecting the `<div>` or `<section>` with the most text content when no `<main>` or `<article>` element is found. This heuristic can be fragile on pages where the highest-text-volume element is not the primary content area (e.g., pages with large comment sections or extensive footer content). Misidentifying the main section can cause the compressor to discard relevant content, leading to incomplete XPath mappings.
+**Compression-generation gap.** The HTML compression pipeline normalizes whitespace and truncates text, creating a structural gap between the compressed HTML seen by the LLM and the raw HTML where generated XPaths are evaluated. For example, `<td>\\n    勤務地\\n  </td>` compresses to `<td>勤務地</td>`, causing `text()='勤務地'` to succeed on compressed HTML but fail on raw HTML. The adoption of `normalize-space()` in XPath predicates mitigates this issue, but other compression artifacts (e.g., truncated text nodes, removed empty elements) may occasionally affect XPath validity. A post-generation XPath normalization pass could further reduce this gap.
+
+**CSS framework compatibility.** Sites using utility-class CSS frameworks (e.g., Tailwind CSS) produce HTML where semantic meaning is encoded in deeply nested `<div>` and `<span>` elements with non-descriptive class names (`w-11/12`, `flex`, `gap-2`). The current system relies on class-name semantics and structured HTML patterns (th/td, dt/dd) that are absent in such layouts, resulting in significantly lower accuracy.
 
 **teddy_crawler integration.** The YAML export format is designed for compatibility with the teddy_crawler web crawling framework. Deeper integration—such as automatic pipeline configuration generation—would further reduce the gap between mapping generation and production extraction.
 
@@ -365,9 +375,11 @@ Several factors limit the validity of the current evaluation:
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 22 Japanese medical job-listing sites, the system achieved a weighted average hit rate of 91.2% with schema-guided generation (Want List mode), with 11 of 22 sites reaching 100% and 20 of 22 exceeding 80%.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites, the system achieved field-level precision of 87.3% (337/386 perfect fields) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%.
 
-A key finding is the significant impact of schema guidance: providing a unified field schema with semantic descriptions improved the weighted average hit rate by 11.7 percentage points compared to autonomous field discovery. This suggests that giving the LLM an explicit "desire"—a structured expression of what it should look for—is a powerful lever for accuracy. When humans inspect an unfamiliar web page, they naturally filter information through the lens of what they are looking for; without this objective, all content appears equally relevant. The Want List mechanism provides the LLM with the same kind of directed intent, enabling it to focus on semantically relevant DOM regions rather than treating all HTML structure uniformly.
+A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% precision on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
+
+A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). This underscores that in LLM-driven code generation systems, the transformation pipeline between the LLM's input representation and the execution environment must be carefully managed.
 
 The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction.
 

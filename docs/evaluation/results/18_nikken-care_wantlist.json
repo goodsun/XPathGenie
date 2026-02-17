@@ -1,0 +1,155 @@
+{
+  "site": "#18 nikken-care",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 14.4,
+  "fields_total": 12,
+  "fields_perfect": 12,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京王相模原線　若葉台駅より車2分・送迎バス5分\n小田急多摩線 はるひ野駅より送迎バス10分\nJR南武線　南多摩駅より送迎バス10分\n※車通勤OK\n※送迎バスあり",
+        "JR磐越西線 喜久田駅より車5分\nJR磐越西線 郡山富田駅より車7分\n※車通勤OK（無料駐車場あり）",
+        "東武スカイツリーライン 東向島駅より徒歩9分"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "東京都稲城市",
+        "福島県郡山市",
+        "東京都墨田区"
+      ]
+    },
+    "contract": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='雇用形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "派遣社員",
+        "派遣社員",
+        "派遣社員"
+      ]
+    },
+    "detail": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "holiday": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='休日']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆シフト制",
+        "◆シフト制",
+        "◆シフト制（日曜固定休み）"
+      ]
+    },
+    "license": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆無資格・未経験OK！",
+        "◆資格なしOK\n◆実務経験のある方",
+        "◆介護職員初任者研修（ホームヘルパー2級）以上\n◆実務経験のある方"
+      ]
+    },
+    "occupation": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護助手（病院）無資格未経験OK",
+        "介護職（グループホーム）資格なしOK/要経験",
+        "介護職（デイサービス）要資格/要経験"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【時給】1,300円～",
+        "【時給】1,105円～",
+        "【時給】1,400円～"
+      ]
+    },
+    "price_rule": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "required_skill": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆無資格・未経験OK！",
+        "◆資格なしOK\n◆実務経験のある方",
+        "◆介護職員初任者研修（ホームヘルパー2級）以上\n◆実務経験のある方"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【日勤】9:00～17:30\n【夜勤】16:00～翌9:00",
+        "【夜勤】17:45～翌9:15 ※休憩120分",
+        "【日勤1】8:30～16:30\n【日勤2】9:00～17:00\n※各休憩60分"
+      ]
+    }
+  }
+}

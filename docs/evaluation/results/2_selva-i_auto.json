@@ -1,0 +1,251 @@
+{
+  "site": "#2 selva-i",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 17.7,
+  "fields_total": 20,
+  "fields_perfect": 20,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='交通アクセス']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR北陸本線「加賀温泉駅」徒歩5分\n加賀温泉バス「作見南」バス停 徒歩1分",
+        "JR京都線「岸辺駅」徒歩３分",
+        "大江戸線「練馬春日町駅」　徒歩2分"
+      ]
+    },
+    "benefits": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='待遇']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回（昨年実績：基本給4.0ヵ月分）\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護",
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回（昨年実績：基本給4.0ヵ月分）\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護",
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護休職制度"
+      ]
+    },
+    "company_facility_name": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='企業名・施設名']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "株式会社南山堂\n南山堂薬局 箔山堂 作見薬局",
+        "株式会社南山堂\n南山堂薬局 市民病院前薬局",
+        "株式会社南山堂\nたから薬局 練馬春日町店"
+      ]
+    },
+    "company_name_sub": {
+      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class,'detailTitle')]/span[contains(@class,'detailTitle__sub')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "株式会社南山堂\n南山堂薬局 箔山堂 作見薬局",
+        "株式会社南山堂\n南山堂薬局 市民病院前薬局",
+        "株式会社南山堂\nたから薬局 練馬春日町店"
+      ]
+    },
+    "description": {
+      "xpath": "//section[contains(@class,'sec')]//div[contains(@class,'detailCont__picCont')]/p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◇調剤業務\n\n◇服薬指導\n\n◇薬歴管理\n\nなどを行っていただきます。\n\n\n\n【 仕事内容詳細 】\n\n処方せんによる調剤、薬の正しい使い方、飲み合わせのチェックなどを行い、\n\n患者さまに安心してお薬を服",
+        "◇調剤業務\n\n◇服薬指導\n\n◇薬歴管理\n\nなどを行っていただきます。\n\n\n\n【 仕事内容詳細 】\n\n処方せんによる調剤、薬の正しい使い方、飲み合わせのチェックなどを行い、\n\n患者さまに安心してお薬を服",
+        "◇調剤業務\n\n◇服薬指導\n\n◇薬歴管理\n\nなどを行っていただきます。\n\n\n\n【 仕事内容詳細 】\n\n処方せんによる調剤、薬の正しい使い方、飲み合わせのチェックなどを行い、\n\n患者さまに安心してお薬を服"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='雇用形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "employment_type_top": {
+      "xpath": "//section[contains(@class,'sec')]//ul[contains(@class,'detailCont__cate')][1]/li[2]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "holidays_vacations": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='休日・休暇']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "週休2日制（休日は店舗により異なる）\n\n※年間休日120日\n\nその他：慶弔休暇・年次有給休暇・産前産後休暇・育児休業",
+        "週休2日制（休日は店舗により異なる）\n\n※年間休日120日\n\nその他：慶弔休暇・年次有給休暇・産前産後休暇・育児休業",
+        "週休2日制（休日は店舗により異なる）\n\n※年間休日120日\n\nその他：慶弔休暇・年次有給休暇・産前産後休暇・育児休業"
+      ]
+    },
+    "job_category": {
+      "xpath": "//section[contains(@class,'sec')]//ul[contains(@class,'detailCont__cate')][1]/li[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師",
+        "薬剤師",
+        "薬剤師"
+      ]
+    },
+    "job_function": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "勤務薬剤師",
+        "勤務薬剤師",
+        "勤務薬剤師"
+      ]
+    },
+    "job_title_main": {
+      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class,'detailTitle')]/span[contains(@class,'detailTitle__main')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【薬剤師】箔山堂 作見薬局",
+        "【薬剤師/管理薬剤師候補】市民病院前薬局",
+        "【薬剤師】南山堂薬局 練馬春日町店"
+      ]
+    },
+    "last_updated": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='最終更新日']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2026年2月16日",
+        "2026年2月16日",
+        "2026年2月16日"
+      ]
+    },
+    "nearest_station": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='最寄り駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR北陸本線「加賀温泉駅」\n加賀温泉バス「作見南」バス停",
+        "JR京都線「岸辺駅」",
+        "大江戸線「練馬春日町駅」"
+      ]
+    },
+    "pr_comment": {
+      "xpath": "//section[contains(@class,'sec')]//dl[contains(@class,'detailCont__comment')]/dd[contains(@class,'detailCont__commentCont')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "○東京、名古屋、大阪等の都市部に数多く店舗を展開\n\n立地条件、通勤のアクセスが良い店舗を多く展開しています。\n\n\n\n○全店舗に電子薬歴、自動分包機等、最新の設備を導入\n\n患者様をお待たせしないように最",
+        "○東京、名古屋、大阪等の都市部に数多く店舗を展開\n\n立地条件、通勤のアクセスが良い店舗を多く展開しています。\n\n\n\n○全店舗に電子薬歴、自動分包機等、最新の設備を導入\n\n患者様をお待たせしないように最",
+        "○東京、名古屋、大阪等の都市部に数多く店舗を展開\n\n立地条件、通勤のアクセスが良い店舗を多く展開しています。\n\n\n\n○全店舗に電子薬歴、自動分包機等、最新の設備を導入\n\n患者様をお待たせしないように最"
+      ]
+    },
+    "qualifications": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■薬剤師免許のある方\n\n■調剤経験者",
+        "■薬剤師免許のある方\n\n■調剤経験者",
+        "■薬剤師免許のある方\n\n■調剤経験者"
+      ]
+    },
+    "recommended_points": {
+      "xpath": "//section[contains(@class,'sec')]//dl[dt[normalize-space()='セルワーク担当者からのおすすめポイント！']]/dd",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "1. JR北陸本線「加賀温泉駅」徒歩5分とアクセスが非常に便利です\n2. 年間休日120日を確保しワークライフバランスを大切にしています\n3. 給与は年収428万円から高水準で昇給賞与もしっかりしてい",
+        "1. 駅から徒歩3分とアクセスが良く通勤が非常に便利です\n2. 年間休日120日と充実した休暇が確保されております\n3. 昇給や賞与制度もあり安心して長く働ける環境です",
+        "1. 通勤に非常に便利な駅近の立地ですので負担が少ない環境です\n2. 年間休日が120日と充実しておりプライベートも大切にできます\n3. 昇給や賞与各種保険完備などしっかりとした福利厚生が魅力です"
+      ]
+    },
+    "salary": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【年収】428万円〜650万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（34,000円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更",
+        "【年収】550万円〜600万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（45,631円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更",
+        "【年収】428万円〜650万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（34,000円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更"
+      ]
+    },
+    "salary_estimate": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='給与目安']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給：\n                        \n                                                    35 ～ 54万円",
+        "月給：\n                        \n                                                    45 ～ 50万円",
+        "月給：\n                        \n                                                    35 ～ 54万円"
+      ]
+    },
+    "work_location": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "石川県 加賀市\n                                     作見町 へ1-1",
+        "大阪府 吹田市\n                                     岸部新町 5-25　健都メディカルビル1F",
+        "東京都 練馬区\n                                     春日町 5-33-30 グランドフィオーレ春日町1階"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【営業時間】\n\n\n\n［平日・土］9：00〜18：00\n\n\n\n◇1日8時間　週40時間のシフト制\n\n→11日から翌10日までの1か月単位で作成。\n\n　可能な限り、希望に沿って作成いたします。\n\n\n\n営業",
+        "【営業時間】\n\n\n\n［平日］9：00〜19：30\n\n［土曜］9：00〜18：00\n\n\n\n◇1日8時間　週40時間のシフト制\n\n→11日から翌10日までの1か月単位で作成。\n\n　可能な限り、希望に沿って",
+        "【営業時間】\n\n\n\n［月火水金］9：00〜18：30\n\n［木曜］9：00〜17：00\n\n［土曜］9：00〜18：00\n\n［日曜］9：00〜13：00\n\n\n\n※週40時間シフト制\n\n営業時間は店舗に拠っ"
+      ]
+    }
+  }
+}

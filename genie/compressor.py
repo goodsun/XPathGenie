@@ -8,7 +8,7 @@ REMOVE_TAGS = {"script", "style", "noscript", "iframe", "svg", "link", "meta", "
 STRIP_TAGS = {"header", "footer", "nav", "aside"}
 # Class patterns that indicate non-main content (sidebar, recommendations, etc.)
 NOISE_PATTERNS = re.compile(
-    r'recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|\bad[-_]|popup|cookie',
+    r'recommend|related|sidebar|widget|breadcrumb|modal|slide|footer|banner|\bad[-_]|popup|cookie|privacy|policy|inquiry|contact|sns[-_]|share',
     re.IGNORECASE
 )
 TEXT_LIMIT = 30
@@ -67,7 +67,8 @@ def _find_main_section(doc):
 
 def _find_structured_section(doc):
     """Find the nearest common ancestor of structured data elements (th/td, dt/dd).
-    Returns the best container div/section that holds the most structured elements."""
+    Returns the best container div/section that holds the most structured elements.
+    If no single container is dominant, merges top candidates under a wrapper."""
     # Collect all th and dt elements (these indicate structured data)
     markers = list(doc.iter("th")) + list(doc.iter("dt"))
     if len(markers) < 2:
@@ -78,27 +79,63 @@ def _find_structured_section(doc):
     candidates = {}
     for marker in markers:
         parent = marker.getparent()
-        # Walk up to find a div/section/body container (max 10 levels)
+        # Walk up to find a div/section container (max 10 levels, skip body)
         for _ in range(10):
             if parent is None:
                 break
             tag = getattr(parent, 'tag', '')
-            if tag in ('div', 'section', 'body'):
+            if tag in ('div', 'section'):
                 cls = (parent.get("class") or "") + " " + (parent.get("id") or "")
                 if not NOISE_PATTERNS.search(cls):
                     pid = id(parent)
                     if pid not in candidates:
-                        candidates[pid] = {"el": parent, "count": 0, "depth": 0}
+                        candidates[pid] = {"el": parent, "count": 0}
                     candidates[pid]["count"] += 1
                 break
+            if tag == 'body':
+                break  # Don't use body as candidate
             parent = parent.getparent()
 
     if not candidates:
         return None
 
-    # Pick the candidate with the most structured elements
-    best = max(candidates.values(), key=lambda c: c["count"])
+    # Score by marker count * text length (prefer content-rich sections)
+    for c in candidates.values():
+        text_len = len(_safe_text_content(c["el"]))
+        c["text_len"] = text_len
+        c["score"] = c["count"] * max(text_len, 1)
+
+    ranked = sorted(candidates.values(), key=lambda c: -c["score"])
+    best = ranked[0]
+
     if best["count"] >= 2:
+        # Check if there are multiple significant sections — merge if no single dominant
+        total_score = sum(c["score"] for c in ranked if c["count"] >= 2)
+        if best["score"] < total_score * 0.5 and len(ranked) > 1:
+            # Merge top sections into a wrapper
+            wrapper = etree.Element("div")
+            added_els = []
+            for cand in ranked:
+                if cand["count"] < 2:
+                    continue
+                el = cand["el"]
+                # Skip if descendant of already-added element
+                skip = False
+                for added in added_els:
+                    p = el.getparent()
+                    while p is not None:
+                        if p is added:
+                            skip = True
+                            break
+                        p = p.getparent()
+                    if skip:
+                        break
+                if not skip:
+                    from copy import deepcopy
+                    wrapper.append(deepcopy(el))
+                    added_els.append(el)
+            if len(wrapper) > 0:
+                return wrapper
         return best["el"]
     return None
 
@@ -108,7 +145,14 @@ def compress(html: str) -> str:
     try:
         doc = fromstring(html)
     except Exception:
-        return ""
+        # Retry with bytes if str fails (encoding declaration in HTML)
+        try:
+            if isinstance(html, str):
+                doc = fromstring(html.encode("utf-8"))
+            else:
+                return ""
+        except Exception:
+            return ""
 
     # Remove unwanted tags
     for tag in REMOVE_TAGS:
@@ -124,10 +168,13 @@ def compress(html: str) -> str:
             if parent is not None:
                 parent.remove(el)
 
-    # Find main content section (excludes recommendations etc.)
+    # Remove noise sections BEFORE finding main (prevents privacy policy etc. from skewing detection)
+    _remove_noise(doc)
+
+    # Find main content section
     main = _find_main_section(doc)
 
-    # Remove noise children within main
+    # Remove remaining noise children within main
     _remove_noise(main)
 
     # Truncate text nodes

@@ -1,0 +1,191 @@
+{
+  "site": "#31 ph-10",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 18.0,
+  "fields_total": 15,
+  "fields_perfect": 11,
+  "avg_hit_rate": 0.967,
+  "fields": {
+    "access": {
+      "xpath": "//td[normalize-space()='アクセス']/following-sibling::td[1][./a]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道苫小牧市清水町1-5-9\n                \n                ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
+        "北海道苫小牧市清水町1-5-9\n                \n                ＪＲ室蘭本線（長万部-苫小牧） 苫小牧駅 バス10分",
+        "群馬県邑楽郡邑楽町篠塚3197-3\n                \n                東武小泉線（館林-西小泉） 東小泉駅 徒歩11分"
+      ]
+    },
+    "address": {
+      "xpath": "//td[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道苫小牧市清水町1-5-9",
+        "北海道苫小牧市清水町1-5-9",
+        "群馬県邑楽郡邑楽町篠塚3197-3"
+      ]
+    },
+    "annual_holidays": {
+      "xpath": "//td[normalize-space()='年間休日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 10,
+      "hit_rate": 0.8,
+      "sample_values": [
+        "122日/年",
+        "122日/年",
+        "111日/年"
+      ]
+    },
+    "benefits": {
+      "xpath": "//td[normalize-space()='各種制度']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険（※パートの場合は規定による）■その他福利厚生：社会保険完備、薬剤師賠償責任保険、育児・介護短時間勤務制度、共済会、従業員持株会、会員制リゾート施設（",
+        "■加入保険：健康保険 厚生年金 雇用保険 労災保険■定期昇給：あり■賞与：あり■通勤交通費：別途支給（30,000円まで支給）■車・バイク通勤：可"
+      ]
+    },
+    "bonus": {
+      "xpath": "//td[normalize-space()='賞与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "有",
+        "有",
+        "有"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//td[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "holidays_vacation": {
+      "xpath": "//td[normalize-space()='休日・休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "土曜半日 日 祝日",
+        "土曜半日 日 祝日",
+        "土曜半日 日 祝日"
+      ]
+    },
+    "industry": {
+      "xpath": "//td[normalize-space()='業種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "job_description": {
+      "xpath": "//td[normalize-space()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤服薬指導薬歴管理薬剤管理",
+        "調剤服薬指導薬歴管理薬剤管理",
+        "調剤服薬指導薬歴管理在庫管理薬剤管理"
+      ]
+    },
+    "medical_subjects": {
+      "xpath": "//td[normalize-space()='応需科目・診療科']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "精神科・一日の処方箋枚数：85枚/日",
+        "精神科・一日の処方箋枚数：85枚/日",
+        "呼吸器内科、アレルギー科アレルギー科"
+      ]
+    },
+    "position": {
+      "xpath": "//td[normalize-space()='役職']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師",
+        "勤務薬剤師",
+        "管理薬剤師"
+      ]
+    },
+    "salary": {
+      "xpath": "//td[normalize-space()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "経験・スキル等により変動※詳細はお問い合わせください。",
+        "経験・スキル等により変動※詳細はお問い合わせください。",
+        "・ 月給40万円～・ 年収600万円～※経歴により考慮"
+      ]
+    },
+    "salary_increase": {
+      "xpath": "//td[normalize-space()='昇給']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "有",
+        "有",
+        "有"
+      ]
+    },
+    "weekly_holidays": {
+      "xpath": "//td[normalize-space()='週休']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "2日",
+        "2日",
+        "2日"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//td[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
+        "・月、火、水、木、金 9:00～ 17:00・土 9:00～ 12:00※週40時間シフト制",
+        "・月、火、水、木、金 09:00～ 18:00・土 09:00～ 13:00週40時間勤務"
+      ]
+    }
+  }
+}

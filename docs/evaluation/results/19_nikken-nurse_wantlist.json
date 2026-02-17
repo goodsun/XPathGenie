@@ -1,0 +1,263 @@
+{
+  "site": "#19 nikken-nurse",
+  "urls_total": 8,
+  "urls_fetched": 8,
+  "genie_time_sec": 10.7,
+  "fields_total": 21,
+  "fields_perfect": 21,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "access_label": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "access_minutes": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "address": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "群馬県高崎市",
+        "群馬県伊勢崎市",
+        "東京都世田谷区"
+      ]
+    },
+    "area": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "群馬県高崎市",
+        "群馬県伊勢崎市",
+        "東京都世田谷区"
+      ]
+    },
+    "bonus": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【時給】1,750円～\n\n（直接雇用後）\n【月給】205,000円～（固定給）/※准看護師：182,000円～\n夜勤手当：11,000円/回\n交通費：上限15,000円\n賞与：年2回（",
+        "【時給】1,750円～",
+        "【時給】2,300円～"
+      ]
+    },
+    "city": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "群馬県高崎市",
+        "群馬県伊勢崎市",
+        "東京都世田谷区"
+      ]
+    },
+    "contract": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='雇用形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "紹介予定派遣",
+        "派遣社員",
+        "派遣社員"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師（病院）要資格/要経験",
+        "看護師（デイサービス）要資格/要経験",
+        "看護師（障碍者支援施設）要資格/要経験"
+      ]
+    },
+    "holiday": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='休日']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n◆シフト制\n\n（直接雇用後）\n年間休日：107日\n休日：月8～9日\n休暇：有給休暇（入職半年後：初年度10日）、特別休暇（結婚・忌引き等）、育児休業・介護休業・退職金制度",
+        "◆シフト制",
+        "◆土日休み"
+      ]
+    },
+    "license": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方"
+      ]
+    },
+    "line": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "occupation": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師（病院）要資格/要経験",
+        "看護師（デイサービス）要資格/要経験",
+        "看護師（障碍者支援施設）要資格/要経験"
+      ]
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "群馬県高崎市",
+        "群馬県伊勢崎市",
+        "東京都世田谷区"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【時給】1,750円～\n\n（直接雇用後）\n【月給】205,000円～（固定給）/※准看護師：182,000円～\n夜勤手当：11,000円/回\n交通費：上限15,000円\n賞与：年2回（",
+        "【時給】1,750円～",
+        "【時給】2,300円～"
+      ]
+    },
+    "price_rule": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【時給】1,750円～\n\n（直接雇用後）\n【月給】205,000円～（固定給）/※准看護師：182,000円～\n夜勤手当：11,000円/回\n交通費：上限15,000円\n賞与：年2回（",
+        "【時給】1,750円～",
+        "【時給】2,300円～"
+      ]
+    },
+    "required_skill": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方"
+      ]
+    },
+    "station": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジ",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【日勤】8:30～17:30\n\n（直接雇用後）\n【日勤】8:00～17:00\n【遅番】9:15～18:15\n【夜勤】16:30～翌9:00（仮眠あり）\n※日勤のみ相談可",
+        "【日勤】8:30～17:30",
+        "【日勤】8:30～17:30 ※休憩60分"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【日勤】8:30～17:30\n\n（直接雇用後）\n【日勤】8:00～17:00\n【遅番】9:15～18:15\n【夜勤】16:30～翌9:00（仮眠あり）\n※日勤のみ相談可",
+        "【日勤】8:30～17:30",
+        "【日勤】8:30～17:30 ※休憩60分"
+      ]
+    }
+  }
+}

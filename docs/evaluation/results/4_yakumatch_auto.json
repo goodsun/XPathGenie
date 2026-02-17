@@ -1,0 +1,251 @@
+{
+  "site": "#4 yakumatch",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 19.2,
+  "fields_total": 20,
+  "fields_perfect": 20,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='アクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "ＪＲ伊東線「網代駅」",
+        "ＪＲ北陸本線「鯖江駅」",
+        "JR北陸本線「新井駅」徒歩10分"
+      ]
+    },
+    "allowances": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='手当']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "通勤手当(全額支給)　家族手当　残業手当　役職手当　資格手当",
+        "通勤手当　地域手当　住宅手当　家族手当　残業手当　資格手当　出張手当",
+        "通勤手当　地域手当　住宅手当　家族手当　残業手当　資格手当　出張手当"
+      ]
+    },
+    "annual_salary": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='年収']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "約390万円～700万円",
+        "約360万円～700万円",
+        "約450万円～500万円"
+      ]
+    },
+    "application_method": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='応募方法']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "下記フォームからお問い合わせください。",
+        "下記フォームからお問い合わせください。",
+        "下記フォームからお問い合わせください。"
+      ]
+    },
+    "application_requirements": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='応募条件']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師",
+        "薬剤師",
+        "薬剤師"
+      ]
+    },
+    "commute_method": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='通勤手段']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "電車",
+        "電車",
+        "電車"
+      ]
+    },
+    "corporate_name": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='法人名']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "非公開（求人番号：385796）",
+        "非公開（求人番号：493825）",
+        "非公開（求人番号：549850）"
+      ]
+    },
+    "education_training": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='教育・研修']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "新入社員研修、OJT研修、フォローアップ研修",
+        "新入社員研修、OJT研修、フォローアップ研修、階層別研修、eラーニング",
+        "新入社員研修、OJT研修、フォローアップ研修、管理薬剤師研修、薬局長研修、マネージャー研修、各種勉強会"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//div[contains(@class,'area_simple')]//li[contains(@class,'list_type_place')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "holidays": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='休日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "完全週休2日制　日曜日　祝日　年末年始休暇　夏季休暇　有給休暇　慶弔休暇　出産・育児休暇　介護休暇完全週休2日制（祝日を含まない）",
+        "週休2日制　日曜日　祝日　年末年始休暇　夏季休暇　有給休暇　慶弔休暇　出産・育児休暇　その他休暇年末年始休暇は医療機関に準じる。特別休暇あり。",
+        "週休2日制　日曜日　祝日　年末年始休暇　有給休暇　慶弔休暇　出産・育児休暇　その他休暇※年末年始休暇：応需機関に合わせて取得"
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='業務内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤、監査、服薬指導、在庫管理、薬歴管理、居宅訪問、管理薬剤師＜業務に関する情報＞1日当たりの処方箋枚数：【約40枚/日】電子薬歴：【有】<店舗人数>薬剤師(正社員)：【3人】薬剤師(非常勤)：【7人",
+        "調剤、監査、服薬指導、在庫管理、薬歴管理、居宅訪問、管理薬剤師<店舗人数>薬剤師(正社員)：【4人】",
+        "調剤、監査、服薬指導、在庫管理、薬歴管理、施設訪問＜業務に関する情報＞在宅：【有】1日当たりの処方箋枚数：【40枚/日】電子薬歴：【有】"
+      ]
+    },
+    "job_features": {
+      "xpath": "//div[contains(@class,'area_simple')]//ul[contains(@class,'list_terms')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "年間休日120日以上車通勤OK駅近産休・育休取得実績あり内科泌尿器科整形外科リハビリテーション科その他その他",
+        "高額年収年間休日120日以上未経験者歓迎車通勤OK駅近住宅補助（手当）あり産休・育休取得実績あり内科",
+        "年間休日120日以上未経験者歓迎駅近在宅業務あり住宅補助（手当）あり産休・育休取得実績あり総合門前総合科目"
+      ]
+    },
+    "last_updated": {
+      "xpath": "//div[contains(@class,'area_simple')]//div[contains(@class,'updated')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "更新日：2026/01/30",
+        "更新日：2026/02/06",
+        "更新日：2026/02/06"
+      ]
+    },
+    "location": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "静岡県熱海市",
+        "福井県鯖江市",
+        "新潟県妙高市"
+      ]
+    },
+    "prescription_subjects": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='処方箋科目']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "内科、外科、整形外科、リハビリテーション科、泌尿器科、心療内科",
+        "内科",
+        "総合科目"
+      ]
+    },
+    "required_documents": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='提出書類']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "履歴書、職務経歴書",
+        "履歴書、職務経歴書",
+        "履歴書、職務経歴書"
+      ]
+    },
+    "selection_process": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='選考フロー']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "書類選考、面接1回、内定",
+        "書類選考、面接1回、内定",
+        "書類選考、面接1回、内定"
+      ]
+    },
+    "welfare": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='福利厚生']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "雇用保険、労災保険、健康保険、厚生年金保険、退職金、育児休暇制度、社員割引制度、資金貸付制度、社員旅行、借り上げ社宅制度、その他制度、退職金（企業年金）：勤続3年以上、出産休暇制度、借り上げ社宅制度：",
+        "雇用保険、労災保険、健康保険、厚生年金保険、退職金、確定拠出年金401k、社員持株会制度、育児休暇制度、介護休職制度、借り上げ社宅制度、その他制度、退職金（確定拠出年金制度）：勤続3年以上で一時金支給",
+        "雇用保険、労災保険、健康保険、厚生年金保険、退職金、社員持株会制度、育児休暇制度、介護休職制度、薬剤師賠償責任保険、育児・介護短時間勤務制度、会員制リゾート施設（エクシブ）"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月～金:09時00分～18時00分,土:09時00分～13時00分※週40時間シフト制",
+        "月～金:09時00分～19時00分,土:08時30分～13時15分週40時間シフト制",
+        "月～金:08時30分～08時30分,第3土:08時30分～08時30分※週40時間労働"
+      ]
+    }
+  }
+}

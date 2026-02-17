@@ -1,0 +1,251 @@
+{
+  "site": "#16 pharmalink",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 17.5,
+  "fields_total": 20,
+  "fields_perfect": 17,
+  "avg_hit_rate": 0.985,
+  "fields": {
+    "access": {
+      "xpath": "//th[normalize-space()='アクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR武蔵野線 北朝霞駅 徒歩1分東武東上線 朝霞台駅 徒歩1分",
+        "西武池袋線 ひばりヶ丘駅 徒歩15分",
+        "東京メトロ有楽町線 千川駅 徒歩8分"
+      ]
+    },
+    "business_hours": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='営業時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月／火／水／木／金／土 9:00～18:00",
+        "※下記は調剤受付時間となります。月／火／水／木／金／土／日／祝 10:00～19:00",
+        "月／火／水／木／金 9:00～18:00土 9:00～13:00"
+      ]
+    },
+    "description": {
+      "xpath": "//div[contains(@class,'result-point')]/p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■在宅医療において独自のノウハウを確立！ ・約8割の店舗で実施、特に施設からのご依頼が多数あり。 ・最新機器の導入により調剤効率UP！ ・往診同行はタブレットを使用、ヒアリングしながらスマートな操作が",
+        "■私たちキャリアカウンセラーも皆さんと同じ“現場経験のある薬剤師”なので、 細かいフォローにも自信あり！ ■まずは相談からでも遠慮なくお問い合わせください。 ◆派遣なら残業も少なめ、ワークライフバラン",
+        "■在宅医療において独自のノウハウを確立！ ・約8割の店舗で実施、特に施設からのご依頼が多数あり。 ・最新機器の導入により調剤効率UP！ ・往診同行はタブレットを使用、ヒアリングしながらスマートな操作が"
+      ]
+    },
+    "employee_count": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='従業員数']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師：5～6名　医事：2名",
+        "薬剤師：2～3名　医事：1～2名",
+        "薬剤師：4～5名　医事：3～4名"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "派遣",
+        "正社員"
+      ]
+    },
+    "features": {
+      "xpath": "//ul[contains(@class,'fuwatto-item')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "早く帰れる制度が整っている休みが多い研修制度が充実資格取得支援ありキャリアアップが見込める",
+        "制度が整っている研修制度が充実",
+        "制度が整っている研修制度が充実"
+      ]
+    },
+    "holidays_vacations": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='休日休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "週休2日制 年間休日120日以上 夏季休暇3日 年末年始5日 慶弔休暇、介護休暇 子の看護休暇 介護休業 産休・育休実績あり",
+        null,
+        "週休2日制 年間休日120日以上 夏季休暇3日 年末年始5日 慶弔休暇、介護休暇 子の看護休暇 介護休業 産休・育休実績あり"
+      ]
+    },
+    "image_url": {
+      "xpath": "//figure[contains(@class,'new-job-img')]/img/@src",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "https://www.k-pharmalink.co.jp/wp/wp-content/themes/pharmalink/img/common/thumbnail/02.jpg",
+        "https://www.k-pharmalink.co.jp/wp/wp-content/themes/pharmalink/img/common/thumbnail/08.jpg",
+        "https://www.k-pharmalink.co.jp/wp/wp-content/themes/pharmalink/img/common/thumbnail/09.jpg"
+      ]
+    },
+    "job_category": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "ドラッグストア(調剤併設)",
+        "調剤薬局"
+      ]
+    },
+    "job_content": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='お仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "保険調剤 在宅業務",
+        "保険調剤",
+        "保険調剤"
+      ]
+    },
+    "location": {
+      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "埼玉県朝霞市東弁財",
+        "東京都西東京市谷戸町",
+        "東京都豊島区千川"
+      ]
+    },
+    "medical_subjects": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='応需科目']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "在宅（6施設）",
+        "内科、耳鼻科、眼科",
+        "在宅（12施設）"
+      ]
+    },
+    "occupation": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='職業']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師",
+        "薬剤師",
+        "薬剤師"
+      ]
+    },
+    "prescriptions_per_day": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='処方箋枚数（日）']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "30〜40枚",
+        "60枚",
+        null
+      ]
+    },
+    "recruit_id": {
+      "xpath": "//div[contains(@class,'recruit-id')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人ID：1603-260213-06TE",
+        "求人ID：1601-260213-01",
+        "求人ID：1601-260213-05"
+      ]
+    },
+    "requirements": {
+      "xpath": "//table[contains(@class,'detail-table')]//th[normalize-space()='応募資格']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬局長経験者　※マネジメント経験者優遇",
+        "調剤経験2年以上",
+        "調剤経験者"
+      ]
+    },
+    "salary": {
+      "xpath": "//th[normalize-space()='年収']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "550万円～650万円",
+        null,
+        "400万円～550万円"
+      ]
+    },
+    "tags": {
+      "xpath": "//ul[contains(@class,'tags')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "急募年間休日120日以上産休育休実績あり9時～18時OK駅近（5分以内）住宅支援あり在宅専門認定薬剤師取得支援あり",
+        "急募高額時給（3000円以上）高年収／高時給産休育休実績あり認定薬剤師取得支援あり",
+        "急募年間休日120日以上産休育休実績あり在宅専門認定薬剤師取得支援あり"
+      ]
+    },
+    "title": {
+      "xpath": "//div[contains(@class,'result')]/h2",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "《薬局長候補募集・年収600万以上も相談可》☆東武東上線『朝霞台駅』徒歩1分/JR武蔵野線『北朝霞駅』徒歩3分☆在宅特化の薬局です！最新設備を導入し、迅速かつ安全な調剤が可能♪",
+        "《2026年3月の派遣募集》◆西武池袋線『ひばりヶ丘駅』徒歩15分◆朝はゆっくり10時から！週5日しっかり働きたい方におすすめです！",
+        "☆東京メトロ有楽町線『千川駅』徒歩8分☆在宅メインの薬局！最新設備を導入し、迅速かつ安全な調剤が可能♪"
+      ]
+    },
+    "update_date": {
+      "xpath": "//div[contains(@class,'update')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "掲載／更新：2026年02月13日",
+        "掲載／更新：2026年02月13日",
+        "掲載／更新：2026年02月13日"
+      ]
+    }
+  }
+}

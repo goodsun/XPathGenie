@@ -1,0 +1,83 @@
+{
+  "site": "#21 MRT-nurse",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 29.4,
+  "fields_total": 6,
+  "fields_perfect": 6,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "job_description_short": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/div[contains(@class,'w-11/12')]/div[3]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務"
+      ]
+    },
+    "job_url": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/@href",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "/nurse/arbeit/915590",
+        "/nurse/arbeit/915590",
+        "/nurse/arbeit/915590"
+      ]
+    },
+    "location": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/div[contains(@class,'w-11/12')]/div[2]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区"
+      ]
+    },
+    "salary": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/div[contains(@class,'w-11/12')]/div[4]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "時給 2,000円 x 4時間",
+        "時給 2,000円 x 4時間",
+        "時給 2,000円 x 4時間"
+      ]
+    },
+    "updated_date": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/div[contains(@class,'ml-auto')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "更新日: 2026/02/17",
+        "更新日: 2026/02/17",
+        "更新日: 2026/02/17"
+      ]
+    },
+    "working_hours_date": {
+      "xpath": "(//a[contains(@class,'shadow-new-job-list')])[1]/div[contains(@class,'w-11/12')]/div[1]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2026/02/17(火) 15:00-19:00",
+        "2026/02/17(火) 15:00-19:00",
+        "2026/02/17(火) 15:00-19:00"
+      ]
+    }
+  }
+}

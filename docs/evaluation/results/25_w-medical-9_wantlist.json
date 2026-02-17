@@ -1,0 +1,261 @@
+{
+  "site": "#25 w-medical-9",
+  "urls_total": 1,
+  "urls_fetched": 1,
+  "genie_time_sec": 18.7,
+  "fields_total": 25,
+  "fields_perfect": 25,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR和多田駅、マイカー通勤OK！"
+      ]
+    },
+    "address": {
+      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "佐賀県唐津市東町"
+      ]
+    },
+    "area": {
+      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "佐賀県唐津市東町"
+      ]
+    },
+    "bonus": {
+      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "===募集要項===\n雇用形態：正社員\n募集職種：管理薬剤師\n\n===応募資格===\n薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験、60歳未満の方（定年60歳の"
+      ]
+    },
+    "caractoristic": {
+      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "===募集要項===\n雇用形態：正社員\n募集職種：管理薬剤師\n\n===応募資格===\n薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験、60歳未満の方（定年60歳の"
+      ]
+    },
+    "city": {
+      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "佐賀県唐津市東町"
+      ]
+    },
+    "contract": {
+      "xpath": "//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員"
+      ]
+    },
+    "detail": {
+      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "===募集要項===\n雇用形態：正社員\n募集職種：管理薬剤師\n\n===応募資格===\n薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験、60歳未満の方（定年60歳の"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//th[normalize-space()='業種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局"
+      ]
+    },
+    "holiday": {
+      "xpath": "//th[normalize-space()='休日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "日・祝、土の午後、ほか月2日公休日、お盆、年末年始 1ヶ月単位の変形労働時間制 (週平均:週40Hシフト制)／年123日(半日含む)"
+      ]
+    },
+    "license": {
+      "xpath": "//th[normalize-space()='資格']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験"
+      ]
+    },
+    "line": {
+      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR和多田駅、マイカー通勤OK！"
+      ]
+    },
+    "name": {
+      "xpath": "//h2[contains(@class, 'h2_shosai')]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師募集！年収～720万円！年間休日123日！面・広域+在宅業務！☆薬剤師複数体制で安心の職場です！＜佐賀県唐津市/和多田駅＞"
+      ]
+    },
+    "occupation": {
+      "xpath": "//th[normalize-space()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師"
+      ]
+    },
+    "original_id": {
+      "xpath": "//p[contains(@class, 'number')]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人No.W10045"
+      ]
+    },
+    "position": {
+      "xpath": "//th[normalize-space()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師"
+      ]
+    },
+    "prefecture": {
+      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "佐賀県唐津市東町"
+      ]
+    },
+    "price": {
+      "xpath": "//th[normalize-space()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "年収500万円～720万円(経験に応ず)"
+      ]
+    },
+    "price_rule": {
+      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "===募集要項===\n雇用形態：正社員\n募集職種：管理薬剤師\n\n===応募資格===\n薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験、60歳未満の方（定年60歳の"
+      ]
+    },
+    "station": {
+      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR和多田駅、マイカー通勤OK！"
+      ]
+    },
+    "test_period": {
+      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "===募集要項===\n雇用形態：正社員\n募集職種：管理薬剤師\n\n===応募資格===\n薬剤師免許・保険薬剤師登録票・(研修認定薬剤師)・普通自動車運転免許、5年以上の経験、60歳未満の方（定年60歳の"
+      ]
+    },
+    "title_original": {
+      "xpath": "//h2[contains(@class, 'h2_shosai')]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "管理薬剤師募集！年収～720万円！年間休日123日！面・広域+在宅業務！☆薬剤師複数体制で安心の職場です！＜佐賀県唐津市/和多田駅＞"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//th[normalize-space()='福利厚生']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "社会保険完備、交通費、有給休暇、退職金制度あり\n育・介・看休、健康診断、 各種研修、薬学会参加費、学会年会費、認定薬剤師取得費、社員旅行"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//th[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "平日　9:00～18:30（実働 うち8H） 土　9:00～13:30（実働 うち4H）"
+      ]
+    },
+    "working_style": {
+      "xpath": "//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 1,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員"
+      ]
+    }
+  }
+}

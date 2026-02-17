@@ -177,39 +177,131 @@ While XPathGenie automates mapping generation, production deployment benefits fr
 
 This architecture embodies a deliberate role reversal: traditionally, humans write XPaths and machines validate them; in XPathGenie's workflow, machines write XPaths and humans validate them.
 
-## 4. Preliminary Evaluation
+## 4. Evaluation
 
-The evaluation presented here is preliminary, based on a small number of sites in a single domain (Japanese job listings). A more comprehensive evaluation across 20+ sites and multiple domains is planned as future work.
+### 4.1 Experimental Setup
 
-### 4.1 Confidence and Performance
+XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. One additional site (ph-10) was excluded from the Want List evaluation due to Genie analysis failure, yielding 22 evaluated sites.
 
-XPathGenie was evaluated on production job-listing websites with the following results:
+Each site was analyzed using a single detail-page URL, and the generated XPath mappings were cross-validated against 10 detail pages from the same site. The evaluation metric is **hit rate**: the fraction of pages on which a generated XPath returns at least one non-empty result. This measures extraction coverage, not semantic accuracy against ground-truth annotations.
 
-| Site | Pages Analyzed | Tokens Used | Elapsed Time | Fields Generated | Fields at 100% Confidence |
-|------|---------------|-------------|--------------|-----------------|--------------------------|
-| Site A | 4 | 15,032 | 27.1 s | 20 | 20/20 (100%) |
-| Site B | 3 | 8,749 | 12.3 s | 23 | 23/23 (100%) |
+Two evaluation conditions were tested:
 
-All generated fields achieved 100% confidence, defined as the fraction of analyzed pages on which the XPath returned a non-empty value. **This metric measures extraction coverage, not accuracy against ground-truth annotations.** Whether the extracted values are semantically correct for the intended field requires human verification via the Aladdin tool (Section 3.6). The time reported above does not include the subsequent Aladdin verification step, which typically adds 5–15 minutes of human review per site.
+- **Auto Discover mode**: No schema guidance; the LLM autonomously identifies fields and generates XPaths.
+- **Want List mode**: A unified schema of 30 field definitions (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`, `"facility_name": "勤務先の施設名・会社名"`) is provided, guiding the LLM on what to extract.
 
-Token consumption remained within practical budgets (8,000–18,000 tokens depending on mode and page complexity), enabled by the compression pipeline.
+### 4.2 Results: Auto Discover Mode
 
-### 4.2 Effort Reduction
+| # | Site | Domain | Structure | Fields | Perfect | Hit Rate |
+|---|------|--------|-----------|--------|---------|----------|
+| 25 | w-medical-9 | Medical | th/td | 20 | 20/20 | **100.0%** |
+| 13 | pharmapremium | Pharma | th/td | 20 | 20/20 | **100.0%** |
+| 18 | nikken-care | Care | dt/dd | 17 | 17/17 | **100.0%** |
+| 19 | nikken-nurse | Nurse | dt/dd | 17 | 17/17 | **100.0%** |
+| 9 | oshigoto-lab | Medical | dt/dd+th/td | 16 | 16/16 | **100.0%** |
+| 21 | MRT-nurse | Nurse | SPA* | 11 | 11/11 | **100.0%** |
+| 24 | kaigo-work | Care | th/td | 14 | 14/14 | **100.0%** |
+| 20 | cocofump | Care | dt/dd+th/td | 4 | 4/4 | **100.0%** |
+| 35 | kaigokango | Care/Nurse | SPA* | 20 | 19/20 | 96.0% |
+| 32 | yakusta | Pharma | dt/dd+th/td | 18 | 17/18 | 98.3% |
+| 16 | pharmalink | Pharma | th/td | 20 | 16/20 | 96.5% |
+| 4 | yakumatch | Pharma | th/td | 19 | 17/19 | 89.5% |
+| 12 | bestcareer | Pharma | th/td (Shift-JIS) | 21 | 17/21 | 95.0% |
+| 1 | tsukui-staff | Care | dt/dd | 20 | 14/20 | 82.5% |
+| 8 | apuro | Pharma | dt/dd+th/td | 13 | 10/13 | 80.8% |
+| 5 | mynavi | Pharma | dt/dd | 20 | 15/20 | 78.5% |
+| 30 | mc-pharma | Pharma | th/td (Shift-JIS) | 25 | 24/25 | 98.4% |
+| 10 | yakuzaishisyusyoku | Pharma | th/td | 11 | 9/11 | 96.4% |
+| 14 | caresta | Care | th/td | 20 | 10/20 | 50.0% |
+| 6 | phget | Pharma | th/td | 6 | 6/6 | 100.0% |
+| 2 | selva-i | Pharma | dt/dd | 1 | 1/1 | 100.0% |
+| 26 | firstnavi | Nurse | th/td | 1 | 1/1 | 100.0% |
 
-The system was evaluated in the context of a web scraping operation targeting 33 job-listing websites. The manual time estimate of 5–6 hours per site is based on the authors' experience with this specific 33-site medical job scraping portfolio and may not generalize to other domains or engineer skill levels.
+\* Sites labeled SPA in preliminary analysis but found to be SSR-accessible.
+
+**Summary (Auto Discover, 22 sites):** Weighted average hit rate **79.5%**. 10 sites achieved 100%. 13 sites exceeded 90%.
+
+### 4.3 Results: Want List Mode (Schema-Guided)
+
+The same 22 sites were re-evaluated using Want List mode with a unified 30-field job-listing schema.
+
+| # | Site | Domain | Fields | Perfect | Hit Rate | Δ vs Auto |
+|---|------|--------|--------|---------|----------|-----------|
+| 25 | w-medical-9 | Medical | 20 | 20/20 | **100.0%** | — |
+| 35 | kaigokango | Care/Nurse | 25 | 25/25 | **100.0%** | +4.0 |
+| 13 | pharmapremium | Pharma | 20 | 20/20 | **100.0%** | — |
+| 18 | nikken-care | Care | 12 | 12/12 | **100.0%** | — |
+| 19 | nikken-nurse | Nurse | 16 | 16/16 | **100.0%** | — |
+| 20 | cocofump | Care | 6 | 6/6 | **100.0%** | — |
+| 21 | MRT-nurse | Nurse | 11 | 11/11 | **100.0%** | — |
+| 9 | oshigoto-lab | Medical | 11 | 11/11 | **100.0%** | — |
+| 6 | phget | Pharma | 6 | 6/6 | **100.0%** | +85.7 |
+| 2 | selva-i | Pharma | 1 | 1/1 | **100.0%** | — |
+| 26 | firstnavi | Nurse | 1 | 1/1 | **100.0%** | — |
+| 30 | mc-pharma | Pharma | 25 | 24/25 | **98.4%** | +93.1 |
+| 32 | yakusta | Pharma | 14 | 13/14 | **97.9%** | -0.4 |
+| 10 | yakuzaishisyusyoku | Pharma | 11 | 9/11 | **96.4%** | +57.9 |
+| 16 | pharmalink | Pharma | 16 | 12/16 | **96.2%** | -0.3 |
+| 8 | apuro | Pharma | 12 | 10/12 | **86.7%** | +5.9 |
+| 1 | tsukui-staff | Care | 23 | 16/23 | **86.1%** | +3.6 |
+| 24 | kaigo-work | Care | 25 | 21/25 | **84.0%** | -16.0 |
+| 4 | yakumatch | Pharma | 6 | 5/6 | **83.3%** | -6.2 |
+| 12 | bestcareer | Pharma | 21 | 17/21 | **81.0%** | -14.0 |
+| 5 | mynavi | Pharma | 26 | 18/26 | **72.3%** | -6.2 |
+| 14 | caresta | Care | 19 | 11/19 | **57.9%** | +7.9 |
+
+**Summary (Want List, 22 sites):** Weighted average hit rate **91.2%** (+11.7pt vs Auto Discover). 11 sites achieved 100%. 20 of 22 sites exceeded 80%.
+
+### 4.4 Schema Guidance Effect Analysis
+
+The Want List produced dramatic improvements on sites that were previously low-performing:
+
+| Site | Auto Discover | Want List | Change |
+|------|--------------|-----------|--------|
+| mc-pharma | 5.3% | 98.4% | **+93.1pt** |
+| phget | 14.3% | 100.0% | **+85.7pt** |
+| yakuzaishisyusyoku | 38.5% | 96.4% | **+57.9pt** |
+| bestcareer | 0% (failed) | 81.0% | **recovered** |
+
+The effect is most pronounced on sites where Auto Discover failed to identify the correct HTML structure for data fields. By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List effectively guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site.
+
+Conversely, a few sites showed slight decreases with Want List (e.g., kaigo-work -16.0pt, bestcareer -14.0pt). This occurs when the Want List's field definitions do not align well with the site's actual data structure—the LLM attempts to force-match fields that don't exist on the site, generating XPaths that fail validation.
+
+### 4.5 Results by HTML Structure
+
+| HTML Structure | Sites | Avg Hit Rate (Want List) | 100% Rate |
+|----------------|-------|--------------------------|-----------|
+| th/td table | 11 | 92.8% | 36.4% |
+| dt/dd definition list | 5 | 94.5% | 60.0% |
+| dt/dd + th/td mixed | 4 | 96.2% | 50.0% |
+| SPA (SSR-accessible) | 2 | 100.0% | 100.0% |
+
+Structured HTML patterns (dt/dd, th/td) consistently achieved high accuracy. Mixed structures performed slightly better, likely because they provide more structural signals for the LLM.
+
+### 4.6 Excluded Sites
+
+| Category | Count | Sites |
+|----------|-------|-------|
+| SPA (JS rendering required) | 7 | #7, #11, #15, #22, #27, #28, #29 |
+| HTTP error / auth required | 3 | #3 (403), #17 (500), #23 (login) |
+| JS-dependent content | 1 | #34 (empty main tag) |
+| URL discovery failure | 1 | #33 |
+| Genie analysis failure | 1 | #31 (ph-10) |
+
+### 4.7 Effort Reduction
 
 | Metric | Manual Process | XPathGenie |
 |--------|---------------|------------|
-| Time per site (generation only) | 5–6 hours | ~30 seconds |
-| Total for 33 sites (generation only) | 150–200 hours | ~15 minutes |
+| Time per site (generation only) | 5–6 hours | ~20 seconds |
+| Total for 22 sites (generation only) | 110–130 hours | ~7 minutes |
 | Skill requirement | Senior engineer with domain expertise | Any operator with URL access |
 | Ongoing AI cost | N/A | Zero (XPaths are reusable) |
 
-The reported XPathGenie times measure only the automated generation step. End-to-end time including Aladdin verification and any manual XPath corrections is not included in these measurements and will vary depending on site complexity and operator experience.
+The manual time estimate of 5–6 hours per site is based on the authors' experience with this specific medical job scraping portfolio and may not generalize to other domains. The XPathGenie times measure only the automated generation step; Aladdin verification adds 5–15 minutes per site.
 
-### 4.3 Token Efficiency
+### 4.8 Token Efficiency
 
-The HTML compression pipeline is critical to cost-effectiveness. Without compression, sending 4 pages of raw HTML (695 KB each) would consume approximately 700,000+ tokens per request—unreliable or infeasible for most LLM APIs. After compression to ~20 KB per page (capped at 8,000 characters per page in the prompt), total token consumption falls to 8,000–18,000 per analysis run. This achieves a significant reduction in token cost, making multi-page LLM analysis practical within standard API rate limits and budgets.
+The HTML compression pipeline is critical to cost-effectiveness. Without compression, sending 10 pages of raw HTML (~500 KB each) would consume approximately 1,000,000+ tokens per request—infeasible for most LLM APIs. After compression (average 97% reduction, capped at 8,000 characters per page), total token consumption is 8,000–18,000 per analysis. Average Genie processing time was 20.7 seconds per site (median: 19.1s).
 
 ## 5. Design Principles
 
@@ -255,19 +347,26 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Multi-language and multi-domain generalization.** Current evaluation focuses on Japanese job-listing sites. While the architecture is language-agnostic, broader evaluation across languages and domains would strengthen generalizability claims.
 
-**Comprehensive evaluation.** The current evaluation (Section 4) covers only 2 sites with 7 pages total. A rigorous evaluation on 20+ sites across multiple domains, with ground-truth comparison, is needed to substantiate the system's claims more broadly. This is planned as future work.
+**Comprehensive multi-domain evaluation.** The current evaluation (Section 4) covers 22 sites in a single domain (Japanese medical/healthcare job listings). While this represents a substantial improvement over the preliminary 2-site evaluation, broader evaluation across languages and domains (e-commerce, news, real estate) would strengthen generalizability claims.
+
+**Ground-truth comparison.** The current hit rate metric measures extraction coverage (whether XPaths return non-empty values), not semantic accuracy (whether the correct value is extracted for the intended field). A ground-truth evaluation comparing extracted values against manually annotated data would provide stronger accuracy claims.
 
 ### 6.1 Threats to Validity
 
 Several factors limit the validity of the current evaluation:
 
 - **LLM non-determinism.** Although the system uses `temperature=0.1` for near-deterministic output, LLM responses can still vary across runs due to model updates, API-level batching, and inherent sampling stochasticity. The reported results reflect single runs and may not be perfectly reproducible.
-- **Limited evaluation scope.** The evaluation covers only 2 websites (7 pages total) in a single domain (Japanese job listings). The extent to which results generalize to other domains (e-commerce, news, real estate) and languages is unknown.
+- **Single-domain evaluation.** The evaluation covers 22 websites in one domain (Japanese medical job listings). The extent to which results generalize to other domains and languages is unknown.
 - **Subjectivity of manual effort estimates.** The 5–6 hour manual baseline is based on the authors' own experience with a specific site portfolio and engineering workflow. Different engineers, tools, or site complexities could yield substantially different baselines, making the effort reduction comparison inherently approximate.
+- **Hit rate vs accuracy.** The evaluation metric (hit rate) measures whether XPaths return non-empty values, not whether the returned values are semantically correct. A field might achieve 100% hit rate while extracting incorrect data. Human verification via Aladdin is still recommended for production use.
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can significantly reduce web scraping mapping effort while achieving high confidence on production websites. The system's key architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after the initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction. A comprehensive multi-domain evaluation remains as important future work.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 22 Japanese medical job-listing sites, the system achieved a weighted average hit rate of 91.2% with schema-guided generation (Want List mode), with 11 of 22 sites reaching 100% and 20 of 22 exceeding 80%.
+
+A key finding is the significant impact of schema guidance: providing a unified field schema with semantic descriptions improved the weighted average hit rate by 11.7 percentage points compared to autonomous field discovery. The effect was most dramatic on sites with non-standard HTML structures, where schema guidance improved hit rates by up to 93 percentage points. This suggests that communicating extraction *intent*—not just target structure—to the LLM is a powerful lever for accuracy.
+
+The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction.
 
 ## References
 

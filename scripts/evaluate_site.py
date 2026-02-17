@@ -198,7 +198,7 @@ def evaluate_site(site_key, mode="wantlist"):
             result = eval_xpath(xpath, p["doc"])
             if result:
                 hits += 1
-                values.append(result[0][:100])  # first value, truncated
+                values.append(result[0][:200])  # first value, truncated
             else:
                 values.append(None)
 
@@ -210,6 +210,7 @@ def evaluate_site(site_key, mode="wantlist"):
             "total": len(pages),
             "hit_rate": round(hit_rate, 2),
             "sample_values": values[:3],
+            "all_values": values,
         }
         status = "OK" if hit_rate == 1.0 else "WARN" if hit_rate > 0 else "FAIL"
         print(f"  [{status}] {field}: {hits}/{len(pages)} ({hit_rate:.0%})")
@@ -221,6 +222,7 @@ def evaluate_site(site_key, mode="wantlist"):
 
     summary = {
         "site": site_key,
+        "urls": [p["url"] for p in pages],
         "urls_total": len(urls),
         "urls_fetched": len(pages),
         "genie_time_sec": round(genie_time, 1),

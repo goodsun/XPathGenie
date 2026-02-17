@@ -1,0 +1,239 @@
+{
+  "site": "#30 mc-pharma",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 17.2,
+  "fields_total": 19,
+  "fields_perfect": 1,
+  "avg_hit_rate": 0.053,
+  "fields": {
+    "average_prescriptions_per_day": {
+      "xpath": "//td[contains(text(),' ˆ•ûâ³ ˆ— –‡ ”')]/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "basic_conditions": {
+      "xpath": "//td[text()='Šî–{ ðŒ ']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "contact_department": {
+      "xpath": "//td[text()='’S“–‹’“_']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "department": {
+      "xpath": "//td[text()='‰žŽù‰È–Ú']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "employment_type": {
+      "xpath": "//td[text()=' EŽí']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "experience_required": {
+      "xpath": "//td[text()=' Ý‘î–K–â']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_category": {
+      "xpath": "//td[text()='Ž{ Ý‹æ•ª']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_description": {
+      "xpath": "//th[text()='ŠT—v']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_id": {
+      "xpath": "//p[contains(text(),'‹  lNo F')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_title": {
+      "xpath": "//h3",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "ysÀæ/gÛmàüuìxm©¬wvkà12ªu~wvkà13ªzíÎ/PA~bNX",
+        "ys]Ëìæ/uêV]wvuV¬âwvuDxwvoXzíÎ/næÉª··PA~bNXa@ÅÌòÜt",
+        "ygCAhWp®ïÐz\n_ÞìEEçtEéÊÈÇÎ±n½/íÎ/CRC(¡±R[fBl[^[)"
+      ]
+    },
+    "legal_entity_type": {
+      "xpath": "//td[text()='–@ l‹K–Í']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "nearest_station": {
+      "xpath": "//td[text()='‰ˆ ü']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "new_graduates_accepted": {
+      "xpath": "//td[text()='Žó“®‹i‰Œ‘Î ô']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "number_of_stores": {
+      "xpath": "//td[text()='“X•Ü ”']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "probation_period": {
+      "xpath": "//td[text()='ŽŽ—pŠúŠÔ']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "responsible_staff": {
+      "xpath": "//td[text()='’S“–ŽÒ']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "salary_details": {
+      "xpath": "//td[text()='‹‹—^”õ l']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "store_transfer": {
+      "xpath": "//td[text()='“X•ÜŠÔˆÚ“®']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "work_location_city_ward": {
+      "xpath": "//td[text()='‹Î–±’n']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

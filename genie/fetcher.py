@@ -39,6 +39,28 @@ def _check_ssrf(url: str):
                 raise ValueError(f"Blocked private IP: {ip}")
 
 
+def _detect_encoding(content: bytes, resp_encoding: str = None) -> str:
+    """Detect encoding from HTTP header, meta tag, or chardet."""
+    # 1. HTTP Content-Type header
+    if resp_encoding and resp_encoding.lower() not in ("utf-8", "iso-8859-1", "ascii"):
+        return resp_encoding
+
+    # 2. HTML meta charset
+    import re
+    head = content[:4096]
+    # <meta charset="...">
+    m = re.search(rb'<meta[^>]+charset=["\']?([a-zA-Z0-9_-]+)', head, re.IGNORECASE)
+    if m:
+        return m.group(1).decode("ascii", errors="ignore")
+    # <meta http-equiv="Content-Type" content="text/html; charset=...">
+    m = re.search(rb'content=["\'][^"\']*charset=([a-zA-Z0-9_-]+)', head, re.IGNORECASE)
+    if m:
+        return m.group(1).decode("ascii", errors="ignore")
+
+    # 3. Default
+    return resp_encoding or "utf-8"
+
+
 def fetch(url: str) -> str:
     """Fetch HTML from URL. Returns HTML string."""
     _check_ssrf(url)
@@ -50,11 +72,17 @@ def fetch(url: str) -> str:
     )
     resp.raise_for_status()
     content = resp.content[:MAX_SIZE]
-    # Try to decode
-    encoding = resp.encoding or "utf-8"
+    # Detect encoding (supports Shift-JIS, EUC-JP, etc.)
+    encoding = _detect_encoding(content, resp.encoding)
     try:
         return content.decode(encoding)
     except (UnicodeDecodeError, LookupError):
+        # Fallback: try common Japanese encodings
+        for enc in ("utf-8", "shift_jis", "euc-jp", "cp932"):
+            try:
+                return content.decode(enc)
+            except (UnicodeDecodeError, LookupError):
+                continue
         return content.decode("utf-8", errors="replace")
 
 

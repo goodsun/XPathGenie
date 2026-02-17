@@ -62,6 +62,10 @@ def _find_main_section(doc):
 
 def compress(html: str) -> str:
     """Compress HTML to structural summary of main content only."""
+    # Strip XML declaration (breaks lxml HTML parser for XHTML pages)
+    html = re.sub(r'<\?xml[^>]*\?>', '', html, count=1)
+    # Strip DOCTYPE (can also cause issues)
+    html = re.sub(r'<!DOCTYPE[^>]*>', '', html, count=1, flags=re.IGNORECASE)
     try:
         doc = fromstring(html)
     except Exception:

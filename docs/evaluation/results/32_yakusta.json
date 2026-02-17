@@ -1,0 +1,227 @@
+{
+  "site": "#32 yakusta",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 9.7,
+  "fields_total": 18,
+  "fields_perfect": 17,
+  "avg_hit_rate": 0.983,
+  "fields": {
+    "allowances": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='手当その他']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 7,
+      "total": 10,
+      "hit_rate": 0.7,
+      "sample_values": [
+        "管理薬剤師手当(5,000円)、各種資格、時間外、役職、通勤交通費(全額支給)ほか",
+        "管理薬剤師手当(5,000円)、各種資格、時間外、役職、通勤交通費(全額支給)ほか",
+        "各種資格、時間外、役職ほか"
+      ]
+    },
+    "application_requirements": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='応募資格・条件']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師資格保有者\n・調剤の実務経験がある方",
+        "薬剤師資格保有者\n・調剤の実務経験がある方",
+        "薬剤師免許をお持ちの方\n調剤経験がある方"
+      ]
+    },
+    "benefits": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='福利厚生']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "育児休業(子が2歳になるまで)・時短勤務 （小学校卒業まで）、社員割引販売制度、 持株制度、各種資格取得支援制度、 社宅制度、処方せん調剤負担金補助制度、退職金（確定拠出年金）、各種相談窓口ほか",
+        "育児休業(子が2歳になるまで)・時短勤務 （小学校卒業まで）、社員割引販売制度、 持株制度、各種資格取得支援制度、 社宅制度、処方せん調剤負担金補助制度、退職金（確定拠出年金）、各種相談窓口ほか",
+        "育児休業(子が2歳になるまで)・時短勤務 （小学校卒業まで）、社員割引販売制度、 持株制度、各種資格取得支援制度、 社宅制度、処方せん調剤負担金補助制度、退職金（確定拠出年金）、各種相談窓口ほか"
+      ]
+    },
+    "business_hours": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='営業時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月～金  9:00～18:00\n第1・3・4・5土曜、第2日曜  9:00～17:00\n日・祝：当番制（9:00～17:00)",
+        "月～金  9:00～19:00\n土  9:00～14:00",
+        "月～金  9:00～18:00\n土  9:00～13:00"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "features": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='特徴']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "有給休暇の取得促進/アットホーム/大手（50店舗以上）/未経験・ブランクのある方可/研修制度充実/車通勤可能",
+        "19時まで/駅5分以内/アットホーム/大手（50店舗以上）/在宅/産休・育休実績あり/未経験・ブランクのある方可/研修制度充実",
+        "有給休暇の取得促進/アットホーム/大手（50店舗以上）/ママ薬剤師にお薦め/ヘルプ体制充実/研修制度充実"
+      ]
+    },
+    "holidays": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='休日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "シフト制　※年間休日117日",
+        "シフト制　※年間休日117日",
+        "シフト制　※年間休日117日"
+      ]
+    },
+    "industry": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='業界分類']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "ドラッグストア（調剤併設）",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "insurance": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='保険']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "健康保険/厚生年金/雇用保険/労災保険/医療過誤保険",
+        "健康保険/厚生年金/雇用保険/労災保険/医療過誤保険",
+        "健康保険/厚生年金/雇用保険/労災保険/医療過誤保険"
+      ]
+    },
+    "job_content": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤業務・服薬指導・監査・薬歴管理 ほか",
+        "調剤業務・服薬指導・監査・薬歴管理 ほか",
+        "調剤業務全般（調剤、服薬指導、監査、薬歴管理 ほか)"
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'detail-03')]//section[contains(@class,'desc-03')]/p[contains(@class,'desc')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "《求人のポイント》\n ホワイト500認定企業！マツキヨココカラ＆カンパニー\n◇余市駅から車で7分ほどのところにある、大手ドラッグストア運営の調剤薬局です。\n◇全国に展開する大手グループですが、転居を伴",
+        "≪求人のポイント≫\nホワイト500認定企業！マツキヨココカラ＆カンパニー\n◇京王線「府中駅」から徒歩2分、駅チカで通勤も便利です。\n◇門前のクリニックから「皮膚科」の処方箋をメインに応需しています。\n",
+        "《求人のポイント》\n ホワイト500認定企業！マツキヨココカラ＆カンパニー\n・大手ドラッグストアグループの「ココカラファイン」が運営する調剤専門店です。\n・充実したサポート体制でブランクのある方も安心"
+      ]
+    },
+    "job_id": {
+      "xpath": "//div[contains(@class,'detail-03')]//li[contains(@class,'id')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人ID：11036",
+        "求人ID：11126",
+        "求人ID：12474"
+      ]
+    },
+    "nearest_access": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='最寄りアクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR函館本線「余市駅」から車で7分",
+        "京王線「府中駅」より徒歩2分",
+        "JR函館本線「小沢駅」から車で20分程度"
+      ]
+    },
+    "prescription_subjects": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='処方箋科目']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "総合、面応需",
+        "皮膚科、内科",
+        "総合"
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "年俸制 430万円～560万円　※経験・能力等を考慮し、当社規定により決定",
+        "年俸制 430万円～560万円　※経験・能力等を考慮し、当社規定により決定",
+        "年俸制 430万円～560万円　※経験・能力等を考慮し、当社規定により決定"
+      ]
+    },
+    "vacations": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "有休、慶弔、介護、 産前産後、 育児休暇など",
+        "有休、慶弔、介護、 産前産後、 育児休暇など",
+        "有休、慶弔、介護、 産前産後、 育児休暇など"
+      ]
+    },
+    "work_location": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "北海道余市郡余市町",
+        "東京都府中市",
+        "北海道岩内郡岩内町"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'detail-03')]//th[text()='就業時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制",
+        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制",
+        "変形労働時間制：原則実働8時間(休憩60分)\n※シフト制"
+      ]
+    }
+  }
+}

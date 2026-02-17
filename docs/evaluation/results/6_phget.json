@@ -1,0 +1,179 @@
+{
+  "site": "#6 phget",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 18.5,
+  "fields_total": 14,
+  "fields_perfect": 2,
+  "avg_hit_rate": 0.143,
+  "fields": {
+    "access": {
+      "xpath": "//dt[text()='アクセス']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "benefits": {
+      "xpath": "//dt[text()='福利厚生']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "capital": {
+      "xpath": "//dt[text()='資本金']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "company_name": {
+      "xpath": "//dt[text()='法人名']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "establishment_date": {
+      "xpath": "//dt[text()='設立']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "features": {
+      "xpath": "//dt[text()='特徴']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "holidays": {
+      "xpath": "//dt[text()='休日']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_category": {
+      "xpath": "//div[@id='company']//dt[contains(@class,'companydt_o')]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "病院",
+        "調剤薬局"
+      ]
+    },
+    "job_description": {
+      "xpath": "//dt[text()='業務内容']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_title": {
+      "xpath": "//div[@id='company']//h2",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【広島県】 希望条件での調査依頼はこちら",
+        "【神戸市 (兵庫県)】 会員限定求人",
+        "【水戸市 (茨城県)】 ローズマリー薬局"
+      ]
+    },
+    "requirements": {
+      "xpath": "//dt[text()='応募資格']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "salary": {
+      "xpath": "//dt[text()='給与']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "work_location": {
+      "xpath": "//dt[text()='勤務地']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "working_hours": {
+      "xpath": "//dt[text()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

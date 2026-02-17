@@ -1,0 +1,215 @@
+{
+  "site": "#19 nikken-nurse",
+  "urls_total": 8,
+  "urls_fetched": 8,
+  "genie_time_sec": 7.8,
+  "fields_total": 17,
+  "fields_perfect": 17,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "application_requirements": {
+      "xpath": "//dt[text()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方",
+        "◆看護師・准看護師資格をお持ちの方\n◆実務経験のある方"
+      ]
+    },
+    "benefits": {
+      "xpath": "//dt[text()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジ",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//dt[text()='雇用形態']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "紹介予定派遣",
+        "派遣社員",
+        "派遣社員"
+      ]
+    },
+    "facility_capacity": {
+      "xpath": "//h2[text()='施設定員数・床数']/following-sibling::p[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "25床",
+        "20名",
+        "35名"
+      ]
+    },
+    "highlights": {
+      "xpath": "//div[contains(@class,'pointBox')]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "★ポイント①★\n紹介予定派遣！実際に働いて入社を決められる♪\n\n★ポイント②★\n日勤のみもOK◎生活の両立がしやすい！",
+        "★ポイント①★\n日勤のみ☆17:30終業で働きやすい♪\n\n★ポイント②★\n資格・経験を活かして人気のデイサービス勤務☆",
+        "★ポイント①★\n日勤のみ☆終業17:30！仕事後の時間も充実◎\n\n★ポイント②★\n人気の世田谷区での勤務♪"
+      ]
+    },
+    "holidays": {
+      "xpath": "//dt[text()='休日']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n◆シフト制\n\n（直接雇用後）\n年間休日：107日\n休日：月8～9日\n休暇：有給休暇（入職半年後：初年度10日）、特別休暇（結婚・忌引き等）、育児休業・介護休業・退職金制度",
+        "◆シフト制",
+        "◆土日休み"
+      ]
+    },
+    "interview_registration_location": {
+      "xpath": "//dt[text()='面接・登録場所']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　高崎オフィス\n〒370-0841\n群馬県高崎市栄町4-11\n原地所第2ビル6Ｆ 1号室\nフリーコール",
+        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　高崎オフィス\n〒370-0841\n群馬県高崎市栄町4-11\n原地所第2ビル6Ｆ 1号室\nフリーコール",
+        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　新宿オフィス\n〒160-0023\n東京都新宿区西新宿3-2-7　KDX新宿ビル10F\nフリーコール："
+      ]
+    },
+    "job_category": {
+      "xpath": "//p[contains(@class,'address')]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師（病院）",
+        "看護師（デイサービス）",
+        "看護師（障碍者支援施設）"
+      ]
+    },
+    "job_description": {
+      "xpath": "//h2[text()='職務内容']/following-sibling::p[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "♪高崎市にある病院でのお仕事♪\n\n【お仕事内容】\n病棟における看護業務全般\n・バイタル管理\n・点滴、注射、採血等の医療処置\n・診察補助\n・看護記録\nなど\n\nTEL登録・WEB登録もOK！\n★☆Quoカ",
+        "♪伊勢崎市にあるデイサービスでのお仕事♪\n\n【お仕事内容】\nデイサービスにおける看護業務全般\n・バイタル管理などの健康管理\n・服薬管理\n・医療処置\n・記録作成\nなど\n\nTEL登録・WEB登録もOK！\n",
+        "♪世田谷区にある障碍者支援施設でのお仕事♪\n\n【お仕事内容】\n障碍者支援施設における看護業務\n・バイタルチェックなどの健康状態観察\n・日常生活の看護業務\n・医療処置\n・健康管理と嘱託医師の付き添い\nな"
+      ]
+    },
+    "job_id": {
+      "xpath": "//p[contains(@class,'id')]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人先ID:【TK】TK_S1043(SY)",
+        "求人先ID:【TK】TK_S1052(SY)",
+        "求人先ID:【SN】SN_S1062(SY)"
+      ]
+    },
+    "job_title": {
+      "xpath": "//h1",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "＜紹介予定派遣♪＞日勤のみ可！准看護師もOK◎無料駐車場あり☆25床の病院｜高崎市",
+        "伊勢崎市/デイサービス｜日勤固定17:30終業♪無料駐車場完備☆准看護師もOK",
+        "平日＆日勤のみ☆17:30終業♪准看護師もOK！桜上水駅最寄り｜世田谷区/障碍者支援施設"
+      ]
+    },
+    "nearest_station": {
+      "xpath": "//dt[text()='最寄駅']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR線 高崎駅より車16分\nJR上越線 高崎問屋町駅より車18分\n※車通勤OK（無料駐車場あり）",
+        "東武鉄道特急 新伊勢崎駅より車8分\n※車通勤OK（無料駐車場あり）",
+        "京王線 桜上水駅より徒歩17分\n小田急線 千歳船橋駅より徒歩22分"
+      ]
+    },
+    "occupation": {
+      "xpath": "//dt[text()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師（病院）要資格/要経験",
+        "看護師（デイサービス）要資格/要経験",
+        "看護師（障碍者支援施設）要資格/要経験"
+      ]
+    },
+    "posted_date": {
+      "xpath": "//p[contains(@class,'time')]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "掲載日:2025/12/25",
+        "掲載日:2026/01/07",
+        "掲載日:2026/01/21"
+      ]
+    },
+    "salary": {
+      "xpath": "//dt[text()='給与']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【時給】1,750円～\n\n（直接雇用後）\n【月給】205,000円～（固定給）/※准看護師：182,000円～\n夜勤手当：11,000円/回\n交通費：上限15,000円\n賞与：年2回（",
+        "【時給】1,750円～",
+        "【時給】2,300円～"
+      ]
+    },
+    "work_location": {
+      "xpath": "//dt[text()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "群馬県高崎市",
+        "群馬県伊勢崎市",
+        "東京都世田谷区"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//dt[text()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 8,
+      "total": 8,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "（派遣期間中）\n【日勤】8:30～17:30\n\n（直接雇用後）\n【日勤】8:00～17:00\n【遅番】9:15～18:15\n【夜勤】16:30～翌9:00（仮眠あり）\n※日勤のみ相談可",
+        "【日勤】8:30～17:30",
+        "【日勤】8:30～17:30 ※休憩60分"
+      ]
+    }
+  }
+}

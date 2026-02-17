@@ -1,0 +1,143 @@
+{
+  "site": "#21 MRT-nurse",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 31.9,
+  "fields_total": 11,
+  "fields_perfect": 11,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "arbeit_job_count": {
+      "xpath": "//li[contains(@data-tab, 'arbeit')]//p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "[3084件]",
+        "[3084件]",
+        "[3087件]"
+      ]
+    },
+    "duties": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[3]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs",
+        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs",
+        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs"
+      ]
+    },
+    "fulltime_job_count": {
+      "xpath": "//li[contains(@data-tab, 'fulltime')]//p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "[3811件]",
+        "[3811件]",
+        "[3811件]"
+      ]
+    },
+    "job_type": {
+      "xpath": "//li[contains(@class, '-active')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "単発アルバイトの求人[3084件]",
+        "単発アルバイトの求人[3084件]",
+        "単発アルバイトの求人[3087件]"
+      ]
+    },
+    "job_url": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]/@href",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "/nurse/arbeit/909946",
+        "/nurse/arbeit/909946",
+        "/nurse/arbeit/909946"
+      ]
+    },
+    "list_title": {
+      "xpath": "//h2[contains(@class, 'text-A0C8FA')][1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護師バイト・単発アルバイトの新着求人",
+        "看護師バイト・単発アルバイトの新着求人",
+        "看護師バイト・単発アルバイトの新着求人"
+      ]
+    },
+    "location": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[2]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "東京都杉並区",
+        "東京都杉並区",
+        "東京都杉並区"
+      ]
+    },
+    "parttime_job_count": {
+      "xpath": "//li[contains(@data-tab, 'parttime')]//p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "[1260件]",
+        "[1260件]",
+        "[1260件]"
+      ]
+    },
+    "salary": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[4]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "一回 20,000円",
+        "一回 20,000円",
+        "一回 20,000円"
+      ]
+    },
+    "updated_date": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'ml-auto')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "更新日: 2026/02/16",
+        "更新日: 2026/02/16",
+        "更新日: 2026/02/16"
+      ]
+    },
+    "work_date_time": {
+      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[1]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2026/02/17(火) 08:45-17:45",
+        "2026/02/17(火) 08:45-17:45",
+        "2026/02/17(火) 08:45-17:45"
+      ]
+    }
+  }
+}

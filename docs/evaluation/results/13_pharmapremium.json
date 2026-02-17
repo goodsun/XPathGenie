@@ -1,0 +1,251 @@
+{
+  "site": "#13 pharmapremium",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 25.3,
+  "fields_total": 20,
+  "fields_perfect": 20,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "application_requirements": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'応募資格')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師免許",
+        "薬剤師免許",
+        "薬剤師免許"
+      ]
+    },
+    "benefits": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'待遇')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "*　交通費全額支給\n*　白衣貸与\n*　電子薬歴",
+        "交通費全額支給 白衣貸与",
+        "交通費全額支給"
+      ]
+    },
+    "category": {
+      "xpath": "//div[contains(@class,'row2')]/span[contains(@class,'cate')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤",
+        "調剤",
+        "調剤"
+      ]
+    },
+    "commitment_conditions": {
+      "xpath": "//div[contains(@class,'job-card-cond-right')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "時給3,500円以上半日案件18時までの職場車通勤可",
+        "残業なし(ほぼなし含む)18時までの職場",
+        "半日案件一人薬剤師"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'row2')]/span[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "派遣(スポット)",
+        "派遣(スポット)",
+        "派遣(スポット)"
+      ]
+    },
+    "job_description": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'仕事内容')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤、服薬指導、薬歴管理、管理者の指示による業務",
+        "調剤、薬歴管理、服薬指導、管理者の指示による業務",
+        "調剤、投薬、服薬指導、管理者の指示による業務"
+      ]
+    },
+    "job_id": {
+      "xpath": "//div[contains(@class,'product-meta-area')]/div[contains(.,'求人ID:')][1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "求人ID: 27903",
+        "求人ID: 27904",
+        "求人ID: 27905"
+      ]
+    },
+    "job_title": {
+      "xpath": "//h1",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆単発派遣◆【神奈川相模原市】時給3500円◆2/24(火)◆総合科目◆橋本駅よりバス◆車通勤OK!",
+        "◆単発派遣◆【横浜市】3月◆単発勤務OKの薬剤師派遣求人◆関内駅2分/内科・循環器科ほか",
+        "◆単発派遣◆【神奈川県川崎市】2月のスポット派遣◆時給3300円◆宮前平駅バス5分"
+      ]
+    },
+    "main_comment": {
+      "xpath": "//td[contains(@class,'main-comment-detail')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "≪神奈川県相模原市の薬剤師派遣求人≫\n相模原市の調剤薬局でスポット派遣薬剤師を募集中!\n\n◆求人のポイント\n◇相模原市で薬剤師派遣を探している方におすすめ\n◇スポット勤務歓迎の派遣薬剤師求人\n◇総合科",
+        "≪神奈川県横浜市の薬剤師派遣求人≫\n横浜市の調剤薬局でスポット派遣薬剤師を募集中!\n\n◆求人のポイント\n◇横浜市で薬剤師派遣を探している方におすすめ\n◇スポット勤務を検討している方に向いた派遣薬剤師求",
+        "≪横浜市の薬剤師派遣求人≫\n横浜市の調剤薬局でスポット派遣薬剤師を募集中!\n\n◆求人のポイント\n◇横浜市で薬剤師派遣を探している方におすすめ\n◇スポット勤務歓迎の派遣薬剤師求人\n◇内科・小児科・呼吸器"
+      ]
+    },
+    "medical_history_system": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'薬歴')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "EMシステムズ: ReceptyNEXT, ぶんぎょうめいと/Apobahn",
+        "ハイブリッジ: Hi-story",
+        "ウィーメックス : メディコム ファーネス"
+      ]
+    },
+    "nearest_station": {
+      "xpath": "//table[contains(@class,'item')]/tr/th[contains(@class,'item-name')][.//text()[contains(.,'最寄駅')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "ＪＲ横浜線 橋本 バス約30分\n                                                                ＪＲ相模線 橋本 バス約30分\n    ",
+        "ＪＲ京浜東北線 関内 徒歩2分\n                                                                ブルーライン 関内 徒歩2分",
+        "東急田園都市線 宮前平 バス5分＋徒歩10分"
+      ]
+    },
+    "occupation": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'職種')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師/調剤薬局",
+        "薬剤師/調剤薬局",
+        "薬剤師/調剤薬局"
+      ]
+    },
+    "prescription_count": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'処方箋枚数')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "約80枚/日(電子薬歴:EM)\n使用薬歴:電子",
+        "80枚前後/日(電子:ハイブリッジ)\n薬剤師2～3名/事務1名",
+        "約20～30枚/日\n使用薬歴:メディコム(電子薬歴)\n薬剤師1～2名:事務1名\n※木曜は一人薬剤師(事務あり)"
+      ]
+    },
+    "prescription_subjects": {
+      "xpath": "//table[contains(@class,'item')]/tr/th[contains(@class,'item-name')][.//text()[contains(.,'処方科目')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "総合",
+        "内科,産科、婦人科,循環器科,整形外科",
+        "内科,小児科,呼吸器科"
+      ]
+    },
+    "salary": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'給与')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "時給3500円",
+        "時給3000円",
+        "時給3300円"
+      ]
+    },
+    "status_tags": {
+      "xpath": "//div[contains(@class,'product-status-area')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "新着急募オススメ",
+        "新着急募オススメ",
+        "新着急募オススメ"
+      ]
+    },
+    "updated_date": {
+      "xpath": "//div[contains(@class,'product-meta-area')]/div[contains(.,'更新日:')][1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "更新日: 2026/02/13",
+        "更新日: 2026/02/13",
+        "更新日: 2026/02/13"
+      ]
+    },
+    "work_date": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'就業日')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2/24(火)",
+        "3月/2,9,16,23,30(月) 　　　　　　\n3月/6,13,27(金)",
+        "2月/26(木) 　　　　　　 \n2月/28(土)"
+      ]
+    },
+    "work_hours": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'勤務時間')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "9:00～18:00(休60分)",
+        "9:00-18:00(休60分)",
+        "9:00～13:00(休なし)"
+      ]
+    },
+    "work_location": {
+      "xpath": "//th[contains(@class,'item-name')][.//text()[contains(.,'勤務地')]]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "神奈川県相模原市緑区",
+        "神奈川県横浜市中区",
+        "神奈川県川崎市宮前区"
+      ]
+    }
+  }
+}

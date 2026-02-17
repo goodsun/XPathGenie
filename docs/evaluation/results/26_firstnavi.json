@@ -1,0 +1,23 @@
+{
+  "site": "#26 firstnavi",
+  "urls_total": 5,
+  "urls_fetched": 5,
+  "genie_time_sec": 12.8,
+  "fields_total": 1,
+  "fields_perfect": 1,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "description": {
+      "xpath": "//article[@id='recommend_points']//div[contains(@class,'row')]//p[contains(@class,'grad_inner')]",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "●有給消化率は90％以上です。ライフスタイルに合わせて働けるので、お仕事とプライベートを無理なく両立できます。\n●未経験・ブランクのある方も歓迎です。先輩スタッフが丁寧に指導いたしますので、安心してス",
+        "●日勤のみの勤務です。お仕事後の予定を立てやすく、プライベートの時間を大切に出来ます。\n●予防接種補助や社員割引制度など福利厚生が充実しています。安心して働ける環境を整えておりますので、末永く勤務でき",
+        "●日勤のみの勤務です。仕事とプライベートのバランスを意識した働き方ができるので、自分の時間をしっかり確保できます。\n●産前産後・育児休暇の取得実績があります。復職率96％で育児時短勤務制度もあり、ライ"
+      ]
+    }
+  }
+}

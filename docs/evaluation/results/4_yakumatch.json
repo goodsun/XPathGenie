@@ -1,0 +1,239 @@
+{
+  "site": "#4 yakumatch",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 39.4,
+  "fields_total": 19,
+  "fields_perfect": 17,
+  "avg_hit_rate": 0.895,
+  "fields": {
+    "birth_year_label": {
+      "xpath": "//div[contains(@class, 'birth_year')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "生まれ年",
+        "生まれ年",
+        "生まれ年"
+      ]
+    },
+    "birth_year_options": {
+      "xpath": "//select[@id='job_inquiry_birth_year']/option",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "1965",
+        "1965",
+        "1965"
+      ]
+    },
+    "city_options": {
+      "xpath": "//select[@id='job_inquiry_city']/option",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "市区町村",
+        "市区町村",
+        "市区町村"
+      ]
+    },
+    "current_situation_label": {
+      "xpath": "//div[contains(@class, 'entry_reasons')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "現在のご状況",
+        "現在のご状況",
+        "現在のご状況"
+      ]
+    },
+    "current_situation_options": {
+      "xpath": "(//div[contains(@class, 'entry_reasons')])[1]//label[contains(@for, 'job_inquiry_entry_reasons_')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "情報収集したい",
+        "情報収集したい",
+        "情報収集したい"
+      ]
+    },
+    "employment_type_label": {
+      "xpath": "//div[contains(@class, 'employment_status')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "希望の働き方",
+        "希望の働き方",
+        "希望の働き方"
+      ]
+    },
+    "employment_type_options": {
+      "xpath": "//div[contains(@class, 'employment_status')]//label[contains(@for, 'job_inquiry_employment_status_')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "gender_label": {
+      "xpath": "//div[contains(@class, 'gender')]/div[1]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "性別",
+        "性別",
+        "性別"
+      ]
+    },
+    "gender_options": {
+      "xpath": "//div[contains(@class, 'gender')]//label[contains(@for, 'job_inquiry_gender_')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "latest_job_update_date": {
+      "xpath": "//div[contains(@class, 'entry_update')]/em",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "2026年2月13日　最新求人更新",
+        "2026年2月13日　最新求人更新",
+        "2026年2月13日　最新求人更新"
+      ]
+    },
+    "name_label": {
+      "xpath": "//div[contains(@class, 'name')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "お名前",
+        "お名前",
+        "お名前"
+      ]
+    },
+    "prefecture_options": {
+      "xpath": "//select[@id='job_inquiry_prefecture_id']/option",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "都道府県",
+        "都道府県",
+        "都道府県"
+      ]
+    },
+    "qualification_label": {
+      "xpath": "//div[contains(@class, 'is_pharmacy')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "保有資格",
+        "保有資格",
+        "保有資格"
+      ]
+    },
+    "qualification_options": {
+      "xpath": "(//div[contains(@class, 'is_pharmacy')])[1]//label[contains(@for, 'job_inquiry_is_pharmacy_')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師免許",
+        "薬剤師免許",
+        "薬剤師免許"
+      ]
+    },
+    "residence_label": {
+      "xpath": "//div[contains(@class, 'address')]/label",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "お住まい",
+        "お住まい",
+        "お住まい"
+      ]
+    },
+    "step1_title": {
+      "xpath": "//div[@id='first-step']/div[contains(@class, 'step-hline')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "STEP1現在のご状況を教え下さい",
+        "STEP1現在のご状況を教え下さい",
+        "STEP1現在のご状況を教え下さい"
+      ]
+    },
+    "step2_title": {
+      "xpath": "//div[@id='second-step']/div[contains(@class, 'step-hline')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "STEP2保有資格・雇用形態を教えて下さい",
+        "STEP2保有資格・雇用形態を教えて下さい",
+        "STEP2保有資格・雇用形態を教えて下さい"
+      ]
+    },
+    "step3_title": {
+      "xpath": "//div[@id='third-step']/div[contains(@class, 'step-hline')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "STEP3ご住所を教えて下さい",
+        "STEP3ご住所を教えて下さい",
+        "STEP3ご住所を教えて下さい"
+      ]
+    },
+    "step4_title": {
+      "xpath": "//div[@id='fourth-step']/div[contains(@class, 'step-hline')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "STEP4お名前・性別・生まれ年を教えて下さい",
+        "STEP4お名前・性別・生まれ年を教えて下さい",
+        "STEP4お名前・性別・生まれ年を教えて下さい"
+      ]
+    }
+  }
+}

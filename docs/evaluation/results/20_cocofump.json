@@ -1,0 +1,59 @@
+{
+  "site": "#20 cocofump",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 16.0,
+  "fields_total": 4,
+  "fields_perfect": 4,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "job_title": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')][1]//h3[contains(@class,'horizon_title1')]/a",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特定施設入居者生活介護の介護職員【正社員】",
+        "特定施設入居者生活介護の介護スタッフ【パート】",
+        "訪問看護の言語聴覚士【正社員】"
+      ]
+    },
+    "job_url": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')][1]//h3[contains(@class,'horizon_title1')]/a/@href",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "/jobfind-pc/job/All/20523",
+        "/jobfind-pc/job/All/19731",
+        "/jobfind-pc/job/All/30369"
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')][1]//dt[span[text()='給与']]/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給23万7,200円～25万1,600円",
+        "時給1,267円～1,417円",
+        "月給28万9,000円～31万9,000円"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')][1]//dt[span[text()='勤務時間']]/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "早番　7:00～16:00（休憩60分）日勤　8:30～17:30（休憩60分）遅番　11:00～20:00（休憩60分）夜勤　17:00～翌9:00（休憩90分）※施設により、若干の変動がございます",
+        "早番　7:00～16:00（休憩60分）日勤　8:30～17:30（休憩60分）遅番　11:00～20:00（休憩60分）夜勤　17:00～翌9:00（休憩90分）※施設により、若干の変動がございます",
+        "8:30～17:30※ステーションにより、若干の変動がございます。ローテーションによるシフト制休憩60分"
+      ]
+    }
+  }
+}

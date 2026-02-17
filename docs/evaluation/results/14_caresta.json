@@ -1,0 +1,251 @@
+{
+  "site": "#14 caresta",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 20.3,
+  "fields_total": 20,
+  "fields_perfect": 10,
+  "avg_hit_rate": 0.5,
+  "fields": {
+    "access": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='アクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京都市営地下鉄烏丸線　今出川駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    バス10分",
+        "京都市営地下鉄烏丸線　今出川駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    バス10分",
+        "阪神本線　香櫨園駅\n\t\t\t\n\t\t\t\t\t\t\t\t\t\t    \t\n\t\t\t\t\n\t\t\t    徒歩14分"
+      ]
+    },
+    "benefits": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='福利厚生等']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "catch_phrase": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class,'point')]/p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◎賞与が年3回あります！\n◎長期キャリア形成に向けた評価制度あり。\n◎定年65歳だから長く働けます！",
+        "◎丁寧に教えてもらえますので、業務に不安がある方も安心です♪\n◎残業が少なくライフワークバランスを保ちやすい環境です。\n◎派遣スタッフが他にもいるから、派遣が初めての方にもオススメです。",
+        "◎幅広い世代の方が活躍中です！ブランクのある方も大歓迎！\n◎残業は少なめだからプライベートを充実させられます。\n◎広々としたキレイな職場で働けます♪"
+      ]
+    },
+    "commuting_allowance": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='通勤手当']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "description_headline": {
+      "xpath": "//div[contains(@class,'container')]//h3[contains(@class,'descHeadline')]/span",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆研修制度が充実♪スキルアップできる環境です。\n◆手当や休暇がしっかりあり♪",
+        "◆週3日～の勤務でＯＫ！日勤のみの派遣です♪\n◆勤務時間や曜日など相談可能！",
+        "◆勤務日数や曜日、短時間勤務など、まずはご相談ください！\n◆阪神西宮駅から職員用の送迎バスもあります！バイク通勤も可！"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正職員",
+        "派遣",
+        "派遣"
+      ]
+    },
+    "facility_features": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='施設情報']]//th[text()='特徴']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "facility_type": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='施設情報']]//th[text()='施設形態']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "holidays_vacations": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='休日・休暇']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "job_description": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特別養護老人ホームでの介護業務\n・入浴、食事、排せつ介助\n・生活介助（外出付き添いなど）\n・夜間の見守り等の夜勤業務\n・レクリエーションの実施\n・その他付随業務",
+        "特別養護老人ホームでの介護業務\n・入浴、食事、排せつ介助\n・生活介助（外出付き添いなど）\n・レクリエーションの実施\n・その他付随業務",
+        "介護老人保健施設での介護業務全般\n(排泄介助、食事介助、入浴介助、環境整備など)"
+      ]
+    },
+    "job_id": {
+      "xpath": "//div[contains(@class,'container')]//div[@id='Job_No']/p",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "[お仕事No．3HG0127]",
+        "[お仕事No．3HG0129]",
+        "[お仕事No．3HM0043]"
+      ]
+    },
+    "job_type": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護・福祉関連",
+        "介護・福祉関連",
+        "介護・福祉関連"
+      ]
+    },
+    "other_allowances": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='諸手当']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "qualifications": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='応募資格・条件']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職員初任者研修・ホームヘルパー2級\n                        ※未経験の方もご応募可能",
+        "介護職員初任者研修・ホームヘルパー2級\n                        必須経験：介護経験(1年)",
+        "その他・不問\n                        ※無資格の方は認知症基礎研修の受講が必須\n※未経験の方もご応募可能"
+      ]
+    },
+    "salary": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='給与']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "salary_increase_bonus": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='給与・待遇']]//th[text()='昇給・賞与']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "title": {
+      "xpath": "//div[contains(@class,'container')]//div[contains(@class,'detail_title')]/h1",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【京都市上京区/介護職】☆介護職☆正職員！資格取得支援制度が充実！賞与は年3回♪各種手当あり！定年65歳♪",
+        "【京都市上京区/特別養護老人ホーム】☆介護職☆週3日～の日勤のみ派遣！勤務時間や曜日は応相談♪残業少なめ！",
+        "【兵庫県西宮市/介護老人保健施設】☆介護職☆週2日～の日勤のみ派遣！短時間勤務ＯＫ！勤務日数や曜日も応相談！"
+      ]
+    },
+    "work_location": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='勤務地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "京都府京都市上京区",
+        "京都府京都市上京区",
+        "兵庫県西宮市"
+      ]
+    },
+    "working_days": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='勤務曜日']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "working_hours": {
+      "xpath": "//div[contains(@class,'container')]//table[preceding-sibling::h3[text()='仕事情報']]//th[text()='勤務時間']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

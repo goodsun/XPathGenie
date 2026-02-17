@@ -84,12 +84,35 @@ def api_analyze():
         return jsonify({"error": "Max 10 URLs"}), 400
 
     t0 = time.time()
+    diagnostics = {}
 
     # 1. Fetch
     pages = fetch_all(urls)
     fetched = [p for p in pages if p["html"]]
     if not fetched:
-        return jsonify({"error": "Failed to fetch all URLs", "details": [p["error"] for p in pages]}), 400
+        fetch_errors = [p.get("error", "unknown") for p in pages]
+        reason = "fetch_failed"
+        suggestion = "Check if the site requires JavaScript rendering (SPA) or blocks automated access."
+        if any("403" in str(e) for e in fetch_errors):
+            reason = "access_denied"
+            suggestion = "Site returned 403 Forbidden. May require authentication or block bots."
+        elif any("timeout" in str(e).lower() for e in fetch_errors):
+            reason = "timeout"
+            suggestion = "Request timed out. Site may be slow or blocking requests."
+        return jsonify({
+            "status": "error",
+            "reason": reason,
+            "message": "Failed to fetch all URLs",
+            "details": fetch_errors,
+            "suggestion": suggestion,
+        }), 400
+
+    # 1b. Encoding diagnostics
+    for p in fetched:
+        html = p["html"]
+        # Check for mojibake indicators (garbled Shift-JIS decoded as UTF-8)
+        if html and ('\ufffd' in html[:2000] or any(ord(c) > 0xFFFD for c in html[:2000])):
+            diagnostics["encoding_warning"] = "Possible encoding issues detected in fetched HTML"
 
     # 2. Compress
     compressed = []
@@ -97,12 +120,34 @@ def api_analyze():
         c = compress(p["html"])
         compressed.append(c)
 
+    # 2b. Check compressed size
+    total_compressed = sum(len(c) for c in compressed)
+    diagnostics["compressed_size_bytes"] = total_compressed
+    if total_compressed < 100:
+        diagnostics["compression_warning"] = "Compressed HTML is very small — page may lack structured content (SPA?)"
+
     # 3. Analyze with Gemini
     wantlist = data.get("wantlist")  # optional: {"field": "", ...}
     try:
         result = analyze(compressed, wantlist=wantlist)
     except Exception as e:
-        return jsonify({"error": f"AI analysis failed: {e}"}), 500
+        return jsonify({
+            "status": "error",
+            "reason": "analysis_failed",
+            "message": f"AI analysis failed: {e}",
+            "suggestion": "The AI could not extract field mappings. The page structure may be too complex or non-standard.",
+            "diagnostics": diagnostics,
+        }), 500
+
+    # 3b. Check if zero mappings returned
+    if not result.get("mappings"):
+        return jsonify({
+            "status": "error",
+            "reason": "no_fields_detected",
+            "message": "AI analysis completed but returned 0 fields",
+            "suggestion": "The page may use JavaScript rendering (SPA), have non-standard HTML structure, or encoding issues.",
+            "diagnostics": diagnostics,
+        }), 200
 
     # 4. Validate
     validated = validate(result["mappings"], pages)
@@ -138,6 +183,7 @@ def api_analyze():
     elapsed = round(time.time() - t0, 1)
 
     resp_data = {
+        "status": "ok",
         "site": site,
         "mappings": validated,
         "pages_analyzed": len(fetched),
@@ -147,6 +193,8 @@ def api_analyze():
     }
     if refined_fields:
         resp_data["refined_fields"] = refined_fields
+    if diagnostics:
+        resp_data["diagnostics"] = diagnostics
     return jsonify(resp_data)
 
 

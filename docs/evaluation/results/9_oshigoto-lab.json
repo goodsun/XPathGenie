@@ -1,0 +1,203 @@
+{
+  "site": "#9 oshigoto-lab",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 8.4,
+  "fields_total": 16,
+  "fields_perfect": 16,
+  "avg_hit_rate": 1.0,
+  "fields": {
+    "access": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='アクセス']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【電車】東葉高速鉄道　村上駅　徒歩7分",
+        "【電車】京成千葉線　京成千葉駅　徒歩3分",
+        "【電車】京成千葉線　京成千葉駅　徒歩3分"
+      ]
+    },
+    "address": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='所在地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "千葉県八千代市",
+        "千葉県千葉市中央区",
+        "千葉県千葉市中央区"
+      ]
+    },
+    "employment_type": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='勤務形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "パート"
+      ]
+    },
+    "holidays_vacations": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='休日・休暇']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "週40時間シフト制",
+        "水",
+        "水"
+      ]
+    },
+    "industry": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='業種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局（調剤専門）",
+        "調剤薬局（調剤専門）",
+        "調剤薬局（調剤専門）"
+      ]
+    },
+    "insurance": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='保険']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "健康保険 \n                                                                                            厚生",
+        "健康保険 \n                                                                                            厚生",
+        "健康保険 \n                                                                                            厚生"
+      ]
+    },
+    "job_description": {
+      "xpath": "//section[contains(@class,'work_shousai')]//strong[text()='具体的な仕事内容']/following-sibling::div[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "☆★☆★ここがオススメ！！★☆★☆\n\n・千葉県を中心に展開し、多くのお客様から高いご支持を頂いる薬局です。\n・薬局全体のチームワークも良く、風通しの良い環境です。\n・今後の薬局業界を背負っていく方たち",
+        "☆★☆★ここがオススメ！！★☆★☆\n\n・ご自身も薬剤師の女性社長！家庭を持つ女性経営者目線での店舗経営！\n・保養所（和歌山県白浜町、ハワイワイキキ、会員制リゾート施設）あり♪\n・復職制度アリ。育児や介",
+        "☆★☆★ここがオススメ！！★☆★☆\n\n・ご自身も薬剤師の女性社長！家庭を持つ女性経営者目線での店舗経営！\n・保養所（和歌山県白浜町、ハワイワイキキ、会員制リゾート施設）あり♪\n・復職制度アリ。育児や介"
+      ]
+    },
+    "job_title": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='職種名']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "一般薬剤師",
+        "一般薬剤師",
+        "一般薬剤師"
+      ]
+    },
+    "medical_subjects": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='応需科目']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "-",
+        "心療内科",
+        "心療内科"
+      ]
+    },
+    "passive_smoking_measures": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='受動喫煙防止の為の取り組み']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "受動喫煙対策 あり（屋内禁煙）",
+        "受動喫煙対策 あり（屋内禁煙）",
+        "受動喫煙対策 あり（屋内禁煙）"
+      ]
+    },
+    "position_name": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='募集役職']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "一般薬剤師",
+        "一般薬剤師",
+        "一般薬剤師"
+      ]
+    },
+    "qualifications": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='応募資格']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師免許をお持ちの方",
+        "薬剤師免許をお持ちの方",
+        "薬剤師免許をお持ちの方"
+      ]
+    },
+    "salary": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='給与・手当']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "年収400万円～600万円",
+        "年収500万円～600万円",
+        "時給2,000円～2,300円"
+      ]
+    },
+    "wage_category": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='賃金区分']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給制",
+        "月給制",
+        "時給制"
+      ]
+    },
+    "work_content": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='業務内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤業務、服薬指導、薬歴管理",
+        "調剤業務、服薬指導、薬歴管理",
+        "調剤業務、服薬指導、薬歴管理"
+      ]
+    },
+    "working_hours": {
+      "xpath": "//section[contains(@class,'work_shousai')]//th[text()='勤務曜日・時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月～金8:30～17:30",
+        "月火木金/10:00〜19:00　土/9:00〜18:30　日/10:00〜18:00",
+        "週30時間以上フルタイム可能な方希望　管理薬剤師としての勤務可能な方"
+      ]
+    }
+  }
+}

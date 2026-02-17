@@ -2,13 +2,13 @@
   "site": "#14 caresta",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 26.1,
+  "genie_time_sec": 28.1,
   "fields_total": 14,
   "fields_perfect": 9,
   "avg_hit_rate": 0.829,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class,'detailContent')]//table[.//th[normalize-space()='職種']]//th[normalize-space()='アクセス']/following-sibling::td[1]",
+      "xpath": "//div[contains(@class,'detailContent')]//table[.//th[.='仕事内容']]//th[.='アクセス']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -127,18 +127,6 @@
         null
       ]
     },
-    "required_skill": {
-      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='応募資格・条件']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "介護職員初任者研修・ホームヘルパー2級\n                        ※未経験の方もご応募可能",
-        "介護職員初任者研修・ホームヘルパー2級\n                        必須経験：介護経験(1年)",
-        "その他・不問\n                        ※無資格の方は認知症基礎研修の受講が必須\n※未経験の方もご応募可能"
-      ]
-    },
     "test_period": {
       "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='契約期間等']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -173,6 +161,18 @@
         "（１）7:00～16:00　休憩：60 分\n（２）11:00～20:00　休憩：60 分\n（３）16:00～34:00　休憩：120 分\n\n※その他のシフトあり",
         "（１）7:00～16:00　休憩：60 分\n（２）11:00～20:00　休憩：60 分\n（３）8:00～17:00　休憩：60 分",
         "（１）7:30～16:30　休憩：60 分\n（２）8:30～17:30　休憩：60 分\n（３）10:30～19:30　休憩：60 分\n（４）11:30～20:30　休憩：60 分"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='勤務曜日']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       ",
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       ",
+        "月・\t           \t               火・\t           \t               水・\t           \t               木・\t       "
       ]
     }
   }

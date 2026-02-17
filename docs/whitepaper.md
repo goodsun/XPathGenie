@@ -10,14 +10,14 @@ Structured data extraction from websites is fundamental to competitive intellige
 
 The challenges are threefold. First, **time cost**: constructing a reliable XPath mapping for a single website typically requires several hours of expert effort, involving page inspection, expression writing, edge-case handling, and cross-page validation. For organizations managing portfolios of dozens of target sites, this translates to hundreds of hours of specialized labor. Second, **tacit knowledge dependency**: effective XPath construction requires understanding of common HTML patterns (definition lists, table layouts, nested containers), site-specific idiosyncrasies, and the distinction between main content and peripheral elements such as sidebars and recommendation widgets. This knowledge is difficult to systematize. Third, **scalability**: as target sites evolve their HTML structures, previously valid XPaths break, necessitating ongoing maintenance that scales linearly with portfolio size.
 
-XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for initial mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost.
+XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for initial mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost. Our evaluation measures structural extraction stability (whether XPaths consistently return non-empty values across pages) rather than semantic correctness against ground-truth labels; human verification via the companion tool Aladdin is recommended for production deployment.
 
 This paper makes the following contributions:
 
 1. **HTML structural compression** that achieves ~97% token reduction while preserving DOM hierarchy needed for XPath construction, enabling LLM analysis within practical token budgets.
 2. **Two-tier refinement** that separates multi-match resolution into mechanical narrowing (zero AI cost) and targeted AI re-inference, minimizing unnecessary LLM invocations.
 3. **Identification of the compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
-4. **Empirical evaluation across 23 websites** demonstrating 85.1–87.3% field-level hit rate, with core-field analysis showing that schema-guided extraction (Want List) primarily expands coverage (+13.1pp) rather than improving hit rate.
+4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp.
 
 ## 2. Related Work
 
@@ -284,7 +284,7 @@ All 23 sites were evaluated using Want List mode with a unified 30-field job-lis
 | Core fields perfect (of found) | 96 / 100 (96.0%) | 108 / 121 (89.3%) |
 | All fields perfect | 298 / 350 (85.1%) | 337 / 386 (87.3%) |
 
-The Want List's primary contribution is **coverage improvement**: it detects 13.1 percentage points more core fields than Auto Discover (75.2% vs 62.1%). When the system identifies a field, Auto Discover achieves a slightly higher hit rate (96.0% vs 89.3%), likely because it only generates XPaths for fields it is confident about, while the Want List sometimes attempts to match fields that are structurally difficult to extract.
+The Want List's primary contribution is **coverage improvement**: it detects 13.1 percentage points more core fields than Auto Discover (75.2% vs 62.1%). When the system identifies a field, Auto Discover achieves a slightly higher hit rate (96.0% vs 89.3%), likely because it only generates XPaths for fields it is confident about, while the Want List sometimes attempts to match fields that are structurally difficult to extract. In information retrieval terms, schema guidance shifts the system along the precision-recall trade-off curve: Auto Discover operates conservatively with high precision and low recall, while Want List trades a small amount of per-field accuracy for substantially broader field coverage.
 
 **Schema guidance mechanism.** By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site. The coverage gain confirms that communicating extraction *intent* is a powerful lever.
 
@@ -372,7 +372,7 @@ The structural relationship is preserved—one party creates, the other validate
 
 XPathGenie's most consequential architectural decision is that the LLM is invoked exactly once (or twice, if AI refinement is triggered) per site mapping. The output is a set of reusable XPath expressions—deterministic, portable, and executable without any AI infrastructure.
 
-This stands in contrast to approaches that invoke LLMs per extraction run, where cost scales linearly with the number of pages processed. For a site with 10,000 pages, XPathGenie's approach costs the same as for 1 page: one mapping generation, then pure `lxml.xpath()` calls.
+Formally, for a site with *n* pages: traditional per-page LLM extraction incurs *O(n)* AI cost, while XPathGenie's cost model is *O(1)* AI cost (one-time mapping generation) plus *O(n)* deterministic DOM queries at zero marginal AI cost. For a site with 10,000 pages, XPathGenie's approach costs the same as for 1 page: one mapping generation, then pure `lxml.xpath()` calls.
 
 The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing resolves the majority of multi-match cases through DOM traversal (zero AI cost), reserving the more expensive AI re-inference for only the cases where value disambiguation is truly required.
 
@@ -409,7 +409,7 @@ XPathGenie demonstrates that LLM-based XPath generation, when combined with aggr
 
 A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 
-A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). This underscores that in LLM-driven code generation systems, the transformation pipeline between the LLM's input representation and the execution environment must be carefully managed.
+A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). More broadly, this illustrates a general principle: any transformation that alters surface-form input before LLM inference introduces a semantic alignment risk between inference-time representation and execution-time environment. The compression-generation gap is one instance of this class of problems, which we expect to arise in any system where LLMs generate executable code from preprocessed inputs.
 
 The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction. In practice, the end-to-end time per site—including automated generation (~20 seconds) and human verification via Aladdin (5–15 minutes)—is approximately 20 minutes, compared to the 5–6 hours typically required for manual XPath authoring.
 
@@ -447,6 +447,6 @@ The system's architectural insight—using AI for one-time mapping discovery rat
 
 16. XPath Agent. (2024). Multi-sample XPath generation via two-stage LLM pipeline. *arXiv preprint arXiv:2502.15688*.
 
-17. Al-Harbi, R., et al. (2025). Automatic XPath generation agents for vertical websites by LLMs. *Journal of King Saud University — Computer and Information Sciences*.
+17. Huang, J., & Song, J. (2025). Automatic XPath generation agents for vertical websites by LLMs. *Journal of King Saud University — Computer and Information Sciences*.
 
 18. AXE: Adaptive X-Path Extractor. (2026). DOM pruning for efficient LLM-based XPath extraction with grounded resolution. *arXiv preprint arXiv:2602.01838*.

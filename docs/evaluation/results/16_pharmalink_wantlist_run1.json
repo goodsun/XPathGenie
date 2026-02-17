@@ -2,10 +2,10 @@
   "site": "#16 pharmalink",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 27.5,
-  "fields_total": 17,
-  "fields_perfect": 13,
-  "avg_hit_rate": 0.965,
+  "genie_time_sec": 22.0,
+  "fields_total": 16,
+  "fields_perfect": 12,
+  "avg_hit_rate": 0.963,
   "fields": {
     "access": {
       "xpath": "//th[normalize-space()='アクセス']/following-sibling::td[1]",
@@ -32,7 +32,7 @@
       ]
     },
     "bonus": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='待遇']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='待遇']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 8,
       "total": 10,
@@ -68,7 +68,7 @@
       ]
     },
     "detail": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='お仕事内容']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='お仕事内容']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -79,20 +79,8 @@
         "保険調剤"
       ]
     },
-    "facility_type": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='職種']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "調剤薬局",
-        "ドラッグストア(調剤併設)",
-        "調剤薬局"
-      ]
-    },
     "holiday": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='休日休暇']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='休日休暇']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 9,
       "total": 10,
@@ -103,20 +91,20 @@
         "週休2日制 年間休日120日以上 夏季休暇3日 年末年始5日 慶弔休暇、介護休暇 子の看護休暇 介護休業 産休・育休実績あり"
       ]
     },
-    "license": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='応募資格']/following-sibling::td[1]",
+    "name": {
+      "xpath": "//div[contains(@class, 'result')]/h2",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "薬局長経験者　※マネジメント経験者優遇",
-        "調剤経験2年以上",
-        "調剤経験者"
+        "《薬局長候補募集・年収600万以上も相談可》☆東武東上線『朝霞台駅』徒歩1分/JR武蔵野線『北朝霞駅』徒歩3分☆在宅特化の薬局です！最新設備を導入し、迅速かつ安全な調剤が可能♪",
+        "《2026年3月の派遣募集》◆西武池袋線『ひばりヶ丘駅』徒歩15分◆朝はゆっくり10時から！週5日しっかり働きたい方におすすめです！",
+        "☆東京メトロ有楽町線『千川駅』徒歩8分☆在宅メインの薬局！最新設備を導入し、迅速かつ安全な調剤が可能♪"
       ]
     },
     "occupation": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='職業']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='職業']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -152,7 +140,7 @@
       ]
     },
     "price_rule": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='待遇']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='待遇']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 8,
       "total": 10,
@@ -164,7 +152,7 @@
       ]
     },
     "required_skill": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='応募資格']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='応募資格']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -188,19 +176,19 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='福利厚生']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='福利厚生（備考）']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "健康保険 厚生年金 雇用保険 労災保険 医療過誤保険",
-        "健康保険 厚生年金 雇用保険 労災保険 医療過誤保険",
-        "健康保険 厚生年金 雇用保険 労災保険 医療過誤保険"
+        "退職金（企業型確定拠出年金制度※会社負担金あり） 薬剤師賠償責任保険、業務災害保険 各種手当 結婚祝金、出産祝金、疾病見舞金、災害見舞金など 自己啓発支援制度（社外研修参加費用、研修認定薬剤師資格取得",
+        "・社保完備（勤務条件による） ・交通費全額支給 ・e-ラーニング無料 ・勤務条件によるもの：健康診断/インフルエンザ予防接種無料/スキルアップ研修/ 福利厚生倶楽部 ・産休/育休実績有 【定年】60歳",
+        "退職金（企業型確定拠出年金制度※会社負担金あり） 薬剤師賠償責任保険、業務災害保険 各種手当 結婚祝金、出産祝金、疾病見舞金、災害見舞金など 自己啓発支援制度（社外研修参加費用、研修認定薬剤師資格取得"
       ]
     },
     "working_hours": {
-      "xpath": "//table[contains(@class, 'detail-table')]//th[normalize-space()='営業時間']/following-sibling::td[1]",
+      "xpath": "//th[normalize-space()='営業時間']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

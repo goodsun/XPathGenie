@@ -2,13 +2,13 @@
   "site": "#14 caresta",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 26.1,
-  "fields_total": 14,
-  "fields_perfect": 9,
-  "avg_hit_rate": 0.829,
+  "genie_time_sec": 27.7,
+  "fields_total": 11,
+  "fields_perfect": 8,
+  "avg_hit_rate": 0.836,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class,'detailContent')]//table[.//th[normalize-space()='職種']]//th[normalize-space()='アクセス']/following-sibling::td[1]",
+      "xpath": "//div[contains(@class,'detailContent')]//table[.//th[normalize-space()='仕事内容']]//th[normalize-space()='アクセス']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -29,18 +29,6 @@
         "京都府京都市上京区",
         "京都府京都市上京区",
         "兵庫県西宮市"
-      ]
-    },
-    "bonus": {
-      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='昇給・賞与']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 5,
-      "total": 10,
-      "hit_rate": 0.5,
-      "sample_values": [
-        "＜昇給＞有\n＜賞与＞年3回",
-        null,
-        null
       ]
     },
     "contract": {
@@ -125,30 +113,6 @@
         "処遇改善手当：33,500円\n資格手当：3,000円〜10,000円\n夜勤手当：5,000円/回\n日祝手当：700円/日\n住宅手当：7,500円　※世帯主のみ\n\n皆勤手当：10,000円\n（遅刻欠勤が",
         null,
         null
-      ]
-    },
-    "required_skill": {
-      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='応募資格・条件']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "介護職員初任者研修・ホームヘルパー2級\n                        ※未経験の方もご応募可能",
-        "介護職員初任者研修・ホームヘルパー2級\n                        必須経験：介護経験(1年)",
-        "その他・不問\n                        ※無資格の方は認知症基礎研修の受講が必須\n※未経験の方もご応募可能"
-      ]
-    },
-    "test_period": {
-      "xpath": "//div[contains(@class,'detailContent')]//th[normalize-space()='契約期間等']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 9,
-      "total": 10,
-      "hit_rate": 0.9,
-      "sample_values": [
-        "期間の定めなし\n\t\t   \t\t試用期間あり",
-        "3～6ヶ月以内（更新あり）",
-        "3～6ヶ月以内（更新あり）"
       ]
     },
     "welfare_program": {

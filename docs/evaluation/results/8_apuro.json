@@ -2,10 +2,10 @@
   "site": "#8 apuro",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 23.9,
-  "fields_total": 13,
+  "genie_time_sec": 20.3,
+  "fields_total": 12,
   "fields_perfect": 10,
-  "avg_hit_rate": 0.808,
+  "avg_hit_rate": 0.867,
   "fields": {
     "access": {
       "xpath": "//section[contains(@class,'c-search')]//dt[text()='アクセス']/following-sibling::dd[1]",
@@ -19,79 +19,7 @@
         "ニューシャトル：吉野原"
       ]
     },
-    "description": {
-      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class,'c-search_list_txt')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "■蒲郡駅徒歩13分の調剤薬局で管理薬剤師の募集です\n■総合門前のため、様々な処方を経験することができます\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注い",
-        "■春日井駅からバスで6分の調剤薬局で管理薬剤師の募集です\n■同ビル内の心療内科・精神科を応需\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注いでいます。 ",
-        "■医薬品の卸売業・医療用機器の販売を行う企業にて品質管理スタッフ募集★\n■医療と健康を支える製品づくりを通じて、社会に貢献する中小企業です。\n■【季節商品の開発】にも力を入れており、品質管理が今後の事"
-      ]
-    },
-    "employment_type": {
-      "xpath": "//section[contains(@class,'c-search')]//[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "features": {
-      "xpath": "//section[contains(@class,'c-search')]//ul[contains(@class,'c-search_list_row_tag')][1]//a",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "#18時までの職場",
-        "#駅チカ",
-        "#年収600万円以上可"
-      ]
-    },
-    "image_url": {
-      "xpath": "//section[contains(@class,'c-search')]//img/@src",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "https://www.apuro.com/assets/img/job/job/jobThum-1.jpg",
-        "https://www.apuro.com/assets/img/job/job/jobThum-2.jpg",
-        "https://www.apuro.com/assets/img/job/job/jobThum-3.jpg"
-      ]
-    },
-    "industry": {
-      "xpath": "//section[contains(@class,'c-search')]//[2]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "job_id": {
-      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class,'c-search_list_head_right_sub')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "更新日：2026.02.16　\n                                                        JOB ID：223771",
-        "更新日：2026.02.16　\n                                                        JOB ID：223772",
-        "更新日：2026.02.16　\n                                                        JOB ID：223773"
-      ]
-    },
-    "location": {
+    "address": {
       "xpath": "//section[contains(@class,'c-search')]//dt[text()='勤務地']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -103,19 +31,91 @@
         "埼玉県 さいたま市北区"
       ]
     },
-    "prescription_subjects": {
-      "xpath": "//section[contains(@class,'c-search')]//dt[text()='処方箋科目']/following-sibling::dd[1]",
+    "caractoristic": {
+      "xpath": "//section[contains(@class,'c-search')]//div[contains(@class, '_omit-btn-view-wrap')]",
       "confidence": 1.0,
-      "hits": 5,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.5,
+      "hit_rate": 1.0,
       "sample_values": [
-        "総合科目",
-        "精神科、心療内科",
+        "■蒲郡駅徒歩13分の調剤薬局で管理薬剤師の募集です\n■総合門前のため、様々な処方を経験することができます\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注い",
+        "■春日井駅からバスで6分の調剤薬局で管理薬剤師の募集です\n■同ビル内の心療内科・精神科を応需\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注いでいます。 ",
+        "■医薬品の卸売業・医療用機器の販売を行う企業にて品質管理スタッフ募集★\n■医療と健康を支える製品づくりを通じて、社会に貢献する中小企業です。\n■【季節商品の開発】にも力を入れており、品質管理が今後の事"
+      ]
+    },
+    "contract": {
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class, 'c-search_head_list_cont')][1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
+      ]
+    },
+    "detail": {
+      "xpath": "//section[contains(@class,'c-search')]//div[contains(@class, '_omit-btn-view-wrap')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "■蒲郡駅徒歩13分の調剤薬局で管理薬剤師の募集です\n■総合門前のため、様々な処方を経験することができます\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注い",
+        "■春日井駅からバスで6分の調剤薬局で管理薬剤師の募集です\n■同ビル内の心療内科・精神科を応需\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注いでいます。 ",
+        "■医薬品の卸売業・医療用機器の販売を行う企業にて品質管理スタッフ募集★\n■医療と健康を支える製品づくりを通じて、社会に貢献する中小企業です。\n■【季節商品の開発】にも力を入れており、品質管理が今後の事"
+      ]
+    },
+    "facility_type": {
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class, 'c-search_head_list_cont')][2]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "調剤薬局",
+        "調剤薬局",
+        "企業"
+      ]
+    },
+    "name": {
+      "xpath": "//section[contains(@class,'c-search')]//h1[contains(@class, 'c-search_list_ttl')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【蒲郡市】蒲郡駅最寄り/週休2日制/総合門前/福利厚生◎充実の教育研修でスキルアップ",
+        "【春日井市】春日井駅最寄り/週休2日制/精神科応需/福利厚生◎充実の教育研修でスキルアップ",
+        "【さいたま市北区/吉野原駅】年休120日～／18時退勤／グローバルな物流業務を支えるスタッフを募集！"
+      ]
+    },
+    "original_id": {
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(text(), 'JOB ID：')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
         null
       ]
     },
-    "salary": {
+    "position": {
+      "xpath": "//section[contains(@class,'c-search')]//li/a[contains(text(), '管理職')]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職"
+      ]
+    },
+    "price": {
       "xpath": "//section[contains(@class,'c-search')]//dt[text()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -127,8 +127,8 @@
         "【年収】376万円～800万円\n【月収】23万円～"
       ]
     },
-    "title": {
-      "xpath": "//section[contains(@class,'c-search')]//h1[contains(@class,'c-search_list_ttl')]",
+    "title_original": {
+      "xpath": "//section[contains(@class,'c-search')]//h1[contains(@class, 'c-search_list_ttl')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -137,18 +137,6 @@
         "【蒲郡市】蒲郡駅最寄り/週休2日制/総合門前/福利厚生◎充実の教育研修でスキルアップ",
         "【春日井市】春日井駅最寄り/週休2日制/精神科応需/福利厚生◎充実の教育研修でスキルアップ",
         "【さいたま市北区/吉野原駅】年休120日～／18時退勤／グローバルな物流業務を支えるスタッフを募集！"
-      ]
-    },
-    "update_date": {
-      "xpath": "//section[contains(@class,'c-search')]//time/@datetime",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "2026-02-16",
-        "2026-02-16",
-        "2026-02-16"
       ]
     },
     "working_hours": {

@@ -2,249 +2,141 @@
   "site": "#10 yakuzaishisyusyoku",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 25.3,
-  "fields_total": 20,
-  "fields_perfect": 7,
-  "avg_hit_rate": 0.385,
+  "genie_time_sec": 20.1,
+  "fields_total": 11,
+  "fields_perfect": 9,
+  "avg_hit_rate": 0.964,
   "fields": {
     "address": {
-      "xpath": "//span[contains(@class,'area')]",
+      "xpath": "//div[contains(@class,'detail_box')]//span[contains(@class, 'area')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "ç¥å¥å·çæ¨ªæµå¸æ¸¯ååº",
-        "ä¸éçåçå©é¡å¾¡æµçº",
-        "æ±äº¬é½çºç°å¸"
+        "神奈川県横浜市港北区",
+        "三重県南牟婁郡御浜町",
+        "東京都町田市"
       ]
     },
-    "application_requirements": {
-      "xpath": "//th[text()='応募資格']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "business_hours": {
-      "xpath": "//th[text()='営業時間']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "car_commuting": {
-      "xpath": "//th[text()='車通勤']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "company_info": {
-      "xpath": "//th[text()='企業情報']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "employment_status": {
-      "xpath": "//div[contains(@class,'detail_box')]//div[contains(@class,'meta_area')]/span[contains(@class,'status')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "æ­£ç¤¾å¡",
-        "æ­£ç¤¾å¡",
-        "æ­£ç¤¾å¡"
-      ]
-    },
-    "employment_type": {
-      "xpath": "//th[text()='雇用形態']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "facility_name": {
-      "xpath": "//span[contains(@class,'kyujin_name')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "éå¬é",
-        "éå¬é",
-        "éå¬é"
-      ]
-    },
-    "facility_type": {
-      "xpath": "//th[text()='施設区分']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "features": {
-      "xpath": "//div[contains(@class,'detail_box')]//div[contains(@class,'cate_feature')]/span",
+    "caractoristic": {
+      "xpath": "//div[contains(@class,'detail_box')]//div[contains(@class, 'cate_feature')]",
       "confidence": 1.0,
       "hits": 7,
       "total": 10,
       "hit_rate": 0.7,
       "sample_values": [
-        "é§è¿ï¼5åä»¥åï¼",
-        "å¹´éä¼æ¥120æ¥ä»¥ä¸",
-        "é§è¿ï¼5åä»¥åï¼"
+        "駅近（5分以内）\n            年間休日120日以上",
+        "年間休日120日以上\n            車通勤OK\n            高額年収（600万以上）",
+        "駅近（5分以内）\n            在宅業務あり\n            車通勤OK"
       ]
     },
-    "job_description": {
-      "xpath": "//th[text()='仕事内容']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "job_number": {
-      "xpath": "//span[contains(@class,'kyujin_no')]",
+    "contract": {
+      "xpath": "//div[contains(@class,'detail_box')]//th[text()='雇用形態']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "ãä»äºNo.22500",
-        "ãä»äºNo.22504",
-        "ãä»äºNo.33326"
+        "正社員",
+        "正社員",
+        "正社員"
       ]
     },
-    "job_title": {
-      "xpath": "//p[contains(@class,'kyujin_title')]",
+    "detail": {
+      "xpath": "//div[contains(@class,'detail_box')]//th[text()='仕事内容']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "ãæ°æ¨ªæµé§5åãç·åçé¢éå/å¹´éä¼æ¥120æ¥ä»¥ä¸ã§ãã©ã¤ãã¼ãåå®ï¼ï¼",
-        "ãä¸éçãç®¡çè¬å¤å¸«åéã»ç ä¿®å¶åº¦åå®ãå¼ã£è¶ãä¼ç¤¾è² æã»ç¤¾å®å¶åº¦æ",
-        "ã¤ããéé§ããå¾æ­©3åã®å¨å®çé¤æ¯æ´ã«ç¹åããèª¿å¤è¬å±ã§ãã"
+        "調剤 、鑑査 、服薬指導 、在庫管理 、薬歴管理等が主な業務です",
+        "調剤 、鑑査 、服薬指導 、在庫管理 、薬歴管理等が主な業務です",
+        "調剤 、鑑査 、在宅支援、服薬指導 、在庫管理 、薬歴管理等が主な業務です"
       ]
     },
-    "nearest_station": {
-      "xpath": "//th[text()='最寄駅']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "prescription_count": {
-      "xpath": "//th[text()='処方箋枚数']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "salary": {
-      "xpath": "//span[contains(@class,'pay')]",
+    "facility_name": {
+      "xpath": "//div[contains(@class,'detail_box')]//span[contains(@class, 'kyujin_name')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "450ä¸åï½550ä¸å",
-        "600ä¸åï½700ä¸å",
-        "500ä¸åï½500ä¸å"
+        "非公開",
+        "非公開",
+        "非公開"
       ]
     },
-    "staff_composition": {
-      "xpath": "//th[text()='人員構成']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "store_info": {
-      "xpath": "//th[text()='店舗情報']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "update_date": {
-      "xpath": "//div[contains(@class,'detail_box')]//div[contains(@class,'meta_area')]/span[contains(@class,'date_time')]",
+    "facility_type": {
+      "xpath": "//div[contains(@class,'detail_box')]//th[text()='施設区分']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "2023å¹´04æ27æ¥",
-        "2023å¹´06æ06æ¥",
-        "2023å¹´09æ05æ¥"
+        "調剤薬局",
+        "調剤薬局",
+        "調剤薬局"
+      ]
+    },
+    "license": {
+      "xpath": "//div[contains(@class,'detail_box')]//th[text()='応募資格']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "薬剤師免許",
+        "薬剤師免許",
+        "薬剤師免許"
+      ]
+    },
+    "original_id": {
+      "xpath": "//div[contains(@class,'detail_box')]//span[contains(@class, 'kyujin_no')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "お仕事No.22500",
+        "お仕事No.22504",
+        "お仕事No.33326"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'detail_box')]//span[contains(@class, 'pay')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "450万円～550万円",
+        "600万円～700万円",
+        "500万円～500万円"
+      ]
+    },
+    "station": {
+      "xpath": "//div[contains(@class,'detail_box')]//th[span[contains(@class, 'cate_2') and text()='最寄駅']]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 9,
+      "total": 10,
+      "hit_rate": 0.9,
+      "sample_values": [
+        "横浜市営地下鉄ブルーライン(あざみ野－関内) 新横浜駅",
+        "阿田和駅",
+        "東急田園都市線 つくし野駅"
       ]
     },
     "working_hours": {
-      "xpath": "//th[text()='勤務時間']/following-sibling::td[1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class,'detail_box')]//th[text()='就業時間']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "週40時間のシフト制\n※一人薬剤師の時間帯があります",
+        "シフト制",
+        "週40時間シフト制"
       ]
     }
   }

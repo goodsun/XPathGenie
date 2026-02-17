@@ -2,13 +2,13 @@
   "site": "#26 firstnavi",
   "urls_total": 5,
   "urls_fetched": 5,
-  "genie_time_sec": 12.8,
+  "genie_time_sec": 12.3,
   "fields_total": 1,
   "fields_perfect": 1,
   "avg_hit_rate": 1.0,
   "fields": {
-    "description": {
-      "xpath": "//article[@id='recommend_points']//div[contains(@class,'row')]//p[contains(@class,'grad_inner')]",
+    "caractoristic": {
+      "xpath": "//article[@id='recommend_points']//p[contains(@class, 'grad_inner')]",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,

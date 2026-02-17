@@ -2,141 +2,141 @@
   "site": "#21 MRT-nurse",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 31.9,
+  "genie_time_sec": 42.8,
   "fields_total": 11,
   "fields_perfect": 11,
   "avg_hit_rate": 1.0,
   "fields": {
-    "arbeit_job_count": {
-      "xpath": "//li[contains(@data-tab, 'arbeit')]//p",
+    "address": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[2]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "[3084件]",
-        "[3084件]",
-        "[3087件]"
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区"
       ]
     },
-    "duties": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[3]/span",
+    "area": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[2]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs",
-        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs",
-        "介助業務・受持業務（バイタルチェック、排泄介助、食事介助、入浴介助、環境整備）など。電子カルテ SEC・MIRAIs"
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区"
       ]
     },
-    "fulltime_job_count": {
-      "xpath": "//li[contains(@data-tab, 'fulltime')]//p",
+    "caractoristic": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[last()-1]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "[3811件]",
-        "[3811件]",
-        "[3811件]"
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務"
       ]
     },
-    "job_type": {
-      "xpath": "//li[contains(@class, '-active')]",
+    "city": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[2]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "単発アルバイトの求人[3084件]",
-        "単発アルバイトの求人[3084件]",
-        "単発アルバイトの求人[3087件]"
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区"
       ]
     },
-    "job_url": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]/@href",
+    "detail": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[last()-1]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "/nurse/arbeit/909946",
-        "/nurse/arbeit/909946",
-        "/nurse/arbeit/909946"
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務"
       ]
     },
-    "list_title": {
-      "xpath": "//h2[contains(@class, 'text-A0C8FA')][1]",
+    "name": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[last()-1]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "看護師バイト・単発アルバイトの新着求人",
-        "看護師バイト・単発アルバイトの新着求人",
-        "看護師バイト・単発アルバイトの新着求人"
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務",
+        "健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務"
       ]
     },
-    "location": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[2]/span",
+    "original_id": {
+      "xpath": "//a[contains(@href, '/arbeit/')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "東京都杉並区",
-        "東京都杉並区",
-        "東京都杉並区"
+        "更新日: 2026/02/172026/02/17(火) 11:00-18:45神奈川県横浜市磯子区健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務時",
+        "更新日: 2026/02/172026/02/17(火) 11:00-18:45神奈川県横浜市磯子区健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務時",
+        "更新日: 2026/02/172026/02/17(火) 11:00-18:45神奈川県横浜市磯子区健診（院内）・採血・心電図・外来業務・採血・心電図・カルテ廻し・簡単な清掃業務・発熱外来・医療雑務時"
       ]
     },
-    "parttime_job_count": {
-      "xpath": "//li[contains(@data-tab, 'parttime')]//p",
+    "prefecture": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[2]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "[1260件]",
-        "[1260件]",
-        "[1260件]"
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区",
+        "神奈川県横浜市磯子区"
       ]
     },
-    "salary": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[4]/span",
+    "price": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[last()]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "一回 20,000円",
-        "一回 20,000円",
-        "一回 20,000円"
+        "時給 2,000円 x 5時間45分",
+        "時給 2,000円 x 5時間45分",
+        "時給 2,000円 x 5時間45分"
       ]
     },
-    "updated_date": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'ml-auto')]",
+    "title_original": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[1]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "更新日: 2026/02/16",
-        "更新日: 2026/02/16",
-        "更新日: 2026/02/16"
+        "2026/02/17(火) 11:00-18:45",
+        "2026/02/17(火) 11:00-18:45",
+        "2026/02/17(火) 11:00-18:45"
       ]
     },
-    "work_date_time": {
-      "xpath": "//a[contains(@href, '/nurse/arbeit/')]//div[contains(@class, 'w-11/12')]/div[1]/span",
+    "working_hours": {
+      "xpath": "//a[contains(@href, '/arbeit/')]/div[contains(@class, 'w-11/12')]/div[1]/span",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "2026/02/17(火) 08:45-17:45",
-        "2026/02/17(火) 08:45-17:45",
-        "2026/02/17(火) 08:45-17:45"
+        "2026/02/17(火) 11:00-18:45",
+        "2026/02/17(火) 11:00-18:45",
+        "2026/02/17(火) 11:00-18:45"
       ]
     }
   }

@@ -2,49 +2,85 @@
   "site": "#12 bestcareer",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 19.7,
-  "fields_total": 20,
-  "fields_perfect": 19,
-  "avg_hit_rate": 0.95,
+  "genie_time_sec": 18.9,
+  "fields_total": 21,
+  "fields_perfect": 17,
+  "avg_hit_rate": 0.81,
   "fields": {
-    "application_requirements": {
-      "xpath": "//th[text()='応募資格／応募方法']/following-sibling::td[1]",
+    "address": {
+      "xpath": "//th[text()='勤務地']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "area": {
+      "xpath": "//th[text()='勤務地']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "bonus": {
+      "xpath": "//th[text()='こだわり条件']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "薬剤師国家資格",
-        "薬剤師国家資格",
-        "薬剤師国家資格"
+        "住宅補助あり・借上げ社宅あり,新卒可,一人薬剤師,車通勤OK",
+        "住宅補助あり・借上げ社宅あり,新卒可,車通勤OK",
+        "18時まで閉局,年収600万円以上可,住宅補助あり・借上げ社宅あり,年収700万円以上可,一人薬剤師,車通勤OK"
       ]
     },
-    "benefits": {
-      "xpath": "//th[text()='福利厚生']/following-sibling::td[1]",
+    "caractoristic": {
+      "xpath": "//div[@class='copy']/h3",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "退職金,社会保険,定年制度,学会参加補助,交通費支給,損害賠償保険,住宅手当,再雇用制度",
-        "退職金,社会保険,定年制度,学会参加補助,交通費支給,損害賠償保険,住宅手当,再雇用制度",
-        "退職金,社会保険,交通費支給,住宅手当"
+        "土日祝休み★医療費免除制度など福利厚生が充実！運営母体が公的病院ですので、安心して長くお勤め頂ける環境です♪",
+        "入社初年度より20日間の有給休暇付与！異動や転勤の心配は不要です★土日祝お休み◇福利厚生が充実で安心できますね♪",
+        "高額！年収700万円まで★17:30終業でプライベートも充実可能です◇住宅補助など福利厚生も整っています！"
       ]
     },
-    "company_website": {
-      "xpath": "//th[text()='会社HP']/following-sibling::td[1]/a",
+    "city": {
+      "xpath": "//th[text()='勤務地']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "contract": {
+      "xpath": "//th[text()='雇用形態']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "https://medrt.co.jp/",
-        "https://medrt.co.jp/",
-        "https://medrt.co.jp/"
+        "正社員",
+        "正社員",
+        "正社員"
       ]
     },
-    "description": {
-      "xpath": "//div[contains(@class,'spec_detail')]/h4",
+    "detail": {
+      "xpath": "//div[@class='spec_detail']/h4",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -55,16 +91,16 @@
         "・薬剤師1名体制の病院です・処方箋は入院患者 ・日帰り手術 の対応のみ・最大700万円まで相談可能・17：30終業★ 静岡県の病院求人のお預かりが多数あります。　病院への転職をお考えの方はMRT株式会"
       ]
     },
-    "employment_type": {
-      "xpath": "//th[text()='雇用形態']/following-sibling::td[1]",
+    "facility_name": {
+      "xpath": "//th[text()='勤務先名']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "正社員",
-        "正社員",
-        "正社員"
+        "法人名非公開",
+        "法人名非公開",
+        "法人名非公開"
       ]
     },
     "facility_type": {
@@ -79,7 +115,7 @@
         "クリニック"
       ]
     },
-    "holidays_vacations": {
+    "holiday": {
       "xpath": "//th[text()='休日・休暇']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -91,32 +127,20 @@
         "【休日】４週６休制 土曜半日、日曜・祝日【休暇】年末年始 5 日間、夏季休暇 3 日間"
       ]
     },
-    "job_duties": {
-      "xpath": "//th[text()='業務内容']/following-sibling::td[1]",
+    "license": {
+      "xpath": "//th[text()='応募資格／応募方法']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "調剤,監査,服薬指導,入院調剤,病棟業務,DI,外来調剤,混注業務,当直",
-        "調剤,監査,服薬指導,入院調剤,病棟業務,DI,外来調剤,混注業務,当直",
-        "調剤,監査,服薬指導"
+        "薬剤師国家資格",
+        "薬剤師国家資格",
+        "薬剤師国家資格"
       ]
     },
-    "job_id": {
-      "xpath": "//th[text()='JOB ID']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "175137",
-        "175140",
-        "175142"
-      ]
-    },
-    "job_title": {
-      "xpath": "//div[contains(@class,'detail_title2')]/h2",
+    "name": {
+      "xpath": "//div[@class='detail_title2']/h2",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -127,7 +151,7 @@
         "一般薬剤師"
       ]
     },
-    "job_type": {
+    "occupation": {
       "xpath": "//th[text()='職種']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -139,20 +163,20 @@
         "一般薬剤師"
       ]
     },
-    "listing_company": {
-      "xpath": "//th[text()='掲載企業']/following-sibling::td[1]",
+    "original_id": {
+      "xpath": "//th[text()='JOB ID']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "MRT株式会社　東京本社（有料職業紹介事業許可番号13-ユ-010403）",
-        "MRT株式会社　東京本社（有料職業紹介事業許可番号13-ユ-010403）",
-        "MRT株式会社　東京本社（有料職業紹介事業許可番号13-ユ-010403）"
+        "175137",
+        "175140",
+        "175142"
       ]
     },
-    "location": {
-      "xpath": "//th[text()=' 勤務地 ']/following-sibling::td[1]",
+    "prefecture": {
+      "xpath": "//th[text()='勤務地']/following-sibling::td[1]",
       "confidence": 0.0,
       "hits": 0,
       "total": 10,
@@ -163,43 +187,7 @@
         null
       ]
     },
-    "phone_number": {
-      "xpath": "//th[text()='電話番号']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "050-5530-8156",
-        "050-5530-8156",
-        "050-5530-8156"
-      ]
-    },
-    "prescriptions_per_day": {
-      "xpath": "//th[text()='処方箋枚数／日']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "0",
-        "0",
-        "10"
-      ]
-    },
-    "relocation": {
-      "xpath": "//th[text()='転勤の有無']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "なし",
-        "なし",
-        "なし"
-      ]
-    },
-    "salary": {
+    "price": {
       "xpath": "//th[text()='給与']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -211,16 +199,52 @@
         "年収650〜700万円"
       ]
     },
-    "special_conditions": {
-      "xpath": "//th[text()='こだわり条件']/following-sibling::td[1]",
+    "required_skill": {
+      "xpath": "//th[text()='応募資格／応募方法']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "住宅補助あり・借上げ社宅あり,新卒可,一人薬剤師,車通勤OK",
-        "住宅補助あり・借上げ社宅あり,新卒可,車通勤OK",
-        "18時まで閉局,年収600万円以上可,住宅補助あり・借上げ社宅あり,年収700万円以上可,一人薬剤師,車通勤OK"
+        "薬剤師国家資格",
+        "薬剤師国家資格",
+        "薬剤師国家資格"
+      ]
+    },
+    "staff_comment": {
+      "xpath": "//div[@class='spec_detail_pr']/p[@class='pr']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "〜担当コンサルタントより〜・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・急性期と回復期の病棟のため、ほどよい忙しさの中で勤務することができます。・月の残業時間は平均10時間",
+        "〜担当コンサルタントより〜・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・異動や転勤の心配はありません！希望がない限りは無理に転勤となることはありませんのでご安心ください。・",
+        "〜担当コンサルタントより〜・薬剤師1名体制の病院です・処方箋は入院患者 ・日帰り手術 の対応のみ・最大700万円まで相談可能・17：30終業★ 静岡県の病院求人のお預かりが多数あります。　病院への転職"
+      ]
+    },
+    "title_original": {
+      "xpath": "//div[@class='detail_title2']/h2",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "一般薬剤師",
+        "一般薬剤師",
+        "一般薬剤師"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//th[text()='福利厚生']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "退職金,社会保険,定年制度,学会参加補助,交通費支給,損害賠償保険,住宅手当,再雇用制度",
+        "退職金,社会保険,定年制度,学会参加補助,交通費支給,損害賠償保険,住宅手当,再雇用制度",
+        "退職金,社会保険,交通費支給,住宅手当"
       ]
     },
     "working_hours": {
@@ -233,18 +257,6 @@
         "平日8：30〜17：00、17：00〜8：30　土曜8：30〜12：30",
         "平日8：30〜17：00、17：00〜8：30　土曜8：30〜12：30",
         "8：30〜17：30、8：30〜12：30"
-      ]
-    },
-    "workplace_name": {
-      "xpath": "//th[text()='勤務先名']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "法人名非公開",
-        "法人名非公開",
-        "法人名非公開"
       ]
     }
   }

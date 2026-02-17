@@ -2,177 +2,81 @@
   "site": "#6 phget",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 18.5,
-  "fields_total": 14,
-  "fields_perfect": 2,
-  "avg_hit_rate": 0.143,
+  "genie_time_sec": 12.8,
+  "fields_total": 6,
+  "fields_perfect": 6,
+  "avg_hit_rate": 1.0,
   "fields": {
-    "access": {
-      "xpath": "//dt[text()='アクセス']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "benefits": {
-      "xpath": "//dt[text()='福利厚生']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "capital": {
-      "xpath": "//dt[text()='資本金']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "company_name": {
-      "xpath": "//dt[text()='法人名']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "establishment_date": {
-      "xpath": "//dt[text()='設立']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "features": {
-      "xpath": "//dt[text()='特徴']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "holidays": {
-      "xpath": "//dt[text()='休日']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "job_category": {
-      "xpath": "//div[@id='company']//dt[contains(@class,'companydt_o')]/span",
+    "detail": {
+      "xpath": "//div[contains(@class,'contBox')]//th[text()='業務内容']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "調剤薬局",
-        "病院",
-        "調剤薬局"
+        "具体的な業務内容の調査も可能です！",
+        "院内調剤、服薬指導",
+        "調剤業務、服薬指導、薬歴管理など。"
       ]
     },
-    "job_description": {
-      "xpath": "//dt[text()='業務内容']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "job_title": {
-      "xpath": "//div[@id='company']//h2",
+    "holiday": {
+      "xpath": "//div[contains(@class,'contBox')]//th[contains(.,'勤務時間') and contains(.,'休日情報')]/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "【広島県】 希望条件での調査依頼はこちら",
-        "【神戸市 (兵庫県)】 会員限定求人",
-        "【水戸市 (茨城県)】 ローズマリー薬局"
+        "勤務時間: 「19時までには退社」などご希望を！\n        \n\t\t\n        \n          残業時間: 現在の残業時間もお調べ可能！\n        \n\t\t\n        \n  ",
+        "勤務時間: 変形1ヶ月単位（9:00～17:00、9:00～13:00）\n夜勤など：なし。\n        \n\t\t\n        \n          残業時間: なし\n        \n\t\t\n  ",
+        "勤務時間: 勤務時間は店舗による\n        \n\t\t\n        \n          残業時間: なし\n        \n\t\t\n        \n          休日: 週休2日（月曜、"
       ]
     },
-    "requirements": {
-      "xpath": "//dt[text()='応募資格']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
+    "price": {
+      "xpath": "//div[contains(@class,'contBox')]//th[text()='給与情報']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "450～700万円\n        \n        \n        \n        \n        \n          時給: 2,000～2,700円",
+        "退職金: あり",
+        "500～600万円\n        \n        \n        \n        \n        \n        \n          退職金: あり"
       ]
     },
-    "salary": {
-      "xpath": "//dt[text()='給与']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
+    "required_skill": {
+      "xpath": "//div[contains(@class,'contBox')]//th[text()='応募要項']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "新卒・未経験: 可",
+        "必須経験: 薬剤師免許必須雇用形態：正社員\n\t\t\n\t\t\n\t\t\n\t\t\t注目人材: 新卒、第二新卒、資格取得見込みの方もご相談ください。",
+        "必須経験: 薬剤師免許必須雇用形態：正社員\n\t\t\n\t\t\n\t\t\n\t\t\t注目人材: 新卒、第二新卒、資格取得見込みの方もご相談ください。"
       ]
     },
-    "work_location": {
-      "xpath": "//dt[text()='勤務地']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'contBox')]//th[contains(.,'保険') and contains(.,'福利厚生')]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "託児所: お調べ可能です！",
+        "加入保険: 雇用,労災,健康,厚生\n        \n        \n          福利厚生: 送迎バス、社員食堂利用可（1食250円）両立支援系：業務時間中は院内保育室利用可能\n      ",
+        "加入保険: 雇用,労災,健康,厚生\n        \n        \n          福利厚生: 制服貸与\n        \n        \n        \n          定年: なし"
       ]
     },
     "working_hours": {
-      "xpath": "//dt[text()='勤務時間']/following-sibling::dd[1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//div[contains(@class,'contBox')]//th[contains(.,'勤務時間') and contains(.,'休日情報')]/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "勤務時間: 「19時までには退社」などご希望を！\n        \n\t\t\n        \n          残業時間: 現在の残業時間もお調べ可能！\n        \n\t\t\n        \n  ",
+        "勤務時間: 変形1ヶ月単位（9:00～17:00、9:00～13:00）\n夜勤など：なし。\n        \n\t\t\n        \n          残業時間: なし\n        \n\t\t\n  ",
+        "勤務時間: 勤務時間は店舗による\n        \n\t\t\n        \n          残業時間: なし\n        \n\t\t\n        \n          休日: 週休2日（月曜、"
       ]
     }
   }

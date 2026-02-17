@@ -2,13 +2,13 @@
   "site": "#18 nikken-care",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 10.3,
-  "fields_total": 17,
-  "fields_perfect": 17,
+  "genie_time_sec": 15.3,
+  "fields_total": 12,
+  "fields_perfect": 12,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
-      "xpath": "//dt[text()='最寄駅']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='最寄駅']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -19,20 +19,20 @@
         "東武スカイツリーライン 東向島駅より徒歩9分"
       ]
     },
-    "benefits": {
-      "xpath": "//dt[text()='福利厚生・手当']/following-sibling::dd[1]",
+    "address": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='勤務地']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+        "東京都稲城市",
+        "福島県郡山市",
+        "東京都墨田区"
       ]
     },
-    "employment_type": {
-      "xpath": "//dt[text()='雇用形態']/following-sibling::dd[1]",
+    "contract": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='雇用形態']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -43,32 +43,8 @@
         "派遣社員"
       ]
     },
-    "facility_capacity": {
-      "xpath": "//h2[text()='施設定員数・床数']/following-sibling::p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "381床",
-        "18名",
-        "29名"
-      ]
-    },
-    "highlights": {
-      "xpath": "//h2[text()='おすすめポイント']/following-sibling::div[contains(@class,'pointBox')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "★ポイント①★\n若葉台駅・はるひ野駅・南多摩駅から送迎バスあり♪\n\n★ポイント②★\n無資格・未経験OK☆教育・研修制度が充実！\n\n★ポイント③★\n職場環境良好♪チームで助け合いながら働く環境◎",
-        "★ポイント①★\n無料駐車場完備！通勤の負担を軽減◎\n\n★ポイント②★\n週2日OK！ご都合に合わせて無理なく働けます♪",
-        "★ポイント①★\n東向島駅から徒歩9分！通勤便利◎\n\n★ポイント②★\n日勤のみ！実働7時間で働きやすい♪"
-      ]
-    },
-    "holidays": {
-      "xpath": "//dt[text()='休日']/following-sibling::dd[1]",
+    "holiday": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='休日']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -79,92 +55,8 @@
         "◆シフト制（日曜固定休み）"
       ]
     },
-    "interview_location": {
-      "xpath": "//dt[text()='面接・登録場所']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　立川事業所\n〒190-0022\n東京都立川市錦町1-12-14\nフリーコール：0120-934-20",
-        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　郡山オフィス\n〒963-8022\n福島県郡山市西ノ内二丁目12番8号　古川ビル\nフリーコール：012",
-        "※TEL登録・WEB登録もOKです！お気軽にご相談ください♪\n\n【登録場所】\n■日研メディカルケア　新宿オフィス\n〒160-0023\n東京都新宿区西新宿3-2-7　KDX新宿ビル10F\nフリーコール："
-      ]
-    },
-    "job_category": {
-      "xpath": "//p[contains(@class,'address')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "看護助手（病院）",
-        "介護職（グループホーム）",
-        "介護職（デイサービス）"
-      ]
-    },
-    "job_description": {
-      "xpath": "//h2[text()='職務内容']/following-sibling::p[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "♪稲城市にある病院でのお仕事♪\n\n【お仕事内容】\n病院における看護助手業務全般\n・身体介助（食事、入浴、排泄介助等）\n・口腔ケア\n・シーツ交換\n・患者さまの移動の手伝い\n・洗濯、清掃\n・配膳下膳\n・看",
-        "♪郡山市にあるグループホームでのお仕事♪\n\n【お仕事内容】\nグループホームにおける介護業務全般\n・食事・入浴・排泄等の介助\n・季節のイベントの運営\n・居室の環境整備\nなど\n\nTEL登録・WEB登録もO",
-        "♪墨田区にあるデイサービスでのお仕事♪\n\n【お仕事内容】\nデイサービスにおける介護業務全般\n・生活介助・身体介助\n・レクリエーション業務\n・見守り業務\nなど\n\nTEL登録・WEB登録もOK！\n★☆Qu"
-      ]
-    },
-    "job_id": {
-      "xpath": "//p[contains(@class,'id')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "求人先ID:【TC】TC_na2020(SY)",
-        "求人先ID:【KO】KO_S1103(SY)",
-        "求人先ID:【SN】SN_S1104(SY)"
-      ]
-    },
-    "job_title": {
-      "xpath": "//h1",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "看護助手｜マイカー通勤OK☆3駅から送迎バス◎職場環境良好！資格・経験不問｜病院（稲城市）",
-        "夜勤専従☆週2日～◎無料駐車場完備！資格なし・ブランクOK｜グループホーム/郡山市",
-        "東向島駅より徒歩9分｜日勤のみ☆日曜固定休み♪資格＆経験を活かす！デイサービス"
-      ]
-    },
-    "job_type_detail": {
-      "xpath": "//dt[text()='職種']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "看護助手（病院）無資格未経験OK",
-        "介護職（グループホーム）資格なしOK/要経験",
-        "介護職（デイサービス）要資格/要経験"
-      ]
-    },
-    "posted_date": {
-      "xpath": "//p[contains(@class,'time')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "掲載日:2026/02/10",
-        "掲載日:2026/01/29",
-        "掲載日:2026/01/29"
-      ]
-    },
-    "qualifications": {
-      "xpath": "//dt[text()='応募資格']/following-sibling::dd[1]",
+    "license": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='応募資格']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -175,8 +67,20 @@
         "◆介護職員初任者研修（ホームヘルパー2級）以上\n◆実務経験のある方"
       ]
     },
-    "salary": {
-      "xpath": "//dt[text()='給与']/following-sibling::dd[1]",
+    "occupation": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護助手（病院）無資格未経験OK",
+        "介護職（グループホーム）資格なしOK/要経験",
+        "介護職（デイサービス）要資格/要経験"
+      ]
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -187,8 +91,56 @@
         "【時給】1,400円～"
       ]
     },
+    "price_rule": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
+    "required_skill": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='応募資格']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆無資格・未経験OK！",
+        "◆資格なしOK\n◆実務経験のある方",
+        "◆介護職員初任者研修（ホームヘルパー2級）以上\n◆実務経験のある方"
+      ]
+    },
+    "title_original": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護助手（病院）無資格未経験OK",
+        "介護職（グループホーム）資格なしOK/要経験",
+        "介護職（デイサービス）要資格/要経験"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='福利厚生・手当']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
+        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
+      ]
+    },
     "working_hours": {
-      "xpath": "//dt[text()='勤務時間']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'txtDl')]//dt[text()='勤務時間']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -197,18 +149,6 @@
         "【日勤】9:00～17:30\n【夜勤】16:00～翌9:00",
         "【夜勤】17:45～翌9:15 ※休憩120分",
         "【日勤1】8:30～16:30\n【日勤2】9:00～17:00\n※各休憩60分"
-      ]
-    },
-    "workplace_location": {
-      "xpath": "//dt[text()='勤務地']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "東京都稲城市",
-        "福島県郡山市",
-        "東京都墨田区"
       ]
     }
   }

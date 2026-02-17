@@ -2,13 +2,13 @@
   "site": "#2 selva-i",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 9.0,
+  "genie_time_sec": 20.2,
   "fields_total": 1,
   "fields_perfect": 1,
   "avg_hit_rate": 1.0,
   "fields": {
-    "job_title": {
-      "xpath": "//h1[contains(@class,'detailTitle')]/span[contains(@class,'detailTitle__main')]",
+    "title_original": {
+      "xpath": "//section[contains(@class, 'detailCont')]//h1[contains(@class, 'detailTitle')]/span[contains(@class, 'detailTitle__main')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

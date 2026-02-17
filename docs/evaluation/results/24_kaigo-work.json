@@ -2,36 +2,84 @@
   "site": "#24 kaigo-work",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 11.5,
-  "fields_total": 14,
-  "fields_perfect": 14,
-  "avg_hit_rate": 1.0,
+  "genie_time_sec": 20.1,
+  "fields_total": 25,
+  "fields_perfect": 21,
+  "avg_hit_rate": 0.84,
   "fields": {
+    "access": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(text(), 'アクセス：')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
     "address": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='地域']/following-sibling::td[1]/span[@id='recruit-access']",
+      "xpath": "//article[contains(@class,'article')]//th[text()='地域']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ",
-        "京都府宇治市大久保町北ノ山７５",
-        "千葉県千葉市稲毛区緑町1-3?4"
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
       ]
     },
-    "benefits": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='福利厚生']/following-sibling::td[1]",
+    "area": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='地域']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "厚生年金,雇用保険,労災保険,健康保険\n・キャリアアップのための制度として勤務日程の調整可能\n・健康診断・インフルエンザ予防接種時の費用補助あり（共に年１回）\n・社内・社外研修制度あり\n・昇給（４月）",
-        "厚生年金,雇用保険,労災保険,健康保険\n・資格取得支援制度、各種研修制度\n・健康診断、インフルエンザ予防接種\n・ストレスチェック\n・各種社会保険完備\n・慶弔金\n・企業年金\n・制服貸与\n・食事補助あり",
-        "厚生年金,雇用保険,労災保険,健康保険\n資格手当、介護職員手当、夜勤手当、住宅手当"
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
       ]
     },
-    "employment_type": {
+    "bonus": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給208,000円～258,000円\n賞与年2回3.5か月分",
+        "月給248,900円～263,620円/賞与2回",
+        "月給 242,500円～252,500円/賞与2回"
+      ]
+    },
+    "caractoristic": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[@class='description']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
+        "大手株式会社が運営する、有料老人ホームでの介護職求人です。\n法人独自のマイスター制度や接遇面を重んじる理念など\n他の施設様にはない制度などがたくさんあります。",
+        "育児休暇取得実績があるので、職場復帰もスムーズです。\n子育てと仕事の両立もしっかりと行うことができます。"
+      ]
+    },
+    "city": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='地域']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
+      ]
+    },
+    "contract": {
       "xpath": "//article[contains(@class,'article')]//th[text()='雇用形態']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -41,6 +89,30 @@
         "正社員｜常勤",
         "正社員｜常勤",
         "正社員｜常勤"
+      ]
+    },
+    "detail": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='仕事内容']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "デイサービスにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポートや、買い物や掃除、洗濯など日常生活のサポートなど\n                            ",
+        "有料老人ホームにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポート、買い物や掃除、洗濯など日常生活のサポートなど\n                            ",
+        "有料老人ホームにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポート、買い物や掃除、洗濯など日常生活のサポートなど\n                            "
+      ]
+    },
+    "facility_name": {
+      "xpath": "//article[contains(@class,'article')]//div[@class='box']/p[@class='text']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
+        "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
+        "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
       ]
     },
     "facility_type": {
@@ -55,7 +127,7 @@
         "有料老人ホーム"
       ]
     },
-    "holidays_vacations": {
+    "holiday": {
       "xpath": "//article[contains(@class,'article')]//th[text()='休日・休暇']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -67,43 +139,7 @@
         "月9日（2月のみ8日） \n年間休日107日\nシフト制"
       ]
     },
-    "job_description": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='仕事内容']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "デイサービスにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポートや、買い物や掃除、洗濯など日常生活のサポートなど\n                            ",
-        "有料老人ホームにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポート、買い物や掃除、洗濯など日常生活のサポートなど\n                            ",
-        "有料老人ホームにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポート、買い物や掃除、洗濯など日常生活のサポートなど\n                            "
-      ]
-    },
-    "job_title": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='職種']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "介護職員・ホームヘルパー",
-        "介護職員・ホームヘルパー",
-        "介護職員・ホームヘルパー"
-      ]
-    },
-    "last_updated": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'updated_at')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "最新更新日:2026/02/16",
-        "最新更新日:2026/02/16",
-        "最新更新日:2026/02/16"
-      ]
-    },
-    "qualifications_required": {
+    "license": {
       "xpath": "//article[contains(@class,'article')]//th[text()='応募資格']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -115,7 +151,67 @@
         "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士"
       ]
     },
-    "salary": {
+    "line": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(text(), 'アクセス：')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "name": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー"
+      ]
+    },
+    "occupation": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='職種']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー"
+      ]
+    },
+    "original_id": {
+      "xpath": "//article[contains(@class,'article')]//input[@name='id']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "prefecture": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='地域']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
+      ]
+    },
+    "price": {
       "xpath": "//article[contains(@class,'article')]//th[text()='給与']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -127,32 +223,56 @@
         "月給 242,500円～252,500円/賞与2回"
       ]
     },
-    "selection_process": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='選考プロセス']/following-sibling::td[1]",
+    "price_rule": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='福利厚生']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "[1] ウィルオブ介護の応募フォームよりご応募ください\n                                ↓\n                                [2] 採用",
-        "[1] ウィルオブ介護の応募フォームよりご応募ください\n                                ↓\n                                [2] 採用",
-        "[1] ウィルオブ介護の応募フォームよりご応募ください\n                                ↓\n                                [2] 採用"
+        "厚生年金,雇用保険,労災保険,健康保険\n・キャリアアップのための制度として勤務日程の調整可能\n・健康診断・インフルエンザ予防接種時の費用補助あり（共に年１回）\n・社内・社外研修制度あり\n・昇給（４月）",
+        "厚生年金,雇用保険,労災保険,健康保険\n・資格取得支援制度、各種研修制度\n・健康診断、インフルエンザ予防接種\n・ストレスチェック\n・各種社会保険完備\n・慶弔金\n・企業年金\n・制服貸与\n・食事補助あり",
+        "厚生年金,雇用保険,労災保険,健康保険\n資格手当、介護職員手当、夜勤手当、住宅手当"
       ]
     },
-    "smoking_policy": {
-      "xpath": "//article[contains(@class,'article')]//th[text()='受動喫煙対策について']/following-sibling::td[1]",
+    "required_skill": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='応募資格']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "屋内禁煙",
-        "屋内禁煙",
-        "屋内禁煙"
+        "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士",
+        "実務者研修,初任者研修,介護福祉士",
+        "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士"
       ]
     },
-    "summary": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(@class, 'text')]",
+    "staff_comment": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='voice']//p[@class='description']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "私の祖母は畑をしていて元気で明るく認知症になるはずはないと思っていました。ですが、夏バテをきっかけに認知症になってしまって・・・。その当時はまだ他の仕事をしていたので対応は分からず、辛いことがあったの",
+        "職場は明るくていい環境です。\nスタッフの皆さんが親切で優しいので楽しく働けています。\nご利用者様が安心して、生活ができるように気を付けて一所懸命努めています。\n特に夜勤の際は、様子を見に行くときも、細",
+        "スタッフより\nご応募お待ちしてます！"
+      ]
+    },
+    "station": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(text(), 'アクセス：')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "title_original": {
+      "xpath": "//article[contains(@class,'article')]//div[@class='box']/p[@class='text']",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -161,6 +281,18 @@
         "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
         "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
         "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
+      ]
+    },
+    "welfare_program": {
+      "xpath": "//article[contains(@class,'article')]//th[text()='福利厚生']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "厚生年金,雇用保険,労災保険,健康保険\n・キャリアアップのための制度として勤務日程の調整可能\n・健康診断・インフルエンザ予防接種時の費用補助あり（共に年１回）\n・社内・社外研修制度あり\n・昇給（４月）",
+        "厚生年金,雇用保険,労災保険,健康保険\n・資格取得支援制度、各種研修制度\n・健康診断、インフルエンザ予防接種\n・ストレスチェック\n・各種社会保険完備\n・慶弔金\n・企業年金\n・制服貸与\n・食事補助あり",
+        "厚生年金,雇用保険,労災保険,健康保険\n資格手当、介護職員手当、夜勤手当、住宅手当"
       ]
     },
     "working_hours": {

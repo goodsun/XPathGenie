@@ -2,13 +2,13 @@
   "site": "#20 cocofump",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 35.3,
-  "fields_total": 9,
-  "fields_perfect": 9,
+  "genie_time_sec": 30.5,
+  "fields_total": 7,
+  "fields_perfect": 7,
   "avg_hit_rate": 1.0,
   "fields": {
     "contract": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//h3[contains(@class, 'horizon_title1')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -19,20 +19,8 @@
         "訪問看護の言語聴覚士【正社員】"
       ]
     },
-    "facility_name": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h2",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "ココファン尾ノ上では他にも以下の求人を募集しています",
-        "ココファン尾ノ上では他にも以下の求人を募集しています",
-        "学研ココファン・ナーシング札幌では他にも以下の求人を募集しています"
-      ]
-    },
     "facility_type": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//h3[contains(@class, 'horizon_title1')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -44,7 +32,7 @@
       ]
     },
     "name": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//h3[contains(@class, 'horizon_title1')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -56,7 +44,7 @@
       ]
     },
     "occupation": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//h3[contains(@class, 'horizon_title1')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -67,20 +55,8 @@
         "訪問看護の言語聴覚士【正社員】"
       ]
     },
-    "original_id": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a/@href",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "/jobfind-pc/job/All/20523",
-        "/jobfind-pc/job/All/19731",
-        "/jobfind-pc/job/All/30369"
-      ]
-    },
     "price": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//dt[contains(@class, 'dt_pays')]/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -92,7 +68,7 @@
       ]
     },
     "title_original": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//h3[contains(@class, 'horizon_title1')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -104,7 +80,7 @@
       ]
     },
     "working_hours": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'ar_tenpo')][1]//dt[contains(@class, 'dt_zone')]/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

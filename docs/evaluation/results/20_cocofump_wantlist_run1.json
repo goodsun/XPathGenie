@@ -2,9 +2,9 @@
   "site": "#20 cocofump",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 35.3,
-  "fields_total": 9,
-  "fields_perfect": 9,
+  "genie_time_sec": 38.4,
+  "fields_total": 11,
+  "fields_perfect": 11,
   "avg_hit_rate": 1.0,
   "fields": {
     "contract": {
@@ -20,7 +20,7 @@
       ]
     },
     "facility_name": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h2",
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//h2[contains(@class, 'detailTitle')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -32,6 +32,18 @@
       ]
     },
     "facility_type": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特定施設入居者生活介護の介護職員【正社員】",
+        "特定施設入居者生活介護の介護スタッフ【パート】",
+        "訪問看護の言語聴覚士【正社員】"
+      ]
+    },
+    "license": {
       "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
       "confidence": 1.0,
       "hits": 10,
@@ -68,19 +80,31 @@
       ]
     },
     "original_id": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a/@href",
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "/jobfind-pc/job/All/20523",
-        "/jobfind-pc/job/All/19731",
-        "/jobfind-pc/job/All/30369"
+        "特定施設入居者生活介護の介護職員【正社員】",
+        "特定施設入居者生活介護の介護スタッフ【パート】",
+        "訪問看護の言語聴覚士【正社員】"
+      ]
+    },
+    "position": {
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//h3[contains(@class, 'horizon_title1')]/a",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "特定施設入居者生活介護の介護職員【正社員】",
+        "特定施設入居者生活介護の介護スタッフ【パート】",
+        "訪問看護の言語聴覚士【正社員】"
       ]
     },
     "price": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[contains(@class, 'dt_pays') or normalize-space()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -104,7 +128,7 @@
       ]
     },
     "working_hours": {
-      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'_Area_wrapper')]//dt[contains(@class, 'dt_zone') or normalize-space()='勤務時間']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

@@ -2,45 +2,21 @@
   "site": "#24 kaigo-work",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 32.1,
-  "fields_total": 20,
-  "fields_perfect": 18,
-  "avg_hit_rate": 0.935,
+  "genie_time_sec": 23.4,
+  "fields_total": 13,
+  "fields_perfect": 13,
+  "avg_hit_rate": 1.0,
   "fields": {
-    "access": {
-      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')]",
-      "confidence": 1.0,
-      "hits": 1,
-      "total": 10,
-      "hit_rate": 0.1,
-      "sample_values": [
-        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
-        null,
-        null
-      ]
-    },
     "address": {
-      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='地域']/following-sibling::td[1]",
+      "xpath": "//article[contains(@class,'article')]//span[@id='recruit-access']",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
-        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
-        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
-      ]
-    },
-    "area": {
-      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='地域']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
-        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
-        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ",
+        "京都府宇治市大久保町北ノ山７５",
+        "千葉県千葉市稲毛区緑町1-3?4"
       ]
     },
     "caractoristic": {
@@ -79,18 +55,6 @@
         "有料老人ホームにおける、介護職員・ホームヘルパー業務全般\n入浴や排せつ、食事などの身体的サポート、買い物や掃除、洗濯など日常生活のサポートなど\n                            "
       ]
     },
-    "facility_name": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(normalize-space(), '株式会社')]",
-      "confidence": 1.0,
-      "hits": 6,
-      "total": 10,
-      "hit_rate": 0.6,
-      "sample_values": [
-        "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
-        "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
-        "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
-      ]
-    },
     "facility_type": {
       "xpath": "//article[contains(@class,'article')]//th[normalize-space()='施設形態']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -127,18 +91,6 @@
         "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士"
       ]
     },
-    "name": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(@class, 'text')]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
-        "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
-        "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
-      ]
-    },
     "occupation": {
       "xpath": "//article[contains(@class,'article')]//th[normalize-space()='職種']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -149,30 +101,6 @@
         "介護職員・ホームヘルパー",
         "介護職員・ホームヘルパー",
         "介護職員・ホームヘルパー"
-      ]
-    },
-    "original_id": {
-      "xpath": "//article[contains(@class,'article')]//input[@name='id']/@value",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "248469",
-        "248786",
-        "260943"
-      ]
-    },
-    "price": {
-      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='給与']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "月給208,000円～258,000円\n賞与年2回3.5か月分",
-        "月給248,900円～263,620円/賞与2回",
-        "月給 242,500円～252,500円/賞与2回"
       ]
     },
     "price_rule": {
@@ -187,32 +115,20 @@
         "厚生年金,雇用保険,労災保険,健康保険\n資格手当、介護職員手当、夜勤手当、住宅手当"
       ]
     },
-    "required_skill": {
-      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='応募資格']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士",
-        "実務者研修,初任者研修,介護福祉士",
-        "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士"
-      ]
-    },
     "staff_comment": {
-      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(@class, 'description')]",
+      "xpath": "//article[contains(@class,'article')]//section[@id='voice']//p[contains(@class, 'description')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
-        "大手株式会社が運営する、有料老人ホームでの介護職求人です。\n法人独自のマイスター制度や接遇面を重んじる理念など\n他の施設様にはない制度などがたくさんあります。",
-        "育児休暇取得実績があるので、職場復帰もスムーズです。\n子育てと仕事の両立もしっかりと行うことができます。"
+        "私の祖母は畑をしていて元気で明るく認知症になるはずはないと思っていました。ですが、夏バテをきっかけに認知症になってしまって・・・。その当時はまだ他の仕事をしていたので対応は分からず、辛いことがあったの",
+        "職場は明るくていい環境です。\nスタッフの皆さんが親切で優しいので楽しく働けています。\nご利用者様が安心して、生活ができるように気を付けて一所懸命努めています。\n特に夜勤の際は、様子を見に行くときも、細",
+        "スタッフより\nご応募お待ちしてます！"
       ]
     },
     "title_original": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(@class, 'text')]",
+      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content')]//p[contains(@class, 'text')][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

@@ -2,13 +2,13 @@
   "site": "#25 w-medical-9",
   "urls_total": 1,
   "urls_fetched": 1,
-  "genie_time_sec": 34.2,
-  "fields_total": 23,
-  "fields_perfect": 23,
+  "genie_time_sec": 32.1,
+  "fields_total": 21,
+  "fields_perfect": 21,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
-      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='交通']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -18,7 +18,7 @@
       ]
     },
     "address": {
-      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -28,7 +28,7 @@
       ]
     },
     "bonus": {
-      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='特長']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -38,7 +38,7 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class, 'shosai_main')]/div[contains(@class, 'area')]",
+      "xpath": "//div[contains(@class,'shosai_main')]/div[contains(@class,'area')]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -48,7 +48,7 @@
       ]
     },
     "city": {
-      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -58,7 +58,7 @@
       ]
     },
     "contract": {
-      "xpath": "//div[contains(@class, 'category2')]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='雇用形態']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -68,7 +68,7 @@
       ]
     },
     "detail": {
-      "xpath": "//th[normalize-space()='業務内容']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='業務内容']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -78,7 +78,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class, 'category') and not(contains(@class, 'category2'))]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='業種']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -88,7 +88,7 @@
       ]
     },
     "holiday": {
-      "xpath": "//th[normalize-space()='休日']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='休日']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -98,7 +98,7 @@
       ]
     },
     "license": {
-      "xpath": "//th[normalize-space()='資格']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='資格']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -108,7 +108,7 @@
       ]
     },
     "line": {
-      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='交通']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -117,18 +117,8 @@
         "JR和多田駅、マイカー通勤OK！"
       ]
     },
-    "name": {
-      "xpath": "//h2[contains(@class, 'h2_shosai')]",
-      "confidence": 1.0,
-      "hits": 1,
-      "total": 1,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "管理薬剤師募集！年収～720万円！年間休日123日！面・広域+在宅業務！☆薬剤師複数体制で安心の職場です！＜佐賀県唐津市/和多田駅＞"
-      ]
-    },
     "occupation": {
-      "xpath": "//th[normalize-space()='職種']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='職種']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -138,7 +128,7 @@
       ]
     },
     "original_id": {
-      "xpath": "//p[contains(@class, 'number')]",
+      "xpath": "//p[contains(@class,'number')]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -147,18 +137,8 @@
         "求人No.W10045"
       ]
     },
-    "position": {
-      "xpath": "//th[normalize-space()='職種']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 1,
-      "total": 1,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "管理薬剤師"
-      ]
-    },
     "prefecture": {
-      "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -168,7 +148,7 @@
       ]
     },
     "price": {
-      "xpath": "//th[normalize-space()='給与']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='給与']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -178,7 +158,7 @@
       ]
     },
     "price_rule": {
-      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='特長']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -188,7 +168,7 @@
       ]
     },
     "station": {
-      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='交通']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -198,7 +178,7 @@
       ]
     },
     "test_period": {
-      "xpath": "//th[normalize-space()='特長']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='特長']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -208,7 +188,7 @@
       ]
     },
     "title_original": {
-      "xpath": "//h2[contains(@class, 'h2_shosai')]",
+      "xpath": "//h2[contains(@class,'h2_shosai')]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -218,7 +198,7 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//th[normalize-space()='福利厚生']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='福利厚生']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,
@@ -228,7 +208,7 @@
       ]
     },
     "working_hours": {
-      "xpath": "//th[normalize-space()='勤務時間']/following-sibling::td[1]",
+      "xpath": "//table[contains(@class,'table01')]//th[normalize-space()='勤務時間']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 1,

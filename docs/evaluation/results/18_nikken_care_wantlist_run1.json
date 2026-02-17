@@ -2,7 +2,7 @@
   "site": "#18 nikken-care",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 14.8,
+  "genie_time_sec": 16.8,
   "fields_total": 11,
   "fields_perfect": 11,
   "avg_hit_rate": 1.0,
@@ -67,6 +67,18 @@
         "◆介護職員初任者研修（ホームヘルパー2級）以上\n◆実務経験のある方"
       ]
     },
+    "name": {
+      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "看護助手（病院）無資格未経験OK",
+        "介護職（グループホーム）資格なしOK/要経験",
+        "介護職（デイサービス）要資格/要経験"
+      ]
+    },
     "occupation": {
       "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='職種']/following-sibling::dd[1]",
       "confidence": 1.0,
@@ -89,18 +101,6 @@
         "【時給】1,300円～",
         "【時給】1,105円～",
         "【時給】1,400円～"
-      ]
-    },
-    "price_rule": {
-      "xpath": "//div[contains(@class,'txtDl')]//dt[normalize-space()='福利厚生・手当']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特",
-        "◆交通費全額支給\n◆社会保険完備（※規定有り）\n\n【★ベネフィット・ステーション利用可能★】\n旅行、グルメ、リラク＆ビューティー、スポーツ、ショッピング、\n学習、育児、ペットなど各種ジャンルのお得な特"
       ]
     },
     "required_skill": {

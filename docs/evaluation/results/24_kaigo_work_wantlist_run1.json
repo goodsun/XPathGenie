@@ -2,13 +2,25 @@
   "site": "#24 kaigo-work",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 32.1,
-  "fields_total": 20,
-  "fields_perfect": 18,
-  "avg_hit_rate": 0.935,
+  "genie_time_sec": 32.7,
+  "fields_total": 27,
+  "fields_perfect": 22,
+  "avg_hit_rate": 0.83,
   "fields": {
     "access": {
-      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')]",
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')][1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 10,
+      "hit_rate": 0.1,
+      "sample_values": [
+        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
+        null,
+        null
+      ]
+    },
+    "access_label": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')][1]",
       "confidence": 1.0,
       "hits": 1,
       "total": 10,
@@ -43,8 +55,20 @@
         "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
       ]
     },
+    "bonus": {
+      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='給与']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "月給208,000円～258,000円\n賞与年2回3.5か月分",
+        "月給248,900円～263,620円/賞与2回",
+        "月給 242,500円～252,500円/賞与2回"
+      ]
+    },
     "caractoristic": {
-      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(@class, 'description')]",
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[@class='description'][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -53,6 +77,18 @@
         "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
         "大手株式会社が運営する、有料老人ホームでの介護職求人です。\n法人独自のマイスター制度や接遇面を重んじる理念など\n他の施設様にはない制度などがたくさんあります。",
         "育児休暇取得実績があるので、職場復帰もスムーズです。\n子育てと仕事の両立もしっかりと行うことができます。"
+      ]
+    },
+    "city": {
+      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='地域']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
       ]
     },
     "contract": {
@@ -80,15 +116,15 @@
       ]
     },
     "facility_name": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(normalize-space(), '株式会社')]",
-      "confidence": 1.0,
-      "hits": 6,
+      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//div[@class='box']/p[3]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 0.6,
+      "hit_rate": 0.0,
       "sample_values": [
-        "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
-        "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
-        "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
+        null,
+        null,
+        null
       ]
     },
     "facility_type": {
@@ -127,16 +163,28 @@
         "ヘルパー1級,ヘルパー2級,実務者研修,初任者研修,介護福祉士"
       ]
     },
+    "line": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')][1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 10,
+      "hit_rate": 0.1,
+      "sample_values": [
+        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
+        null,
+        null
+      ]
+    },
     "name": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(@class, 'text')]",
+      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='職種']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "＜【日勤正社員】お見逃しなく！賞与3.5ヶ月！業界未経験者も積極採用！定員12名のデイサービス！＞◎介護職/正社員募集◎\n【月給208,000円～258,000円】＊初任者研修以上有資格者向け求人＊『",
-        "＜コンシェルジュ常駐！\"おもてなしの介護\"で笑顔咲く！『一緒に働く仲間にありがとう』サンクスカードのある職場！＞\n◎介護職/正社員募集◎【月給248,900円～263,620円/賞与2回】＊初任者研修",
-        "＜千葉県発！再雇用制度活用で70歳就業を目指せる職場！『あなたに出会えて良かった！』笑顔あふれる介護支援をご一緒に！＞\n◎介護職/正社員募集◎【月給 242,500円～252,500円/賞与2回】＊初"
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー",
+        "介護職員・ホームヘルパー"
       ]
     },
     "occupation": {
@@ -161,6 +209,18 @@
         "248469",
         "248786",
         "260943"
+      ]
+    },
+    "prefecture": {
+      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='地域']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大阪府大阪市天王寺区生玉前町4-12　ハーモニーヒルズ1Ｆ\n                                    \n                                 ",
+        "京都府宇治市大久保町北ノ山７５\n                                    \n                                        地図アプリで見",
+        "千葉県千葉市稲毛区緑町1-3?4\n                                    \n                                        地図アプリで"
       ]
     },
     "price": {
@@ -200,7 +260,7 @@
       ]
     },
     "staff_comment": {
-      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(@class, 'description')]",
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[@class='description'][1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -211,8 +271,20 @@
         "育児休暇取得実績があるので、職場復帰もスムーズです。\n子育てと仕事の両立もしっかりと行うことができます。"
       ]
     },
+    "station": {
+      "xpath": "//article[contains(@class,'article')]//section[@id='advice']//p[contains(normalize-space(), 'アクセス：')][1]",
+      "confidence": 1.0,
+      "hits": 1,
+      "total": 10,
+      "hit_rate": 0.1,
+      "sample_values": [
+        "デイサービスの介護職員(正社員/常勤)で初任者研修以上の資格を取得している方の募集をしております。\n・心と笑顔を大事にしている事業所です。\n・1日定員12名で少人数制ですので寄り添った介護ができます。",
+        null,
+        null
+      ]
+    },
     "title_original": {
-      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//p[contains(@class, 'text')]",
+      "xpath": "//article[contains(@class,'article')]//div[contains(@class, 'point-content-inner')]//div[@class='box']/p[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -245,6 +317,18 @@
         "シフト 8:30～17:30",
         "シフト1 07:00～16:00\nシフト2 09:00～18:00\nシフト3 11:00～20:00\nシフト4 16:00～翌10:00",
         "シフト1 07:30～16:30\nシフト2 08:30～17:30\nシフト3 10:30～19:30\nシフト4 16:00～翌09:00"
+      ]
+    },
+    "working_style": {
+      "xpath": "//article[contains(@class,'article')]//th[normalize-space()='雇用形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員｜常勤",
+        "正社員｜常勤",
+        "正社員｜常勤"
       ]
     }
   }

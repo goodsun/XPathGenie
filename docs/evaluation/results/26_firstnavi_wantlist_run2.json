@@ -2,13 +2,37 @@
   "site": "#26 firstnavi",
   "urls_total": 5,
   "urls_fetched": 5,
-  "genie_time_sec": 22.4,
-  "fields_total": 19,
-  "fields_perfect": 19,
+  "genie_time_sec": 17.5,
+  "fields_total": 23,
+  "fields_perfect": 23,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]/div",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大泉学園駅　徒歩10分",
+        "東金駅　徒歩12分",
+        "みずほ台駅　徒歩5分"
+      ]
+    },
+    "access_label": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]/div",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "大泉学園駅　徒歩10分",
+        "東金駅　徒歩12分",
+        "みずほ台駅　徒歩5分"
+      ]
+    },
+    "access_minutes": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]/div",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -20,7 +44,7 @@
       ]
     },
     "address": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -31,8 +55,20 @@
         "富士見市東みずほ台2-15-13"
       ]
     },
+    "area": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td[1]/p/a",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "練馬区",
+        "東金市",
+        "富士見市"
+      ]
+    },
     "bonus": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='昇給・賞与']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='昇給・賞与']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -43,8 +79,20 @@
         "賞与なし\n昇給あり"
       ]
     },
+    "caractoristic": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td[1]/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "未経験可、ブランク可、見学のみ可\n〈資格〉正看護師",
+        "未経験可、ブランク可、見学のみ可、WEB面接可\n〈資格〉\n・正看護師\n・普通自動車運転免許（AT限定可）",
+        "准看護師可、未経験可、ブランク可\n〈資格〉准看護師"
+      ]
+    },
     "city": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]/a[1]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務地']/following-sibling::td[1]/p/a",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -56,7 +104,7 @@
       ]
     },
     "contract": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='雇用形態']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='雇用形態']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -68,7 +116,7 @@
       ]
     },
     "detail": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='業務内容']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='業務内容']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -80,7 +128,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='サービス形態']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='サービス形態']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -92,7 +140,7 @@
       ]
     },
     "holiday": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='休日']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='休日']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -104,7 +152,7 @@
       ]
     },
     "license": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -116,7 +164,7 @@
       ]
     },
     "occupation": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='募集職種']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='募集職種']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -128,7 +176,7 @@
       ]
     },
     "prefecture": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='都道府県']/following-sibling::td[1]/a[1]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='都道府県']/following-sibling::td[1]/a",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -140,7 +188,7 @@
       ]
     },
     "price": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -152,7 +200,7 @@
       ]
     },
     "price_rule": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与詳細']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='給与詳細']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -164,7 +212,7 @@
       ]
     },
     "required_skill": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='応募要件']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -176,7 +224,7 @@
       ]
     },
     "station": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]/div/a[1]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='最寄駅']/following-sibling::td[1]/div/a",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -188,7 +236,7 @@
       ]
     },
     "test_period": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='試用期間']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='試用期間']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -199,20 +247,8 @@
         "あり（6か月）※条件変更なし"
       ]
     },
-    "title_original": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='募集職種']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
-      "confidence": 1.0,
-      "hits": 5,
-      "total": 5,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "看護師",
-        "看護師",
-        "准看護師"
-      ]
-    },
     "welfare_program": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='福利厚生']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='福利厚生']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -224,7 +260,7 @@
       ]
     },
     "working_hours": {
-      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務時間']/following-sibling::td[1]/p[contains(@class, 'grad_inner')]",
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='勤務時間']/following-sibling::td[1]/p",
       "confidence": 1.0,
       "hits": 5,
       "total": 5,
@@ -233,6 +269,18 @@
         "（1）9:30～18:00\n（2）16:45～翌9:45休憩時間： 日勤 60分 / 夜勤 120分",
         "8:30～17:30休憩時間： 60分",
         "9:00～18:00休憩時間： 60分"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'clinic_info')]//th[normalize-space()='雇用形態']/following-sibling::td[1]/p",
+      "confidence": 1.0,
+      "hits": 5,
+      "total": 5,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員（夜勤あり）",
+        "正社員（日勤のみ）",
+        "正社員（日勤のみ）"
       ]
     }
   }

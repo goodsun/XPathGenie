@@ -202,24 +202,24 @@ Two evaluation conditions were tested:
 | 21 | MRT-nurse | Nurse | SPA* | 11 | 11/11 | **100.0%** |
 | 24 | kaigo-work | Care | th/td | 14 | 14/14 | **100.0%** |
 | 20 | cocofump | Care | dt/dd+th/td | 4 | 4/4 | **100.0%** |
-| 35 | kaigokango | Care/Nurse | SPA* | 20 | 19/20 | 96.0% |
+| 6 | phget | Pharma | th/td | 6 | 6/6 | **100.0%** |
+| 2 | selva-i | Pharma | dt/dd | 1 | 1/1 | **100.0%** |
+| 26 | firstnavi | Nurse | th/td | 1 | 1/1 | **100.0%** |
+| 30 | mc-pharma | Pharma | th/td (Shift-JIS) | 25 | 24/25 | 98.4% |
 | 32 | yakusta | Pharma | dt/dd+th/td | 18 | 17/18 | 98.3% |
 | 16 | pharmalink | Pharma | th/td | 20 | 16/20 | 96.5% |
-| 4 | yakumatch | Pharma | th/td | 19 | 17/19 | 89.5% |
+| 10 | yakuzaishisyusyoku | Pharma | th/td | 11 | 9/11 | 96.4% |
+| 35 | kaigokango | Care/Nurse | SPA* | 20 | 19/20 | 96.0% |
 | 12 | bestcareer | Pharma | th/td (Shift-JIS) | 21 | 17/21 | 95.0% |
+| 4 | yakumatch | Pharma | th/td | 19 | 17/19 | 89.5% |
 | 1 | tsukui-staff | Care | dt/dd | 20 | 14/20 | 82.5% |
 | 8 | apuro | Pharma | dt/dd+th/td | 13 | 10/13 | 80.8% |
 | 5 | mynavi | Pharma | dt/dd | 20 | 15/20 | 78.5% |
-| 30 | mc-pharma | Pharma | th/td (Shift-JIS) | 25 | 24/25 | 98.4% |
-| 10 | yakuzaishisyusyoku | Pharma | th/td | 11 | 9/11 | 96.4% |
 | 14 | caresta | Care | th/td | 20 | 10/20 | 50.0% |
-| 6 | phget | Pharma | th/td | 6 | 6/6 | 100.0% |
-| 2 | selva-i | Pharma | dt/dd | 1 | 1/1 | 100.0% |
-| 26 | firstnavi | Nurse | th/td | 1 | 1/1 | 100.0% |
 
 \* Sites labeled SPA in preliminary analysis but found to be SSR-accessible.
 
-**Note:** All Auto Discover results were obtained after system improvements (encoding auto-detection for Shift-JIS/EUC-JP, XML declaration stripping, and structured-data-aware main section detection). Initial runs on some sites (e.g., mc-pharma, bestcareer) produced significantly lower scores due to encoding failures; these engineering fixes are not part of the core algorithm but are prerequisites for correct HTML processing.
+**Note:** All Auto Discover results were obtained after system improvements (encoding auto-detection for Shift-JIS/EUC-JP, XML declaration stripping, and structured-data-aware main section detection). Initial runs on some sites (e.g., mc-pharma at 5.3%, bestcareer at 0%) produced significantly lower scores due to encoding failures; the figures in this table reflect the corrected system. These engineering fixes are not part of the core algorithm but are prerequisites for correct HTML processing. **The Want List evaluation (Section 4.3) uses the same corrected system, ensuring a fair comparison between the two modes.**
 
 **Summary (Auto Discover, 22 sites):** Weighted average hit rate **79.5%**. 10 sites achieved 100%. 13 sites exceeded 90%.
 
@@ -256,18 +256,21 @@ The same 22 sites were re-evaluated using Want List mode with a unified 30-field
 
 ### 4.4 Schema Guidance Effect Analysis
 
-The Want List produced dramatic improvements on sites that were previously low-performing:
+The Want List produced improvements across the majority of sites. The following table highlights the largest positive changes (all figures compare Auto Discover vs Want List under the same corrected system, as reported in Sections 4.2 and 4.3):
 
-| Site | Auto Discover | Want List | Change |
-|------|--------------|-----------|--------|
-| mc-pharma | 5.3% | 98.4% | **+93.1pt** |
-| phget | 14.3% | 100.0% | **+85.7pt** |
-| yakuzaishisyusyoku | 38.5% | 96.4% | **+57.9pt** |
-| bestcareer | 0% (failed) | 81.0% | **recovered** |
+| Site | Auto Discover | Want List | Δ |
+|------|--------------|-----------|---|
+| phget | 100.0% (6 fields) | 100.0% (6 fields) | — |
+| kaigokango | 96.0% | 100.0% | **+4.0pt** |
+| caresta | 50.0% | 57.9% | **+7.9pt** |
+| apuro | 80.8% | 86.7% | **+5.9pt** |
+| tsukui-staff | 82.5% | 86.1% | **+3.6pt** |
 
-The effect is most pronounced on sites where Auto Discover failed to identify the correct HTML structure for data fields. By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List effectively guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site.
+**Note on pre-fix baselines.** Some sites showed dramatically higher improvements when compared to their *pre-fix* Auto Discover baselines (before encoding and compressor corrections): mc-pharma improved from 5.3% to 98.4%, bestcareer from 0% to 81.0%, and yakuzaishisyusyoku from 38.5% to 96.4%. However, these gains are primarily attributable to engineering fixes (Shift-JIS encoding detection, XML declaration stripping, structured section detection) rather than the Want List mechanism itself. To isolate the Want List effect, the +11.7pt weighted average improvement reported above compares Auto Discover and Want List under identical, corrected conditions.
 
-Conversely, a few sites showed slight decreases with Want List (e.g., kaigo-work -16.0pt, bestcareer -14.0pt). This occurs when the Want List's field definitions do not align well with the site's actual data structure—the LLM attempts to force-match fields that don't exist on the site, generating XPaths that fail validation.
+The effect is most pronounced on sites where Auto Discover identified fewer or less relevant fields. By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List effectively guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site.
+
+Conversely, a few sites showed decreases with Want List (e.g., kaigo-work -16.0pt, bestcareer -14.0pt). This occurs when the Want List's field definitions do not align well with the site's actual data structure—the LLM attempts to force-match fields that don't exist on the site, generating XPaths that fail validation.
 
 ### 4.5 Results by HTML Structure
 
@@ -347,9 +350,7 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Compression fidelity.** The aggressive compression (text truncation at 30 characters, noise pattern removal) occasionally eliminates structural elements that are relevant for XPath construction. Adaptive compression that preserves more structure for complex pages could improve accuracy on edge cases.
 
-**Multi-language and multi-domain generalization.** Current evaluation focuses on Japanese job-listing sites. While the architecture is language-agnostic, broader evaluation across languages and domains would strengthen generalizability claims.
-
-**Comprehensive multi-domain evaluation.** The current evaluation (Section 4) covers 22 sites in a single domain (Japanese medical/healthcare job listings). While this represents a substantial improvement over the preliminary 2-site evaluation, broader evaluation across languages and domains (e-commerce, news, real estate) would strengthen generalizability claims.
+**Multi-language and multi-domain generalization.** The current evaluation covers 22 sites in a single domain (Japanese medical/healthcare job listings). While the architecture is language-agnostic, broader evaluation across languages and domains (e-commerce, news, real estate) would strengthen generalizability claims.
 
 **Ground-truth comparison.** The current hit rate metric measures extraction coverage (whether XPaths return non-empty values), not semantic accuracy (whether the correct value is extracted for the intended field). A ground-truth evaluation comparing extracted values against manually annotated data would provide stronger accuracy claims.
 
@@ -366,7 +367,7 @@ Several factors limit the validity of the current evaluation:
 
 XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 22 Japanese medical job-listing sites, the system achieved a weighted average hit rate of 91.2% with schema-guided generation (Want List mode), with 11 of 22 sites reaching 100% and 20 of 22 exceeding 80%.
 
-A key finding is the significant impact of schema guidance: providing a unified field schema with semantic descriptions improved the weighted average hit rate by 11.7 percentage points compared to autonomous field discovery. The effect was most dramatic on sites with non-standard HTML structures, where schema guidance improved hit rates by up to 93 percentage points. This suggests that communicating extraction *intent*—what the user wants to obtain—to the LLM is a powerful lever for accuracy. When humans inspect an unfamiliar web page, they naturally filter information through the lens of what they are looking for; without this objective, all content appears equally relevant. The Want List mechanism provides the LLM with an analogous "desire"—a structured expression of what matters—enabling it to focus on semantically relevant DOM regions rather than treating all HTML structure uniformly.
+A key finding is the significant impact of schema guidance: providing a unified field schema with semantic descriptions improved the weighted average hit rate by 11.7 percentage points compared to autonomous field discovery. This suggests that giving the LLM an explicit "desire"—a structured expression of what it should look for—is a powerful lever for accuracy. When humans inspect an unfamiliar web page, they naturally filter information through the lens of what they are looking for; without this objective, all content appears equally relevant. The Want List mechanism provides the LLM with the same kind of directed intent, enabling it to focus on semantically relevant DOM regions rather than treating all HTML structure uniformly.
 
 The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction.
 

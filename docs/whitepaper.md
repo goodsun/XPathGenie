@@ -125,7 +125,7 @@ When multiple nodes match a single XPath, the validator selects the best match u
 
 ### 3.4 Two-Tier Refinement
 
-Job listing sites and similar structured-content websites frequently repeat labels across sections—a field labeled "勤務地" (work location) may appear in the main detail area, a sidebar summary, and a related-jobs widget. A single `//dt[text()='勤務地']/following-sibling::dd[1]` XPath will match all occurrences.
+Job listing sites and similar structured-content websites frequently repeat labels across sections—a field labeled "勤務地" (work location) may appear in the main detail area, a sidebar summary, and a related-jobs widget. A single `//dt[normalize-space()='勤務地']/following-sibling::dd[1]` XPath will match all occurrences.
 
 XPathGenie's refinement mechanism addresses this through a two-tier strategy:
 
@@ -336,7 +336,7 @@ XPathGenie's workflow:
 - **Machine**: writes XPaths (LLM inference + mechanical refinement)
 - **Human**: verifies XPaths (Aladdin — visual inspection of extracted values)
 
-The structural relationship is preserved—one party creates, the other validates—but the roles are swapped. Humans are better at recognizing "this value looks correct" than at constructing `//dl[dt[text()='給与']]/dd` from scratch. Machines are better at systematic pattern matching across HTML structures than at quality-judging extracted values in context.
+The structural relationship is preserved—one party creates, the other validates—but the roles are swapped. Humans are better at recognizing "this value looks correct" than at constructing `//dl[dt[normalize-space()='給与']]/dd` from scratch. Machines are better at systematic pattern matching across HTML structures than at quality-judging extracted values in context.
 
 ### 5.3 Cost Optimization — AI Once, DOM Forever
 
@@ -360,7 +360,7 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Compression fidelity.** The aggressive compression (text truncation at 30 characters, noise pattern removal) occasionally eliminates structural elements that are relevant for XPath construction. Adaptive compression that preserves more structure for complex pages could improve accuracy on edge cases.
 
-**Multi-language and multi-domain generalization.** The current evaluation covers 22 sites in a single domain (Japanese medical/healthcare job listings). While the architecture is language-agnostic, broader evaluation across languages and domains (e-commerce, news, real estate) would strengthen generalizability claims.
+**Multi-language and multi-domain generalization.** The current evaluation covers 23 sites in a single domain (Japanese medical/healthcare job listings). While the architecture is language-agnostic, broader evaluation across languages and domains (e-commerce, news, real estate) would strengthen generalizability claims.
 
 **Ground-truth comparison.** The current hit rate metric measures extraction coverage (whether XPaths return non-empty values), not semantic accuracy (whether the correct value is extracted for the intended field). A ground-truth evaluation comparing extracted values against manually annotated data would provide stronger accuracy claims.
 
@@ -369,7 +369,7 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 Several factors limit the validity of the current evaluation:
 
 - **LLM non-determinism.** Although the system uses `temperature=0.1` for near-deterministic output, LLM responses can still vary across runs due to model updates, API-level batching, and inherent sampling stochasticity. The reported results reflect single runs and may not be perfectly reproducible.
-- **Single-domain evaluation.** The evaluation covers 22 websites in one domain (Japanese medical job listings). The extent to which results generalize to other domains and languages is unknown.
+- **Single-domain evaluation.** The evaluation covers 23 websites in one domain (Japanese medical job listings). The extent to which results generalize to other domains and languages is unknown.
 - **Subjectivity of manual effort estimates.** The 5–6 hour manual baseline is based on the authors' own experience with a specific site portfolio and engineering workflow. Different engineers, tools, or site complexities could yield substantially different baselines, making the effort reduction comparison inherently approximate.
 - **Hit rate vs accuracy.** The evaluation metric (hit rate) measures whether XPaths return non-empty values, not whether the returned values are semantically correct. A field might achieve 100% hit rate while extracting incorrect data. Human verification via Aladdin is still recommended for production use.
 

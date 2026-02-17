@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Web scraping remains labor-intensive, with XPath authoring as a major bottleneck. We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression, LLM-based inference, multi-page cross-validation, and two-tier refinement. The compression stage reduces typical pages by approximately 97%, enabling efficient LLM consumption within token budgets. The system employs a single LLM inference call to produce field-XPath mappings, which are validated across multiple pages with confidence scoring. A two-tier refinement mechanism resolves multi-match XPaths: identical-value duplicates are narrowed mechanically at zero AI cost, while divergent-value cases trigger targeted re-inference. In evaluation across 23 Japanese medical job-listing websites, XPathGenie achieved field-level precision of 85.1% (Auto Discover) and 87.3% (schema-guided Want List), with 11 sites reaching 100% in each mode. On 7 universally-expected "core fields" (salary, location, employment type, etc.), Auto Discover achieved 96.0% precision with 62.1% coverage, while Want List improved coverage to 75.2%—confirming that communicating extraction *intent* primarily expands what the system finds. A key engineering finding is the compression-generation gap: whitespace normalization during compression causes `text()=` predicates to fail on raw HTML, resolved by adopting `normalize-space()` in generated XPaths. The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures zero ongoing AI cost after initial generation.
+We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression (~97% reduction), LLM-based inference, multi-page validation, and two-tier refinement. Unlike per-page LLM extraction systems, XPathGenie invokes AI once to generate reusable XPath expressions, ensuring zero ongoing AI cost. Evaluation across 23 websites achieved 85.1–87.3% field-level hit rate, with 11 sites at 100%. Core-field analysis reveals that schema-guided extraction primarily expands coverage (+13.1pp) over open-ended discovery. We identify the compression-generation gap—a mismatch between compressed and raw HTML whitespace—resolved via `normalize-space()` predicates.
 
 ## 1. Introduction
 
@@ -11,6 +11,13 @@ Structured data extraction from websites is fundamental to competitive intellige
 The challenges are threefold. First, **time cost**: constructing a reliable XPath mapping for a single website typically requires several hours of expert effort, involving page inspection, expression writing, edge-case handling, and cross-page validation. For organizations managing portfolios of dozens of target sites, this translates to hundreds of hours of specialized labor. Second, **tacit knowledge dependency**: effective XPath construction requires understanding of common HTML patterns (definition lists, table layouts, nested containers), site-specific idiosyncrasies, and the distinction between main content and peripheral elements such as sidebars and recommendation widgets. This knowledge is difficult to systematize. Third, **scalability**: as target sites evolve their HTML structures, previously valid XPaths break, necessitating ongoing maintenance that scales linearly with portfolio size.
 
 XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for initial mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost.
+
+This paper makes the following contributions:
+
+1. **HTML structural compression** that achieves ~97% token reduction while preserving DOM hierarchy needed for XPath construction, enabling LLM analysis within practical token budgets.
+2. **Two-tier refinement** that separates multi-match resolution into mechanical narrowing (zero AI cost) and targeted AI re-inference, minimizing unnecessary LLM invocations.
+3. **Identification of the compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
+4. **Empirical evaluation across 23 websites** demonstrating 85.1–87.3% field-level hit rate, with core-field analysis showing that schema-guided extraction (Want List) primarily expands coverage (+13.1pp) rather than improving hit rate.
 
 ## 2. Related Work
 
@@ -36,6 +43,8 @@ The emergence of large language models has enabled new approaches to web data ex
 
 Open-source crawling frameworks such as **FireCrawl** (2024) and **crawl4ai** (2024) convert web pages to LLM-friendly formats (Markdown, structured text) for downstream extraction. These tools focus on content conversion rather than reusable selector generation, and they invoke LLMs per page during extraction.
 
+More recently, several systems have specifically targeted LLM-driven XPath generation. **XPath Agent** (arXiv:2502.15688, 2024) employs a two-stage approach where a lightweight LLM extracts candidate elements and a stronger LLM constructs XPath expressions from multiple sample pages and natural-language queries. **Automatic XPath generation for vertical websites** (Al-Harbi et al., 2025, *Journal of King Saud University*) decomposes XPath generation into multi-task sub-problems, learning robust expressions from seed pages for vertical domains. **AXE (Adaptive X-Path Extractor)** (arXiv:2602.01838, 2026) applies aggressive DOM pruning achieving 97.9% token reduction, enabling a 0.6B parameter model to achieve F1 88.1% on the SWDE benchmark with Grounded XPath Resolution (GXR) for traceable extraction. These systems represent the closest related work to XPathGenie, and we discuss key differentiators in Section 2.6.
+
 ### 2.5 Boilerplate Detection and Content Extraction
 
 Content extraction from web pages has a long history. Kohlschütter et al. (2010) proposed boilerplate detection using shallow text features, achieving effective separation of main content from peripheral elements. XPathGenie's HTML compression pipeline (Section 3.1) draws on similar intuitions—identifying and removing non-content elements—but operates at the DOM structural level to preserve the hierarchy needed for XPath construction.
@@ -43,6 +52,8 @@ Content extraction from web pages has a long history. Kohlschütter et al. (2010
 ### 2.6 Positioning
 
 XPathGenie differs from all prior approaches in a critical architectural decision: the LLM generates *reusable XPath expressions*, not extracted data. This means AI cost is incurred once at mapping time, and all subsequent extractions are pure DOM queries—deterministic, fast, and free. The HTML compression pipeline further distinguishes our approach by enabling LLM analysis within practical token budgets. Unlike HTML-aware language models that require fine-tuning, XPathGenie leverages general-purpose LLMs with carefully engineered prompts. Unlike wrapper induction, it requires no labeled training data—only a small set of example URLs.
+
+Compared to the most recent LLM-based XPath systems, XPathGenie's key differentiators are: (1) **zero post-generation AI cost** — XPath Agent and AXE may invoke LLMs during extraction or agent execution, while XPathGenie's output is purely deterministic `lxml.xpath()` calls; (2) **multi-page cross-validation with two-tier refinement** — mechanical narrowing resolves identical-value multi-matches at zero cost, with AI re-inference reserved for genuinely ambiguous cases, a mechanism absent in prior systems; (3) **real-world evaluation at scale** — while AXE evaluates on the SWDE benchmark (8 verticals, synthetic pages), XPathGenie is evaluated on 23 production Japanese medical job-listing websites with 10-page validation per site, demonstrating robustness on real-world HTML diversity; and (4) **structure-preserving compression** — unlike AXE's aggressive node pruning, XPathGenie's compression retains DOM hierarchy needed for XPath construction, trading off CSS-framework compatibility for structural fidelity.
 
 ## 3. System Architecture
 
@@ -192,7 +203,7 @@ Each site was analyzed using a single detail-page URL, and the generated XPath m
 
 1. **Field-level hit rate**: The fraction of pages on which a generated XPath returns at least one non-empty result. This measures extraction coverage per field, not semantic accuracy against ground-truth annotations.
 2. **Site-level average hit rate**: The mean of field-level hit rates for a given site.
-3. **Core field precision**: Hit rate computed only on 7 "core fields" that are universally present on job-listing sites: salary (price), work location (address), employment type (contract), occupation, facility name, working hours, and holidays. This metric reflects practical utility—whether the most important data can be extracted.
+3. **Core field hit rate**: Hit rate computed only on 7 "core fields" that are universally present on job-listing sites: salary (price), work location (address), employment type (contract), occupation, facility name, working hours, and holidays. This metric reflects practical utility—whether the most important data can be extracted.
 
 Two evaluation conditions were tested:
 
@@ -229,7 +240,7 @@ Two evaluation conditions were tested:
 
 **Note:** All results were obtained after system improvements including encoding auto-detection (Shift-JIS/EUC-JP), XML declaration stripping, structured-data-aware main section detection, noise pattern expansion (privacy policy, contact forms), pre-detection noise removal, and `normalize-space()` adoption in LLM prompts for whitespace-resilient XPath generation. These engineering fixes are prerequisites for correct HTML processing.
 
-**Summary (Auto Discover, 23 sites):** Field-level: 298/350 perfect fields (**85.1%**). 11 sites achieved 100%. Core field precision: **96.0%** (96/100 core fields found were perfect).
+**Summary (Auto Discover, 23 sites):** Field-level: 298/350 perfect fields (**85.1%**). 11 sites achieved 100%. Core field hit rate: **96.0%** (96/100 core fields found were perfect).
 
 ### 4.3 Results: Want List Mode (Schema-Guided)
 
@@ -261,7 +272,7 @@ All 23 sites were evaluated using Want List mode with a unified 30-field job-lis
 | 10 | yakuzaishisyusyoku | Pharma | 2 | 0/2 | 0.0% |
 | 21 | MRT-nurse | Nurse | 5 | 0/5 | 0.0% |
 
-**Summary (Want List, 23 sites):** Field-level: 337/386 perfect fields (**87.3%**). 11 sites achieved 100%. Core field precision: **89.3%** (108/121 core fields found were perfect). Core field coverage: **75.2%** (121/161 possible core fields detected).
+**Summary (Want List, 23 sites):** Field-level: 337/386 perfect fields (**87.3%**). 11 sites achieved 100%. Core field hit rate: **89.3%** (108/121 core fields found were perfect). Core field coverage: **75.2%** (121/161 possible core fields detected).
 
 ### 4.4 Schema Guidance Effect and Core Field Analysis
 
@@ -273,7 +284,7 @@ All 23 sites were evaluated using Want List mode with a unified 30-field job-lis
 | Core fields perfect (of found) | 96 / 100 (96.0%) | 108 / 121 (89.3%) |
 | All fields perfect | 298 / 350 (85.1%) | 337 / 386 (87.3%) |
 
-The Want List's primary contribution is **coverage improvement**: it detects 13.1 percentage points more core fields than Auto Discover (75.2% vs 62.1%). When the system identifies a field, Auto Discover achieves slightly higher precision (96.0% vs 89.3%), likely because it only generates XPaths for fields it is confident about, while the Want List sometimes attempts to match fields that are structurally difficult to extract.
+The Want List's primary contribution is **coverage improvement**: it detects 13.1 percentage points more core fields than Auto Discover (75.2% vs 62.1%). When the system identifies a field, Auto Discover achieves a slightly higher hit rate (96.0% vs 89.3%), likely because it only generates XPaths for fields it is confident about, while the Want List sometimes attempts to match fields that are structurally difficult to extract.
 
 **Schema guidance mechanism.** By providing semantic descriptions of desired fields (e.g., `"contract": "雇用形態（正社員、契約社員、パート等）"`), the Want List guides the LLM to match fields by *meaning* rather than relying solely on DOM pattern recognition. This is analogous to providing a human scraper with a data dictionary before they inspect an unfamiliar site. The coverage gain confirms that communicating extraction *intent* is a powerful lever.
 
@@ -315,6 +326,25 @@ The manual time estimate of 5–6 hours per site is based on the authors' experi
 ### 4.8 Token Efficiency
 
 The HTML compression pipeline is critical to cost-effectiveness. Without compression, sending 10 pages of raw HTML (~500 KB each) would consume approximately 1,000,000+ tokens per request—infeasible for most LLM APIs. After compression (average 97% reduction, capped at 8,000 characters per page), total token consumption is 8,000–18,000 per analysis. Average Genie processing time was 20.7 seconds per site (median: 19.1s).
+
+### 4.9 Failure Case Analysis
+
+To understand systematic failure modes, we analyzed the two lowest-performing sites in detail: caresta (#14, 57.9%) and mynavi (#5, 72.3%).
+
+**caresta (57.9% — 8 of 19 fields at 0%).** All 8 failed fields use `text()=` exact-match predicates against table headers (e.g., `//th[text()='給与']/following-sibling::td[1]`). The site's raw HTML contains whitespace-padded `<th>` elements (`<th>\n    給与\n  </th>`), causing exact `text()=` matches to fail while `normalize-space()` equivalents would succeed. This is a textbook instance of the compression-generation gap (Section 3.1): the LLM sees compressed HTML where `<th>給与</th>` appears clean, and generates `text()='給与'` predicates that fail on the whitespace-rich raw HTML. Notably, all 11 successful fields on this site use the same XPath pattern but target headers that happen to lack internal whitespace, confirming that the failure is whitespace-specific rather than structural.
+
+**mynavi (72.3% — 6 of 26 fields at 0%).** Failed fields share a common pattern: `p[contains(@class, 'itemName') and text()='勤務地']/following-sibling::div[1]/p[1]`. Inspection reveals that mynavi uses CSS-framework utility classes extensively, and the `itemName` paragraph elements are wrapped in additional `<div>` layers not visible in compressed HTML. The `following-sibling::div[1]` selector targets the wrong sibling due to intermediate wrapper divs inserted by the framework. This represents a CSS framework compatibility failure where the compressed HTML's simplified structure misleads the LLM about actual DOM nesting depth.
+
+**Common failure patterns across all sites:**
+
+| Failure Mode | Affected Sites | Root Cause |
+|-------------|---------------|------------|
+| Whitespace in `text()=` predicates | caresta, bestcareer | Compression-generation gap |
+| CSS framework wrapper divs | mynavi | DOM depth mismatch after compression |
+| Label text variation | pharmalink, apuro | Site uses non-standard labels (e.g., "お給料" vs "給与") |
+| Conditional content | kaigo-work | Fields present only on certain job types |
+
+These failure modes suggest two primary improvement directions: (1) systematic adoption of `normalize-space()` over `text()=` (already implemented in v3), and (2) adaptive compression that preserves wrapper-div structure for CSS-framework-heavy sites.
 
 ## 5. Design Principles
 
@@ -375,13 +405,13 @@ Several factors limit the validity of the current evaluation:
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites, the system achieved field-level precision of 87.3% (337/386 perfect fields) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites, the system achieved field-level hit rate of 87.3% (337/386 perfect fields) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%.
 
-A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% precision on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
+A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 
 A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). This underscores that in LLM-driven code generation systems, the transformation pipeline between the LLM's input representation and the execution environment must be carefully managed.
 
-The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction.
+The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction. In practice, the end-to-end time per site—including automated generation (~20 seconds) and human verification via Aladdin (5–15 minutes)—is approximately 20 minutes, compared to the 5–6 hours typically required for manual XPath authoring.
 
 ## References
 
@@ -414,3 +444,9 @@ The system's architectural insight—using AI for one-time mapping discovery rat
 14. Google. (2025). Gemini 2.5 Flash. *Google DeepMind*. https://deepmind.google/technologies/gemini/
 
 15. Clark, J., & DeRose, S. (1999). XML Path Language (XPath) Version 1.0. *W3C Recommendation*. https://www.w3.org/TR/xpath/
+
+16. XPath Agent. (2024). Multi-sample XPath generation via two-stage LLM pipeline. *arXiv preprint arXiv:2502.15688*.
+
+17. Al-Harbi, R., et al. (2025). Automatic XPath generation agents for vertical websites by LLMs. *Journal of King Saud University — Computer and Information Sciences*.
+
+18. AXE: Adaptive X-Path Extractor. (2026). DOM pruning for efficient LLM-based XPath extraction with grounded resolution. *arXiv preprint arXiv:2602.01838*.

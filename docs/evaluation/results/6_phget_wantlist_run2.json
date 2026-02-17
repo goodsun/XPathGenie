@@ -2,7 +2,7 @@
   "site": "#6 phget",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 10.2,
+  "genie_time_sec": 12.0,
   "fields_total": 5,
   "fields_perfect": 0,
   "avg_hit_rate": 0.0,
@@ -31,6 +31,18 @@
         null
       ]
     },
+    "name": {
+      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='お名前']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
     "occupation": {
       "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務職種']/following-sibling::td[1]",
       "confidence": 0.0,
@@ -46,18 +58,6 @@
     "original_id": {
       "xpath": "//div[contains(@class,'contBox')]//input[@name='jobIds']",
       "confidence": 1.0,
-      "hits": 0,
-      "total": 10,
-      "hit_rate": 0.0,
-      "sample_values": [
-        null,
-        null,
-        null
-      ]
-    },
-    "working_style": {
-      "xpath": "//div[contains(@class,'contBox')]//th[normalize-space()='希望勤務形態']/following-sibling::td[1]/select",
-      "confidence": 0.0,
       "hits": 0,
       "total": 10,
       "hit_rate": 0.0,

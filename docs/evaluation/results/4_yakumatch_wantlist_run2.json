@@ -2,7 +2,7 @@
   "site": "#4 yakumatch",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 20.8,
+  "genie_time_sec": 12.3,
   "fields_total": 21,
   "fields_perfect": 21,
   "avg_hit_rate": 1.0,
@@ -44,7 +44,7 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class,'area_simple')]//section[contains(@class, 'feature-section')]//div[contains(@class, 'point_body')]",
+      "xpath": "//div[contains(@class,'area_simple')]//section[h2[normalize-space()='この求人の特徴']]//div[contains(@class, 'point_body')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -104,7 +104,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class,'area_simple')]//ul[contains(@class, 'list_type')]/li[contains(@class, 'list_type_place')]",
+      "xpath": "//div[contains(@class,'area_simple')]//li[contains(@class, 'list_type_place')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -223,18 +223,6 @@
         "JR北陸本線「新井駅」徒歩10分"
       ]
     },
-    "title_original": {
-      "xpath": "//div[contains(@class,'area_simple')]//div[contains(@class, 'job-detail-title')]/h2",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "求人情報",
-        "求人情報",
-        "求人情報"
-      ]
-    },
     "welfare_program": {
       "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='福利厚生']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -257,6 +245,18 @@
         "月～金:09時00分～18時00分,土:09時00分～13時00分※週40時間シフト制",
         "月～金:09時00分～19時00分,土:08時30分～13時15分週40時間シフト制",
         "月～金:08時30分～08時30分,第3土:08時30分～08時30分※週40時間労働"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'area_simple')]//li[contains(@class, 'list_type_condition')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "正社員"
       ]
     }
   }

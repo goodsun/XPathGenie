@@ -3,9 +3,9 @@
   "urls_total": 10,
   "urls_fetched": 10,
   "genie_time_sec": 14.0,
-  "fields_total": 14,
-  "fields_perfect": 12,
-  "avg_hit_rate": 0.857,
+  "fields_total": 17,
+  "fields_perfect": 14,
+  "avg_hit_rate": 0.871,
   "fields": {
     "access": {
       "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
@@ -17,6 +17,18 @@
         "名鉄蒲郡線：蒲郡(名鉄蒲郡線)\nＪＲ東海道本線(豊橋－米原)：蒲郡(ＪＲ東海道本線(豊橋－米原))",
         "ＪＲ中央本線(名古屋－塩尻)：春日井(中央本線)",
         "ニューシャトル：吉野原"
+      ]
+    },
+    "address": {
+      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "愛知県 蒲郡市",
+        "愛知県 春日井市",
+        "埼玉県 さいたま市北区"
       ]
     },
     "caractoristic": {
@@ -44,15 +56,15 @@
       ]
     },
     "contract": {
-      "xpath": "//section[contains(@class,'c-search')]//[1]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class, 'c-search_head_list_cont')][1]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "正社員",
+        "正社員",
+        "正社員"
       ]
     },
     "detail": {
@@ -68,15 +80,15 @@
       ]
     },
     "facility_type": {
-      "xpath": "//section[contains(@class,'c-search')]//[2]",
-      "confidence": 0.0,
-      "hits": 0,
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(@class, 'c-search_head_list_cont')][2]",
+      "confidence": 1.0,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.0,
+      "hit_rate": 1.0,
       "sample_values": [
-        null,
-        null,
-        null
+        "調剤薬局",
+        "調剤薬局",
+        "企業"
       ]
     },
     "line": {
@@ -103,16 +115,40 @@
         "【さいたま市北区/吉野原駅】年休120日～／18時退勤／グローバルな物流業務を支えるスタッフを募集！"
       ]
     },
-    "original_id": {
-      "xpath": "//section[contains(@class,'c-search')]//p[contains(normalize-space(), 'JOB ID')]",
+    "occupation": {
+      "xpath": "//section[contains(@class,'c-search')]//li/a[contains(text(), '管理薬剤師・管理職')]",
       "confidence": 1.0,
-      "hits": 10,
+      "hits": 4,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.4,
       "sample_values": [
-        "更新日：2026.02.16　\n                                                        JOB ID：223771",
-        "更新日：2026.02.16　\n                                                        JOB ID：223772",
-        "更新日：2026.02.16　\n                                                        JOB ID：223773"
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職"
+      ]
+    },
+    "original_id": {
+      "xpath": "//section[contains(@class,'c-search')]//p[contains(text(), 'JOB ID：')]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "position": {
+      "xpath": "//section[contains(@class,'c-search')]//li/a[contains(text(), '管理薬剤師・管理職')]",
+      "confidence": 1.0,
+      "hits": 4,
+      "total": 10,
+      "hit_rate": 0.4,
+      "sample_values": [
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職",
+        "#管理薬剤師・管理職"
       ]
     },
     "prefecture": {

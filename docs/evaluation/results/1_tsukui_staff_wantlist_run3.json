@@ -2,7 +2,7 @@
   "site": "#1 tsukui-staff",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 20.7,
+  "genie_time_sec": 27.8,
   "fields_total": 23,
   "fields_perfect": 16,
   "avg_hit_rate": 0.861,
@@ -20,7 +20,7 @@
       ]
     },
     "address": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class,'table')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -44,7 +44,7 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class, 'tags')]/ul",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class, 'tags')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -92,7 +92,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='施設形態']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class,'table')]//dt[normalize-space()='施設形態']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -128,7 +128,7 @@
       ]
     },
     "name": {
-      "xpath": "//section[contains(@class, 'p-jobDetail')]//h2[contains(@class, 'head')]",
+      "xpath": "//section[contains(@class, 'p-jobDetail')]//div[contains(@class, 'p-jobDetail-header')]//h2[contains(@class, 'head')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -164,7 +164,7 @@
       ]
     },
     "price": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class, 'c-jobContent')]//dt[text()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -200,7 +200,7 @@
       ]
     },
     "staff_comment": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')][h3[normalize-space()='職場情報']]//div[contains(@class, 'desc')]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[h3[normalize-space()='職場情報']]//div[contains(@class, 'desc')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -212,7 +212,7 @@
       ]
     },
     "staff_comment_title": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')][h3[normalize-space()='職場情報']]/h3",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[h3[normalize-space()='職場情報']]/h3",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -236,7 +236,7 @@
       ]
     },
     "title_original": {
-      "xpath": "//section[contains(@class, 'p-jobDetail')]//h2[contains(@class, 'head')]",
+      "xpath": "//section[contains(@class, 'p-jobDetail')]//div[contains(@class, 'p-jobDetail-header')]//h2[contains(@class, 'head')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

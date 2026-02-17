@@ -2,10 +2,10 @@
   "site": "#8 apuro",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 14.0,
-  "fields_total": 14,
-  "fields_perfect": 12,
-  "avg_hit_rate": 0.857,
+  "genie_time_sec": 11.6,
+  "fields_total": 11,
+  "fields_perfect": 9,
+  "avg_hit_rate": 0.818,
   "fields": {
     "access": {
       "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
@@ -19,6 +19,18 @@
         "ニューシャトル：吉野原"
       ]
     },
+    "address": {
+      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "愛知県 蒲郡市",
+        "愛知県 春日井市",
+        "埼玉県 さいたま市北区"
+      ]
+    },
     "caractoristic": {
       "xpath": "//section[contains(@class,'c-search')]//p[contains(@class, 'c-search_list_txt')]",
       "confidence": 1.0,
@@ -29,18 +41,6 @@
         "■蒲郡駅徒歩13分の調剤薬局で管理薬剤師の募集です\n■総合門前のため、様々な処方を経験することができます\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注い",
         "■春日井駅からバスで6分の調剤薬局で管理薬剤師の募集です\n■同ビル内の心療内科・精神科を応需\n■全国に展開する大手調剤薬局です\n■週休2日制を基本とし、ワークライフバランスの充実に力を注いでいます。 ",
         "■医薬品の卸売業・医療用機器の販売を行う企業にて品質管理スタッフ募集★\n■医療と健康を支える製品づくりを通じて、社会に貢献する中小企業です。\n■【季節商品の開発】にも力を入れており、品質管理が今後の事"
-      ]
-    },
-    "city": {
-      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "愛知県 蒲郡市",
-        "愛知県 春日井市",
-        "埼玉県 さいたま市北区"
       ]
     },
     "contract": {
@@ -79,18 +79,6 @@
         null
       ]
     },
-    "line": {
-      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "名鉄蒲郡線：蒲郡(名鉄蒲郡線)\nＪＲ東海道本線(豊橋－米原)：蒲郡(ＪＲ東海道本線(豊橋－米原))",
-        "ＪＲ中央本線(名古屋－塩尻)：春日井(中央本線)",
-        "ニューシャトル：吉野原"
-      ]
-    },
     "name": {
       "xpath": "//section[contains(@class,'c-search')]//h1[contains(@class, 'c-search_list_ttl')]",
       "confidence": 1.0,
@@ -115,18 +103,6 @@
         "更新日：2026.02.16　\n                                                        JOB ID：223773"
       ]
     },
-    "prefecture": {
-      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "愛知県 蒲郡市",
-        "愛知県 春日井市",
-        "埼玉県 さいたま市北区"
-      ]
-    },
     "price": {
       "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
@@ -137,18 +113,6 @@
         "【年収】450万円～600万円",
         "【年収】450万円～600万円",
         "【年収】376万円～800万円\n【月収】23万円～"
-      ]
-    },
-    "station": {
-      "xpath": "//section[contains(@class,'c-search')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "名鉄蒲郡線：蒲郡(名鉄蒲郡線)\nＪＲ東海道本線(豊橋－米原)：蒲郡(ＪＲ東海道本線(豊橋－米原))",
-        "ＪＲ中央本線(名古屋－塩尻)：春日井(中央本線)",
-        "ニューシャトル：吉野原"
       ]
     },
     "title_original": {

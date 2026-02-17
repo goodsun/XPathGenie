@@ -1,14 +1,14 @@
 {
-  "site": "#10 yakuzaishisyusyoku",
+  "site": "#6 phget",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 11.3,
+  "genie_time_sec": 13.7,
   "fields_total": 1,
   "fields_perfect": 0,
   "avg_hit_rate": 0.0,
   "fields": {
     "original_id": {
-      "xpath": "//div[contains(@class,'entry_box')]//input[@name='p_id']",
+      "xpath": "//div[contains(@class,'contBox')]//input[@name='jobIds']",
       "confidence": 1.0,
       "hits": 0,
       "total": 10,

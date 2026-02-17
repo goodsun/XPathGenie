@@ -2,10 +2,10 @@
   "site": "#1 tsukui-staff",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 20.7,
+  "genie_time_sec": 35.2,
   "fields_total": 23,
-  "fields_perfect": 16,
-  "avg_hit_rate": 0.861,
+  "fields_perfect": 15,
+  "avg_hit_rate": 0.778,
   "fields": {
     "access": {
       "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='アクセス']/following-sibling::dd[1]",
@@ -20,7 +20,7 @@
       ]
     },
     "address": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='勤務地']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]/div[contains(@class, 'c-jobContent')]/dl/dt[normalize-space()='勤務地']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -92,7 +92,7 @@
       ]
     },
     "facility_type": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='施設形態']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]/div[contains(@class, 'c-jobContent')]/dl/dt[normalize-space()='施設形態']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -128,7 +128,7 @@
       ]
     },
     "name": {
-      "xpath": "//section[contains(@class, 'p-jobDetail')]//h2[contains(@class, 'head')]",
+      "xpath": "//section[contains(@class,'p-jobDetail')]//h2[contains(@class, 'head')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -164,7 +164,7 @@
       ]
     },
     "price": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')]/div[contains(@class, 'c-jobContent')]/dl/dt[normalize-space()='給与']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -176,7 +176,7 @@
       ]
     },
     "price_rule": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='給与詳細']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'c-jobContent')]//dt[text()='給与詳細']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 6,
       "total": 10,
@@ -200,27 +200,27 @@
       ]
     },
     "staff_comment": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')][h3[normalize-space()='職場情報']]//div[contains(@class, 'desc')]",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class, 'p-jobContent')]/h3[normalize-space()='職場情報']/following-sibling::div[1]/div[contains(@class, 'desc')]/p",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "＜特別養護老人ホームでの介護STAFF募集＞\n\n～特養は大変そう…　\n　そんなイメージを払拭できる施設♪～\n\n☆おススメポイント☆\n◇1からしっかり学びたい方\n ・先輩職員が親切に教えてくださいますよ",
-        "〈特別養護老人ホームでの介護職募集〉\n\n☆☆おススメポイント☆☆\n〇これから介護職としてスタートしたい方も安心\n　・しっかりとした研修制度を実施\n　・専門の教育部あり\n〇頑張りが給与に反映\n　・社内資",
-        "※本日から2か月以内で就業可能な方歓迎\n\n【おすすめポイント】\n・勤務中に施設で食べる朝食・昼食・夕食は自己負担なし！\n　すべて無料で支給されます☆\n・無資格の方も歓迎♪\n　資格取得支援制度を活用して"
+        null,
+        null,
+        null
       ]
     },
     "staff_comment_title": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//section[contains(@class, 'p-jobContent')][h3[normalize-space()='職場情報']]/h3",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class,'p-offerContainer')]//div[contains(@class, 'p-jobContent')]/h3[normalize-space()='職場情報']",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "職場情報",
-        "職場情報",
-        "職場情報"
+        null,
+        null,
+        null
       ]
     },
     "test_period": {
@@ -236,7 +236,7 @@
       ]
     },
     "title_original": {
-      "xpath": "//section[contains(@class, 'p-jobDetail')]//h2[contains(@class, 'head')]",
+      "xpath": "//section[contains(@class,'p-jobDetail')]//h2[contains(@class, 'head')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -248,15 +248,15 @@
       ]
     },
     "welfare_program": {
-      "xpath": "//div[contains(@class,'p-offerContainer')]//dt[normalize-space()='その他待遇']/following-sibling::dd[1]",
+      "xpath": "//div[contains(@class,'c-jobContent')]//dt[text()='加入保険']/following-sibling::dd[1]",
       "confidence": 1.0,
-      "hits": 9,
+      "hits": 10,
       "total": 10,
-      "hit_rate": 0.9,
+      "hit_rate": 1.0,
       "sample_values": [
-        "■交通費支給\n■社会保険完備\n■有給休暇あり\n■年末年始手当あり\n■ユニフォーム貸与\n■駐車場無料\n■社会保険完備(法令に則る)\n■退職金制度あり（独立行政法人 福祉医療機構）",
-        "・制服あり（無償貸与）　\n・駐車場あり",
-        "・社会保険完備\n・食事無料\n・資格取得支援\n・車通勤可"
+        "健康　厚生　雇用　労災",
+        "健康　厚生　雇用　労災",
+        "健康　厚生　雇用　労災"
       ]
     },
     "working_hours": {

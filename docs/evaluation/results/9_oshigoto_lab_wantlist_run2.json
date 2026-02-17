@@ -2,9 +2,9 @@
   "site": "#9 oshigoto-lab",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 11.4,
-  "fields_total": 11,
-  "fields_perfect": 11,
+  "genie_time_sec": 15.4,
+  "fields_total": 12,
+  "fields_perfect": 12,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
@@ -137,6 +137,18 @@
         "月～金8:30～17:30",
         "月火木金/10:00〜19:00　土/9:00〜18:30　日/10:00〜18:00",
         "週30時間以上フルタイム可能な方希望　管理薬剤師としての勤務可能な方"
+      ]
+    },
+    "working_style": {
+      "xpath": "//div[contains(@class,'work_shousai_box')]//th[normalize-space()='勤務形態']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "正社員",
+        "正社員",
+        "パート"
       ]
     }
   }

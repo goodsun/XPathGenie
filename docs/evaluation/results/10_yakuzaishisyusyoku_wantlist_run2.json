@@ -1,0 +1,95 @@
+{
+  "site": "#10 yakuzaishisyusyoku",
+  "urls_total": 10,
+  "urls_fetched": 10,
+  "genie_time_sec": 11.3,
+  "fields_total": 7,
+  "fields_perfect": 1,
+  "avg_hit_rate": 0.143,
+  "fields": {
+    "address": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='address']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "contract": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='希望雇用形態']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "name": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='name']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "occupation": {
+      "xpath": "//div[contains(@class,'entry_box')]//th[normalize-space()='希望職種']/following-sibling::td[1]",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "original_id": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='p_id']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'entry_box')]//select[@name='pref']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "都道府県を選択\n        北海道\n        青森県\n        岩手県\n        宮城県\n        秋田県\n        山形県\n        福島県\n        ",
+        "都道府県を選択\n        北海道\n        青森県\n        岩手県\n        宮城県\n        秋田県\n        山形県\n        福島県\n        ",
+        "都道府県を選択\n        北海道\n        青森県\n        岩手県\n        宮城県\n        秋田県\n        山形県\n        福島県\n        "
+      ]
+    },
+    "title_original": {
+      "xpath": "//div[contains(@class,'entry_box')]//input[@name='p_name']",
+      "confidence": 1.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

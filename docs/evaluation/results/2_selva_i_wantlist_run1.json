@@ -2,10 +2,10 @@
   "site": "#2 selva-i",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 18.8,
+  "genie_time_sec": 24.5,
   "fields_total": 24,
-  "fields_perfect": 24,
-  "avg_hit_rate": 1.0,
+  "fields_perfect": 23,
+  "avg_hit_rate": 0.958,
   "fields": {
     "access": {
       "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='交通アクセス']/following-sibling::dd[1]",
@@ -140,15 +140,15 @@
       ]
     },
     "name": {
-      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class, 'detailTitle')]/span[contains(@class, 'detailTitle__main')]",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class, 'detailTitle__main')]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "【薬剤師】箔山堂 作見薬局",
-        "【薬剤師/管理薬剤師候補】市民病院前薬局",
-        "【薬剤師】南山堂薬局 練馬春日町店"
+        null,
+        null,
+        null
       ]
     },
     "occupation": {
@@ -188,15 +188,15 @@
       ]
     },
     "price_rule": {
-      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='給与']/following-sibling::dd[1]",
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='待遇']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "【年収】428万円〜650万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（34,000円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更",
-        "【年収】550万円〜600万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（45,631円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更",
-        "【年収】428万円〜650万円程度（24歳〜45歳モデル）\n\n\n\n※基本給に固定残業代20時間（34,000円）含む\n\n※20時間を超える場合はその都度追加支給\n\n※試用期間：6カ月間 / 条件：変更"
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回（昨年実績：基本給4.0ヵ月分）\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護",
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回（昨年実績：基本給4.0ヵ月分）\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護",
+        "◇各種保険完備\n\n◇昇給年1回\n\n◇賞与年2回\n\n◇交通費支給（上限30,000円/月）\n\n◇退職金制度有り\n\n◇薬剤師賠償責任保険加入（店舗）\n\n◇育児休暇制度、介護休職制度"
       ]
     },
     "required_skill": {
@@ -260,15 +260,15 @@
       ]
     },
     "title_original": {
-      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class, 'detailTitle')]/span[contains(@class, 'detailTitle__main')]",
+      "xpath": "//section[contains(@class,'sec')]//h1[contains(@class, 'detailTitle')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
       "hit_rate": 1.0,
       "sample_values": [
-        "【薬剤師】箔山堂 作見薬局",
-        "【薬剤師/管理薬剤師候補】市民病院前薬局",
-        "【薬剤師】南山堂薬局 練馬春日町店"
+        "株式会社南山堂\n南山堂薬局 箔山堂 作見薬局\n【薬剤師】箔山堂 作見薬局",
+        "株式会社南山堂\n南山堂薬局 市民病院前薬局\n【薬剤師/管理薬剤師候補】市民病院前薬局",
+        "株式会社南山堂\nたから薬局 練馬春日町店\n【薬剤師】南山堂薬局 練馬春日町店"
       ]
     },
     "welfare_program": {

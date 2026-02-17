@@ -2,24 +2,12 @@
   "site": "#4 yakumatch",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 20.8,
-  "fields_total": 21,
-  "fields_perfect": 21,
+  "genie_time_sec": 24.6,
+  "fields_total": 18,
+  "fields_perfect": 18,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
-      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='アクセス']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "ＪＲ伊東線「網代駅」",
-        "ＪＲ北陸本線「鯖江駅」",
-        "JR北陸本線「新井駅」徒歩10分"
-      ]
-    },
-    "access_label": {
       "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='通勤手段']/following-sibling::td[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -29,6 +17,18 @@
         "電車",
         "電車",
         "電車"
+      ]
+    },
+    "access_label": {
+      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='通勤手段']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "通勤手段",
+        "通勤手段",
+        "通勤手段"
       ]
     },
     "address": {
@@ -44,7 +44,7 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class,'area_simple')]//section[contains(@class, 'feature-section')]//div[contains(@class, 'point_body')]",
+      "xpath": "//div[contains(@class,'area_simple')]//section[contains(@class, 'pr_section') and contains(@class, 'feature-section')]//div[contains(@class, 'point_body')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -53,18 +53,6 @@
         "＜地域の方に愛される地域密着型の薬局です☆＞在宅患者数日本一の店舗を有する地域密着型の会社です。長年にわたり地域の方に寄り添い、ニーズに応える地域に根差した店舗が特徴です！お薬の事から健康相談まで、患",
         "【法人の特徴】・大手の会社かつ、在宅に力を入れている会社です。・平均処方箋枚数が多く、服薬指導にかなり力を入れています！・大手なので研修制度や福利厚生も整っており、安心して働くことが出来ます！【店舗の",
         "【法人の特徴】・大手の会社かつ、在宅に力を入れている会社です。・平均処方箋枚数が多く、服薬指導にかなり力を入れています！・大手なので研修制度や福利厚生も整っており、安心して働くことが出来ます！【店舗の"
-      ]
-    },
-    "city": {
-      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "静岡県熱海市",
-        "福井県鯖江市",
-        "新潟県妙高市"
       ]
     },
     "contract": {
@@ -175,18 +163,6 @@
         "非公開（求人番号：549850）"
       ]
     },
-    "prefecture": {
-      "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='勤務地']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "静岡県熱海市",
-        "福井県鯖江市",
-        "新潟県妙高市"
-      ]
-    },
     "price": {
       "xpath": "//div[contains(@class,'area_simple')]//th[normalize-space()='年収']/following-sibling::td[1]",
       "confidence": 1.0,
@@ -221,18 +197,6 @@
         "ＪＲ伊東線「網代駅」",
         "ＪＲ北陸本線「鯖江駅」",
         "JR北陸本線「新井駅」徒歩10分"
-      ]
-    },
-    "title_original": {
-      "xpath": "//div[contains(@class,'area_simple')]//div[contains(@class, 'job-detail-title')]/h2",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "求人情報",
-        "求人情報",
-        "求人情報"
       ]
     },
     "welfare_program": {

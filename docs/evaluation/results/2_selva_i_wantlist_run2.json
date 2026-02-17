@@ -2,12 +2,36 @@
   "site": "#2 selva-i",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 18.8,
-  "fields_total": 24,
-  "fields_perfect": 24,
-  "avg_hit_rate": 1.0,
+  "genie_time_sec": 21.3,
+  "fields_total": 32,
+  "fields_perfect": 28,
+  "avg_hit_rate": 0.875,
   "fields": {
     "access": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='交通アクセス']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "JR北陸本線「加賀温泉駅」徒歩5分\n加賀温泉バス「作見南」バス停 徒歩1分",
+        "JR京都線「岸辺駅」徒歩３分",
+        "大江戸線「練馬春日町駅」　徒歩2分"
+      ]
+    },
+    "access_label": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='交通アクセス']",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "交通アクセス",
+        "交通アクセス",
+        "交通アクセス"
+      ]
+    },
+    "access_minutes": {
       "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='交通アクセス']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,
@@ -29,6 +53,18 @@
         "石川県 加賀市\n                                     作見町 へ1-1",
         "大阪府 吹田市\n                                     岸部新町 5-25　健都メディカルビル1F",
         "東京都 練馬区\n                                     春日町 5-33-30 グランドフィオーレ春日町1階"
+      ]
+    },
+    "area": {
+      "xpath": "null",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
       ]
     },
     "bonus": {
@@ -79,8 +115,20 @@
         "正社員"
       ]
     },
+    "dept": {
+      "xpath": "null",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
+      ]
+    },
     "detail": {
-      "xpath": "//section[contains(@class,'sec')]//div[contains(@class, 'detailCont__picCont')]",
+      "xpath": "//section[contains(@class,'sec')]//div[contains(@class, 'detailCont__picCont')]/p[1]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -101,6 +149,18 @@
         "株式会社南山堂\n南山堂薬局 箔山堂 作見薬局",
         "株式会社南山堂\n南山堂薬局 市民病院前薬局",
         "株式会社南山堂\nたから薬局 練馬春日町店"
+      ]
+    },
+    "facility_type": {
+      "xpath": "null",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
       ]
     },
     "holiday": {
@@ -161,6 +221,30 @@
         "勤務薬剤師",
         "勤務薬剤師",
         "勤務薬剤師"
+      ]
+    },
+    "original_id": {
+      "xpath": "//div[contains(@class, 'jobEntryBtn__item')]//button[contains(@class, 'btn-toggle-bookmark')]/@data-recruitment_id",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "1334881",
+        "1334882",
+        "1334886"
+      ]
+    },
+    "position": {
+      "xpath": "null",
+      "confidence": 0.0,
+      "hits": 0,
+      "total": 10,
+      "hit_rate": 0.0,
+      "sample_values": [
+        null,
+        null,
+        null
       ]
     },
     "prefecture": {
@@ -284,6 +368,18 @@
       ]
     },
     "working_hours": {
+      "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "【営業時間】\n\n\n\n［平日・土］9：00〜18：00\n\n\n\n◇1日8時間　週40時間のシフト制\n\n→11日から翌10日までの1か月単位で作成。\n\n　可能な限り、希望に沿って作成いたします。\n\n\n\n営業",
+        "【営業時間】\n\n\n\n［平日］9：00〜19：30\n\n［土曜］9：00〜18：00\n\n\n\n◇1日8時間　週40時間のシフト制\n\n→11日から翌10日までの1か月単位で作成。\n\n　可能な限り、希望に沿って",
+        "【営業時間】\n\n\n\n［月火水金］9：00〜18：30\n\n［木曜］9：00〜17：00\n\n［土曜］9：00〜18：00\n\n［日曜］9：00〜13：00\n\n\n\n※週40時間シフト制\n\n営業時間は店舗に拠っ"
+      ]
+    },
+    "working_style": {
       "xpath": "//section[contains(@class,'sec')]//dt[normalize-space()='勤務時間']/following-sibling::dd[1]",
       "confidence": 1.0,
       "hits": 10,

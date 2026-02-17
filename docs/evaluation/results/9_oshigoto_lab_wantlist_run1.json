@@ -2,9 +2,9 @@
   "site": "#9 oshigoto-lab",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 11.4,
-  "fields_total": 11,
-  "fields_perfect": 11,
+  "genie_time_sec": 13.5,
+  "fields_total": 10,
+  "fields_perfect": 10,
   "avg_hit_rate": 1.0,
   "fields": {
     "access": {
@@ -101,18 +101,6 @@
         "年収400万円～600万円",
         "年収500万円～600万円",
         "時給2,000円～2,300円"
-      ]
-    },
-    "price_rule": {
-      "xpath": "//div[contains(@class,'work_shousai_box')]//th[normalize-space()='賃金区分']/following-sibling::td[1]",
-      "confidence": 1.0,
-      "hits": 10,
-      "total": 10,
-      "hit_rate": 1.0,
-      "sample_values": [
-        "月給制",
-        "月給制",
-        "時給制"
       ]
     },
     "welfare_program": {

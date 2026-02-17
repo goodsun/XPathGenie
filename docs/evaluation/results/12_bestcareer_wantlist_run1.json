@@ -2,10 +2,10 @@
   "site": "#12 bestcareer",
   "urls_total": 10,
   "urls_fetched": 10,
-  "genie_time_sec": 37.2,
-  "fields_total": 21,
-  "fields_perfect": 21,
-  "avg_hit_rate": 1.0,
+  "genie_time_sec": 31.5,
+  "fields_total": 22,
+  "fields_perfect": 20,
+  "avg_hit_rate": 0.909,
   "fields": {
     "address": {
       "xpath": "//th[normalize-space()='勤務地']/following-sibling::td[1]",
@@ -32,15 +32,15 @@
       ]
     },
     "caractoristic": {
-      "xpath": "//div[contains(@class, 'copy')]/h3",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class, 'main_contents')]//div[contains(@class, 'spec_detail')]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "土日祝休み★医療費免除制度など福利厚生が充実！運営母体が公的病院ですので、安心して長くお勤め頂ける環境です♪",
-        "入社初年度より20日間の有給休暇付与！異動や転勤の心配は不要です★土日祝お休み◇福利厚生が充実で安心できますね♪",
-        "高額！年収700万円まで★17:30終業でプライベートも充実可能です◇住宅補助など福利厚生も整っています！"
+        null,
+        null,
+        null
       ]
     },
     "city": {
@@ -68,15 +68,15 @@
       ]
     },
     "detail": {
-      "xpath": "//div[@id='sub_body']//div[contains(@class, 'spec_detail')][1]",
-      "confidence": 1.0,
-      "hits": 10,
+      "xpath": "//div[contains(@class, 'main_contents')]//div[contains(@class, 'spec_detail')]",
+      "confidence": 0.0,
+      "hits": 0,
       "total": 10,
-      "hit_rate": 1.0,
+      "hit_rate": 0.0,
       "sample_values": [
-        "・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・急性期と回復期の病棟のため、ほどよい忙しさの中で勤務することができます。・月の残業時間は平均10時間程度となります。・福利厚生",
-        "・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・異動や転勤の心配はありません！希望がない限りは無理に転勤となることはありませんのでご安心ください。・福利厚生充実！医療費の減免",
-        "・薬剤師1名体制の病院です・処方箋は入院患者 ・日帰り手術 の対応のみ・最大700万円まで相談可能・17：30終業★ 静岡県の病院求人のお預かりが多数あります。　病院への転職をお考えの方はMRT株式会"
+        null,
+        null,
+        null
       ]
     },
     "facility_name": {
@@ -128,7 +128,7 @@
       ]
     },
     "name": {
-      "xpath": "//div[contains(@class, 'detail_title2')]/h2",
+      "xpath": "//h2",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -212,7 +212,19 @@
       ]
     },
     "staff_comment": {
-      "xpath": "//div[contains(@class, 'spec_detail_pr')]/p[contains(@class, 'pr')]",
+      "xpath": "//p[contains(@class, 'pr')]",
+      "confidence": 1.0,
+      "hits": 10,
+      "total": 10,
+      "hit_rate": 1.0,
+      "sample_values": [
+        "〜担当コンサルタントより〜・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・急性期と回復期の病棟のため、ほどよい忙しさの中で勤務することができます。・月の残業時間は平均10時間",
+        "〜担当コンサルタントより〜・運営母体が公的病院なので福利厚生充実！長く働くにはおすすめの環境です。・異動や転勤の心配はありません！希望がない限りは無理に転勤となることはありませんのでご安心ください。・",
+        "〜担当コンサルタントより〜・薬剤師1名体制の病院です・処方箋は入院患者 ・日帰り手術 の対応のみ・最大700万円まで相談可能・17：30終業★ 静岡県の病院求人のお預かりが多数あります。　病院への転職"
+      ]
+    },
+    "staff_comment_title": {
+      "xpath": "//p[contains(@class, 'pr')]",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,
@@ -224,7 +236,7 @@
       ]
     },
     "title_original": {
-      "xpath": "//div[contains(@class, 'detail_title2')]/h2",
+      "xpath": "//h2",
       "confidence": 1.0,
       "hits": 10,
       "total": 10,

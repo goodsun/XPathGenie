@@ -61,6 +61,14 @@ def _detect_encoding(content: bytes, resp_encoding: str = None) -> str:
     return resp_encoding or "utf-8"
 
 
+def _clean_html(html: str) -> str:
+    """Remove XML declaration and DOCTYPE that break lxml HTML parser."""
+    import re
+    html = re.sub(r'<\?xml[^>]*\?>', '', html, count=1)
+    html = re.sub(r'<!DOCTYPE[^>]*>', '', html, count=1, flags=re.IGNORECASE)
+    return html
+
+
 def fetch(url: str) -> str:
     """Fetch HTML from URL. Returns HTML string."""
     _check_ssrf(url)
@@ -75,15 +83,19 @@ def fetch(url: str) -> str:
     # Detect encoding (supports Shift-JIS, EUC-JP, etc.)
     encoding = _detect_encoding(content, resp.encoding)
     try:
-        return content.decode(encoding)
+        html = content.decode(encoding)
     except (UnicodeDecodeError, LookupError):
         # Fallback: try common Japanese encodings
+        html = None
         for enc in ("utf-8", "shift_jis", "euc-jp", "cp932"):
             try:
-                return content.decode(enc)
+                html = content.decode(enc)
+                break
             except (UnicodeDecodeError, LookupError):
                 continue
-        return content.decode("utf-8", errors="replace")
+        if html is None:
+            html = content.decode("utf-8", errors="replace")
+    return _clean_html(html)
 
 
 def fetch_all(urls: list) -> list:

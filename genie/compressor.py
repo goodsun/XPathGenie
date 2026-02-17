@@ -46,7 +46,12 @@ def _find_main_section(doc):
             return best
         return main
     
-    # No main/article — find div with most text, excluding noise
+    # No main/article — prioritize sections containing structured data (th/td, dt/dd)
+    structured_candidate = _find_structured_section(doc)
+    if structured_candidate is not None:
+        return structured_candidate
+
+    # Fallback: find div with most text, excluding noise
     best = doc
     best_len = 0
     for div in doc.iter("div", "section"):
@@ -60,12 +65,46 @@ def _find_main_section(doc):
     return best if best_len > 200 else doc
 
 
+def _find_structured_section(doc):
+    """Find the nearest common ancestor of structured data elements (th/td, dt/dd).
+    Returns the best container div/section that holds the most structured elements."""
+    # Collect all th and dt elements (these indicate structured data)
+    markers = list(doc.iter("th")) + list(doc.iter("dt"))
+    if len(markers) < 2:
+        return None
+
+    # Find parent containers that hold these markers
+    # Score each div/section by how many markers it contains
+    candidates = {}
+    for marker in markers:
+        parent = marker.getparent()
+        # Walk up to find a div/section/body container (max 10 levels)
+        for _ in range(10):
+            if parent is None:
+                break
+            tag = getattr(parent, 'tag', '')
+            if tag in ('div', 'section', 'body'):
+                cls = (parent.get("class") or "") + " " + (parent.get("id") or "")
+                if not NOISE_PATTERNS.search(cls):
+                    pid = id(parent)
+                    if pid not in candidates:
+                        candidates[pid] = {"el": parent, "count": 0, "depth": 0}
+                    candidates[pid]["count"] += 1
+                break
+            parent = parent.getparent()
+
+    if not candidates:
+        return None
+
+    # Pick the candidate with the most structured elements
+    best = max(candidates.values(), key=lambda c: c["count"])
+    if best["count"] >= 2:
+        return best["el"]
+    return None
+
+
 def compress(html: str) -> str:
     """Compress HTML to structural summary of main content only."""
-    # Strip XML declaration (breaks lxml HTML parser for XHTML pages)
-    html = re.sub(r'<\?xml[^>]*\?>', '', html, count=1)
-    # Strip DOCTYPE (can also cause issues)
-    html = re.sub(r'<!DOCTYPE[^>]*>', '', html, count=1, flags=re.IGNORECASE)
     try:
         doc = fromstring(html)
     except Exception:

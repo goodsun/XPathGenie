@@ -20,6 +20,42 @@ RESULTS_DIR = os.path.join(os.path.dirname(__file__), "..", "docs", "evaluation"
 URL_LISTS = os.path.join(os.path.dirname(__file__), "..", "docs", "evaluation", "url_lists.txt")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
+# Default WantList — unified schema for job listing sites
+DEFAULT_WANTLIST = {
+    "original_id": "",
+    "access": "",
+    "access_label": "駅からの移動手段",
+    "access_minutes": "駅からの時間",
+    "address": "",
+    "area": "",
+    "bonus": "",
+    "caractoristic": "特徴・おすすめポイント",
+    "city": "",
+    "contract": "雇用形態（正社員、契約社員、パート等）",
+    "dept": "部署",
+    "detail": "",
+    "facility_name": "勤務先の施設名・会社名",
+    "facility_type": "施設形態",
+    "holiday": "",
+    "license": "資格・免許",
+    "line": "路線名",
+    "name": "",
+    "occupation": "職種（看護師・介護士・薬剤師等）",
+    "position": "役職",
+    "prefecture": "",
+    "price": "",
+    "price_rule": "手当や昇給などの給与の備考",
+    "required_skill": "求めるスキル",
+    "staff_comment": "",
+    "staff_comment_title": "",
+    "station": "",
+    "test_period": "試用期間",
+    "title_original": "",
+    "welfare_program": "",
+    "working_hours": "勤務時間",
+    "working_style": "勤務形態",
+}
+
 
 def load_urls(site_key):
     """url_lists.txt からサイトのURL群を取得"""
@@ -41,33 +77,63 @@ def load_urls(site_key):
     return urls
 
 
-def analyze(url):
+def analyze(url, wantlist=None):
     """Genie APIで1URLを分析"""
     print(f"[Genie] Analyzing: {url}")
     t0 = time.time()
-    resp = requests.post(f"{API_BASE}/api/analyze", json={"urls": [url]}, timeout=120)
+    payload = {"urls": [url]}
+    if wantlist:
+        payload["wantlist"] = wantlist
+    resp = requests.post(f"{API_BASE}/api/analyze", json=payload, timeout=120)
     elapsed = time.time() - t0
     if resp.status_code != 200:
         print(f"[Genie] Error {resp.status_code}: {resp.text[:200]}")
         return None, elapsed
     data = resp.json()
+    if data.get("status") == "error":
+        print(f"[Genie] Error: {data.get('reason', 'unknown')} — {data.get('message', '')}")
+        return None, elapsed
     mappings = {}
     for k, v in data.get("mappings", {}).items():
-        mappings[k] = {
-            "xpath": v["xpath"],
-            "confidence": v.get("confidence", 0),
-            "sample": v.get("sample", ""),
-        }
+        if isinstance(v, dict):
+            mappings[k] = {
+                "xpath": v["xpath"],
+                "confidence": v.get("confidence", 0),
+                "sample": v.get("sample", ""),
+            }
+        elif isinstance(v, str):
+            mappings[k] = {"xpath": v, "confidence": 0, "sample": ""}
     print(f"[Genie] Got {len(mappings)} fields in {elapsed:.1f}s")
     return mappings, elapsed
 
 
 def fetch_html(url):
-    """HTMLを取得"""
+    """HTMLを取得（エンコーディング自動検出 + XML宣言除去）"""
     try:
         resp = requests.get(url, headers={"User-Agent": UA}, timeout=15)
         resp.raise_for_status()
-        return resp.text
+        content = resp.content
+        # Detect encoding from meta charset
+        encoding = resp.encoding or "utf-8"
+        meta_match = re.search(rb'charset=["\']?([a-zA-Z0-9_-]+)', content[:4096], re.IGNORECASE)
+        if meta_match:
+            encoding = meta_match.group(1).decode("ascii", errors="ignore")
+        # Decode
+        try:
+            html = content.decode(encoding)
+        except (UnicodeDecodeError, LookupError):
+            for enc in ("utf-8", "shift_jis", "euc-jp", "cp932"):
+                try:
+                    html = content.decode(enc)
+                    break
+                except (UnicodeDecodeError, LookupError):
+                    continue
+            else:
+                html = content.decode("utf-8", errors="replace")
+        # Strip XML declaration and DOCTYPE (breaks lxml HTML parser)
+        html = re.sub(r'<\?xml[^>]*\?>', '', html, count=1)
+        html = re.sub(r'<!DOCTYPE[^>]*>', '', html, count=1, flags=re.IGNORECASE)
+        return html
     except Exception as e:
         print(f"[Fetch] Failed {url}: {e}")
         return None
@@ -100,8 +166,8 @@ def evaluate_site(site_key):
     print(f"Evaluating: {site_key} ({len(urls)} URLs)")
     print(f"{'='*60}")
 
-    # Step 1: Genie analysis (1st URL)
-    mappings, genie_time = analyze(urls[0])
+    # Step 1: Genie analysis (1st URL) with default WantList
+    mappings, genie_time = analyze(urls[0], wantlist=DEFAULT_WANTLIST)
     if not mappings:
         print("[Error] Genie analysis failed")
         return

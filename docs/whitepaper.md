@@ -250,6 +250,34 @@ The compressor's noise patterns attempt to encode human-like semantic judgment i
 
 This "AI for generation, human for selection" division mirrors the broader role reversal described in Section 5.2: just as humans verify XPaths rather than writing them, humans select content sections rather than implementing selection rules. In both cases, the human task is shifted from *construction* (writing XPaths, writing rules) to *recognition* (verifying values, recognizing relevant content)—a cognitive task humans perform effortlessly.
 
+#### 3.7.6 Empirical Validation
+
+To quantify the impact of interactive section selection, we measured the escalation rate and hit rate improvement across the 23-site evaluation corpus.
+
+**Escalation rate.** Using automatic section selection (compressor heuristics only), 3 of 23 sites (13%) produced hit rates below 50%, representing the upper bound of sites requiring human intervention via Jasmine:
+
+| Site | Auto Hit Rate | Failure Mode |
+|------|--------------|-------------|
+| yakuzaishisyusyoku | 0.0% (2 fields detected, both 0%) | Application form selected over job detail table |
+| cocofump | 20.0% (1/5 fields) | Non-standard div/span layout |
+| phget | 20.0% (1/5 fields) | Non-standard div/span layout |
+
+The remaining 20 sites (87%) achieved hit rates above 66% with fully automatic processing, requiring no human intervention. This confirms that the auto+escalate mode would minimize friction: the vast majority of sites process automatically, with Jasmine intervention needed only for the ~13% of sites where heuristic section selection fails.
+
+**Case study: yakuzaishisyusyoku (0% → 100%).** This site represents the clearest demonstration of Jasmine's value. In automatic mode, the compressor's depth-weighted content scoring selected an application form (`div.entry_box`) over the job detail table (`div.detail_box`), because the form contained more `<th>`/`<td>` pairs. The result: only 2 fields detected, both at 0% hit rate.
+
+With Jasmine-equivalent section selection (specifying `div.detail_box` as the analysis target), the system produced:
+
+| Condition | Fields Detected | Avg Hit Rate | Fields at 100% |
+|-----------|----------------|-------------|-----------------|
+| Auto (before noise fix) | 2 | 0.0% | 0 |
+| Auto (after noise pattern fix) | 20 | 95.0% | 18/20 |
+| Jasmine (selector: `div.detail_box`) | 20 | **100.0%** | 20/20 |
+
+The noise pattern fix (adding `entry_box|entry_form` to exclusion rules) recovered most of the performance automatically, but Jasmine's explicit section selection achieved perfect results—confirming that human semantic judgment, when available, outperforms even well-tuned heuristics.
+
+**Implications for the escalation model.** The 13% escalation rate validates the auto+escalate design: for a portfolio of 100 sites, approximately 87 would process fully automatically, with only ~13 requiring a single human interaction (clicking the correct content section in Jasmine's blackout preview). At an estimated 30 seconds per Jasmine interaction, the total human effort for the escalated sites would be approximately 6.5 minutes—negligible compared to the hours saved by automatic processing of the remaining sites.
+
 ## 4. Evaluation
 
 ### 4.1 Experimental Setup

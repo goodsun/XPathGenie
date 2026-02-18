@@ -651,6 +651,8 @@ Formally, for a site with *n* pages: traditional per-page LLM extraction incurs 
 
 The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing resolves the majority of multi-match cases through DOM traversal (zero AI cost), reserving the more expensive AI re-inference for only the cases where value disambiguation is truly required.
 
+**Compression scope as a cost-aware design choice.** XPathGenie's compression pipeline excludes `<head>` metadata (including `<title>` and `<meta>` tags), focusing exclusively on `<body>` content. This is a deliberate trade-off informed by production crawling requirements: in periodic crawling pipelines, temporal metadata such as posting dates is typically derived from the crawler's own observation schedule (first-crawl timestamp keyed by unique record ID) rather than from potentially unreliable page-embedded dates. Similarly, production systems prefer content titles extracted from the page body over `<title>` tags, which often contain site branding and SEO modifiers unrelated to the record's actual name. Given that HTML compression directly impacts LLM token consumption, excluding metadata already available through the crawling infrastructure avoids unnecessary token expenditure per analysis.
+
 ## 6. Limitations and Future Work
 
 **Single-Page Application (SPA) support.** XPathGenie currently fetches raw HTML via HTTP requests. Sites that render content dynamically via JavaScript (React, Vue, Angular SPAs) return empty or skeleton HTML, making XPath generation unreliable or infeasible. Integration with a headless browser (e.g., Playwright) for JavaScript-rendered HTML is a planned enhancement.

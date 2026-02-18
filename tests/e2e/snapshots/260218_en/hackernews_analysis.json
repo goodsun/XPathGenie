@@ -1,0 +1,133 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 4782
+    },
+    "elapsed_seconds": 28.2,
+    "mappings": {
+        "author": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "pg"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/a[contains(@class,'hnuser')]"
+        },
+        "comment_author": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "sama"
+            ],
+            "xpath": "//tr[contains(@class,'athing comtr') and .//td[contains(@class,'ind') and @indent='0']]//span[contains(@class,'comhead')]/a[contains(@class,'hnuser')]"
+        },
+        "comment_id": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "15"
+            ],
+            "xpath": "//tr[contains(@class,'athing comtr') and .//td[contains(@class,'ind') and @indent='0']]/@id"
+        },
+        "comment_indent_level": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "0"
+            ],
+            "xpath": "//td[contains(@class,'ind') and @indent='0']/@indent"
+        },
+        "comment_posted_date": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "on Oct 9, 2006"
+            ],
+            "xpath": "//tr[contains(@class,'athing comtr') and .//td[contains(@class,'ind') and @indent='0']]//span[contains(@class,'comhead')]/span[contains(@class,'age')]/a"
+        },
+        "comment_posted_timestamp": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "2006-10-09T19:51:01 1160423461"
+            ],
+            "xpath": "//tr[contains(@class,'athing comtr') and .//td[contains(@class,'ind') and @indent='0']]//span[contains(@class,'comhead')]/span[contains(@class,'age')]/@title"
+        },
+        "comment_text": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "\"the rising star of venture capital\" -unknown VC eating lunch on SHR"
+            ],
+            "xpath": "//tr[contains(@class,'athing comtr') and .//td[contains(@class,'ind') and @indent='0']]//div[contains(@class,'commtext')]"
+        },
+        "comments_count": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "3\u00a0comments"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/a[contains(normalize-space(), 'comment')]"
+        },
+        "domain": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "ycombinator.com"
+            ],
+            "xpath": "//span[contains(@class,'sitestr')]"
+        },
+        "points": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "57 points"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/span[contains(@class,'score')]"
+        },
+        "posted_date": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "on Oct 9, 2006"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/span[contains(@class,'age')]/a"
+        },
+        "posted_timestamp": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "2006-10-09T18:21:51 1160418111"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/span[contains(@class,'age')]/@title"
+        },
+        "title": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Y Combinator"
+            ],
+            "xpath": "//span[contains(@class,'titleline')]/a"
+        },
+        "url": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "http://ycombinator.com"
+            ],
+            "xpath": "//span[contains(@class,'titleline')]/a/@href"
+        }
+    },
+    "pages_analyzed": 1,
+    "pages_failed": 0,
+    "refined_fields": [
+        "comment_id",
+        "comment_author",
+        "comment_posted_date",
+        "comment_posted_timestamp",
+        "comment_text",
+        "comment_indent_level"
+    ],
+    "site": "news.ycombinator.com",
+    "status": "ok",
+    "tokens_used": 4765
+}

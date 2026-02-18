@@ -312,6 +312,8 @@ export XPATHGENIE_ALLOW_SERVER_KEY=1
 
 > 🔒 **本番環境では必ずHTTPS経由でアクセスしてください。** APIキーがPOSTボディに含まれるため、HTTPではネットワーク上で傍受される可能性があります。
 
+> ⚠️ **リバースプロキシ利用時の注意:** Rate Limiterは `X-Forwarded-For` ヘッダーでクライアントIPを識別します。これは信頼できるリバースプロキシ（Apache, nginx等）の背後でのみ安全です。XPathGenieを直接インターネットに公開する場合、攻撃者がヘッダーを偽装してRate Limitを回避できます。本格的なSaaS化時にはFlaskの [ProxyFix](https://werkzeug.palletsprojects.com/en/latest/middleware/proxy_fix/) ミドルウェアの導入を検討してください。
+
 ### インストール
 
 ```bash

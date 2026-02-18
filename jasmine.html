@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XPath Jasmine — Section Selector</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; }
+
+/* Header */
+.header { padding: 12px 20px; background: #12101f; border-bottom: 1px solid #2a1a3a; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.header h1 { font-size: 1.2rem; background: linear-gradient(135deg, #b366ff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; }
+.header input { flex: 1; padding: 8px 12px; background: #1a1a2a; border: 1px solid #3a2a5a; border-radius: 6px; color: #e0d0f0; font-size: 0.9rem; }
+.header input:focus { outline: none; border-color: #b366ff; }
+.header button { padding: 8px 16px; border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer; font-weight: 600; }
+.btn-fetch { background: #b366ff; color: white; }
+.btn-fetch:hover { background: #9944ee; }
+.btn-analyze { background: #ffd700; color: #0a0a14; }
+.btn-analyze:hover { background: #eec600; }
+.btn-analyze:disabled { background: #4a4a3a; color: #8a8a6a; cursor: not-allowed; }
+.btn-reset { background: #3a2a5a; color: #e0d0f0; }
+.btn-reset:hover { background: #4a3a6a; }
+
+/* Info bar */
+.info-bar { padding: 8px 20px; background: #1a1a2a; border-bottom: 1px solid #2a1a3a; font-size: 0.85rem; color: #8a7aaa; display: flex; gap: 20px; flex-shrink: 0; }
+.info-bar .badge { padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; }
+.badge-include { background: rgba(0, 200, 100, 0.2); color: #00c864; }
+.badge-exclude { background: rgba(255, 80, 80, 0.2); color: #ff5050; }
+.badge-mode { background: rgba(179, 102, 255, 0.2); color: #b366ff; }
+
+/* Main content */
+.main { flex: 1; display: flex; flex-direction: row-reverse; overflow: hidden; }
+
+/* Preview panel */
+.preview-panel { flex: 1; position: relative; overflow: hidden; }
+.preview-panel iframe { width: 100%; height: 100%; border: none; background: white; }
+.loading { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #8a7aaa; font-size: 1.1rem; }
+
+/* Side panel */
+.side-panel { width: 320px; background: #12101f; border-right: 1px solid #2a1a3a; overflow-y: auto; flex-shrink: 0; padding: 16px; }
+.side-panel h3 { color: #ffd700; font-size: 0.95rem; margin-bottom: 12px; }
+.selection-list { list-style: none; }
+.selection-list li { padding: 8px 10px; margin-bottom: 6px; border-radius: 6px; font-size: 0.8rem; font-family: monospace; word-break: break-all; }
+.selection-list li.include { background: rgba(0, 200, 100, 0.1); border: 1px solid rgba(0, 200, 100, 0.3); color: #00c864; }
+.selection-list li.exclude { background: rgba(255, 80, 80, 0.1); border: 1px solid rgba(255, 80, 80, 0.3); color: #ff5050; }
+.selection-list li .remove { float: right; cursor: pointer; opacity: 0.5; }
+.selection-list li .remove:hover { opacity: 1; }
+
+/* Result panel */
+.result-section { margin-top: 16px; }
+.result-section h3 { color: #b366ff; }
+.result-field { padding: 6px 0; border-bottom: 1px solid #2a1a3a; font-size: 0.8rem; }
+.result-field .fname { color: #ffd700; }
+.result-field .fxpath { color: #8a7aaa; font-family: monospace; font-size: 0.7rem; word-break: break-all; }
+
+/* Status */
+.status { padding: 12px 20px; background: #12101f; border-top: 1px solid #2a1a3a; font-size: 0.85rem; color: #8a7aaa; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌸 XPath Jasmine</h1>
+  <input type="text" id="urlInput" placeholder="URLを入力..." value="">
+  <button class="btn-fetch" onclick="fetchPage()">読み込み</button>
+  <button class="btn-reset" onclick="resetSelections()">リセット</button>
+  <button class="btn-analyze" id="analyzeBtn" onclick="analyze()" disabled>分析実行</button>
+</div>
+
+<div class="info-bar">
+  <span>💡 クリックでメインコンテンツを選択（緑）</span>
+  <span>💡 Shift+クリックで除外（赤）</span>
+  <span class="badge badge-mode" id="modeLabel">モード: 待機中</span>
+</div>
+
+<div class="main">
+  <div class="preview-panel" id="previewPanel">
+    <div class="loading" id="loadingMsg">URLを入力して「読み込み」をクリック</div>
+    <iframe id="previewFrame" style="display:none;"></iframe>
+  </div>
+  
+  <div class="side-panel">
+    <h3>📋 選択セクション</h3>
+    <ul class="selection-list" id="selectionList">
+      <li style="color: #6a5a8a; border: 1px dashed #2a1a3a; background: none;">まだ選択されていません</li>
+    </ul>
+    
+    <div class="result-section" id="resultSection" style="display:none;">
+      <h3>📊 分析結果</h3>
+      <div id="resultFields"></div>
+    </div>
+  </div>
+</div>
+
+<div class="status" id="statusBar">Ready</div>
+<div style="position:fixed; bottom:0; right:0; height:300px; width:200px; z-index:9999; pointer-events:none; overflow:hidden;">
+  <img src="wallpapers/images/jasmine_bustup.png" style="height:400px; position:absolute; bottom:-200px; right:0;" />
+</div>
+
+<script>
+const API_BASE = '/xpathgenie';
+let includeSelector = null;
+let excludeSelectors = [];
+let fetchedHTML = '';
+let currentURL = '';
+
+function setStatus(msg) {
+  document.getElementById('statusBar').textContent = msg;
+}
+
+function setMode(mode) {
+  const label = document.getElementById('modeLabel');
+  if (mode === 'selecting') {
+    label.textContent = 'モード: セクション選択中';
+    label.style.color = '#00c864';
+  } else if (mode === 'ready') {
+    label.textContent = 'モード: 分析準備完了';
+    label.style.color = '#ffd700';
+  } else if (mode === 'analyzing') {
+    label.textContent = 'モード: 分析中...';
+    label.style.color = '#b366ff';
+  } else {
+    label.textContent = 'モード: 待機中';
+    label.style.color = '#b366ff';
+  }
+}
+
+function getCSSSelector(el) {
+  if (el.id) return `#${el.id}`;
+  let path = [];
+  while (el && el.nodeType === 1) {
+    if (el.id) { path.unshift(`#${el.id}`); break; }
+    if (el.tagName === 'BODY' || el.tagName === 'HTML') break;
+    let selector = el.tagName.toLowerCase();
+    if (el.className && typeof el.className === 'string') {
+      const classes = el.className.trim().split(/\s+/).filter(c => c && !c.startsWith('xpg-'));
+      if (classes.length > 0) {
+        selector += '.' + classes.slice(0, 2).join('.');
+      }
+    }
+    path.unshift(selector);
+    el = el.parentElement;
+  }
+  return path.join(' > ');
+}
+
+function updateSelectionList() {
+  const list = document.getElementById('selectionList');
+  list.innerHTML = '';
+  
+  if (!includeSelector && excludeSelectors.length === 0) {
+    list.innerHTML = '<li style="color: #6a5a8a; border: 1px dashed #2a1a3a; background: none;">まだ選択されていません</li>';
+    document.getElementById('analyzeBtn').disabled = true;
+    return;
+  }
+  
+  if (includeSelector) {
+    const li = document.createElement('li');
+    li.className = 'include';
+    li.innerHTML = `<span class="remove" onclick="removeInclude()">✕</span>🟢 ${includeSelector}`;
+    list.appendChild(li);
+    document.getElementById('analyzeBtn').disabled = false;
+    setMode('ready');
+  }
+  
+  excludeSelectors.forEach((sel, i) => {
+    const li = document.createElement('li');
+    li.className = 'exclude';
+    li.innerHTML = `<span class="remove" onclick="removeExclude(${i})">✕</span>🔴 ${sel}`;
+    list.appendChild(li);
+  });
+}
+
+function removeInclude() {
+  const frame = document.getElementById('previewFrame');
+  const doc = frame.contentDocument;
+  if (doc) {
+    const el = doc.querySelector('.xpg-include');
+    if (el) el.classList.remove('xpg-include');
+    // Remove blackout
+    doc.querySelectorAll('.xpg-blackout').forEach(e => e.classList.remove('xpg-blackout'));
+  }
+  includeSelector = null;
+  setMode('selecting');
+  updateSelectionList();
+}
+
+function removeExclude(index) {
+  const frame = document.getElementById('previewFrame');
+  const doc = frame.contentDocument;
+  if (doc) {
+    const els = doc.querySelectorAll('.xpg-exclude');
+    if (els[index]) els[index].classList.remove('xpg-exclude');
+  }
+  excludeSelectors.splice(index, 1);
+  updateSelectionList();
+}
+
+function resetSelections() {
+  const frame = document.getElementById('previewFrame');
+  const doc = frame.contentDocument;
+  if (doc) {
+    doc.querySelectorAll('.xpg-include, .xpg-exclude, .xpg-blackout').forEach(el => {
+      el.classList.remove('xpg-include', 'xpg-exclude', 'xpg-blackout');
+    });
+  }
+  includeSelector = null;
+  excludeSelectors = [];
+  setMode('selecting');
+  updateSelectionList();
+  document.getElementById('resultSection').style.display = 'none';
+}
+
+function applyBlackout(doc, includeEl) {
+  // Blackout everything except the include element and its ancestors
+  function blackoutSiblings(el) {
+    if (!el || !el.parentElement) return;
+    const parent = el.parentElement;
+    Array.from(parent.children).forEach(child => {
+      if (child !== el && !child.contains(includeEl) && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE') {
+        child.classList.add('xpg-blackout');
+      }
+    });
+    if (parent.tagName !== 'BODY' && parent.tagName !== 'HTML') {
+      blackoutSiblings(parent);
+    }
+  }
+  blackoutSiblings(includeEl);
+}
+
+async function fetchPage() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url) { setStatus('URLを入力してください'); return; }
+  
+  currentURL = url;
+  setStatus('ページを読み込み中...');
+  setMode('selecting');
+  document.getElementById('loadingMsg').textContent = '読み込み中...';
+  document.getElementById('loadingMsg').style.display = 'block';
+  document.getElementById('previewFrame').style.display = 'none';
+  
+  try {
+    // Fetch via proxy API
+    const resp = await fetch(`${API_BASE}/api/fetch?url=${encodeURIComponent(url)}`);
+    const data = await resp.json();
+    
+    if (data.error) {
+      setStatus(`エラー: ${data.error}`);
+      document.getElementById('loadingMsg').textContent = `読み込みエラー: ${data.error}`;
+      return;
+    }
+    
+    fetchedHTML = data.html;
+    
+    // Inject into iframe
+    const frame = document.getElementById('previewFrame');
+    frame.style.display = 'block';
+    document.getElementById('loadingMsg').style.display = 'none';
+    
+    // Add our styles and base tag
+    const injectedCSS = `
+      <style>
+        .xpg-hover { outline: 3px dashed rgba(179, 102, 255, 0.7) !important; outline-offset: 2px !important; cursor: pointer !important; }
+        .xpg-include { outline: 3px solid #00c864 !important; outline-offset: 2px !important; background-color: rgba(0, 200, 100, 0.05) !important; }
+        .xpg-exclude { outline: 3px solid #ff5050 !important; outline-offset: 2px !important; background-color: rgba(255, 80, 80, 0.05) !important; }
+        .xpg-blackout { opacity: 0.15 !important; filter: grayscale(1) brightness(0.3) !important; pointer-events: none !important; transition: all 0.3s !important; }
+      </style>
+      <base href="${new URL(url).origin}/" />
+    `;
+    
+    const html = fetchedHTML.replace('</head>', injectedCSS + '</head>');
+    frame.srcdoc = html;
+    
+    frame.onload = () => {
+      const doc = frame.contentDocument;
+      let hovered = null;
+      
+      // Hover effect
+      doc.addEventListener('mouseover', (e) => {
+        let target = e.target;
+        // Walk up to a meaningful section-level element
+        while (target && target.tagName !== 'BODY' && target.tagName !== 'HTML') {
+          const tag = target.tagName.toLowerCase();
+          if (['div', 'section', 'main', 'article', 'table', 'form', 'ul', 'ol', 'dl'].includes(tag)) {
+            break;
+          }
+          target = target.parentElement;
+        }
+        if (!target || target.tagName === 'BODY' || target.tagName === 'HTML') return;
+        
+        if (hovered && hovered !== target) {
+          hovered.classList.remove('xpg-hover');
+        }
+        if (!target.classList.contains('xpg-include') && !target.classList.contains('xpg-exclude')) {
+          target.classList.add('xpg-hover');
+        }
+        hovered = target;
+      });
+      
+      doc.addEventListener('mouseout', (e) => {
+        if (hovered) {
+          hovered.classList.remove('xpg-hover');
+          hovered = null;
+        }
+      });
+      
+      // Click handler
+      doc.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        let target = e.target;
+        while (target && target.tagName !== 'BODY' && target.tagName !== 'HTML') {
+          const tag = target.tagName.toLowerCase();
+          if (['div', 'section', 'main', 'article', 'table', 'form', 'ul', 'ol', 'dl'].includes(tag)) {
+            break;
+          }
+          target = target.parentElement;
+        }
+        if (!target || target.tagName === 'BODY' || target.tagName === 'HTML') return;
+        
+        target.classList.remove('xpg-hover');
+        const selector = getCSSSelector(target);
+        
+        if (e.shiftKey) {
+          // Exclude mode
+          if (target.classList.contains('xpg-exclude')) {
+            target.classList.remove('xpg-exclude');
+            excludeSelectors = excludeSelectors.filter(s => s !== selector);
+          } else {
+            target.classList.add('xpg-exclude');
+            excludeSelectors.push(selector);
+          }
+        } else {
+          // Include mode
+          // Remove previous include
+          doc.querySelectorAll('.xpg-include').forEach(el => el.classList.remove('xpg-include'));
+          doc.querySelectorAll('.xpg-blackout').forEach(el => el.classList.remove('xpg-blackout'));
+          
+          target.classList.add('xpg-include');
+          includeSelector = selector;
+          
+          // Apply blackout
+          applyBlackout(doc, target);
+        }
+        
+        updateSelectionList();
+      });
+      
+      setStatus(`✅ ページ読み込み完了 — セクションをクリックして選択してください`);
+    };
+    
+  } catch (err) {
+    setStatus(`エラー: ${err.message}`);
+    document.getElementById('loadingMsg').textContent = `エラー: ${err.message}`;
+  }
+}
+
+async function analyze() {
+  if (!includeSelector) return;
+  
+  setMode('analyzing');
+  setStatus('分析中...');
+  document.getElementById('analyzeBtn').disabled = true;
+  
+  try {
+    const payload = {
+      urls: [currentURL],
+      selector: includeSelector,
+    };
+    if (excludeSelectors.length > 0) {
+      payload.exclude = excludeSelectors;
+    }
+    
+    const resp = await fetch(`${API_BASE}/api/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+    
+    if (data.status === 'error') {
+      setStatus(`分析エラー: ${data.reason} — ${data.message || ''}`);
+      document.getElementById('analyzeBtn').disabled = false;
+      return;
+    }
+    
+    // Show results
+    const resultSection = document.getElementById('resultSection');
+    const resultFields = document.getElementById('resultFields');
+    resultFields.innerHTML = '';
+    
+    const mappings = data.mappings || {};
+    const count = Object.keys(mappings).length;
+    
+    Object.entries(mappings).forEach(([field, info]) => {
+      const div = document.createElement('div');
+      div.className = 'result-field';
+      div.innerHTML = `<div class="fname">${field}</div><div class="fxpath">${info.xpath}</div>`;
+      resultFields.appendChild(div);
+    });
+    
+    resultSection.style.display = 'block';
+    setStatus(`✅ 分析完了 — ${count}フィールド取得`);
+    setMode('ready');
+    document.getElementById('analyzeBtn').disabled = false;
+    
+  } catch (err) {
+    setStatus(`エラー: ${err.message}`);
+    document.getElementById('analyzeBtn').disabled = false;
+  }
+}
+</script>
+
+</body>
+</html>

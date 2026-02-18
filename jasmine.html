@@ -93,22 +93,18 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
   </div>
 </div>
 
-<div style="position:fixed; bottom:0; left:0; right:0; z-index:9999; display:flex; align-items:flex-end; justify-content:space-between; padding:0 16px 8px; pointer-events:none;">
-  <!-- Nav links -->
-  <div style="pointer-events:auto; padding:8px 12px; font-size:0.8rem;">
-    <a href="index.html" style="color:#7c5cfc; text-decoration:none; margin-right:10px;">Genie (Generate)</a>
-    <a href="aladdin.html" style="color:#7c5cfc; text-decoration:none;">Aladdin (Analyze)</a>
-  </div>
-  <!-- Speech bubble + Jasmine -->
-  <div style="display:flex; align-items:flex-end; gap:0;">
-    <div id="statusBar" style="background:#1a1a2e; border:1px solid #3a2a5a; border-radius:12px 12px 0 12px; padding:8px 14px; font-size:0.85rem; color:#e0d0f0; max-width:300px; margin-bottom:40px; pointer-events:auto; position:relative;">
-      URLを入れてね ✨
-      <div style="position:absolute; bottom:-8px; right:-4px; width:0; height:0; border-left:10px solid #1a1a2e; border-bottom:10px solid transparent;"></div>
-    </div>
-    <div style="width:120px; height:180px; overflow:hidden; flex-shrink:0;">
-      <img src="wallpapers/images/jasmine_bustup.png" style="height:300px; margin-top:-30px; margin-left:-20px;" />
-    </div>
-  </div>
+<!-- Nav links (bottom-left) -->
+<div style="position:fixed; bottom:8px; left:16px; z-index:9999; font-size:0.8rem;">
+  <a href="index.html" style="color:#7c5cfc; text-decoration:none; margin-right:10px;">Genie (Generate)</a>
+  <a href="aladdin.html" style="color:#7c5cfc; text-decoration:none;">Aladdin (Analyze)</a>
+</div>
+<!-- Speech bubble -->
+<div id="statusBar" style="position:fixed; bottom:50px; right:210px; z-index:10000; background:#1a1a2e; border:1px solid #3a2a5a; border-radius:12px 12px 0 12px; padding:8px 14px; font-size:0.85rem; color:#e0d0f0; max-width:280px;">
+  URLを入れてね ✨
+</div>
+<!-- Jasmine mascot (original position) -->
+<div style="position:fixed; bottom:0; right:0; height:300px; width:200px; z-index:9999; pointer-events:none; overflow:hidden;">
+  <img src="wallpapers/images/jasmine_bustup.png" style="height:400px; position:absolute; bottom:-200px; right:0;" />
 </div>
 
 <script>

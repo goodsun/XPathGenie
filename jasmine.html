@@ -67,12 +67,22 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
   <button class="btn-fetch" onclick="fetchPage()">読み込み</button>
   <button class="btn-reset" onclick="resetSelections()">リセット</button>
   <button class="btn-analyze" id="analyzeBtn" onclick="analyze()" disabled>分析実行</button>
+  <button onclick="document.getElementById('wantListModal').style.display='flex'" style="padding:8px 12px; background:#2a1a3a; border:1px solid #b366ff; border-radius:6px; color:#b366ff; font-size:0.8rem; cursor:pointer;">📋 Want List</button>
 </div>
 
-<div style="padding:4px 20px; background:#0e0e1a; display:flex; align-items:center; gap:8px; flex-shrink:0;">
-  <label style="color:#ffd700; font-size:0.8rem; white-space:nowrap;">Want List</label>
-  <input type="text" id="wantListInput" placeholder='例: job_title, salary, location, ...' style="flex:1; padding:6px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.8rem;">
+<!-- Want List Modal -->
+<div id="wantListModal" style="display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+  <div style="background:#12101f; border:1px solid #3a2a5a; border-radius:12px; padding:20px; width:90%; max-width:500px;">
+    <h3 style="color:#ffd700; margin-bottom:12px;">📋 Want List</h3>
+    <p style="color:#8a7aaa; font-size:0.8rem; margin-bottom:8px;">取得したいフィールド名をカンマ区切りで入力</p>
+    <textarea id="wantListInput" rows="6" placeholder="例: job_title, salary, location, company_name, ..." style="width:100%; padding:10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.85rem; resize:vertical;"></textarea>
+    <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
+      <button onclick="document.getElementById('wantListInput').value=''; localStorage.removeItem('xpathgenie_wantlist')" style="padding:8px 16px; background:#2a1a2a; border:1px solid #4a3a5a; border-radius:6px; color:#8a7aaa; cursor:pointer;">クリア</button>
+      <button onclick="saveWantList()" style="padding:8px 16px; background:#b366ff; border:none; border-radius:6px; color:#fff; font-weight:600; cursor:pointer;">保存</button>
+    </div>
+  </div>
 </div>
+
 <div class="info-bar">
   <span>💡 クリックでメインコンテンツを選択（緑）</span>
   <span>💡 Shift+クリックで除外（赤）</span>
@@ -125,6 +135,16 @@ const API_BASE = '/xpathgenie';
     } catch(e) {}
   }
 })();
+
+function saveWantList() {
+  const raw = document.getElementById('wantListInput').value.trim();
+  if (raw) {
+    const wl = {};
+    raw.split(',').map(s => s.trim()).filter(Boolean).forEach(f => { wl[f] = ''; });
+    localStorage.setItem('xpathgenie_wantlist', JSON.stringify(wl));
+  }
+  document.getElementById('wantListModal').style.display = 'none';
+}
 let includeSelector = null;
 let excludeSelectors = [];
 let fetchedHTML = '';

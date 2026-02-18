@@ -310,6 +310,8 @@ export XPATHGENIE_ALLOW_SERVER_KEY=1
 
 > ⚠️ 公開サーバーでは `XPATHGENIE_ALLOW_SERVER_KEY` を設定しないでください。全リクエストがサーバーオーナーのAPIキーで課金されます。
 
+> 🔒 **本番環境では必ずHTTPS経由でアクセスしてください。** APIキーがPOSTボディに含まれるため、HTTPではネットワーク上で傍受される可能性があります。
+
 ### インストール
 
 ```bash

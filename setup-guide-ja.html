@@ -47,7 +47,7 @@
     <h2>3. セキュリティとプライバシー</h2>
     <div class="card">
       <ul style="padding-left:1.2rem;">
-        <li>APIキーはGemini APIの呼び出しのためにXPathGenieサーバーへHTTPS経由で送信されます。サーバー側でキーの<strong>記録・保存は行いません</strong>。</li>
+        <li>APIキーはGemini APIの呼び出しのためにXPathGenieサーバーへ送信されます。サーバー側でキーの<strong>記録・保存は行いません</strong>。<strong>本番環境では必ずHTTPS経由でアクセスしてください。</strong>HTTPSなしの場合、APIキーが通信経路上で傍受される可能性があります。</li>
         <li>入力欄からキーを削除すればいつでもクリアできます。</li>
         <li><strong>APIキーを公開の場に共有しないでください。</strong>万が一漏洩した場合は、<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> でキーを無効化し、新しいキーを作成してください。</li>
       </ul>

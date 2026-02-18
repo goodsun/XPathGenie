@@ -46,7 +46,7 @@
     <h2>3. Security &amp; Privacy</h2>
     <div class="card">
       <ul style="padding-left:1.2rem;">
-        <li>Your API key is sent to the XPathGenie server over HTTPS for Gemini API calls. The server does <strong>not</strong> log or store your key.</li>
+        <li>Your API key is sent to the XPathGenie server for Gemini API calls. The server does <strong>not</strong> log or store your key. <strong>Always access XPathGenie over HTTPS in production.</strong> Without HTTPS, your API key could be intercepted in transit.</li>
         <li>You can clear your key at any time by deleting it from the input field.</li>
         <li><strong>Never share your API key publicly.</strong> If compromised, revoke it in <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> and create a new one.</li>
       </ul>

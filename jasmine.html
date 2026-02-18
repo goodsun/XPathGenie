@@ -117,7 +117,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
     </ul>
     
     <div class="result-section" id="resultSection" style="display:none;">
-      <h3>📊 分析結果</h3>
+      <h3 style="display:inline;">📊 分析結果</h3> <button onclick="copyResults()" style="padding:4px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#b366ff; font-size:0.75rem; cursor:pointer; vertical-align:middle;">📋 JSONコピー</button>
       <div id="resultFields"></div>
     </div>
   </div>
@@ -178,6 +178,19 @@ function getWLFromForm() {
 function loadWLToForm(obj) {
   document.getElementById('wlFields').innerHTML = '';
   Object.entries(obj).forEach(([k, v]) => addWLField(k, v));
+}
+
+let lastMappings = null;
+
+function copyResults() {
+  if (!lastMappings) return;
+  const json = JSON.stringify(lastMappings, null, 2);
+  navigator.clipboard.writeText(json).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✅ コピーした！';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
 }
 
 function saveWantList() {
@@ -543,6 +556,7 @@ async function analyze() {
     resultFields.innerHTML = '';
     
     const mappings = data.mappings || {};
+    lastMappings = mappings;
     const count = Object.keys(mappings).length;
     
     Object.entries(mappings).forEach(([field, info]) => {

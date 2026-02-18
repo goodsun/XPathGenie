@@ -184,7 +184,9 @@ let lastMappings = null;
 
 function copyResults() {
   if (!lastMappings) return;
-  const json = JSON.stringify(lastMappings, null, 2);
+  const simple = {};
+  Object.entries(lastMappings).forEach(([k, v]) => { simple[k] = v.xpath || v; });
+  const json = JSON.stringify(simple, null, 2);
   navigator.clipboard.writeText(json).then(() => {
     const btn = event.target;
     const orig = btn.textContent;

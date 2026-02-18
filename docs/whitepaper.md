@@ -673,3 +673,133 @@ The system's architectural insight—using AI for one-time mapping discovery rat
 17. Huang, J., & Song, J. (2025). Automatic XPath generation agents for vertical websites by LLMs. *Journal of King Saud University — Computer and Information Sciences*.
 
 18. AXE: Adaptive X-Path Extractor. (2026). DOM pruning for efficient LLM-based XPath extraction with grounded resolution. *arXiv preprint arXiv:2602.01838*.
+
+---
+
+## Appendix A: LLM Prompts
+
+The following are the complete prompts used in XPathGenie's pipeline. All prompts are passed to Gemini 2.5 Flash via the `generateContent` API with `temperature=0.1`.
+
+### A.1 Auto Discover Prompt (PROMPT_DISCOVER)
+
+```
+You are an expert web scraper. Analyze the following compressed HTML samples from the same website.
+Identify all meaningful data fields that can be extracted, and provide XPath expressions that work across all pages.
+
+Rules:
+- Return ONLY a JSON object: {"field_name": "xpath_expression", ...}
+- Keep XPaths SHORT and SIMPLE. Avoid deeply nested conditions. Prefer: //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- Field names must be lowercase English, descriptive, generic (e.g. price, title, facility_name, prefecture, address, phone, description, salary, job_type, access, working_hours)
+- Limit to the 20 most important fields maximum
+- XPaths must use // prefix and select element nodes (not text() nodes)
+- For class matching, ALWAYS use contains() because classes often have multiple values (e.g. //div[contains(@class,'price')], NOT //div[@class='price'])
+- For text matching, ALWAYS use normalize-space() to handle whitespace: //dt[normalize-space()='ラベル'] or //td[normalize-space()='ラベル']
+- For dt/dd patterns, use: //dl[dt[normalize-space()='ラベル']]/dd or //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- Do NOT use XPath functions like substring-after. contains(@class,...) and normalize-space() are OK.
+- Include all extractable fields you can identify
+- Do NOT include navigation, header, footer, sidebar, or boilerplate fields
+- Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
+- Example: //dt[normalize-space()='給与']/following-sibling::dd[1] (correct)
+- Example: //div[contains(@class,'xxx')]//dt[...] (WRONG — do not add container)
+- Return valid JSON only, no markdown, no explanation
+
+HTML samples:
+[compressed HTML inserted here]
+```
+
+### A.2 Want List Prompt (PROMPT_WANTLIST)
+
+```
+You are an expert web scraper. Analyze the following compressed HTML samples from the same website.
+The user wants to extract SPECIFIC fields. Find the best XPath for each requested field.
+
+Requested fields (JSON schema):
+[user-provided want list inserted here]
+
+Rules:
+- Return ONLY a JSON object with the EXACT same keys as the requested schema: {"field_name": "xpath_expression", ...}
+- You MUST include ALL requested field names in the output, even if you cannot find a match (use null for XPath in that case)
+- Keep XPaths SHORT and SIMPLE. Prefer: //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- XPaths must use // prefix and select element nodes (not text() nodes)
+- For class matching, ALWAYS use contains() because classes often have multiple values
+- For text matching, ALWAYS use normalize-space() to handle whitespace
+- For dt/dd patterns, use: //dl[dt[normalize-space()='ラベル']]/dd or //dt[normalize-space()='ラベル']/following-sibling::dd[1]
+- Do NOT use XPath functions like substring-after. contains(@class,...) and normalize-space() are OK.
+- Match fields by MEANING, not by label text (e.g. "price" matches "給与", "時給", "報酬", "salary")
+- The VALUES in the schema are hints/descriptions of what the user wants for that field
+- Output SIMPLE XPaths with NO container prefix (the system adds scoping automatically)
+- Return valid JSON only, no markdown, no explanation
+
+HTML samples:
+[compressed HTML inserted here]
+```
+
+### A.3 Refinement Prompt (PROMPT_REFINE)
+
+```
+You are an expert web scraper. Some XPath expressions matched MULTIPLE nodes on the same page.
+For each field, examine the surrounding HTML context of the multiple matches, determine which match is the PRIMARY/most important one (the main job detail, not sidebar/recommendations/summary), and return a MORE SPECIFIC XPath that matches only that one.
+
+Strategy:
+- Look for intermediate structural containers (divs with meaningful class names) between the page-level container and the target dt/dd
+- Use these intermediate containers to narrow down to the correct section
+- For example: if both "job detail" and "job summary" sections have dt[normalize-space()='勤務地'], add the job-detail section's parent class
+- Pick the match that contains the MOST DETAILED information (full description > summary)
+- Keep XPaths as simple as possible while being unique
+
+Fields that need refinement:
+[field context with match counts and HTML snippets inserted here]
+
+Rules:
+- Return ONLY a JSON object: {"field_name": "refined_xpath", ...}
+- Include ONLY the fields listed above (the ones that need fixing)
+- XPaths must start with // and use contains(@class,...) for class matching
+- Do NOT use functions like substring-after or normalize-space
+- Return valid JSON only, no markdown, no explanation
+```
+
+## Appendix B: LLM Reasoning Example
+
+The following shows the LLM's intermediate reasoning when analyzing a Hacker News discussion page (https://news.ycombinator.com/item?id=1) in Auto Discover mode. The prompt was modified to request explicit step-by-step reasoning before the final JSON output.
+
+### B.1 Page Analysis Reasoning
+
+> **1. What kind of page is this?**
+> This HTML represents a Hacker News "item" or "story" page. The `<html>` tag has `op="item"`, which is a strong indicator.
+>
+> **2. What HTML structure patterns do you see?**
+> - **Overall Layout:** The entire page content is contained within a central `<table>` with `id="hnmain"`.
+> - **Story/Submission Block:** The story itself is presented within a `<table>` with `class="fatitem"`. The core story information is in a `<tr>` with `class="athing submission"`.
+>   - The title and URL are in a `span.titleline`.
+>   - The score, author, age, and comment count are in `td.subtext` within a `span.subline`.
+> - **Comments Block:** A `<table>` with `class="comment-tree"` holds all the comments. Each comment is a `<tr>` with `class="athing comtr"`. Comments are nested using `<td>` elements with `class="ind"` and `indent` attributes.
+>
+> **3. What data fields are available?**
+> Story details: title, URL, domain, score, author, timestamp, comment count.
+> Comment details: id, author, text, timestamp, indent level.
+>
+> **4. How did you choose the XPath for each field?**
+> For story fields, I targeted the `fatitem` table structure and its subtext span. For comments, I targeted the `comment-tree` table with `comtr` class rows, using the `indent` attribute for nesting depth.
+
+### B.2 Final Output (14 fields)
+
+```json
+{
+  "title": "//span[contains(@class,'titleline')]/a",
+  "url": "//span[contains(@class,'titleline')]/a/@href",
+  "domain": "//span[contains(@class,'sitebit')]//span[contains(@class,'sitestr')]",
+  "points": "//span[contains(@class,'score')]",
+  "author": "//a[contains(@class,'hnuser')]",
+  "posted_date": "//span[contains(@class,'age')]",
+  "posted_timestamp": "//span[contains(@class,'age')]/@title",
+  "comments_count": "//span[contains(@class,'subline')]/a[contains(@href,'item')]",
+  "comment_author": "//span[contains(@class,'comhead')]//a[contains(@class,'hnuser')]",
+  "comment_text": "//div[contains(@class,'commtext')]",
+  "comment_id": "//tr[contains(@class,'comtr')]/@id",
+  "comment_indent_level": "//td[contains(@class,'ind')]/@indent",
+  "comment_posted_date": "//span[contains(@class,'comhead')]//span[contains(@class,'age')]",
+  "comment_posted_timestamp": "//span[contains(@class,'comhead')]//span[contains(@class,'age')]/@title"
+}
+```
+
+This example demonstrates that the LLM correctly identifies (1) the page type from HTML attributes, (2) structural patterns including nested comment trees, (3) relevant data fields while excluding navigation/boilerplate, and (4) appropriate XPath strategies for each pattern type.

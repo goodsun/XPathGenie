@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セットアップガイド — XPathGenie</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    .guide-container { max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .guide-container h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .guide-container h2 { color: #c084fc; font-size: 1.2rem; margin: 1.5rem 0 0.5rem; }
+    .guide-container p, .guide-container li { color: #bbb; line-height: 1.7; }
+    .guide-container ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .guide-container ol li { margin-bottom: 0.5rem; }
+    .guide-container a { color: #7c5cfc; }
+    .guide-container code { background: #1a1a2e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .card { background: #12121f; border: 1px solid #222; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+    .back-link { display: inline-block; margin-bottom: 1rem; color: #7c5cfc; text-decoration: none; font-size: 0.9rem; }
+    .lang-switch { float: right; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <a href="index.html" class="back-link">← XPathGenieに戻る</a>
+    <span class="lang-switch"><a href="setup-guide.html">English</a></span>
+    <h1>セットアップガイド</h1>
+    <p>XPathGenieはGoogleのGemini APIを使ってHTMLを解析し、XPath式を自動生成します。利用にはAPIキー（無料で取得可能）が必要です。</p>
+
+    <h2>1. Gemini APIキーの取得</h2>
+    <div class="card">
+      <ol>
+        <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio → APIキー</a> にアクセス</li>
+        <li>Googleアカウントでログイン</li>
+        <li><strong>「APIキーを作成」</strong>をクリック</li>
+        <li>表示されたキー（<code>AIza...</code>で始まる文字列）をコピー</li>
+        <li>XPathGenieの「API Key」欄に貼り付け</li>
+      </ol>
+    </div>
+
+    <h2>2. 無料枠について</h2>
+    <div class="card">
+      <p>Gemini APIには無料枠があり、1日あたり多数のリクエストを無料で利用できます。XPathGenieは1回の解析で1〜3回のAPI呼び出ししか行わないため、ほとんどのユーザーは無料枠内で十分に利用可能です。</p>
+      <p>最新の利用制限については <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener">Google AI の料金ページ</a> をご確認ください。</p>
+    </div>
+
+    <h2>3. セキュリティとプライバシー</h2>
+    <div class="card">
+      <ul style="padding-left:1.2rem;">
+        <li>APIキーはGemini APIの呼び出しのためにXPathGenieサーバーへHTTPS経由で送信されます。サーバー側でキーの<strong>記録・保存は行いません</strong>。</li>
+        <li>入力欄からキーを削除すればいつでもクリアできます。</li>
+        <li><strong>APIキーを公開の場に共有しないでください。</strong>万が一漏洩した場合は、<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> でキーを無効化し、新しいキーを作成してください。</li>
+      </ul>
+    </div>
+
+    <h2>4. 「Remember API key」（localStorage保存）について</h2>
+    <div class="card">
+      <p><strong>「Remember API key」</strong>にチェックを入れると、ブラウザの<code>localStorage</code>にキーが保存されます。便利ですが、以下のトレードオフを理解した上でご利用ください：</p>
+      <ul style="padding-left:1.2rem; margin-top:0.8rem;">
+        <li><strong>仕組み：</strong><code>localStorage</code>はブラウザ内のシンプルなKey-Valueストアで、サイトのオリジン（ドメイン＋ポート）ごとに分離されています。明示的に削除するまでデータは残り続けます（タブを閉じても、ブラウザを再起動しても消えません）。</li>
+        <li><strong>アクセスできるもの：</strong>同じオリジン上で動作するすべてのJavaScriptが<code>localStorage</code>を読み取れます。適切な権限を持つブラウザ拡張機能や、XSS（クロスサイトスクリプティング）攻撃によって注入されたスクリプトも含まれます。</li>
+        <li><strong>アクセスできないもの：</strong>他のWebサイト、異なるオリジン、サーバーサイドのコードからは<code>localStorage</code>を直接読み取ることはできません。</li>
+        <li><strong>リスク：</strong>悪意のあるブラウザ拡張機能やXSS攻撃により、保存されたAPIキーが外部に流出する可能性があります。発生確率は低いですが、現実のリスクです。</li>
+        <li><strong>対策：</strong>Gemini APIキーはいつでも無料で再生成できます。漏洩の疑いがある場合は、<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> でキーを無効化し、新しく作成してください。</li>
+        <li><strong>安全なデフォルト：</strong>「Remember」のチェックを外したままにしておけば、キーはメモリ内にのみ保持され、タブを閉じると消去されます。次回は再度貼り付ける必要がありますが、より安全です。</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

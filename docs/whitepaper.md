@@ -278,6 +278,30 @@ The noise pattern fix (adding `entry_box|entry_form` to exclusion rules) recover
 
 **Implications for the escalation model.** The 13% escalation rate validates the auto+escalate design: for a portfolio of 100 sites, approximately 87 would process fully automatically, with only ~13 requiring a single human interaction (clicking the correct content section in Jasmine's blackout preview). At an estimated 30 seconds per Jasmine interaction, the total human effort for the escalated sites would be approximately 6.5 minutes—negligible compared to the hours saved by automatic processing of the remaining sites.
 
+#### 3.7.7 Semantic Accuracy Validation
+
+While the primary evaluation metric (hit rate) measures structural extraction stability—whether XPaths return non-empty values—it does not assess whether the *correct* value is extracted for the intended field. To address this limitation, we conducted a semantic accuracy evaluation on a random sample of 100 field-value pairs drawn from the 23-site Want List evaluation corpus (350 total fields with non-empty extractions, sampled with seed=42).
+
+Each pair was manually judged against three criteria:
+
+| Judgment | Definition | Count |
+|----------|-----------|-------|
+| ✅ Correct | Extracted value is semantically appropriate for the field name | 82 |
+| ⚠️ Partial | Contains the correct information but with noise or extra content | 13 |
+| ❌ Wrong | Extracted value is incorrect for the field name | 5 |
+
+**Semantic accuracy (Correct + Partial): 95.0%.** Strict accuracy (Correct only): 82.0%.
+
+The 5 incorrect cases fall into three categories:
+
+1. **Label-as-value extraction** (1 case): The XPath captured the field label text ("勤務地") instead of the actual city name, due to ambiguous DOM structure where the label and value shared the same parent element.
+2. **Adjacent section leakage** (2 cases): The XPath captured content from a neighboring section (e.g., holiday field containing salary/bonus information from a combined data block).
+3. **Field confusion** (2 cases): Semantically similar fields (e.g., `price_rule` vs `welfare_program`) mapped to the wrong content when the site used a single container for both salary and benefits information.
+
+The 13 partial cases predominantly exhibit a "correct value + noise" pattern (e.g., `license` field containing both the required license name and experience requirements), which is amenable to post-processing cleanup.
+
+These results confirm that XPathGenie's structural hit rate (87.3%) translates to high semantic accuracy (95.0%) in practice: the vast majority of non-empty extractions contain the intended information. The 5% error rate is concentrated in structurally ambiguous cases where field boundaries are unclear even to human readers, suggesting that the remaining errors reflect genuine page structure ambiguity rather than systematic XPath generation failures.
+
 ## 4. Evaluation
 
 ### 4.1 Experimental Setup

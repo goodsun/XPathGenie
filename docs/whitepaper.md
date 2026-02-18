@@ -191,6 +191,65 @@ While XPathGenie automates mapping generation, production deployment benefits fr
 
 This architecture embodies a deliberate role reversal: traditionally, humans write XPaths and machines validate them; in XPathGenie's workflow, machines write XPaths and humans validate them.
 
+### 3.7 Interactive Section Selection (Jasmine)
+
+While the noise pattern system (Section 3.1) handles common cases of irrelevant content, the compression-generation gap remains fundamentally a *selection problem*: which part of the page should the LLM see? Rule-based approaches are inherently limited—they cannot anticipate every site's structural idiosyncrasies. The companion tool **XPath Jasmine** addresses this gap through interactive, human-guided section selection.
+
+#### 3.7.1 Problem: The Limits of Rule-Based Abstraction
+
+The HTML compressor's noise pattern mechanism (removing navigation, footers, sidebars, forms) is an attempt to replicate human "selective attention"—the ability to look at a complex page and instantly focus on the relevant data table while ignoring everything else. However, human abstraction operates on semantic understanding, while rule-based pattern matching operates on syntactic cues (class names, tag structures). When these cues are absent or misleading, the compressor selects the wrong content section.
+
+A concrete example: on yakuzaishisyusyoku.net, an application form (`div.entry_box`) contained a table with more `<th>`/`<td>` pairs than the actual job detail table. The compressor's depth-weighted content scoring selected the form as the "main content" because it had a higher structural score—producing zero useful field mappings. The fix required adding a new noise pattern (`entry_box|entry_form|apply_|registration`), but this is reactive: each new failure mode demands a new rule.
+
+#### 3.7.2 Approach: Blackout Preview
+
+Jasmine renders the target page in an iframe and allows users to interactively select which section the LLM should analyze:
+
+1. **Click to include (green)**: User clicks any element to select it as the analysis target. The selected element is highlighted with a green outline.
+2. **Shift+click to exclude (red)**: Within the selected section, users can further exclude sub-sections (e.g., an embedded form within a job detail container).
+3. **Blackout visualization**: All content *outside* the selected section is dimmed (opacity: 0.15, grayscale, brightness: 0.3), providing an immediate visual preview of exactly what the LLM will see. This makes the compression boundary visible and tangible.
+4. **Parent path navigation**: The CSS selector path (e.g., `#result > div.detail_box > table`) is displayed with each ancestor element clickable, allowing users to broaden the selection scope by clicking a parent element.
+
+This interaction model externalizes the compressor's most critical decision—section selection—to the user, who possesses the semantic understanding that rule-based systems lack. The user sees the page as a human reader would, and directly indicates "analyze this, ignore that."
+
+#### 3.7.3 Escalation Model
+
+Jasmine supports three operational modes that balance automation and human oversight:
+
+- **auto**: Fully automatic section selection using the existing compressor heuristics plus automatic retry. If the initial analysis returns zero fields, the system selects the next-highest-scoring section and retries. Suitable for batch/API workflows.
+- **confirm**: The compressor's selection is presented as a blackout preview for user confirmation before LLM analysis begins. Suitable for interactive use where users want visibility into what the LLM sees.
+- **auto+escalate**: Default automatic mode, but failures trigger an interactive preview where the user manually selects the correct section. This is the recommended mode for SaaS deployment—it minimizes friction for well-structured sites while gracefully handling edge cases.
+
+#### 3.7.4 Pipeline Integration: Generate → Join → Analyze
+
+Jasmine integrates with the existing tools through localStorage-based state sharing, establishing a three-stage pipeline where each tool's name reflects its function:
+
+| Tool | Function | Role |
+|------|----------|------|
+| **Genie** (Generate) | LLM-based XPath generation | Generates field→XPath mappings from compressed HTML |
+| **Jasmine** (Join) | Interactive section selection | Joins user intent with page structure; controls what Genie sees |
+| **Aladdin** (Analyze) | Multi-page validation | Analyzes mapping quality across multiple pages |
+
+The workflow proceeds as follows:
+
+1. **Want List** (shared via localStorage): User defines desired fields with example values (e.g., `{"job_title": "薬剤師", "salary": "年収500万円"}`).
+2. **Jasmine**: User loads the target URL, selects the relevant section via blackout preview, and triggers analysis. Jasmine sends the selected section (with exclusions) to the Genie API endpoint.
+3. **Results**: Extracted values (not XPath expressions) are displayed inline, with multi-match warnings highlighted in orange. The underlying XPath mappings are stored to localStorage.
+4. **Handoff to Aladdin**: A single click navigates to Aladdin, which automatically loads the URL and mappings from localStorage for multi-page validation.
+
+This pipeline embodies the principle that **the most valuable human contribution is not writing code, but directing attention**. The user's only task is pointing at the right part of the page—everything else (compression, LLM inference, validation, refinement) is automated.
+
+#### 3.7.5 Design Philosophy: Where NOT to Use AI
+
+Jasmine's design reflects a deliberate architectural decision about the boundary between AI and human cognition:
+
+- **AI is optimal for**: Pattern recognition across HTML structures, generating syntactically correct XPath expressions, systematic validation across multiple pages.
+- **Humans are optimal for**: Semantic understanding of page layout, distinguishing "job details" from "application form" at a glance, deciding what information is relevant.
+
+The compressor's noise patterns attempt to encode human-like semantic judgment into rules, but this is fundamentally a *knowledge representation problem*—there will always be sites whose structure doesn't match the rules. Jasmine acknowledges this limitation and provides an escape hatch: when rules fail, a human can intervene with a single click, and the rest of the pipeline proceeds automatically.
+
+This "AI for generation, human for selection" division mirrors the broader role reversal described in Section 5.2: just as humans verify XPaths rather than writing them, humans select content sections rather than implementing selection rules. In both cases, the human task is shifted from *construction* (writing XPaths, writing rules) to *recognition* (verifying values, recognizing relevant content)—a cognitive task humans perform effortlessly.
+
 ## 4. Evaluation
 
 ### 4.1 Experimental Setup
@@ -415,7 +474,7 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Site structure evolution.** Generated XPaths are inherently tied to a site's DOM structure at the time of analysis. When sites undergo redesigns or structural changes, XPaths may break. A periodic re-analysis mechanism or change-detection system would improve production robustness.
 
-**Compression-generation gap.** The HTML compression pipeline normalizes whitespace and truncates text, creating a structural gap between the compressed HTML seen by the LLM and the raw HTML where generated XPaths are evaluated. For example, `<td>\\n    勤務地\\n  </td>` compresses to `<td>勤務地</td>`, causing `text()='勤務地'` to succeed on compressed HTML but fail on raw HTML. The adoption of `normalize-space()` in XPath predicates mitigates this issue, but other compression artifacts (e.g., truncated text nodes, removed empty elements) may occasionally affect XPath validity. A post-generation XPath normalization pass could further reduce this gap.
+**Compression-generation gap.** The HTML compression pipeline normalizes whitespace and truncates text, creating a structural gap between the compressed HTML seen by the LLM and the raw HTML where generated XPaths are evaluated. For example, `<td>\\n    勤務地\\n  </td>` compresses to `<td>勤務地</td>`, causing `text()='勤務地'` to succeed on compressed HTML but fail on raw HTML. The adoption of `normalize-space()` in XPath predicates mitigates this for whitespace-related cases. For section selection errors—where the compressor chooses the wrong content area entirely—the interactive Jasmine tool (Section 3.7) provides a human-in-the-loop escape hatch. Remaining compression artifacts (e.g., truncated text nodes, removed empty elements) may occasionally affect XPath validity; a post-generation XPath normalization pass could further reduce this gap.
 
 **CSS framework compatibility.** Sites using utility-class CSS frameworks (e.g., Tailwind CSS) produce HTML where semantic meaning is encoded in deeply nested `<div>` and `<span>` elements with non-descriptive class names (`w-11/12`, `flex`, `gap-2`). The current system relies on class-name semantics and structured HTML patterns (th/td, dt/dd) that are absent in such layouts, resulting in significantly lower accuracy.
 
@@ -442,7 +501,9 @@ XPathGenie demonstrates that LLM-based XPath generation, when combined with aggr
 
 A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 
-A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). More broadly, this illustrates a general principle: any transformation that alters surface-form input before LLM inference introduces a semantic alignment risk between inference-time representation and execution-time environment. The compression-generation gap is one instance of this class of problems, which we expect to arise in any system where LLMs generate executable code from preprocessed inputs.
+A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). For cases where the gap manifests as incorrect section selection rather than whitespace mismatch, the interactive Jasmine tool (Section 3.7) provides an escalation path: when automated heuristics fail, a human can select the correct content section with a single click, and the remainder of the pipeline proceeds automatically. This three-tool architecture—Genie for generation, Jasmine for selection, Aladdin for verification—distributes cognitive labor according to each agent's strengths: AI for pattern matching and code generation, humans for semantic recognition and quality judgment.
+
+More broadly, the compression-generation gap illustrates a general principle: any transformation that alters surface-form input before LLM inference introduces a semantic alignment risk between inference-time representation and execution-time environment. This is one instance of a class of problems we expect to arise in any system where LLMs generate executable code from preprocessed inputs.
 
 The system's architectural insight—using AI for one-time mapping discovery rather than per-page extraction—ensures that ongoing operational costs are zero after initial generation. The two-tier refinement mechanism, which resolves identical-value duplicates mechanically and reserves AI re-inference for genuinely ambiguous cases, exemplifies a broader design principle of minimizing AI invocations by maximizing deterministic preprocessing. Together with the Aladdin human-in-the-loop verification tool, XPathGenie establishes a complete workflow where machines create and humans verify, inverting the traditional division of labor in web data extraction. In practice, the end-to-end time per site—including automated generation (~20 seconds) and human verification via Aladdin (5–15 minutes)—is approximately 20 minutes, compared to the 5–6 hours typically required for manual XPath authoring.
 

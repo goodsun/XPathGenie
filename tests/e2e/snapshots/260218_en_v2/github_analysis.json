@@ -1,0 +1,73 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 16716
+    },
+    "elapsed_seconds": 10.7,
+    "mappings": {
+        "description": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "The library for web and native user interfaces.",
+                "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core",
+                "web development for the rest of us"
+            ],
+            "xpath": "//div[@id='responsive-meta-container']//p[contains(@class,'f4')]"
+        },
+        "forks_count": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "50.6k",
+                "33.9k",
+                "4.8k"
+            ],
+            "xpath": "//a[contains(@href,'/forks')]/span[contains(@class,'text-bold')]"
+        },
+        "homepage_url": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "https://react.dev",
+                "http://v2.vuejs.org",
+                "https://svelte.dev"
+            ],
+            "xpath": "//div[@id='responsive-meta-container']//a[contains(@class,'text-bold') and @target='_blank']/@href"
+        },
+        "owner": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "facebook",
+                "vuejs",
+                "sveltejs"
+            ],
+            "xpath": "//span[@itemprop='author']/a"
+        },
+        "repository_name": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "react",
+                "vue",
+                "svelte"
+            ],
+            "xpath": "//strong[@itemprop='name']/a"
+        },
+        "stars_count": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "243k",
+                "210k",
+                "85.8k"
+            ],
+            "xpath": "//a[contains(@href,'/stargazers')]/span[contains(@class,'text-bold')]"
+        }
+    },
+    "pages_analyzed": 3,
+    "pages_failed": 0,
+    "site": "github.com",
+    "status": "ok",
+    "tokens_used": 8367
+}

@@ -1,0 +1,120 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 606829
+    },
+    "elapsed_seconds": 45.5,
+    "mappings": {
+        "all_release_dates": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Aug 18, 2025",
+                "Aug 19, 2025",
+                "Jan 31, 2026"
+            ],
+            "warning": "Multiple matches on 3/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'release')]//p[contains(@class, 'release__version-date')]/time"
+        },
+        "all_versions": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "2.32.1\n                yanked",
+                "2.0.0rc2\n                pre-release",
+                "2.4.0rc1\n                pre-release"
+            ],
+            "warning": "Multiple matches on 3/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'release')]//p[contains(@class, 'release__version')]"
+        },
+        "badge_image_alts": {
+            "confidence": 0.67,
+            "optional": true,
+            "samples": [
+                "Python Software Foundation",
+                null,
+                "Powered by NumFOCUS"
+            ],
+            "warning": "Multiple matches on 2/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'project-description')]//a[img]/img/@alt"
+        },
+        "badge_image_links": {
+            "confidence": 0.67,
+            "optional": true,
+            "samples": [
+                "https://github.com/psf/requests/graphs/contributors",
+                null,
+                "https://securityscorecards.dev/viewer/?uri=github.com/numpy/numpy"
+            ],
+            "warning": "Multiple matches on 2/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'project-description')]//a[img]/@href"
+        },
+        "code_snippets": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                ">>> import requests\n>>> r = requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', '",
+                "# save this as app.py\nfrom flask import Flask\n\napp = Flask(__name__)\n\n@app.route(\"/\")\ndef hello():\n ",
+                "python -c \"import numpy, sys; sys.exit(numpy.test() is False)\""
+            ],
+            "warning": "Multiple matches on 2/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'project-description')]//pre"
+        },
+        "description_text": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Requests\nRequests is a simple, yet elegant, HTTP library.\n>>> import requests\n>>> r = requests.get('",
+                "Flask\nFlask is a lightweight WSGI web application framework. It is designed\nto make getting started ",
+                "NumPy is the fundamental package for scientific computing with Python.\n\nWebsite: https://numpy.org\nD"
+            ],
+            "xpath": "//div[contains(@class, 'project-description')]"
+        },
+        "external_links": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "depended upon",
+                "detailed contributing documentation",
+                "https://mail.python.org/mailman/listinfo/numpy-discussion"
+            ],
+            "warning": "Multiple matches on 3/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'project-description')]//a[not(img)]"
+        },
+        "latest_release_date": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Aug 18, 2025",
+                "Aug 19, 2025",
+                "Jan 31, 2026"
+            ],
+            "xpath": "//div[contains(@class, 'release--latest')]//p[contains(@class, 'release__version-date')]/time"
+        },
+        "latest_version": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Aug 18, 2025",
+                "Aug 19, 2025",
+                "Jan 31, 2026"
+            ],
+            "warning": "Multiple matches on 3/3 pages \u2014 may include sidebar/recommended items",
+            "xpath": "//div[contains(@class, 'release--latest')]//p[contains(@class, 'release__version')]"
+        },
+        "project_title": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Requests",
+                "Flask",
+                "(empty)"
+            ],
+            "xpath": "//div[contains(@class, 'project-description')]/h1"
+        }
+    },
+    "pages_analyzed": 3,
+    "pages_failed": 0,
+    "site": "pypi.org",
+    "status": "ok",
+    "tokens_used": 15001
+}

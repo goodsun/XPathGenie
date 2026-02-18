@@ -1,0 +1,182 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 10027
+    },
+    "elapsed_seconds": 32.1,
+    "mappings": {
+        "comment_author": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "sama",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]//span[contains(@class,'comhead')]/a[contains(@class,'hnuser')]"
+        },
+        "comment_date_text": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "on Oct 9, 2006",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]//span[contains(@class,'comhead')]/span[contains(@class,'age')]/a"
+        },
+        "comment_date_timestamp": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "2006-10-09T19:51:01 1160423461",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]//span[contains(@class,'comhead')]/span[contains(@class,'age')]/@title"
+        },
+        "comment_id": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "15",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]/@id"
+        },
+        "comment_indent_level": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "0",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]//td[contains(@class,'ind')]/img/@width"
+        },
+        "comment_parent_url": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "#15",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][2]//span[contains(@class,'navs')]/a[normalize-space()='parent']/@href"
+        },
+        "comment_text": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "\"the rising star of venture capital\" -unknown VC eating lunch on SHR",
+                null,
+                null
+            ],
+            "xpath": "//tr[contains(@class,'comtr')][1]//div[contains(@class,'comment')]//div[contains(@class,'commtext')]"
+        },
+        "comments_count_text": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "3\u00a0comments",
+                null,
+                null
+            ],
+            "xpath": "//span[contains(@class,'subline')]/a[contains(@href, 'item?id=') and (contains(., 'comment') or contains(., 'discuss'))]"
+        },
+        "comments_url": {
+            "confidence": 0.33,
+            "optional": true,
+            "samples": [
+                "item?id=1",
+                null,
+                null
+            ],
+            "xpath": "//span[contains(@class,'subline')]/a[contains(@href, 'item?id=') and (contains(., 'comment') or contains(., 'discuss'))]/@href"
+        },
+        "domain": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "ycombinator.com",
+                "paulgraham.com",
+                "foundersatwork.com"
+            ],
+            "xpath": "//span[@class='sitebit comhead']/a/span[@class='sitestr']"
+        },
+        "points": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "57 points",
+                "16 points",
+                "7 points"
+            ],
+            "xpath": "//span[contains(@class,'score')]"
+        },
+        "submission_date_text": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "on Oct 9, 2006",
+                "on Oct 9, 2006",
+                "on Oct 9, 2006"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/span[contains(@class,'age')]/a"
+        },
+        "submission_date_timestamp": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "2006-10-09T18:21:51 1160418111",
+                "2006-10-09T18:30:28 1160418628",
+                "2006-10-09T18:40:33 1160419233"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/span[contains(@class,'age')]/@title"
+        },
+        "submitter": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "pg",
+                "phyllis",
+                "phyllis"
+            ],
+            "xpath": "//span[contains(@class,'subline')]/a[contains(@class,'hnuser')]"
+        },
+        "title": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "Y Combinator",
+                "A Student's Guide to Startups",
+                "Woz Interview: the early days of Apple"
+            ],
+            "xpath": "//span[@class='titleline']/a"
+        },
+        "url": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "http://ycombinator.com",
+                "http://www.paulgraham.com/mit.html",
+                "http://www.foundersatwork.com/stevewozniak.html"
+            ],
+            "xpath": "//span[@class='titleline']/a/@href"
+        }
+    },
+    "pages_analyzed": 3,
+    "pages_failed": 0,
+    "refined_fields": [
+        "comment_id",
+        "comment_author",
+        "comment_date_text",
+        "comment_date_timestamp",
+        "comment_text",
+        "comment_parent_url",
+        "comment_indent_level"
+    ],
+    "site": "news.ycombinator.com",
+    "status": "ok",
+    "tokens_used": 8666
+}

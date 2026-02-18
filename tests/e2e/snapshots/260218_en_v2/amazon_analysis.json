@@ -1,0 +1,33 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 4101
+    },
+    "elapsed_seconds": 19.1,
+    "mappings": {
+        "product_path": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "(empty)",
+                "(empty)",
+                "(empty)"
+            ],
+            "xpath": "//div[contains(@class,'a-container')]//input[@name='amzn-r']"
+        },
+        "search_keywords": {
+            "confidence": 1.0,
+            "optional": false,
+            "samples": [
+                "(empty)",
+                "(empty)",
+                "(empty)"
+            ],
+            "xpath": "//div[contains(@class,'a-container')]//input[@name='field-keywords']"
+        }
+    },
+    "pages_analyzed": 3,
+    "pages_failed": 0,
+    "site": "www.amazon.com",
+    "status": "ok",
+    "tokens_used": 5433
+}

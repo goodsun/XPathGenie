@@ -1,0 +1,9 @@
+{
+    "diagnostics": {
+        "compressed_size_bytes": 3668
+    },
+    "message": "AI analysis completed but returned 0 fields",
+    "reason": "no_fields_detected",
+    "status": "error",
+    "suggestion": "The page may use JavaScript rendering (SPA), have non-standard HTML structure, or encoding issues."
+}

@@ -287,7 +287,7 @@ Each pair was manually judged against three criteria:
 | Judgment | Definition | Count |
 |----------|-----------|-------|
 | ✅ Correct | Extracted value is semantically appropriate for the field name | 82 |
-| ⚠️ Partial | Contains the correct information but with noise or extra content | 13 |
+| ⚠️ Partial | Contains the correct information but with additional noise (e.g., license field includes both license name *and* experience requirements from the same DOM node) | 13 |
 | ❌ Wrong | Extracted value is incorrect for the field name | 5 |
 
 **Semantic accuracy (Correct + Partial): 95.0%.** Strict accuracy (Correct only): 82.0%.
@@ -524,7 +524,7 @@ Excluding access-denied sites (2) and the mis-targeted page (1), the cross-domai
 
 - **Access-denied sites (Hotpepper Gourmet, NHK NEWS WEB).** These sites returned HTTP 403 responses, blocking programmatic access. This is an access constraint, not an extraction limitation.
 
-**Structural insights.** The cross-domain results reinforce the finding from Section 4.5: XPathGenie performs well on sites with semantic HTML structure (th/td, dt/dd, BEM-style class names) regardless of domain, and struggles with CSS-in-JS frameworks that produce non-semantic class names. Notably, Cookpad uses Tailwind CSS but achieved 100%—indicating that the limiting factor is not utility classes per se, but rather the presence of semantic structure in the DOM hierarchy (Cookpad uses semantic `<h2>`, `<a>`, and structured containers alongside Tailwind utilities).
+**Structural insights.** The cross-domain results reinforce the finding from Section 4.5: XPathGenie performs well on sites with semantic HTML structure (th/td, dt/dd, BEM-style class names) regardless of domain, and struggles with CSS-in-JS frameworks that produce non-semantic class names. Notably, Cookpad uses Tailwind CSS but achieved 100%—indicating that the limiting factor is not utility classes per se, but rather the presence of semantic structure in the DOM hierarchy (Cookpad uses semantic `<h2>`, `<a>`, and structured containers alongside Tailwind utilities). More broadly, these results support a **semi-structured content hypothesis**: XPathGenie is effective on content-oriented pages with semantic HTML structure, independent of domain, but degrades on navigation-heavy pages, dynamically rendered SPAs, and sites using CSS-in-JS with ephemeral class names.
 
 ## 5. Design Principles
 

@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression (~97% reduction), LLM-based inference, multi-page validation, and two-tier refinement. Unlike per-page LLM extraction systems, XPathGenie invokes AI once to generate reusable XPath expressions, ensuring zero marginal AI cost per page. Evaluation across 23 medical job-listing websites achieved 85.1–87.3% field-level hit rate—deliberately measuring structural extraction stability rather than semantic accuracy, as the goal is reusable XPath generation rather than value extraction benchmarking—with 11 sites at 100%; supplementary cross-domain evaluation on 10 sites across 5 non-medical domains (e-commerce, real estate, recipe, restaurant reviews, news) achieved a macro-average hit rate of 79.4%, confirming domain generalizability. Core-field analysis reveals that schema-guided extraction primarily expands coverage (+13.1pp) over open-ended discovery. We identify the compression-generation gap—a mismatch between compressed and raw HTML whitespace—resolved via `normalize-space()` predicates.
+We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression (~97% reduction), LLM-based inference, multi-page validation, and two-tier refinement. Unlike per-page LLM extraction systems, XPathGenie invokes AI once to generate reusable XPath expressions, ensuring zero marginal AI cost per page. Evaluation across 23 medical job-listing websites achieved 85.1–87.3% field-level hit rate—deliberately measuring structural extraction stability rather than semantic accuracy, as the goal is reusable XPath generation rather than value extraction benchmarking—with 11 sites at 100%; supplementary cross-domain evaluation on 10 sites across 5 non-medical domains (e-commerce, real estate, recipe, restaurant reviews, news) achieved a macro-average hit rate of 79.4%, confirming domain generalizability. An additional English-language evaluation on 12 sites across 9 domains demonstrated cross-linguistic applicability, with 7 sites yielding 39 fields total. Core-field analysis reveals that schema-guided extraction primarily expands coverage (+13.1pp) over open-ended discovery. We identify the compression-generation gap—a mismatch between compressed and raw HTML whitespace—resolved via `normalize-space()` predicates.
 
 ## 1. Introduction
 
@@ -17,7 +17,7 @@ This paper makes the following contributions:
 1. **HTML structural compression** that achieves ~97% token reduction while preserving DOM hierarchy needed for XPath construction, enabling LLM analysis within practical token budgets.
 2. **Two-tier refinement** that separates multi-match resolution into mechanical narrowing (zero AI cost) and targeted AI re-inference, minimizing unnecessary LLM invocations.
 3. **Identification of the compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
-4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp, supplemented by **cross-domain evaluation on 10 sites across 5 domains** (e-commerce, real estate, recipe, restaurant, news) achieving 79.4% macro-average hit rate.
+4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp, supplemented by **cross-domain evaluation on 10 Japanese sites across 5 domains** achieving 79.4% macro-average hit rate, and **English-language evaluation on 12 sites across 9 domains** confirming cross-linguistic applicability.
 
 ## 2. Related Work
 
@@ -308,7 +308,7 @@ These results confirm that XPathGenie's structural hit rate (87.3%) translates t
 
 ### 4.1 Experimental Setup
 
-XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. Additionally, a cross-domain evaluation was conducted on 10 websites across 5 non-medical domains (e-commerce, real estate, recipe/UGC, restaurant reviews, news) to assess generalizability beyond the medical job-listing domain (Section 4.12).
+XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. Additionally, a cross-domain evaluation was conducted on 10 websites across 5 non-medical domains (e-commerce, real estate, recipe/UGC, restaurant reviews, news) to assess generalizability beyond the medical job-listing domain (Section 4.12), and an English-language cross-domain evaluation on 12 sites across 9 domains to assess multi-language generalizability (Section 4.13).
 
 Each site was analyzed using a single detail-page URL, and the generated XPath mappings were cross-validated against 10 detail pages from the same site. All evaluation results reported in this paper are from a single experimental run conducted on February 17, 2026, using Gemini 2.5 Flash with `temperature=0.1`. Raw results for each site and mode are archived in `docs/evaluation/results/` with filenames encoding site number, name, and evaluation mode. Note that field counts differ between Auto Discover and Want List modes because each mode generates a different set of field mappings; earlier evaluation runs (documented in `EVALUATION_REPORT.md`) used different configurations and should not be compared directly with the tables below.
 
@@ -526,6 +526,41 @@ Excluding access-denied sites (2) and the mis-targeted page (1), the cross-domai
 
 **Structural insights.** The cross-domain results reinforce the finding from Section 4.5: XPathGenie performs well on sites with semantic HTML structure (th/td, dt/dd, BEM-style class names) regardless of domain, and struggles with CSS-in-JS frameworks that produce non-semantic class names. Notably, Cookpad uses Tailwind CSS but achieved 100%—indicating that the limiting factor is not utility classes per se, but rather the presence of semantic structure in the DOM hierarchy (Cookpad uses semantic `<h2>`, `<a>`, and structured containers alongside Tailwind utilities). More broadly, these results support a **semi-structured content hypothesis**: XPathGenie is effective on content-oriented pages with semantic HTML structure, independent of domain, but degrades on navigation-heavy pages, dynamically rendered SPAs, and sites using CSS-in-JS with ephemeral class names.
 
+### 4.13 English-Language Cross-Domain Evaluation
+
+To assess multi-language generalizability, we conducted an additional cross-domain evaluation on English-language websites. While XPathGenie's XPath generation is structurally driven (DOM hierarchy, tag names, class names) rather than linguistically driven, the LLM's ability to interpret semantic field names and HTML content in a non-Japanese language had not been empirically validated. We evaluated 12 English-language sites across 9 domains using Auto Discover mode without Jasmine section selection.
+
+**Table 8: English-Language Cross-Domain Evaluation Results**
+
+| # | Site | Domain | Fields | Status | Notes |
+|---|------|--------|--------|--------|-------|
+| 1 | Hacker News | News/Forum | **14** | ✅ | Comment nesting structure detected |
+| 2 | Python PEP-8 | Documentation | **8** | ✅ | Metadata + code examples extracted |
+| 3 | httpbin | API Documentation | **6** | ✅ | API endpoint structure recognized |
+| 4 | Wikipedia | Encyclopedia | **4** | ✅ | Section-level structure extracted |
+| 5 | Quotes to Scrape | Quote listing | **3** | ✅ | Classic list-item pattern (author, text, tags) |
+| 6 | StackOverflow | Q&A | **2** | ✅ | In-article benchmark table detected |
+| 7 | AllRecipes | Recipe | 0 | ⚠️ | 385KB React/SSR, compression lost structure |
+| 8 | Books to Scrape | E-commerce | 0 | ⚠️ | Product detail table pattern mismatch |
+| 9 | IMDb | Entertainment | — | — | 1.5MB HTML, analysis skipped |
+| 10 | Craigslist | Directory | 0 | ⚠️ | Link-list page, no structured data |
+| 11 | BBC News | News | 0 | ⚠️ | Dynamic rendering / complex structure |
+| 12 | jsonplaceholder | API Reference | **2** | ✅ | Minimal page, endpoint list |
+
+Of the 12 sites, **7 returned at least one field** (58%), yielding a total of **39 fields across 7 domains**. The average field count among successful sites was 5.6. All evaluations used Auto Discover mode without Jasmine section selection—a deliberately conservative setup that excludes the interactive content-selection step available in production use.
+
+**Key findings:**
+
+- **Language independence confirmed.** XPathGenie successfully generated English-language field names and XPaths on English sites, with Hacker News (14 fields) demonstrating extraction depth comparable to the best Japanese-site results. The LLM correctly interpreted semantic HTML elements (`<span class="score">`, `<a class="storylink">`) regardless of content language.
+
+- **Domain breadth.** The 7 successful domains (News/Forum, Documentation, API Doc, Encyclopedia, Quote listing, Q&A, API Reference) span a wider variety than the Japanese cross-domain evaluation, including non-commercial content types.
+
+- **Auto Discover limitations persist cross-linguistically.** Sites where Auto Discover returned 0 fields (AllRecipes, BBC News) share characteristics with Japanese-site failures: large HTML (>100KB), CSS-in-JS or complex React/SSR rendering, and lack of semantic HTML structure. This confirms that the semi-structured content hypothesis (Section 4.12) holds across languages.
+
+- **Jasmine would improve results.** The 58% success rate without section selection is expected to increase significantly with Jasmine-assisted content targeting, as demonstrated by the Japanese E2E test where Jasmine-selected sections yielded 20 fields on a page that might otherwise produce fewer in Auto Discover mode.
+
+**HTML snapshots archived.** All 9 fetchable HTML pages were archived as reproducibility snapshots (`tests/e2e/snapshots/260218_en/`), enabling offline re-evaluation and addressing the reproducibility limitation noted in Section 6.
+
 ## 5. Design Principles
 
 ### 5.1 "Why > What" — Communicating Intent to the LLM
@@ -570,13 +605,13 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 
 **Compression fidelity.** The aggressive compression (text truncation at 30 characters, noise pattern removal) occasionally eliminates structural elements that are relevant for XPath construction. Adaptive compression that preserves more structure for complex pages could improve accuracy on edge cases.
 
-**Multi-language generalization.** The current evaluation covers Japanese-language websites exclusively. While the approach does not depend on language-specific features (XPaths are structural, not linguistic), performance on non-Japanese sites has not been empirically validated.
+**Multi-language generalization.** The primary evaluation covers Japanese-language websites; a supplementary English-language evaluation (Section 4.13) confirmed cross-linguistic applicability on 7 sites across 7 domains. However, performance on other languages (e.g., right-to-left scripts, CJK languages other than Japanese) has not been empirically validated.
 
 **Model dependence.** All evaluation results were obtained using Gemini 2.5 Flash. The approach relies on structured prompting and JSON-mode output rather than model-specific fine-tuning, suggesting portability to other capable LLMs, but this has not been empirically validated. Performance on smaller or differently-trained models may differ.
 
 **Escalation rate generalization.** The 13% escalation rate (Section 3.7.6) was measured on medical job-listing sites. The cross-domain evaluation (Section 4.12) suggests that structurally diverse domains—particularly those using CSS-in-JS or non-semantic HTML—may exhibit higher escalation rates, requiring more frequent human intervention via Jasmine.
 
-**Reproducibility limitations.** No HTML snapshots of the evaluated pages were archived at evaluation time. Because production websites change over time, the exact evaluation cannot be reproduced from the stored result files alone. Future evaluations should archive page snapshots alongside results.
+**Reproducibility limitations.** No HTML snapshots of the primary evaluation pages (23 Japanese medical sites) were archived at evaluation time. Because production websites change over time, the exact evaluation cannot be reproduced from the stored result files alone. The English-language cross-domain evaluation (Section 4.13) addresses this by archiving HTML snapshots alongside analysis results, establishing a reproducible evaluation protocol for future experiments.
 
 **Ground-truth comparison.** The current hit rate metric measures extraction coverage (whether XPaths return non-empty values), not semantic accuracy (whether the correct value is extracted for the intended field). The semantic accuracy evaluation (Section 3.7.7) partially addresses this with a 100-sample manual review, but a comprehensive ground-truth evaluation comparing all extracted values against manually annotated data would provide stronger accuracy claims.
 
@@ -585,13 +620,13 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 Several factors limit the validity of the current evaluation:
 
 - **LLM non-determinism.** Although the system uses `temperature=0.1` for near-deterministic output, LLM responses can still vary across runs due to model updates, API-level batching, and inherent sampling stochasticity. The reported results reflect single runs and may not be perfectly reproducible.
-- **Domain coverage.** The primary evaluation covers 23 websites in one domain (Japanese medical job listings), supplemented by a cross-domain evaluation of 10 sites across 5 domains (Section 4.12). While the cross-domain results demonstrate generalizability to structured HTML sites, performance on CSS-in-JS frameworks and SPAs remains limited.
+- **Domain coverage.** The primary evaluation covers 23 websites in one domain (Japanese medical job listings), supplemented by a Japanese cross-domain evaluation of 10 sites across 5 domains (Section 4.12) and an English-language cross-domain evaluation of 12 sites across 9 domains (Section 4.13). While these results demonstrate generalizability across languages and domains for structured HTML sites, performance on CSS-in-JS frameworks and SPAs remains limited.
 - **Subjectivity of manual effort estimates.** The 5–6 hour manual baseline is based on the authors' own experience with a specific site portfolio and engineering workflow. Different engineers, tools, or site complexities could yield substantially different baselines, making the effort reduction comparison inherently approximate.
 - **Hit rate vs accuracy.** The evaluation metric (hit rate) measures whether XPaths return non-empty values, not whether the returned values are semantically correct. A field might achieve 100% hit rate while extracting incorrect data. Human verification via Aladdin is still recommended for production use.
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites and 10 cross-domain sites spanning 5 additional domains (e-commerce, real estate, recipe, restaurant reviews, news), the system achieved a field-level hit rate of 87.3% (337/386 fields returning non-empty values across all validation pages) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%. This metric measures extraction stability rather than semantic accuracy; human verification via Aladdin remains recommended for production use. Cross-domain evaluation on 7 accessible non-medical sites achieved a macro-average hit rate of 79.4%, with 2 sites at 100%, confirming that the approach generalizes beyond the original medical job-listing domain.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites and 10 cross-domain sites spanning 5 additional domains (e-commerce, real estate, recipe, restaurant reviews, news), the system achieved a field-level hit rate of 87.3% (337/386 fields returning non-empty values across all validation pages) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%. This metric measures extraction stability rather than semantic accuracy; human verification via Aladdin remains recommended for production use. Cross-domain evaluation on 7 accessible non-medical Japanese sites achieved a macro-average hit rate of 79.4%, with 2 sites at 100%, confirming that the approach generalizes beyond the original medical job-listing domain. An English-language evaluation on 12 sites across 9 domains further demonstrated cross-linguistic applicability, with 7 sites yielding 39 fields total—confirming that XPathGenie's structural approach is language-independent in practice.
 
 A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 

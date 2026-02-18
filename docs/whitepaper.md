@@ -607,11 +607,13 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 - **AXE**: supervised learning with labeled training data, optimized for the SWDE schema, evaluated on all fields.
 - **XPathGenie**: zero-shot inference with no training data, no prior exposure to SWDE sites, evaluated under the same field definitions.
 
-**Analysis of the gap.** The performance gap stems primarily from two factors:
+**Analysis of the gap.** The performance gap stems primarily from three factors:
 
-1. **Field detection coverage (46%)**: XPathGenie detected XPaths for only 29 of 87 attempted fields. The LLM frequently failed to locate fields in complex or legacy HTML structures (2008–2011 era pages), particularly when field values were embedded in non-semantic containers without clear structural markers. For fields that *were* detected, 70% achieved F1 ≥ 0.5 and 60% achieved F1 = 1.0 (perfect extraction).
+1. **Architectural scope mismatch**: XPathGenie's compression pipeline targets `<body>` content, discarding `<head>` elements including `<title>` tags. Several SWDE fields (e.g., `title` in the job vertical) are most naturally extracted from `<title>`, which XPathGenie does not attempt. Similarly, fields like `date_posted` may not be present as structurally identifiable elements in the page body (e.g., embedded in unstructured prose or absent entirely). These cases represent a design boundary rather than an extraction failure—XPathGenie is architected for structured body content, not metadata extraction.
 
-2. **Site-level failures (23%)**: 5 of 22 sites returned zero fields. Two failure modes dominate: (a) compressed HTML exceeding the LLM's effective analysis capacity (camera-amazon: 114KB compressed, camera-buy: 396KB compressed), and (b) HTML structures too complex for the compression pipeline to preserve meaningful structural signals (restaurant-opentable: 2.3KB compressed from a JavaScript-heavy page).
+2. **Field detection coverage (46%)**: XPathGenie detected XPaths for only 29 of 87 attempted fields. Beyond the architectural scope mismatch above, the LLM sometimes failed to locate fields in complex or legacy HTML structures (2008–2011 era pages), particularly when field values were embedded in non-semantic containers without clear structural markers. For fields that *were* detected, 70% achieved F1 ≥ 0.5 and 60% achieved F1 = 1.0 (perfect extraction).
+
+3. **Site-level failures (23%)**: 5 of 22 sites returned zero fields. Two failure modes dominate: (a) compressed HTML exceeding the LLM's effective analysis capacity (camera-amazon: 114KB compressed, camera-buy: 396KB compressed), and (b) HTML structures too complex for the compression pipeline to preserve meaningful structural signals (restaurant-opentable: 2.3KB compressed from a JavaScript-heavy page).
 
 **Implications.** The SWDE results reveal a clear pattern: **when XPathGenie successfully generates an XPath, the extraction is highly accurate** (found-field F1 = 0.689, with 60% of found fields at F1 = 1.0). The primary limitation is not extraction quality but field *discovery*—the LLM's ability to identify relevant HTML elements in unfamiliar page structures. This suggests that improving the compression pipeline and LLM prompting for field discovery would yield significant gains, while the core XPath generation mechanism is sound.
 

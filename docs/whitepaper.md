@@ -942,7 +942,7 @@ The following shows the LLM's intermediate reasoning when analyzing a Hacker New
 
 This example demonstrates that the LLM correctly identifies (1) the page type from HTML attributes, (2) structural patterns including nested comment trees, (3) relevant data fields while excluding navigation/boilerplate, and (4) appropriate XPath strategies for each pattern type.
 
-### B.2 Failure Case: Goodreads (0% — React SSR)
+### B.3 Failure Case: Goodreads (0% — React SSR)
 
 To illustrate why certain sites fail, we examined the LLM's reasoning on Goodreads (https://www.goodreads.com/book/show/11127), which returned 0 fields.
 

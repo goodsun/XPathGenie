@@ -2,7 +2,8 @@ const { createApp, ref, computed, watch } = Vue;
 
 createApp({
   setup() {
-    const apiKey = ref(localStorage.getItem('xpathgenie_api_key') || '');
+    const rememberKey = ref(localStorage.getItem('xpathgenie_remember_key') === '1');
+    const apiKey = ref(rememberKey.value ? (localStorage.getItem('xpathgenie_api_key') || '') : '');
     const showKey = ref(false);
     const urlText = ref(localStorage.getItem('xpathgenie_urls') || '');
     const wantlistText = ref(localStorage.getItem('xpathgenie_wantlist') || '');
@@ -152,16 +153,21 @@ createApp({
     }
 
     function saveApiKey() {
-      localStorage.setItem('xpathgenie_api_key', apiKey.value);
+      if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', apiKey.value);
     }
 
-    watch(apiKey, (v) => localStorage.setItem('xpathgenie_api_key', v));
+    watch(apiKey, (v) => { if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', v); });
+    watch(rememberKey, (v) => {
+      localStorage.setItem('xpathgenie_remember_key', v ? '1' : '0');
+      if (v) { localStorage.setItem('xpathgenie_api_key', apiKey.value); }
+      else { localStorage.removeItem('xpathgenie_api_key'); }
+    });
     watch(urlText, (v) => localStorage.setItem('xpathgenie_urls', v));
     watch(wantlistText, (v) => localStorage.setItem('xpathgenie_wantlist', v));
     watch(mode, (v) => localStorage.setItem('xpathgenie_mode', v));
 
     return {
-      apiKey, showKey, saveApiKey,
+      apiKey, showKey, rememberKey, saveApiKey,
       urlText, wantlistText, mode, wantlistPlaceholder,
       loading, error, result, elapsed, elapsedStr, savedAtStr, copied,
       editing, editName,

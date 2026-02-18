@@ -25,6 +25,8 @@
             <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." class="api-key-input" @change="saveApiKey">
             <button @click="showKey=!showKey" class="btn-toggle-key" :title="showKey ? 'Hide' : 'Show'">{{ showKey ? '🙈' : '👁' }}</button>
           </div>
+          <label class="remember-key-label"><input type="checkbox" v-model="rememberKey"> Remember API key</label>
+          <p v-if="rememberKey" class="api-key-notice">Your API key is stored in your browser's local storage. While convenient, it could be accessed by browser extensions or XSS attacks. You can regenerate your key anytime at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. Uncheck to keep the key in memory only (cleared when you close the tab).</p>
         </div>
         <label>Enter URLs <span class="hint">(one per line, 2-10 recommended)</span></label>
         <textarea v-model="urlText" placeholder="https://example.com/page/1&#10;https://example.com/page/2&#10;https://example.com/page/3" rows="5" :disabled="loading"></textarea>

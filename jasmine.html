@@ -46,6 +46,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 .selection-list li.exclude { background: rgba(255, 80, 80, 0.1); border: 1px solid rgba(255, 80, 80, 0.3); color: #ff5050; }
 .selection-list li .remove { float: right; cursor: pointer; opacity: 0.5; }
 .selection-list li .remove:hover { opacity: 1; }
+.selection-list .parent-part:hover { opacity: 1 !important; color: #50ff96 !important; }
 
 /* Result panel */
 .result-section { margin-top: 16px; }
@@ -277,7 +278,7 @@ function updateSelectionList() {
       if (i === parts.length - 1) {
         return `<span style="color:#00c864; font-weight:600;">${part}</span>`;
       }
-      return `<span style="cursor:pointer; color:#00c864; opacity:0.6; text-decoration:underline dotted;" onclick="event.stopPropagation(); changeIncludeTo('${parentSel.replace(/'/g, "\\'")}')" title="ここまで選択">${part}</span>`;
+      return `<span class="parent-part" style="cursor:pointer; color:#00c864; opacity:0.6; text-decoration:underline dotted;" onclick="event.stopPropagation(); changeIncludeTo('${parentSel.replace(/'/g, "\\'")}')" title="ここまで選択">${part}</span>`;
     }).join(' <span style="opacity:0.3;">&gt;</span> ');
     li.innerHTML = `<span class="remove" onclick="removeInclude()">✕</span>🟢 ${clickableParts}`;
     list.appendChild(li);

@@ -415,8 +415,9 @@ async function analyze() {
     // Share with Aladdin via localStorage
     const url = document.getElementById('urlInput').value.trim();
     localStorage.setItem('xpathgenie_urls', url);
-    const mappingStr = Object.entries(mappings).map(([f, info]) => `${f}: ${info.xpath}`).join('\n');
-    localStorage.setItem('xpathgenie_mappings', mappingStr);
+    const mappingObj = {};
+    Object.entries(mappings).forEach(([f, info]) => { mappingObj[f] = info.xpath; });
+    localStorage.setItem('xpathgenie_mappings', JSON.stringify(mappingObj));
     
     setStatus(`やったね！${count}フィールド見つけたよ ✨ → Aladdinに渡したよ！`);
     setMode('ready');

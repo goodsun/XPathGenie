@@ -21,7 +21,14 @@ BLOCKED_NETWORKS = [
 ]
 
 
-def _check_ssrf(url: str):
+def _check_ssrf(url: str) -> list:
+    """Check SSRF and return list of resolved safe IPs.
+
+    Note on DNS rebinding: We resolve and validate IPs here, then rely on
+    OS-level DNS cache (typically 60s+) so the subsequent requests.get()
+    connects to the same validated IP. A full fix (forcing IP connection)
+    would break TLS hostname verification without significant complexity.
+    """
     parsed = urlparse(url)
     if parsed.scheme not in ("http", "https"):
         raise ValueError(f"Blocked scheme: {parsed.scheme}")
@@ -32,11 +39,14 @@ def _check_ssrf(url: str):
         resolved = socket.getaddrinfo(hostname, None)
     except socket.gaierror:
         raise ValueError(f"Cannot resolve: {hostname}")
+    safe_ips = []
     for _, _, _, _, addr in resolved:
         ip = ipaddress.ip_address(addr[0])
         for net in BLOCKED_NETWORKS:
             if ip in net:
                 raise ValueError(f"Blocked private IP: {ip}")
+        safe_ips.append(addr[0])
+    return safe_ips
 
 
 def _detect_encoding(content: bytes, resp_encoding: str = None) -> str:

@@ -62,7 +62,8 @@ def api_fetch():
     """Fetch HTML for Aladdin page (server-side to avoid CORS)."""
     if not _check_origin():
         return jsonify({"error": "Forbidden"}), 403
-    if not _check_rate_limit(request.remote_addr):
+    client_ip = request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
+    if not _check_rate_limit(client_ip):
         return jsonify({"error": "Rate limit exceeded"}), 429
     url = request.args.get("url", "").strip()
     if not url:
@@ -83,11 +84,31 @@ def api_fetch():
             return jsonify({"html": pages[0]["html"], "url": url})
         return jsonify({"error": pages[0].get("error", "fetch failed")}), 400
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        app.logger.exception("Fetch error")
+        return jsonify({"error": "Failed to fetch URL"}), 500
+
+
+@app.after_request
+def add_security_headers(response):
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; "
+        "script-src 'self' https://unpkg.com; "
+        "style-src 'self' 'unsafe-inline'; "
+        "img-src 'self' data:; "
+        "connect-src 'self'"
+    )
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    return response
 
 
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
+    if not _check_origin():
+        return jsonify({"error": "Forbidden"}), 403
+    client_ip = request.headers.get("X-Forwarded-For", request.remote_addr).split(",")[0].strip()
+    if not _check_rate_limit(client_ip):
+        return jsonify({"error": "Rate limit exceeded"}), 429
     data = request.get_json()
     if not data or "urls" not in data:
         return jsonify({"error": "urls required"}), 400
@@ -161,10 +182,11 @@ def api_analyze():
     try:
         result = analyze(compressed, wantlist=wantlist, api_key=api_key or None)
     except Exception as e:
+        app.logger.exception("Analyze error")
         return jsonify({
             "status": "error",
             "reason": "analysis_failed",
-            "message": f"AI analysis failed: {e}",
+            "message": "AI analysis failed. Please check your API key and try again.",
             "suggestion": "The AI could not extract field mappings. The page structure may be too complex or non-standard.",
             "diagnostics": diagnostics,
         }), 500

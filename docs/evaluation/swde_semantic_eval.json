@@ -1,0 +1,3612 @@
+{
+  "summary": {
+    "total": 400,
+    "correct": 188,
+    "partial": 124,
+    "wrong": 88,
+    "semantic_accuracy": 78.0,
+    "strict_accuracy": 47.0
+  },
+  "samples": [
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0000",
+      "extracted": "Picerne Real Estate Group",
+      "ground_truth": "Picerne Real Estate Group",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0001",
+      "extracted": "AboutWeb",
+      "ground_truth": "AboutWeb",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0002",
+      "extracted": "ITR Group",
+      "ground_truth": "ITR Group",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0003",
+      "extracted": "ITR Group",
+      "ground_truth": "ITR Group",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0004",
+      "extracted": "Sensus USA-Conservation Solutions",
+      "ground_truth": "Sensus USA-Conservation Solutions",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0005",
+      "extracted": "eSentio Technologies",
+      "ground_truth": "eSentio Technologies",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0006",
+      "extracted": "Sasken Network Solutions Inc",
+      "ground_truth": "Sasken Network Solutions Inc",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0007",
+      "extracted": "Beebe Medical",
+      "ground_truth": "Beebe Medical",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0008",
+      "extracted": "Nanda Infotech Services Inc. dba EDP Inc.",
+      "ground_truth": "Nanda Infotech Services Inc. dba EDP Inc.",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "company",
+      "page": "0009",
+      "extracted": "SunSoft Technologies Inc",
+      "ground_truth": "SunSoft Technologies Inc",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0000",
+      "extracted": "Warwick, RI 02886",
+      "ground_truth": "Warwick, RI 02886",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0001",
+      "extracted": "Gaithersburg, MD 20899",
+      "ground_truth": "Gaithersburg, MD 20899",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0002",
+      "extracted": "Minneapolis, MN",
+      "ground_truth": "Minneapolis, MN",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0003",
+      "extracted": "Minneapolis, MN",
+      "ground_truth": "Minneapolis, MN",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0004",
+      "extracted": "Atlanta, GA 30301",
+      "ground_truth": "Atlanta, GA 30301",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0005",
+      "extracted": "Multiple locations",
+      "ground_truth": "Multiple locations",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0006",
+      "extracted": "Plano, TX 75075",
+      "ground_truth": "Plano, TX 75075",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0007",
+      "extracted": "19958",
+      "ground_truth": "19958",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0008",
+      "extracted": "19020",
+      "ground_truth": "19020",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "monster",
+      "field": "location",
+      "page": "0009",
+      "extracted": "Detroit, MI",
+      "ground_truth": "Detroit, MI",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0000",
+      "extracted": "Systems Engineer-Windows, Storage & Virtualization a plus",
+      "ground_truth": "Systems Engineer-Windows, Storage & Virtualization a plus",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0001",
+      "extracted": "Application Support QA Lead",
+      "ground_truth": "Application Support QA Lead",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0002",
+      "extracted": "Business Analyst",
+      "ground_truth": "Business Analyst",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0003",
+      "extracted": "C# and VC++/3-D graphics Software Engineers (junior and senior)",
+      "ground_truth": "C# and VC++/3-D graphics Software Engineers (junior and senior)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0004",
+      "extracted": "Sr. DBA",
+      "ground_truth": "Sr. DBA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0005",
+      "extracted": "Windows System Administrator",
+      "ground_truth": "Windows System Administrator",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0006",
+      "extracted": "Business Development Manager- IT Staffing",
+      "ground_truth": "Business Development Manager- IT Staffing",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0007",
+      "extracted": "Quality Engineer - Medical Mfg (Direct)",
+      "ground_truth": "Quality Engineer - Medical Mfg (Direct)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0008",
+      "extracted": "UI - Web Developer",
+      "ground_truth": "UI - Web Developer",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "title",
+      "page": "0009",
+      "extracted": "Application Support - Java",
+      "ground_truth": "Application Support - Java",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0000",
+      "extracted": "Confidential Company",
+      "ground_truth": "Confidential Company",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0001",
+      "extracted": "Livescribe Inc.",
+      "ground_truth": "Livescribe Inc.",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0002",
+      "extracted": "Ingenuity Corporation",
+      "ground_truth": "Ingenuity Corporation",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0003",
+      "extracted": "Cypress Group",
+      "ground_truth": "Cypress Group",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0004",
+      "extracted": "Nexon America",
+      "ground_truth": "Nexon America",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0005",
+      "extracted": "Concept Solutions",
+      "ground_truth": "Concept Solutions",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0006",
+      "extracted": "Damcosoft Inc",
+      "ground_truth": "Damcosoft Inc",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0007",
+      "extracted": "Blue Line Talent LLC",
+      "ground_truth": "Blue Line Talent LLC",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0008",
+      "extracted": "SavvyConsulting LLC",
+      "ground_truth": "SavvyConsulting LLC",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "company",
+      "page": "0009",
+      "extracted": "Systems Personnel, Inc.",
+      "ground_truth": "Systems Personnel, Inc.",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0000",
+      "extracted": "San Francisco, CA",
+      "ground_truth": "San Francisco, CA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0001",
+      "extracted": "Oakland, CA",
+      "ground_truth": "Oakland, CA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0002",
+      "extracted": "Boston, MA",
+      "ground_truth": "Boston, MA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0003",
+      "extracted": "Reading, MA",
+      "ground_truth": "Reading, MA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0004",
+      "extracted": "El Segundo, CA",
+      "ground_truth": "El Segundo, CA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0005",
+      "extracted": "Washington, DC",
+      "ground_truth": "Washington, DC",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0006",
+      "extracted": "New York, NY",
+      "ground_truth": "New York, NY",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0007",
+      "extracted": "georgetown, CT",
+      "ground_truth": "georgetown, CT",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0008",
+      "extracted": "Mclean, VA",
+      "ground_truth": "Mclean, VA",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "location",
+      "page": "0009",
+      "extracted": "Jersey City, NJ",
+      "ground_truth": "Jersey City, NJ",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0000",
+      "extracted": "11-23-2010",
+      "ground_truth": "11-23-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0001",
+      "extracted": "11-26-2010",
+      "ground_truth": "11-26-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0002",
+      "extracted": "12-6-2010",
+      "ground_truth": "12-6-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0003",
+      "extracted": "12-6-2010",
+      "ground_truth": "12-6-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0004",
+      "extracted": "11-23-2010",
+      "ground_truth": "11-23-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0005",
+      "extracted": "12-6-2010",
+      "ground_truth": "12-6-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0006",
+      "extracted": "11-30-2010",
+      "ground_truth": "11-30-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0007",
+      "extracted": "12-6-2010",
+      "ground_truth": "12-6-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0008",
+      "extracted": "11-24-2010",
+      "ground_truth": "11-24-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "dice",
+      "field": "date_posted",
+      "page": "0009",
+      "extracted": "11-24-2010",
+      "ground_truth": "11-24-2010",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0000",
+      "extracted": "COmputing TechnologieS, Inc.",
+      "ground_truth": "COmputing TechnologieS, Inc.",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0001",
+      "extracted": "Legal Placements",
+      "ground_truth": "Legal Placements",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0002",
+      "extracted": "CareerPlanners, Inc",
+      "ground_truth": "CareerPlanners, Inc",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0003",
+      "extracted": "Analysts International Corporation",
+      "ground_truth": "Analysts International Corporation",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0004",
+      "extracted": "System Staffing Group",
+      "ground_truth": "System Staffing Group",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0005",
+      "extracted": "Mice Groups",
+      "ground_truth": "Mice Groups",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0006",
+      "extracted": "Surrex Solutions Corporation",
+      "ground_truth": "Surrex Solutions Corporation",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0007",
+      "extracted": "Infinity Consulting Solutions",
+      "ground_truth": "Infinity Consulting Solutions",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0008",
+      "extracted": "Infinity Consulting Solutions",
+      "ground_truth": "Infinity Consulting Solutions",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "company",
+      "page": "0009",
+      "extracted": "Infinity Consulting Solutions",
+      "ground_truth": "Infinity Consulting Solutions",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0000",
+      "extracted": "US-MO-Kansas City",
+      "ground_truth": "US-MO-Kansas City",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0001",
+      "extracted": "US-DC-downtown DC",
+      "ground_truth": "US-DC-downtown DC",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0002",
+      "extracted": "US-FL-Miami",
+      "ground_truth": "US-FL-Miami",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0003",
+      "extracted": "US-CA-San Diego",
+      "ground_truth": "US-CA-San Diego",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0004",
+      "extracted": "US-IL-Chicago",
+      "ground_truth": "US-IL-Chicago",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0005",
+      "extracted": "US-CA-Mountain View",
+      "ground_truth": "US-CA-Mountain View",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0006",
+      "extracted": "US-CA-Santa Ana",
+      "ground_truth": "US-CA-Santa Ana",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0007",
+      "extracted": "US-NY-New York",
+      "ground_truth": "US-NY-New York",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0008",
+      "extracted": "US-NY-New York",
+      "ground_truth": "US-NY-New York",
+      "classification": "correct"
+    },
+    {
+      "vertical": "job",
+      "site": "careerbuilder",
+      "field": "location",
+      "page": "0009",
+      "extracted": "US-NY-New York",
+      "ground_truth": "US-NY-New York",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0000",
+      "extracted": "Publisher: Knopf",
+      "ground_truth": "Knopf; First Edition/First Printing edition (May 25, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0001",
+      "extracted": "Publisher: Knopf",
+      "ground_truth": "Vintage (June 23, 2009)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0002",
+      "extracted": "Publisher: Threshold Editions",
+      "ground_truth": "Simon & Schuster Audio; Unabridged edition (June 15, 2010)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0003",
+      "extracted": "Publisher: Doubleday",
+      "ground_truth": "Anchor (May 19, 2009)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0004",
+      "extracted": "Publisher: St. Martin's Press",
+      "ground_truth": "St. Martin's Press; 1 edition (June 22, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0005",
+      "extracted": "Publisher: Ballantine Books",
+      "ground_truth": "Ballantine Books; First Edition edition (June 8, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0006",
+      "extracted": "Publisher: Subterranean",
+      "ground_truth": "Subterranean (March 15, 2007)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0007",
+      "extracted": "Publisher: Random House",
+      "ground_truth": "Random House; Book Club edition (January 1, 2006)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0008",
+      "extracted": "Publisher: Zondervan",
+      "ground_truth": "Zondervan; 1st pb ptg edition (February 7, 2006)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publisher",
+      "page": "0009",
+      "extracted": "Publisher: Little, Brown Books for Young Readers",
+      "ground_truth": "Listening Library (Audio); Unabridged edition (June 5, 2010)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0000",
+      "extracted": "Published: May 25, 2010",
+      "ground_truth": "Knopf; First Edition/First Printing edition (May 25, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0001",
+      "extracted": "Published: September 16, 2008",
+      "ground_truth": "Vintage (June 23, 2009)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0002",
+      "extracted": "Published: June 15, 2010",
+      "ground_truth": "Simon & Schuster Audio; Unabridged edition (June 15, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0003",
+      "extracted": "Published: July 15, 2008",
+      "ground_truth": "Anchor (May 19, 2009)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0004",
+      "extracted": "Published: June 22, 2010",
+      "ground_truth": "St. Martin's Press; 1 edition (June 22, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0005",
+      "extracted": "Published: June 8, 2010",
+      "ground_truth": "Ballantine Books; First Edition edition (June 8, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0006",
+      "extracted": "Published: April 18, 2008",
+      "ground_truth": "Subterranean (March 15, 2007)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0007",
+      "extracted": "Published: April 18, 2008",
+      "ground_truth": "Random House; Book Club edition (January 1, 2006)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0008",
+      "extracted": "Published: 2005",
+      "ground_truth": "Zondervan; 1st pb ptg edition (February 7, 2006)",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "amazon",
+      "field": "publication_date",
+      "page": "0009",
+      "extracted": "Published: June 5, 2010",
+      "ground_truth": "Listening Library (Audio); Unabridged edition (June 5, 2010)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0000",
+      "extracted": "",
+      "ground_truth": "Love in the Afternoon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0001",
+      "extracted": "",
+      "ground_truth": "The Girl With the Dragon Tattoo",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0002",
+      "extracted": "",
+      "ground_truth": "The Girl With the Dragon Tattoo",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0003",
+      "extracted": "",
+      "ground_truth": "The Girl Who Kicked the Hornet’s Nest",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0004",
+      "extracted": "",
+      "ground_truth": "Eat, Pray, Love: One Woman’s Search for Everything Across Italy, India and Indonesia",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0005",
+      "extracted": "",
+      "ground_truth": "Love In The Afternoon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0006",
+      "extracted": "",
+      "ground_truth": "Swimsuit",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0007",
+      "extracted": "",
+      "ground_truth": "Swimsuit",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0008",
+      "extracted": "",
+      "ground_truth": "Swimsuit",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "title",
+      "page": "0009",
+      "extracted": "",
+      "ground_truth": "The Red Pyramid",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0000",
+      "extracted": "Lisa Kleypas",
+      "ground_truth": "Lisa Kleypas",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0001",
+      "extracted": "Stieg Larsson",
+      "ground_truth": "Stieg Larsson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0002",
+      "extracted": "Stieg Larsson",
+      "ground_truth": "Stieg Larsson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0003",
+      "extracted": "Stieg Larsson",
+      "ground_truth": "Stieg Larsson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0004",
+      "extracted": "Elizabeth Gilbert",
+      "ground_truth": "Elizabeth Gilbert",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0005",
+      "extracted": "Lisa Kleypas",
+      "ground_truth": "Lisa Kleypas",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0006",
+      "extracted": "James Patterson",
+      "ground_truth": "James Patterson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0007",
+      "extracted": "James Patterson",
+      "ground_truth": "James Patterson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0008",
+      "extracted": "James Patterson",
+      "ground_truth": "James Patterson",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "author",
+      "page": "0009",
+      "extracted": "Rick Riordan",
+      "ground_truth": "Rick Riordan",
+      "classification": "correct"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0000",
+      "extracted": "",
+      "ground_truth": "9780312605391",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0001",
+      "extracted": "",
+      "ground_truth": "9780307454546",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0002",
+      "extracted": "",
+      "ground_truth": "9780307473479",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0003",
+      "extracted": "",
+      "ground_truth": "9780307269997",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0004",
+      "extracted": "",
+      "ground_truth": "9780143038412",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0005",
+      "extracted": "",
+      "ground_truth": "9781429922487",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0006",
+      "extracted": "",
+      "ground_truth": "9780446561365",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0007",
+      "extracted": "",
+      "ground_truth": "9781607882374",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0008",
+      "extracted": "",
+      "ground_truth": "9780316052641",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "isbn_13",
+      "page": "0009",
+      "extracted": "",
+      "ground_truth": "9781423113386",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0000",
+      "extracted": "St. Martin's Press\n                          June 29, 2010",
+      "ground_truth": "St. Martin&#039;s Press",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0001",
+      "extracted": "Knopf Doubleday Publishing Group\n                          June 23, 2009",
+      "ground_truth": "Knopf Doubleday Publishing Group",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0002",
+      "extracted": "Knopf Doubleday Publishing Group\n                          June 23, 2009",
+      "ground_truth": "Knopf Doubleday Publishing Group",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0003",
+      "extracted": "Knopf Doubleday Publishing Group\n                          May 25, 2010",
+      "ground_truth": "Knopf Doubleday Publishing Group",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0004",
+      "extracted": "Penguin Group (USA) Incorporated\n                          January 30, 2007",
+      "ground_truth": "Penguin Group (USA) Incorporated",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0005",
+      "extracted": "St. Martin's Press\n                          July 02, 2010",
+      "ground_truth": "St. Martin&#039;s Press",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0006",
+      "extracted": "Grand Central Publishing\n                          June 15, 2010",
+      "ground_truth": "Grand Central Publishing",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0007",
+      "extracted": "Hachette Audio\n                          June 15, 2010",
+      "ground_truth": "Hachette Audio",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0008",
+      "extracted": "Little Brown & Company\n                          July 09, 2009",
+      "ground_truth": "Little Brown &amp; Company",
+      "classification": "partial"
+    },
+    {
+      "vertical": "book",
+      "site": "borders",
+      "field": "publisher",
+      "page": "0009",
+      "extracted": "Hyperion Books for Children\n                          May 04, 2010",
+      "ground_truth": "Hyperion Books for Children",
+      "classification": "partial"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0000",
+      "extracted": "8mm (1999)",
+      "ground_truth": "8mm (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0001",
+      "extracted": "A William Shakespeare s A Midsummer Night s Dream (1999)",
+      "ground_truth": "A William Shakespeare s A Midsummer Night s Dream (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0002",
+      "extracted": "Almost Heroes (1998)",
+      "ground_truth": "Almost Heroes (1998)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0003",
+      "extracted": "American Beauty (1999)",
+      "ground_truth": "American Beauty (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0004",
+      "extracted": "Antz (1998)",
+      "ground_truth": "Antz (1998)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0005",
+      "extracted": "Autumn Sun (1998)",
+      "ground_truth": "Autumn Sun (1998)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0006",
+      "extracted": "Black Cat, White Cat (1999)",
+      "ground_truth": "Black Cat, White Cat (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0007",
+      "extracted": "Blue Streak (1999)",
+      "ground_truth": "Blue Streak (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0008",
+      "extracted": "Body Shots (1999)",
+      "ground_truth": "Body Shots (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "movie",
+      "site": "yahoo",
+      "field": "title",
+      "page": "0009",
+      "extracted": "Bowfinger (1999)",
+      "ground_truth": "Bowfinger (1999)",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0000",
+      "extracted": "Blue 2dr Hatchback",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0001",
+      "extracted": "GS 2dr Hatchback",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0002",
+      "extracted": "GLS 4dr Sedan",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0003",
+      "extracted": "1.8S 4dr Sedan",
+      "ground_truth": "2011 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0004",
+      "extracted": "1.8SL 4dr Sedan",
+      "ground_truth": "2011 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0005",
+      "extracted": "1.8S 4dr Hatchback",
+      "ground_truth": "2011 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0006",
+      "extracted": "1.8SL 4dr Hatchback",
+      "ground_truth": "2011 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0007",
+      "extracted": "1.6 Base 4dr Sedan",
+      "ground_truth": "2010 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0008",
+      "extracted": "1.6 4dr Sedan",
+      "ground_truth": "2010 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "model",
+      "page": "0009",
+      "extracted": "1.8S 4dr Hatchback",
+      "ground_truth": "2010 Nissan Versa",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0000",
+      "extracted": "$9,970",
+      "ground_truth": "$9,970",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0001",
+      "extracted": "$11,995",
+      "ground_truth": "$11,995",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0002",
+      "extracted": "$13,645",
+      "ground_truth": "$13,645",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0003",
+      "extracted": "$13,570",
+      "ground_truth": "$13,570",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0004",
+      "extracted": "$16,470",
+      "ground_truth": "$16,470",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0005",
+      "extracted": "$13,520",
+      "ground_truth": "$13,520",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0006",
+      "extracted": "$16,900",
+      "ground_truth": "$16,900",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0007",
+      "extracted": "$9,990",
+      "ground_truth": "$9,990",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0008",
+      "extracted": "$11,090",
+      "ground_truth": "$11,090",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "aol",
+      "field": "price",
+      "page": "0009",
+      "extracted": "$13,400",
+      "ground_truth": "$13,400",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0000",
+      "extracted": "2010 Audi A6 Avant Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi A6 Avant",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0001",
+      "extracted": "2010 Audi S5 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi S5",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0002",
+      "extracted": "2010 Audi S6 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi S6",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0003",
+      "extracted": "2010 Audi R8 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi R8",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0004",
+      "extracted": "2010 Audi R8 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi R8",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0005",
+      "extracted": "2010 Audi R8 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi R8",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0006",
+      "extracted": "2010 Audi R8 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi R8",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0007",
+      "extracted": "2010 Audi Q7 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi Q7",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0008",
+      "extracted": "2010 Audi Q7 Specs and Features - MSN Autos",
+      "ground_truth": "2010 Audi Q7",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "msn",
+      "field": "model",
+      "page": "0009",
+      "extracted": "2010 Chrysler Sebring Specs and Features - MSN Autos",
+      "ground_truth": "2010 Chrysler Sebring",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0000",
+      "extracted": "2010 Hyundai Accent\n      Blue GS 3-Door",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0001",
+      "extracted": "2010 Hyundai Accent\n      GS 3-Door",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0002",
+      "extracted": "2010 Hyundai Accent\n      GLS 4-Door",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0003",
+      "extracted": "2010 Hyundai Accent\n      SE 3-Door",
+      "ground_truth": "2010 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0004",
+      "extracted": "2011 Hyundai Accent\n      GS 3-Door",
+      "ground_truth": "2011 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0005",
+      "extracted": "2011 Hyundai Accent\n      GLS 4-Door",
+      "ground_truth": "2011 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0006",
+      "extracted": "2011 Hyundai Accent\n      SE 3-Door",
+      "ground_truth": "2011 Hyundai Accent",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0007",
+      "extracted": "2010 Nissan Versa Sedan\n      1.8 SL",
+      "ground_truth": "2010 Nissan Versa Sedan",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0008",
+      "extracted": "2011 Nissan Versa Sedan\n      1.6 Base",
+      "ground_truth": "2011 Nissan Versa Sedan",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "model",
+      "page": "0009",
+      "extracted": "2010 Chevrolet Aveo\n      2LT 4-Door",
+      "ground_truth": "2010 Chevrolet Aveo",
+      "classification": "partial"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0000",
+      "extracted": "$9,970",
+      "ground_truth": "$9,970",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0001",
+      "extracted": "$11,995",
+      "ground_truth": "$11,995",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0002",
+      "extracted": "$13,645",
+      "ground_truth": "$13,645",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0003",
+      "extracted": "$16,195",
+      "ground_truth": "$16,195",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0004",
+      "extracted": "$12,695",
+      "ground_truth": "$12,695",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0005",
+      "extracted": "$13,695",
+      "ground_truth": "$13,695",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0006",
+      "extracted": "$15,345",
+      "ground_truth": "$15,345",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0007",
+      "extracted": "$16,350",
+      "ground_truth": "$16,350",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0008",
+      "extracted": "$9,990",
+      "ground_truth": "$9,990",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "price",
+      "page": "0009",
+      "extracted": "$15,365",
+      "ground_truth": "$15,365",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0000",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0001",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0002",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0003",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0004",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0005",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0006",
+      "extracted": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 110 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0007",
+      "extracted": "1.8L I4, 16 valves, 122 hp @ 5200 rpm",
+      "ground_truth": "1.8L I4, 16 valves, 122 hp @ 5200 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0008",
+      "extracted": "1.6L I4, 16 valves, 107 hp @ 6000 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 107 hp @ 6000 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "engine",
+      "page": "0009",
+      "extracted": "1.6L I4, 16 valves, 108 hp @ 6400 rpm",
+      "ground_truth": "1.6L I4, 16 valves, 108 hp @ 6400 rpm",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0000",
+      "extracted": "27 mpg city / 36 mpg hwy",
+      "ground_truth": "27 mpg city / 36 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0001",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0002",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0003",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0004",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0005",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0006",
+      "extracted": "28 mpg city / 34 mpg hwy",
+      "ground_truth": "28 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0007",
+      "extracted": "24 mpg city / 32 mpg hwy",
+      "ground_truth": "24 mpg city / 32 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0008",
+      "extracted": "26 mpg city / 34 mpg hwy",
+      "ground_truth": "26 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "auto",
+      "site": "yahoo",
+      "field": "fuel_economy",
+      "page": "0009",
+      "extracted": "27 mpg city / 34 mpg hwy",
+      "ground_truth": "27 mpg city / 34 mpg hwy",
+      "classification": "correct"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0000",
+      "extracted": "3508B001",
+      "ground_truth": "Canon 3506b001 12.1 Megapixel Waterproof Powershot D10 (3508b001)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0001",
+      "extracted": "3509B001",
+      "ground_truth": "Canon 3509b001 Camera, Powershot Sx200, Black, 12mp",
+      "classification": "partial"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0002",
+      "extracted": "4254B001",
+      "ground_truth": "Canon Powershot A3000 Is Point & Shoot Digital Camera - 10 Megapixel -...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0003",
+      "extracted": "4256B001",
+      "ground_truth": "Canon Powershot A3100 Is Point & Shoot Digital Camera - 12.1 Megapixel -...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0004",
+      "extracted": "4257B001",
+      "ground_truth": "Canon Powershot A3100 Is Point & Shoot Digital Camera - 12.1 Megapixel -...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0005",
+      "extracted": "4255B001",
+      "ground_truth": "Canon Powershot A3100 Is Point & Shoot Digital Camera - 12.1 Megapixel -...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0006",
+      "extracted": "2504B025",
+      "ground_truth": "Canon Powershot A470 Digital Camera With Selphy Cp760 Compact Photo Printer -...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0007",
+      "extracted": "A495PWRSHOT",
+      "ground_truth": "Canon Powershot A495 Point & Shoot Digital Camera - 10 Megapixel - 2.50&quot;...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0008",
+      "extracted": "4260B001",
+      "ground_truth": "Canon Powershot A495 Point & Shoot Digital Camera - 10 Megapixel - 2.50&quot;...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "model",
+      "page": "0009",
+      "extracted": "4261B001AA",
+      "ground_truth": "Canon Powershot A495 Point & Shoot Digital Camera - 10 Megapixel - 2.50&quot;...",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0000",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0001",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0002",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0003",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0004",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0005",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0006",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0007",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0008",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "camera",
+      "site": "beachaudio",
+      "field": "manufacturer",
+      "page": "0009",
+      "extracted": "",
+      "ground_truth": "Canon",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0000",
+      "extracted": "USA",
+      "ground_truth": "Ray Allen&nbsp;&nbsp;#20&nbsp;&nbsp;SG",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0001",
+      "extracted": "USA",
+      "ground_truth": "Avery Bradley&nbsp;&nbsp;#0&nbsp;&nbsp;SG",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0002",
+      "extracted": "USA",
+      "ground_truth": "Marquis Daniels&nbsp;&nbsp;#8&nbsp;&nbsp;SG",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0003",
+      "extracted": "USA",
+      "ground_truth": "Glen Davis&nbsp;&nbsp;#11&nbsp;&nbsp;PF",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0004",
+      "extracted": "USA",
+      "ground_truth": "Semih Erden&nbsp;&nbsp;#86&nbsp;&nbsp;C",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0005",
+      "extracted": "USA",
+      "ground_truth": "Kevin Garnett&nbsp;&nbsp;#5&nbsp;&nbsp;PF",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0006",
+      "extracted": "USA",
+      "ground_truth": "Luke Harangody&nbsp;&nbsp;#55&nbsp;&nbsp;F",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0007",
+      "extracted": "USA",
+      "ground_truth": "Jermaine O'Neal&nbsp;&nbsp;#7&nbsp;&nbsp;C",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0008",
+      "extracted": "USA",
+      "ground_truth": "Shaquille O'Neal&nbsp;&nbsp;#36&nbsp;&nbsp;C",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "name",
+      "page": "0009",
+      "extracted": "USA",
+      "ground_truth": "Kendrick Perkins&nbsp;&nbsp;#43&nbsp;&nbsp;C",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0000",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0001",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0002",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0003",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0004",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0005",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0006",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0007",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0008",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "espn",
+      "field": "team",
+      "page": "0009",
+      "extracted": "DEPORTES",
+      "ground_truth": "Boston Celtics",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0000",
+      "extracted": "Ray Allen - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Ray Allen",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0001",
+      "extracted": "Carlos Arroyo - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Carlos Arroyo",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0002",
+      "extracted": "Avery Bradley - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Avery Bradley",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0003",
+      "extracted": "Glen Davis - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Glen Davis",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0004",
+      "extracted": "Kevin Garnett - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Kevin Garnett",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0005",
+      "extracted": "Jeff Green - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Jeff Green",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0006",
+      "extracted": "Nenad Krstic - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Nenad Krstic",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0007",
+      "extracted": "Troy Murphy - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Troy Murphy",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0008",
+      "extracted": "Jermaine O'Neal - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Jermaine O'Neal",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "name",
+      "page": "0009",
+      "extracted": "Shaquille O'Neal - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Shaquille O'Neal",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0000",
+      "extracted": "Ray Allen - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0001",
+      "extracted": "Carlos Arroyo - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0002",
+      "extracted": "Avery Bradley - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0003",
+      "extracted": "Glen Davis - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0004",
+      "extracted": "Kevin Garnett - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0005",
+      "extracted": "Jeff Green - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0006",
+      "extracted": "Nenad Krstic - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0007",
+      "extracted": "Troy Murphy - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0008",
+      "extracted": "Jermaine O'Neal - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "yahoo",
+      "field": "team",
+      "page": "0009",
+      "extracted": "Shaquille O'Neal - Boston Celtics - NBA - Yahoo! Sports",
+      "ground_truth": "Boston Celtics",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0000",
+      "extracted": "Ray Allen",
+      "ground_truth": "Ray Allen",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0001",
+      "extracted": "Avery Bradley",
+      "ground_truth": "Avery Bradley",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0002",
+      "extracted": "Marquis Daniels",
+      "ground_truth": "Marquis Daniels",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0003",
+      "extracted": "Glen Davis",
+      "ground_truth": "Glen Davis",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0004",
+      "extracted": "Semih Erden",
+      "ground_truth": "Semih Erden",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0005",
+      "extracted": "Kevin Garnett",
+      "ground_truth": "Kevin Garnett",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0006",
+      "extracted": "Luke Harangody",
+      "ground_truth": "Luke Harangody",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0007",
+      "extracted": "Jermaine O'Neal",
+      "ground_truth": "Jermaine O'Neal",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0008",
+      "extracted": "Shaquille O'Neal",
+      "ground_truth": "Shaquille O'Neal",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "name",
+      "page": "0009",
+      "extracted": "Kendrick Perkins",
+      "ground_truth": "Kendrick Perkins",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0000",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0001",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0002",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0003",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0004",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0005",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0006",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0007",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0008",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "team",
+      "page": "0009",
+      "extracted": "Boston Celtics",
+      "ground_truth": "Boston Celtics",
+      "classification": "correct"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0000",
+      "extracted": "6 ft 5 in (1.96 m)",
+      "ground_truth": "6&#160;ft&#160;5&#160;in (1.96 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0001",
+      "extracted": "6 ft 3 in (1.91 m)",
+      "ground_truth": "6&#160;ft&#160;3&#160;in (1.91 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0002",
+      "extracted": "6 ft 6 in (1.98 m)",
+      "ground_truth": "6&#160;ft&#160;6&#160;in (1.98 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0003",
+      "extracted": "6 ft 9 in (2.06 m)",
+      "ground_truth": "6&#160;ft&#160;9&#160;in (2.06 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0004",
+      "extracted": "7 ft 0 in (2.13 m)",
+      "ground_truth": "7&#160;ft&#160;0&#160;in (2.13 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0005",
+      "extracted": "6 ft 11 in (2.11 m)",
+      "ground_truth": "6&#160;ft&#160;11&#160;in (2.11 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0006",
+      "extracted": "6 ft 7 in (2.01 m)",
+      "ground_truth": "6&#160;ft&#160;7&#160;in (2.01 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0007",
+      "extracted": "6 ft 11 in (2.11 m)",
+      "ground_truth": "6&#160;ft&#160;11&#160;in (2.11 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0008",
+      "extracted": "7 ft 1 in (2.16 m)",
+      "ground_truth": "7&#160;ft&#160;1&#160;in (2.16 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "height",
+      "page": "0009",
+      "extracted": "6 ft 10 in (2.08 m)",
+      "ground_truth": "6&#160;ft&#160;10&#160;in (2.08 m)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0000",
+      "extracted": "205 lb (93 kg)",
+      "ground_truth": "205&#160;lb (93 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0001",
+      "extracted": "180 lb (82 kg)",
+      "ground_truth": "180&#160;lb (82 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0002",
+      "extracted": "200 lb (91 kg)",
+      "ground_truth": "200&#160;lb (91 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0003",
+      "extracted": "289 lb (131 kg)",
+      "ground_truth": "289&#160;lb (131 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0004",
+      "extracted": "240 lb (109 kg)",
+      "ground_truth": "240&#160;lb (109 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0005",
+      "extracted": "253 lb (115 kg)",
+      "ground_truth": "253&#160;lb (115 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0006",
+      "extracted": "251 lb (114 kg)",
+      "ground_truth": "251&#160;lb (114 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0007",
+      "extracted": "255 lb (116 kg)",
+      "ground_truth": "255&#160;lb (116 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0008",
+      "extracted": "325 lb (147 kg)",
+      "ground_truth": "325&#160;lb (147 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "nbaplayer",
+      "site": "wiki",
+      "field": "weight",
+      "page": "0009",
+      "extracted": "280 lb (127 kg)",
+      "ground_truth": "280&#160;lb (127 kg)",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0000",
+      "extracted": "Arctic Roadrunner",
+      "ground_truth": "Arctic Roadrunner",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0001",
+      "extracted": "Bombay Deluxe Restaurant",
+      "ground_truth": "Bombay Deluxe Restaurant",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0002",
+      "extracted": "Double Musky Inn",
+      "ground_truth": "Double Musky Inn",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0003",
+      "extracted": "Glacier BrewHouse",
+      "ground_truth": "Glacier BrewHouse",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0004",
+      "extracted": "Kincaid Grill",
+      "ground_truth": "Kincaid Grill",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0005",
+      "extracted": "Mexico in Alaska",
+      "ground_truth": "Mexico in Alaska",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0006",
+      "extracted": "New Sagaya's City Market",
+      "ground_truth": "New Sagaya's City Market",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0007",
+      "extracted": "Sacks Café",
+      "ground_truth": "Sacks Caf&eacute;",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0008",
+      "extracted": "229 Parks Restaurant and Tavern",
+      "ground_truth": "229 Parks Restaurant and Tavern",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "name",
+      "page": "0009",
+      "extracted": "Alaska Coffee Roasting Company",
+      "ground_truth": "Alaska Coffee Roasting Company",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0000",
+      "extracted": "Address:\n\t\t\t\t\t2477 Arctic Blvd., Downtown, Anchorage, AK, 99503  | \n\t\t\t\tMap It",
+      "ground_truth": "2477 Arctic Blvd., Downtown, Anchorage, AK, 99503 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0001",
+      "extracted": "Address:\n\t\t\t\t\t555 W. Northern Lights Blvd., Midtown, Anchorage, AK, 99503  | \n\t\t\t\tMap It",
+      "ground_truth": "555 W. Northern Lights Blvd., Midtown, Anchorage, AK, 99503 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0002",
+      "extracted": "Address:\n\t\t\t\t\tCrow Creek Rd., Girdwood, AK, 99587  | \n\t\t\t\tMap It",
+      "ground_truth": "Crow Creek Rd., Girdwood, AK, 99587 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0003",
+      "extracted": "Address:\n\t\t\t\t\t737 W. 5th Ave., Downtown, Anchorage, AK, 99501  | \n\t\t\t\tMap It",
+      "ground_truth": "737 W. 5th Ave., Downtown, Anchorage, AK, 99501 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0004",
+      "extracted": "Address:\n\t\t\t\t\t6700 Jewel Lake Rd., South Anchorage, Anchorage, AK, 99502  | \n\t\t\t\tMap It",
+      "ground_truth": "6700 Jewel Lake Rd., South Anchorage, Anchorage, AK, 99502 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0005",
+      "extracted": "Address:\n\t\t\t\t\t7305 Old Seward Hwy., South Anchorage, Anchorage, AK, 99518  | \n\t\t\t\tMap It",
+      "ground_truth": "7305 Old Seward Hwy., South Anchorage, Anchorage, AK, 99518 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0006",
+      "extracted": "Address:\n\t\t\t\t\t900 W. 13th Ave., Downtown, Anchorage, AK, 99501  | \n\t\t\t\tMap It",
+      "ground_truth": "900 W. 13th Ave., Downtown, Anchorage, AK, 99501 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0007",
+      "extracted": "Address:\n\t\t\t\t\t328 G St., Downtown, Anchorage, AK, 99501  | \n\t\t\t\tMap It",
+      "ground_truth": "328 G St., Downtown, Anchorage, AK, 99501 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0008",
+      "extracted": "Address:\n\t\t\t\t\tMi 229.7, Parks Hwy., Denali National Park, AK, 99755",
+      "ground_truth": "Mi 229.7, Parks Hwy., Denali National Park, AK, 99755",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "address",
+      "page": "0009",
+      "extracted": "Address:\n\t\t\t\t\t4001 Geist Rd., Suite 2, University West, Fairbanks, AK, 99709",
+      "ground_truth": "4001 Geist Rd., Suite 2, University West, Fairbanks, AK, 99709",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0000",
+      "extracted": "Phone:\n\t\t\t\t\t907/279-7311",
+      "ground_truth": "907/279-7311",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0001",
+      "extracted": "Phone:\n\t\t\t\t\t907/277-1200",
+      "ground_truth": "907/277-1200",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0002",
+      "extracted": "Phone:\n\t\t\t\t\t907/783-2822",
+      "ground_truth": "907/783-2822",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0003",
+      "extracted": "Phone:\n\t\t\t\t\t907/274-2739 \n\t\t\t\t\t\t| Reserve Online",
+      "ground_truth": "907/274-2739 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0004",
+      "extracted": "Phone:\n\t\t\t\t\t907/243-0507 \n\t\t\t\t\t\t| Reserve Online",
+      "ground_truth": "907/243-0507 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0005",
+      "extracted": "Phone:\n\t\t\t\t\t907/349-1528",
+      "ground_truth": "907/349-1528",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0006",
+      "extracted": "Phone:\n\t\t\t\t\t907/274-6173; 907/274-9797; 800/764-1001",
+      "ground_truth": "907/274-6173; 907/274-9797; 800/764-1001",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0007",
+      "extracted": "Phone:\n\t\t\t\t\t907/276-3546; 907/274-4022 \n\t\t\t\t\t\t| Reserve Online",
+      "ground_truth": "907/276-3546; 907/274-4022 |",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0008",
+      "extracted": "Phone:\n\t\t\t\t\t907/683-2567",
+      "ground_truth": "907/683-2567",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "phone",
+      "page": "0009",
+      "extracted": "Phone:\n\t\t\t\t\t907/457-5282",
+      "ground_truth": "907/457-5282",
+      "classification": "partial"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0000",
+      "extracted": "American",
+      "ground_truth": "American",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0001",
+      "extracted": "Indian",
+      "ground_truth": "Indian",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0002",
+      "extracted": "Southern",
+      "ground_truth": "Southern",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0003",
+      "extracted": "American",
+      "ground_truth": "American",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0004",
+      "extracted": "Continental",
+      "ground_truth": "Continental",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0005",
+      "extracted": "Mexican",
+      "ground_truth": "Mexican",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0006",
+      "extracted": "Eclectic",
+      "ground_truth": "Eclectic",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0007",
+      "extracted": "American",
+      "ground_truth": "American",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0008",
+      "extracted": "American",
+      "ground_truth": "American",
+      "classification": "correct"
+    },
+    {
+      "vertical": "restaurant",
+      "site": "fodors",
+      "field": "cuisine",
+      "page": "0009",
+      "extracted": "Cafe",
+      "ground_truth": "Cafe",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0000",
+      "extracted": "Abilene Christian University",
+      "ground_truth": "Abilene Christian University",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0001",
+      "extracted": "Academy College",
+      "ground_truth": "Academy College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0002",
+      "extracted": "Academy of Court Reporting and Technology",
+      "ground_truth": "Academy of Court Reporting and Technology",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0003",
+      "extracted": "Adams State College",
+      "ground_truth": "Adams State College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0004",
+      "extracted": "Adirondack Community College",
+      "ground_truth": "Adirondack Community College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0005",
+      "extracted": "Adrian College",
+      "ground_truth": "Adrian College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0006",
+      "extracted": "Advanced Technology Institute",
+      "ground_truth": "Advanced Technology Institute",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0007",
+      "extracted": "Agnes Scott College",
+      "ground_truth": "Agnes Scott College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0008",
+      "extracted": "Aiken Technical College",
+      "ground_truth": "Aiken Technical College",
+      "classification": "correct"
+    },
+    {
+      "vertical": "university",
+      "site": "collegeboard",
+      "field": "name",
+      "page": "0009",
+      "extracted": "",
+      "ground_truth": "Akron Institute of Herzing University",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0000",
+      "extracted": "Agriculture Operations",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0001",
+      "extracted": "Agriculture Operations",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0002",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0003",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0004",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0005",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0006",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0007",
+      "extracted": "Biological and Biomedical Sciences",
+      "ground_truth": "Public, 4-Year or Above",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0008",
+      "extracted": "Business and Marketing Studies",
+      "ground_truth": "Public, 2-Year",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "matchcollege",
+      "field": "type",
+      "page": "0009",
+      "extracted": "Business and Marketing Studies",
+      "ground_truth": "Public, 2-Year",
+      "classification": "wrong"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0000",
+      "extracted": "Overview:\n    Abilene Christian University",
+      "ground_truth": "Abilene Christian University",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0001",
+      "extracted": "Overview:\n    Adelphi University",
+      "ground_truth": "Adelphi University",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0002",
+      "extracted": "Overview:\n    Adrian College",
+      "ground_truth": "Adrian College",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0003",
+      "extracted": "Overview:\n    Agnes Scott College",
+      "ground_truth": "Agnes Scott College",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0004",
+      "extracted": "Overview:\n    Alaska Pacific University",
+      "ground_truth": "Alaska Pacific University",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0005",
+      "extracted": "Overview:\n    Albany State University",
+      "ground_truth": "Albany State University",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0006",
+      "extracted": "Overview:\n    Albion College",
+      "ground_truth": "Albion College",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0007",
+      "extracted": "Overview:\n    Albright College",
+      "ground_truth": "Albright College",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0008",
+      "extracted": "Overview:\n    Alcorn State University",
+      "ground_truth": "Alcorn State University",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "name",
+      "page": "0009",
+      "extracted": "Overview:\n    Alderson-Broaddus College",
+      "ground_truth": "Alderson-Broaddus College",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0000",
+      "extracted": "Abilene Christian is a private institution that was founded in 1906. It has a total undergraduate en",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0001",
+      "extracted": "Adelphi University is a private institution that was founded in 1896. It has a total undergraduate e",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0002",
+      "extracted": "Adrian College is a private institution that was founded in 1859. It has a total undergraduate enrol",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0003",
+      "extracted": "Agnes Scott College is a private institution that was founded in 1889. It has a total undergraduate ",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0004",
+      "extracted": "Alaska Pacific University is a private institution that was founded in 1957. It has a total undergra",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0005",
+      "extracted": "Albany State University is a public institution that was founded in 1903. It has a total undergradua",
+      "ground_truth": "Public",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0006",
+      "extracted": "Albion College is a private institution that was founded in 1835. It has a total undergraduate enrol",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0007",
+      "extracted": "Albright College is a private institution that was founded in 1856. It has a total undergraduate enr",
+      "ground_truth": "Private",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0008",
+      "extracted": "Alcorn State University is a public institution that was founded in 1871. It has a total undergradua",
+      "ground_truth": "Public",
+      "classification": "partial"
+    },
+    {
+      "vertical": "university",
+      "site": "usnews",
+      "field": "type",
+      "page": "0009",
+      "extracted": "Alderson Broaddus College is a private institution that was founded in 1871. It has a total undergra",
+      "ground_truth": "Private",
+      "classification": "partial"
+    }
+  ]
+}

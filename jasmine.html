@@ -674,7 +674,6 @@ async function analyze() {
     const payload = {
       urls: [currentURL],
       selector: includeSelector,
-      api_key: ak,
     };
     if (excludeSelectors.length > 0) {
       payload.exclude = excludeSelectors;
@@ -686,7 +685,10 @@ async function analyze() {
     
     const resp = await fetch(`${API_BASE}/api/analyze`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + ak,
+      },
       body: JSON.stringify(payload),
     });
     const data = await resp.json();

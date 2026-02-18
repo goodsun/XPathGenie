@@ -60,7 +60,7 @@ createApp({
       elapsed.value = 0;
       timer = setInterval(() => elapsed.value++, 1000);
 
-      const body = { urls, api_key: apiKey.value.trim() };
+      const body = { urls };
 
       // Parse wantlist if in wantlist mode
       if (mode.value === 'wantlist' && wantlistText.value.trim()) {
@@ -77,7 +77,10 @@ createApp({
       try {
         const resp = await fetch('api/analyze', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey.value.trim(),
+          },
           body: JSON.stringify(body),
         });
         const data = await resp.json();

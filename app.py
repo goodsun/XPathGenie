@@ -17,12 +17,25 @@ app = Flask(__name__, static_folder="static", static_url_path="/static")
 # Simple rate limiting for API endpoints (thread-safe)
 _rate_limit = {}
 _rate_lock = threading.Lock()
+_rate_cleanup_counter = 0
 RATE_LIMIT_WINDOW = 60  # seconds
 RATE_LIMIT_MAX = 30  # requests per window
+_RATE_CLEANUP_INTERVAL = 100  # cleanup every N calls
+_RATE_CLEANUP_MAX_AGE = 120  # seconds
 
 def _check_rate_limit(key: str) -> bool:
+    global _rate_cleanup_counter
     now = time.time()
     with _rate_lock:
+        # Periodic cleanup of stale entries
+        _rate_cleanup_counter += 1
+        if _rate_cleanup_counter >= _RATE_CLEANUP_INTERVAL:
+            _rate_cleanup_counter = 0
+            expired = [k for k, ts_list in _rate_limit.items()
+                       if not ts_list or now - ts_list[-1] > _RATE_CLEANUP_MAX_AGE]
+            for k in expired:
+                del _rate_limit[k]
+
         if key not in _rate_limit:
             _rate_limit[key] = []
         _rate_limit[key] = [t for t in _rate_limit[key] if now - t < RATE_LIMIT_WINDOW]
@@ -102,6 +115,16 @@ def add_security_headers(response):
     return response
 
 
+def _get_user_api_key(data):
+    """Extract API key: Authorization header takes priority, POST body as fallback."""
+    auth = request.headers.get("Authorization", "")
+    if auth.startswith("Bearer "):
+        key = auth[7:].strip()
+        if key:
+            return key
+    return (data.get("api_key") or "").strip()
+
+
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
     if not _check_origin():
@@ -113,8 +136,8 @@ def api_analyze():
     if not data or "urls" not in data:
         return jsonify({"error": "urls required"}), 400
 
-    # BYOK: get API key from request body
-    api_key = data.get("api_key", "").strip() if data.get("api_key") else ""
+    # BYOK: get API key from Authorization header or POST body
+    api_key = _get_user_api_key(data)
     allow_server_key = os.environ.get("XPATHGENIE_ALLOW_SERVER_KEY") == "1"
     if not api_key and not allow_server_key:
         return jsonify({"error": "API key required. Please enter your Gemini API key."}), 401

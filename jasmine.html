@@ -247,7 +247,7 @@ let fetchedHTML = '';
 let currentURL = '';
 
 function setStatus(msg) {
-  document.getElementById('statusBar').textContent = msg;
+  document.getElementById('statusBar').innerHTML = msg;
 }
 
 function setMode(mode) {
@@ -598,7 +598,7 @@ async function analyze() {
     Object.entries(mappings).forEach(([f, info]) => { mappingObj[f] = info.xpath; });
     localStorage.setItem('xpathgenie_mappings', JSON.stringify(mappingObj));
     
-    setStatus(`やったね！${count}フィールド見つけたよ ✨ → Aladdinに渡したよ！`);
+    setStatus(`やったね！${count}フィールド見つけたよ ✨ → <a href="aladdin.html" style="color:#7c5cfc;">Aladdin</a>に渡したよ！`);
     setMode('ready');
     document.getElementById('analyzeBtn').disabled = false;
     

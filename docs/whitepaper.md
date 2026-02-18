@@ -578,6 +578,8 @@ To assess multi-language generalizability, we conducted an additional cross-doma
 
 **Comparison with Japanese cross-domain evaluation.** The English evaluation's macro-average hit rate among successful sites (78.7%) is comparable to the Japanese cross-domain evaluation (79.4%, Section 4.12). Both evaluations show the same pattern: high accuracy on semantically structured HTML (GitHub 100%, SUUMO 100%, Cookpad 100%) and degradation on heterogeneous page structures (PEP 21%, Yahoo! News 14%) or JavaScript-rendered sites (Goodreads 0%).
 
+![Figure 3: Cross-Domain / Cross-Language Hit Rate](figures/cross_domain.png)
+
 **HTML snapshots archived.** All HTML pages (30 files across 10 sites) were archived as reproducibility snapshots (`tests/e2e/snapshots/260218_en_v2/` and `260218_en_v3/`), enabling offline re-evaluation and establishing a reproducible evaluation protocol. The 3-page-per-site protocol (compared to 10 pages in the Japanese evaluation) reflects the cost of snapshot-based evaluation with manual URL curation; future evaluations should scale to 10+ pages for statistical robustness.
 
 ### 4.14 SWDE Benchmark Evaluation
@@ -602,6 +604,8 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 | Camera | 1/3 | 1/9 | 0.015 | 0.067 | beachaudio (model F1=0.13) |
 | **Overall** | **15/22** | **29/87** | **0.317** | **0.689** | — |
 
+![Figure 2: SWDE Benchmark Results by Vertical](figures/swde_results.png)
+
 **Comparison with AXE.** AXE (arXiv:2602.01838, 2026) reports F1 88.1% on the full SWDE dataset using a supervised 0.6B-parameter model trained with domain-specific labels. XPathGenie achieves a strict macro F1 of 31.7% (counting undetected fields as F1=0) or 68.9% on fields where XPaths were successfully generated. This gap is expected given the fundamental paradigm difference:
 
 - **AXE**: supervised learning with labeled training data, optimized for the SWDE schema, evaluated on all fields.
@@ -614,6 +618,8 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 2. **Field detection coverage (46%)**: XPathGenie detected XPaths for only 29 of 87 attempted fields. Beyond the architectural scope mismatch above, the LLM sometimes failed to locate fields in complex or legacy HTML structures (2008–2011 era pages), particularly when field values were embedded in non-semantic containers without clear structural markers. For fields that *were* detected, 70% achieved F1 ≥ 0.5 and 60% achieved F1 = 1.0 (perfect extraction).
 
 3. **Site-level failures (23%)**: 5 of 22 sites returned zero fields. Two failure modes dominate: (a) compressed HTML exceeding the LLM's effective analysis capacity (camera-amazon: 114KB compressed, camera-buy: 396KB compressed), and (b) HTML structures too complex for the compression pipeline to preserve meaningful structural signals (restaurant-opentable: 2.3KB compressed from a JavaScript-heavy page).
+
+![Figure 4: HTML Compression — Raw vs Compressed Size](figures/compression_comparison.png)
 
 **Implications.** The SWDE results reveal a clear pattern: **when XPathGenie successfully generates an XPath, the extraction is highly accurate** (found-field F1 = 0.689, with 60% of found fields at F1 = 1.0). The primary limitation is not extraction quality but field *discovery*—the LLM's ability to identify relevant HTML elements in unfamiliar page structures. This suggests that improving the compression pipeline and LLM prompting for field discovery would yield significant gains, while the core XPath generation mechanism is sound.
 
@@ -693,6 +699,26 @@ XPathGenie demonstrates that LLM-based XPath generation, when combined with aggr
 A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 
 A key engineering insight emerged from the compression-generation gap: the HTML compressor normalizes whitespace that remains present in raw HTML, causing `text()=` predicates to fail at validation time. Adopting `normalize-space()` in LLM-generated XPaths resolved this gap, dramatically improving accuracy on sites with whitespace-heavy HTML (e.g., ph-10: 0% → 90.8%). For cases where the gap manifests as incorrect section selection rather than whitespace mismatch, the interactive Jasmine tool (Section 3.7) provides an escalation path: when automated heuristics fail, a human can select the correct content section with a single click, and the remainder of the pipeline proceeds automatically. This three-tool architecture—Genie for generation, Jasmine for selection, Aladdin for verification—distributes cognitive labor according to each agent's strengths: AI for pattern matching and code generation, humans for semantic recognition and quality judgment.
+
+```mermaid
+graph LR
+    subgraph "AI-Driven"
+        G["🧞 Genie<br/>XPath Generation<br/>~20 sec/site"]
+    end
+    subgraph "Human-in-the-Loop"
+        J["🌸 Jasmine<br/>Section Selection<br/>13% escalation rate"]
+        A["🔮 Aladdin<br/>Bulk Verification<br/>5–15 min/site"]
+    end
+    G -- "Auto success<br/>87% of sites" --> A
+    G -- "Escalation<br/>13% of sites" --> J
+    J -- "Corrected section" --> G
+    A -- "Approved mappings" --> E["📦 Export<br/>JSON / YAML"]
+
+    style G fill:#7c5cfc,color:#fff
+    style J fill:#ff9800,color:#fff
+    style A fill:#4caf50,color:#fff
+    style E fill:#90caf9,color:#000
+```
 
 More broadly, the compression-generation gap illustrates a general principle: any transformation that alters surface-form input before LLM inference introduces a semantic alignment risk between inference-time representation and execution-time environment. This is one instance of a class of problems we expect to arise in any system where LLMs generate executable code from preprocessed inputs.
 

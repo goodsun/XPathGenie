@@ -4,6 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XPath Jasmine — Section Selector</title>
+<script>
+const i18n = {
+  ja: {
+    urlPlaceholder: 'URLを入力...',
+    fetch: '読み込み',
+    reset: 'リセット',
+    analyze: '分析実行',
+    formTab: '📝 フォーム入力',
+    addField: '＋ フィールド追加',
+    fieldName: 'フィールド名',
+    fieldExample: '例題（任意）',
+    clear: 'クリア',
+    save: '保存',
+    tipClick: '💡 クリックでメインコンテンツを選択（緑）',
+    tipShift: '💡 Shift+クリックで除外（赤）',
+    modeIdle: 'モード: 待機中',
+    modeSelecting: 'モード: セクション選択中',
+    modeReady: 'モード: 分析準備完了',
+    modeAnalyzing: 'モード: 分析中...',
+    selections: '📋 選択セクション',
+    noSelection: 'まだ選択されていません',
+    results: '📊 分析結果',
+    copyJson: '📋 JSONコピー',
+    copied: '✅ コピーした！',
+    spinnerText: '✨ 驚異の大宇宙パワー！✨',
+    statusInit: 'URLを入れてね ✨',
+    statusEnterUrl: 'URLを入力して「読み込み」をクリック',
+    statusNoUrl: 'URLを入れてね！✨',
+    statusLoading: 'ページを読み込んでるよ…🔍',
+    statusLoadingShort: '読み込み中...',
+    statusError: 'あれ？エラーだよ…',
+    statusLoadError: '読み込みエラー',
+    statusLoaded: '読み込めたよ！セクションをクリックして選んでね ✨',
+    statusAnalyzing: 'Genieに聞いてるよ…🧞',
+    statusFailed: 'うまくいかなかった…',
+    statusSuccess: (n) => `やったね！${n}フィールド見つけたよ ✨ → <a href="aladdin.html" style="color:#fff; font-weight:bold; text-decoration:none;">Aladdin</a>に渡したよ！`,
+    noValue: '(値なし)',
+    multiMatch: '⚠ 複数マッチ',
+    selectUpTo: 'ここまで選択',
+    jsonInvalid: 'JSONが不正です',
+    error: 'エラー',
+  },
+  en: {
+    urlPlaceholder: 'Enter URL...',
+    fetch: 'Fetch',
+    reset: 'Reset',
+    analyze: 'Analyze',
+    formTab: '📝 Form Input',
+    addField: '＋ Add Field',
+    fieldName: 'Field name',
+    fieldExample: 'Example (optional)',
+    clear: 'Clear',
+    save: 'Save',
+    tipClick: '💡 Click to select main content (green)',
+    tipShift: '💡 Shift+click to exclude (red)',
+    modeIdle: 'Mode: Idle',
+    modeSelecting: 'Mode: Selecting',
+    modeReady: 'Mode: Ready',
+    modeAnalyzing: 'Mode: Analyzing...',
+    selections: '📋 Selections',
+    noSelection: 'No sections selected yet',
+    results: '📊 Results',
+    copyJson: '📋 Copy JSON',
+    copied: '✅ Copied!',
+    spinnerText: '✨ Cosmic Genie Power! ✨',
+    statusInit: 'Enter a URL ✨',
+    statusEnterUrl: 'Enter a URL and click "Fetch"',
+    statusNoUrl: 'Please enter a URL! ✨',
+    statusLoading: 'Loading page… 🔍',
+    statusLoadingShort: 'Loading...',
+    statusError: 'Oops! Error',
+    statusLoadError: 'Load error',
+    statusLoaded: 'Loaded! Click sections to select ✨',
+    statusAnalyzing: 'Asking Genie… 🧞',
+    statusFailed: 'Something went wrong…',
+    statusSuccess: (n) => `Found ${n} fields ✨ → Passed to <a href="aladdin.html" style="color:#fff; font-weight:bold; text-decoration:none;">Aladdin</a>!`,
+    noValue: '(no value)',
+    multiMatch: '⚠ Multiple matches',
+    selectUpTo: 'Select up to here',
+    jsonInvalid: 'Invalid JSON',
+    error: 'Error',
+  }
+};
+let currentLang = localStorage.getItem('xpg_lang') || 'ja';
+function t(key) { return i18n[currentLang][key] || i18n['ja'][key] || key; }
+</script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; }
@@ -64,10 +150,11 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 <div class="header">
   <h1>✨ XPath Jasmine</h1>
+  <button id="langToggle" onclick="toggleLang()" style="padding:4px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#8a7aaa; font-size:0.75rem; cursor:pointer; white-space:nowrap;">🌐 EN</button>
   <button onclick="document.getElementById('wantListModal').style.display='flex'" style="padding:8px 12px; background:#2a1a3a; border:1px solid #b366ff; border-radius:6px; color:#b366ff; font-size:0.8rem; cursor:pointer;">📋 Want List</button>
   <input type="text" id="urlInput" placeholder="URLを入力..." value="">
-  <button class="btn-fetch" onclick="fetchPage()">読み込み</button>
-  <button class="btn-reset" onclick="resetSelections()">リセット</button>
+  <button class="btn-fetch" onclick="fetchPage()" id="btnFetch">読み込み</button>
+  <button class="btn-reset" onclick="resetSelections()" id="btnReset">リセット</button>
   <button class="btn-analyze" id="analyzeBtn" onclick="analyze()" disabled>分析実行</button>
 </div>
 
@@ -169,8 +256,8 @@ function switchWLTab(tab) {
 function addWLField(key, val) {
   const row = document.createElement('div');
   row.style.cssText = 'display:flex; gap:6px; align-items:center;';
-  row.innerHTML = `<input type="text" placeholder="フィールド名" value="${key||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#ffd700; font-size:0.8rem;">
-    <input type="text" placeholder="例題（任意）" value="${val||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#a0d0a0; font-size:0.8rem;">
+  row.innerHTML = `<input type="text" placeholder="${t('fieldName')}" value="${key||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#ffd700; font-size:0.8rem;">
+    <input type="text" placeholder="${t('fieldExample')}" value="${val||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#a0d0a0; font-size:0.8rem;">
     <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#ff5050; cursor:pointer; font-size:1rem;">✕</button>`;
   document.getElementById('wlFields').appendChild(row);
 }
@@ -198,23 +285,23 @@ function copyResults(btn) {
   Object.entries(lastMappings).forEach(([k, v]) => { simple[k] = v.xpath || v; });
   const json = JSON.stringify(simple, null, 2);
   navigator.clipboard.writeText(json).then(() => {
-    btn.textContent = '✅ コピーした！';
-    setTimeout(() => { btn.textContent = '📋 JSONコピー'; }, 1500);
+    btn.textContent = t('copied');
+    setTimeout(() => { btn.textContent = t('copyJson'); }, 1500);
   }).catch(() => {
     // Fallback
     const ta = document.createElement('textarea');
     ta.value = json; document.body.appendChild(ta);
     ta.select(); document.execCommand('copy');
     document.body.removeChild(ta);
-    btn.textContent = '✅ コピーした！';
-    setTimeout(() => { btn.textContent = '📋 JSONコピー'; }, 1500);
+    btn.textContent = t('copied');
+    setTimeout(() => { btn.textContent = t('copyJson'); }, 1500);
   });
 }
 
 function saveWantList() {
   let wl;
   if (wlCurrentTab === 'json') {
-    try { wl = JSON.parse(document.getElementById('wantListJsonInput').value); } catch(e) { alert('JSONが不正です'); return; }
+    try { wl = JSON.parse(document.getElementById('wantListJsonInput').value); } catch(e) { alert(t('jsonInvalid')); return; }
   } else {
     wl = getWLFromForm();
   }
@@ -254,17 +341,17 @@ function setMode(mode) {
   const label = document.getElementById('modeLabel');
   if (mode !== 'analyzing') document.getElementById('spinnerOverlay').style.display = 'none';
   if (mode === 'selecting') {
-    label.textContent = 'モード: セクション選択中';
+    label.textContent = t('modeSelecting');
     label.style.color = '#00c864';
   } else if (mode === 'ready') {
-    label.textContent = 'モード: 分析準備完了';
+    label.textContent = t('modeReady');
     label.style.color = '#ffd700';
   } else if (mode === 'analyzing') {
-    label.textContent = 'モード: 分析中...';
+    label.textContent = t('modeAnalyzing');
     label.style.color = '#b366ff';
     document.getElementById('spinnerOverlay').style.display = 'flex';
   } else {
-    label.textContent = 'モード: 待機中';
+    label.textContent = t('modeIdle');
     label.style.color = '#b366ff';
   }
 }
@@ -293,7 +380,7 @@ function updateSelectionList() {
   list.innerHTML = '';
   
   if (!includeSelector && excludeSelectors.length === 0) {
-    list.innerHTML = '<li style="color: #6a5a8a; border: 1px dashed #2a1a3a; background: none;">まだ選択されていません</li>';
+    list.innerHTML = `<li style="color: #6a5a8a; border: 1px dashed #2a1a3a; background: none;">${t('noSelection')}</li>`;
     document.getElementById('analyzeBtn').disabled = true;
     return;
   }
@@ -307,7 +394,7 @@ function updateSelectionList() {
       if (i === parts.length - 1) {
         return `<span style="color:#00c864; font-weight:600;">${part}</span>`;
       }
-      return `<span class="parent-part" style="cursor:pointer; color:#00c864; opacity:0.6; text-decoration:underline dotted;" onclick="event.stopPropagation(); changeIncludeTo('${parentSel.replace(/'/g, "\\'")}')" title="ここまで選択">${part}</span>`;
+      return `<span class="parent-part" style="cursor:pointer; color:#00c864; opacity:0.6; text-decoration:underline dotted;" onclick="event.stopPropagation(); changeIncludeTo('${parentSel.replace(/'/g, "\\'")}')" title="${t('selectUpTo')}">${part}</span>`;
     }).join(' <span style="opacity:0.3;">&gt;</span> ');
     li.innerHTML = `<span class="remove" onclick="removeInclude()">✕</span>🟢 ${clickableParts}`;
     list.appendChild(li);
@@ -411,12 +498,12 @@ function applyBlackout(doc, includeEl) {
 
 async function fetchPage() {
   const url = document.getElementById('urlInput').value.trim();
-  if (!url) { setStatus('URLを入れてね！✨'); return; }
+  if (!url) { setStatus(t('statusNoUrl')); return; }
   
   currentURL = url;
-  setStatus('ページを読み込んでるよ…🔍');
+  setStatus(t('statusLoading'));
   setMode('selecting');
-  document.getElementById('loadingMsg').textContent = '読み込み中...';
+  document.getElementById('loadingMsg').textContent = t('statusLoadingShort');
   document.getElementById('loadingMsg').style.display = 'block';
   document.getElementById('previewFrame').style.display = 'none';
   
@@ -426,8 +513,8 @@ async function fetchPage() {
     const data = await resp.json();
     
     if (data.error) {
-      setStatus(`あれ？エラーだよ…: ${data.error} 😢`);
-      document.getElementById('loadingMsg').textContent = `読み込みエラー: ${data.error}`;
+      setStatus(`${t('statusError')}: ${data.error} 😢`);
+      document.getElementById('loadingMsg').textContent = `${t('statusLoadError')}: ${data.error}`;
       return;
     }
     
@@ -528,12 +615,12 @@ async function fetchPage() {
         updateSelectionList();
       });
       
-      setStatus(`読み込めたよ！セクションをクリックして選んでね ✨`);
+      setStatus(t('statusLoaded'));
     };
     
   } catch (err) {
-    setStatus(`エラー: ${err.message}`);
-    document.getElementById('loadingMsg').textContent = `エラー: ${err.message}`;
+    setStatus(`${t('error')}: ${err.message}`);
+    document.getElementById('loadingMsg').textContent = `${t('error')}: ${err.message}`;
   }
 }
 
@@ -541,7 +628,7 @@ async function analyze() {
   if (!includeSelector) return;
   
   setMode('analyzing');
-  setStatus('Genieに聞いてるよ…🧞');
+  setStatus(t('statusAnalyzing'));
   document.getElementById('analyzeBtn').disabled = true;
   
   try {
@@ -565,7 +652,7 @@ async function analyze() {
     const data = await resp.json();
     
     if (data.status === 'error') {
-      setStatus(`うまくいかなかった…: ${data.reason} — ${data.message || ''}`);
+      setStatus(`${t('statusFailed')}: ${data.reason} — ${data.message || ''}`);
       document.getElementById('analyzeBtn').disabled = false;
       return;
     }
@@ -583,8 +670,8 @@ async function analyze() {
       const div = document.createElement('div');
       const hasWarning = info.warning ? true : false;
       div.className = 'result-field' + (hasWarning ? ' multi-warn' : '');
-      const val = (info.samples && info.samples[0]) ? info.samples[0] : '(値なし)';
-      const warnBadge = hasWarning ? `<span style="color:#ff9800; font-size:0.75rem; margin-left:6px;">⚠ 複数マッチ</span>` : '';
+      const val = (info.samples && info.samples[0]) ? info.samples[0] : t('noValue');
+      const warnBadge = hasWarning ? `<span style="color:#ff9800; font-size:0.75rem; margin-left:6px;">${t('multiMatch')}</span>` : '';
       div.innerHTML = `<div class="fname">${field}${warnBadge}</div><div class="fval" style="color:#a0d0a0; font-size:0.85rem; word-break:break-all;">${val}</div>`;
       resultFields.appendChild(div);
     });
@@ -598,15 +685,73 @@ async function analyze() {
     Object.entries(mappings).forEach(([f, info]) => { mappingObj[f] = info.xpath; });
     localStorage.setItem('xpathgenie_mappings', JSON.stringify(mappingObj));
     
-    setStatus(`やったね！${count}フィールド見つけたよ ✨ → <a href="aladdin.html" style="color:#fff; font-weight:bold; text-decoration:none;">Aladdin</a>に渡したよ！`);
+    setStatus(t('statusSuccess')(count));
     setMode('ready');
     document.getElementById('analyzeBtn').disabled = false;
     
   } catch (err) {
-    setStatus(`エラー: ${err.message}`);
+    setStatus(`${t('error')}: ${err.message}`);
     document.getElementById('analyzeBtn').disabled = false;
   }
 }
+
+function toggleLang() {
+  currentLang = currentLang === 'ja' ? 'en' : 'ja';
+  localStorage.setItem('xpg_lang', currentLang);
+  applyLang();
+}
+
+function applyLang() {
+  const btn = document.getElementById('langToggle');
+  btn.textContent = currentLang === 'ja' ? '🌐 EN' : '🌐 JA';
+  document.getElementById('urlInput').placeholder = t('urlPlaceholder');
+  document.getElementById('btnFetch').textContent = t('fetch');
+  document.getElementById('btnReset').textContent = t('reset');
+  document.getElementById('analyzeBtn').textContent = t('analyze');
+  // Info bar
+  const infoSpans = document.querySelectorAll('.info-bar > span');
+  if (infoSpans[0]) infoSpans[0].textContent = t('tipClick');
+  if (infoSpans[1]) infoSpans[1].textContent = t('tipShift');
+  // Mode label keeps its current state — just update prefix
+  // Side panel
+  const sideTitles = document.querySelectorAll('.side-panel h3');
+  if (sideTitles[0]) sideTitles[0].textContent = t('selections');
+  // Result section header
+  const resultH3 = document.querySelector('.result-section h3');
+  if (resultH3) resultH3.textContent = t('results');
+  // Copy button
+  const copyBtn = document.getElementById('copyBtn');
+  if (copyBtn && !copyBtn.textContent.includes('✅')) copyBtn.textContent = t('copyJson');
+  // Spinner
+  const spinnerText = document.querySelector('#spinnerOverlay > div:last-child');
+  if (spinnerText) spinnerText.textContent = t('spinnerText');
+  // Status bar
+  const statusBar = document.getElementById('statusBar');
+  if (statusBar.textContent.includes('URLを入れてね') || statusBar.textContent.includes('Enter a URL ✨')) {
+    setStatus(t('statusInit'));
+  }
+  // Loading msg
+  const loadingMsg = document.getElementById('loadingMsg');
+  if (loadingMsg && (loadingMsg.textContent.includes('URLを入力') || loadingMsg.textContent.includes('Enter a URL'))) {
+    loadingMsg.textContent = t('statusEnterUrl');
+  }
+  // Want List modal
+  const wlFormBtn = document.getElementById('wlTabForm');
+  if (wlFormBtn) wlFormBtn.textContent = t('formTab');
+  // Add field button
+  const addBtn = document.querySelector('#wlFormTab > button');
+  if (addBtn) addBtn.textContent = t('addField');
+  // Clear/Save buttons
+  const modalBtns = document.querySelectorAll('#wantListModal .modal-actions button, #wantListModal div:last-child > div:last-child > button');
+  // No selection msg
+  const noSelLi = document.querySelector('#selectionList li[style]');
+  if (noSelLi && (noSelLi.textContent.includes('まだ') || noSelLi.textContent.includes('No sections'))) {
+    noSelLi.textContent = t('noSelection');
+  }
+  document.documentElement.lang = currentLang;
+}
+// Apply on load
+document.addEventListener('DOMContentLoaded', applyLang);
 </script>
 
 </body>

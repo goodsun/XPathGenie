@@ -151,6 +151,9 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 <div class="header">
   <h1>✨ XPath Jasmine</h1>
   <button onclick="document.getElementById('wantListModal').style.display='flex'" style="padding:8px 12px; background:#2a1a3a; border:1px solid #b366ff; border-radius:6px; color:#b366ff; font-size:0.8rem; cursor:pointer;">📋 Want List</button>
+  <input type="password" id="apiKeyInput" placeholder="Gemini API Key" style="width:180px; padding:8px 12px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.8rem; font-family:monospace;" title="Gemini API Key">
+  <button onclick="toggleKeyVis()" style="padding:8px; background:none; border:1px solid #3a2a5a; border-radius:6px; cursor:pointer; font-size:0.9rem;" title="Show/Hide key" id="keyVisBtn">👁</button>
+  <a href="setup-guide.html" style="color:#b366ff; font-size:0.75rem; text-decoration:none; white-space:nowrap;" title="How to get a key">🔑?</a>
   <input type="text" id="urlInput" placeholder="URLを入力..." value="">
   <button class="btn-fetch" onclick="fetchPage()" id="btnFetch">読み込み</button>
   <button class="btn-reset" onclick="resetSelections()" id="btnReset">リセット</button>
@@ -230,6 +233,22 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 <script>
 const API_BASE = '/xpathgenie';
+
+// API Key management
+(function() {
+  const saved = localStorage.getItem('xpathgenie_api_key') || '';
+  document.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('apiKeyInput');
+    if (inp) { inp.value = saved; inp.addEventListener('change', () => localStorage.setItem('xpathgenie_api_key', inp.value)); }
+  });
+})();
+function toggleKeyVis() {
+  const inp = document.getElementById('apiKeyInput');
+  const btn = document.getElementById('keyVisBtn');
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+  else { inp.type = 'password'; btn.textContent = '👁'; }
+}
+function getApiKey() { return (document.getElementById('apiKeyInput')?.value || '').trim(); }
 
 let wlCurrentTab = 'form';
 
@@ -631,9 +650,12 @@ async function analyze() {
   document.getElementById('analyzeBtn').disabled = true;
   
   try {
+    const ak = getApiKey();
+    if (!ak) { setStatus('Please enter your Gemini API key 🔑'); setMode('ready'); document.getElementById('analyzeBtn').disabled = false; return; }
     const payload = {
       urls: [currentURL],
       selector: includeSelector,
+      api_key: ak,
     };
     if (excludeSelectors.length > 0) {
       payload.exclude = excludeSelectors;

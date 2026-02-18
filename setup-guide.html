@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Guide — XPathGenie</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    .guide-container { max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .guide-container h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .guide-container h2 { color: #c084fc; font-size: 1.2rem; margin: 1.5rem 0 0.5rem; }
+    .guide-container p, .guide-container li { color: #bbb; line-height: 1.7; }
+    .guide-container ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .guide-container ol li { margin-bottom: 0.5rem; }
+    .guide-container a { color: #7c5cfc; }
+    .guide-container code { background: #1a1a2e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    .card { background: #12121f; border: 1px solid #222; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; }
+    .back-link { display: inline-block; margin-bottom: 1rem; color: #7c5cfc; text-decoration: none; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <a href="index.html" class="back-link">← Back to XPathGenie</a>
+    <h1>Setup Guide</h1>
+    <p>XPathGenie uses Google's Gemini API to analyze HTML and generate XPath expressions. You need a free API key to get started.</p>
+
+    <h2>1. Get Your Gemini API Key</h2>
+    <div class="card">
+      <ol>
+        <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio → API Keys</a></li>
+        <li>Sign in with your Google account</li>
+        <li>Click <strong>"Create API key"</strong></li>
+        <li>Copy the key (starts with <code>AIza...</code>)</li>
+        <li>Paste it into the API Key field in XPathGenie</li>
+      </ol>
+    </div>
+
+    <h2>2. Free Tier</h2>
+    <div class="card">
+      <p>Gemini API offers a generous free tier — you can make many requests per day at no cost. XPathGenie typically uses 1–3 API calls per analysis. For most users, the free tier is more than enough.</p>
+      <p>See <a href="https://ai.google.dev/pricing" target="_blank" rel="noopener">Google AI pricing</a> for current limits.</p>
+    </div>
+
+    <h2>3. Security &amp; Privacy</h2>
+    <div class="card">
+      <ul style="padding-left:1.2rem;">
+        <li>Your API key is stored in your browser's <code>localStorage</code> — it never leaves your device except when sent to the XPathGenie server for Gemini API calls.</li>
+        <li>The server does <strong>not</strong> log or store your API key.</li>
+        <li>Your key is sent over HTTPS and used only for the duration of the request.</li>
+        <li>You can clear your key at any time by deleting it from the input field.</li>
+        <li><strong>Never share your API key publicly.</strong> If compromised, revoke it in Google AI Studio and create a new one.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

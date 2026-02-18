@@ -2,6 +2,8 @@ const { createApp, ref, computed, watch } = Vue;
 
 createApp({
   setup() {
+    const apiKey = ref(localStorage.getItem('xpathgenie_api_key') || '');
+    const showKey = ref(false);
     const urlText = ref(localStorage.getItem('xpathgenie_urls') || '');
     const wantlistText = ref(localStorage.getItem('xpathgenie_wantlist') || '');
     const mode = ref(localStorage.getItem('xpathgenie_mode') || 'discover');  // 'discover' or 'wantlist'
@@ -46,6 +48,10 @@ createApp({
     async function analyzeUrls() {
       const urls = urlText.value.split('\n').map(u => u.trim().replace(/^\d+[\.\)\]\s:]+\s*/, '')).filter(u => u.startsWith('http'));
       if (!urls.length) return;
+      if (!apiKey.value.trim()) {
+        error.value = 'Please enter your Gemini API key first.';
+        return;
+      }
 
       loading.value = true;
       error.value = null;
@@ -53,7 +59,7 @@ createApp({
       elapsed.value = 0;
       timer = setInterval(() => elapsed.value++, 1000);
 
-      const body = { urls };
+      const body = { urls, api_key: apiKey.value.trim() };
 
       // Parse wantlist if in wantlist mode
       if (mode.value === 'wantlist' && wantlistText.value.trim()) {
@@ -145,11 +151,17 @@ createApp({
       setTimeout(() => copied.value = false, 2000);
     }
 
+    function saveApiKey() {
+      localStorage.setItem('xpathgenie_api_key', apiKey.value);
+    }
+
+    watch(apiKey, (v) => localStorage.setItem('xpathgenie_api_key', v));
     watch(urlText, (v) => localStorage.setItem('xpathgenie_urls', v));
     watch(wantlistText, (v) => localStorage.setItem('xpathgenie_wantlist', v));
     watch(mode, (v) => localStorage.setItem('xpathgenie_mode', v));
 
     return {
+      apiKey, showKey, saveApiKey,
       urlText, wantlistText, mode, wantlistPlaceholder,
       loading, error, result, elapsed, elapsedStr, savedAtStr, copied,
       editing, editName,

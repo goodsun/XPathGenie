@@ -133,7 +133,7 @@ Rules:
 """
 
 
-def refine(multi_matches: dict) -> dict:
+def refine(multi_matches: dict, api_key: str = None) -> dict:
     """
     Call Gemini to refine XPaths that have multiple matches.
     
@@ -146,7 +146,8 @@ def refine(multi_matches: dict) -> dict:
     if not multi_matches:
         return {}
 
-    api_key = _get_api_key()
+    if not api_key:
+        api_key = _get_api_key()
 
     # Build context for the AI
     fields_info = {}
@@ -236,13 +237,14 @@ def _sanitize_wantlist(wantlist: dict) -> dict:
     return sanitized
 
 
-def analyze(compressed_htmls: list, wantlist: dict = None) -> dict:
+def analyze(compressed_htmls: list, wantlist: dict = None, api_key: str = None) -> dict:
     """Call Gemini API with compressed HTMLs, return {field: xpath} dict.
     
     If wantlist is provided, use targeted mode matching the requested schema.
     Otherwise, discover all extractable fields automatically.
     """
-    api_key = _get_api_key()
+    if not api_key:
+        api_key = _get_api_key()
 
     if wantlist:
         wantlist = _sanitize_wantlist(wantlist)

@@ -19,6 +19,13 @@
       </header>
 
       <div class="card input-card">
+        <div class="api-key-row">
+          <label>Gemini API Key <a href="setup-guide.html" class="hint" style="margin-left:6px;">How to get one?</a></label>
+          <div class="api-key-input-wrap">
+            <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." class="api-key-input" @change="saveApiKey">
+            <button @click="showKey=!showKey" class="btn-toggle-key" :title="showKey ? 'Hide' : 'Show'">{{ showKey ? '🙈' : '👁' }}</button>
+          </div>
+        </div>
         <label>Enter URLs <span class="hint">(one per line, 2-10 recommended)</span></label>
         <textarea v-model="urlText" placeholder="https://example.com/page/1&#10;https://example.com/page/2&#10;https://example.com/page/3" rows="5" :disabled="loading"></textarea>
 

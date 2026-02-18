@@ -322,3 +322,39 @@ textarea:focus { outline: none; border-color: #7c5cfc; }
   background: rgba(255, 152, 0, 0.1);
   border-radius: 4px;
 }
+
+/* API Key */
+.api-key-row {
+  margin-bottom: 1rem;
+}
+.api-key-row label {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.api-key-input-wrap {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.api-key-input {
+  flex: 1;
+  padding: 0.5rem 0.7rem;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #e0e0e8;
+  font-size: 0.9rem;
+  font-family: monospace;
+}
+.api-key-input:focus {
+  outline: none;
+  border-color: #7c5cfc;
+}
+.btn-toggle-key {
+  background: none;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+}

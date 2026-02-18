@@ -92,6 +92,12 @@ def api_analyze():
     if not data or "urls" not in data:
         return jsonify({"error": "urls required"}), 400
 
+    # BYOK: get API key from request body
+    api_key = data.get("api_key", "").strip() if data.get("api_key") else ""
+    allow_server_key = os.environ.get("XPATHGENIE_ALLOW_SERVER_KEY") == "1"
+    if not api_key and not allow_server_key:
+        return jsonify({"error": "API key required. Please enter your Gemini API key."}), 401
+
     urls = [u.strip() for u in data["urls"] if u.strip()]
     if not urls:
         return jsonify({"error": "No valid URLs"}), 400
@@ -153,7 +159,7 @@ def api_analyze():
     # 3. Analyze with Gemini
     wantlist = data.get("wantlist")  # optional: {"field": "", ...}
     try:
-        result = analyze(compressed, wantlist=wantlist)
+        result = analyze(compressed, wantlist=wantlist, api_key=api_key or None)
     except Exception as e:
         return jsonify({
             "status": "error",
@@ -192,7 +198,7 @@ def api_analyze():
         ai_targets = {k: v for k, v in multi.items() if not v.get("all_identical") and k not in narrowed}
         if ai_targets:
             try:
-                ai_refined = refine(ai_targets)
+                ai_refined = refine(ai_targets, api_key=api_key or None)
                 if ai_refined:
                     updated_mappings.update(ai_refined)
                     refined_fields.extend(ai_refined.keys())

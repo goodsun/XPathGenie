@@ -273,5 +273,19 @@ def api_analyze():
     return jsonify(resp_data)
 
 
+@app.route("/docs/<path:filename>")
+def serve_docs(filename):
+    """Serve files from the docs directory."""
+    docs_dir = os.path.join(os.path.dirname(__file__), "docs")
+    return send_from_directory(docs_dir, filename)
+
+
+@app.route("/whitepaper.html")
+def serve_whitepaper():
+    """Serve the whitepaper HTML file."""
+    app_dir = os.path.dirname(__file__)
+    return send_from_directory(app_dir, "whitepaper.html")
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8789, threaded=True, debug=False)

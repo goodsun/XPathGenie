@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XPathGenie Whitepaper</title>
+<!-- CDN imports -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<style>
+/* ダークテーマベーススタイル */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0a14;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-left: 320px; /* ジャスミンチャット分の余白 */
+}
+
+/* ナビゲーション */
+.nav-pair {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.nav-pair a {
+  color: #b366ff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.nav-pair a:hover {
+  background: rgba(179, 102, 255, 0.1);
+}
+
+.nav-pair .current {
+  color: #ffffff;
+  background: #b366ff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* メインコンテンツエリア */
+.whitepaper-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.whitepaper-content h1 {
+  color: #b366ff;
+  border-bottom: 2px solid #b366ff;
+  padding-bottom: 10px;
+}
+
+.whitepaper-content h2 {
+  color: #e0c3fc;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.whitepaper-content h3 {
+  color: #c8a2fa;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.whitepaper-content pre {
+  background: #1a1a2e;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  border-left: 4px solid #b366ff;
+}
+
+.whitepaper-content code {
+  background: #1a1a2e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.whitepaper-content blockquote {
+  border-left: 4px solid #b366ff;
+  margin: 0;
+  padding: 10px 20px;
+  background: rgba(179, 102, 255, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.whitepaper-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #16213e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.whitepaper-content th,
+.whitepaper-content td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #2a2a5a;
+}
+
+.whitepaper-content th {
+  background: #b366ff;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.whitepaper-content tr:hover {
+  background: rgba(179, 102, 255, 0.05);
+}
+
+/* ジャスミンチャットUI（左下固定） */
+.jasmine-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  z-index: 1000;
+}
+
+.jasmine-image {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin-left: 20px;
+}
+
+.jasmine-bubble {
+  position: absolute;
+  bottom: 200px;
+  left: 20px;
+  background: #b366ff;
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 20px;
+  max-width: 250px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.jasmine-bubble:hover {
+  background: #a855f7;
+  transform: translateY(-2px);
+}
+
+.jasmine-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #b366ff;
+}
+
+.jasmine-bubble:hover::after {
+  border-top-color: #a855f7;
+}
+
+/* チャットインターフェース */
+.chat-interface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  background: rgba(16, 33, 62, 0.95);
+  border-radius: 15px 15px 0 0;
+  display: none;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.chat-interface.active {
+  display: block;
+}
+
+.chat-header {
+  background: #b366ff;
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 15px 15px 0 0;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chat-history {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.chat-message {
+  margin-bottom: 15px;
+}
+
+.chat-message.user {
+  text-align: right;
+}
+
+.chat-message.jasmine {
+  text-align: left;
+}
+
+.chat-message-bubble {
+  display: inline-block;
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+}
+
+.chat-message.user .chat-message-bubble {
+  background: #4f46e5;
+  color: #ffffff;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-message.jasmine .chat-message-bubble {
+  background: #374151;
+  color: #ffffff;
+  border-bottom-left-radius: 5px;
+}
+
+.chat-input-area {
+  padding: 15px;
+  border-top: 1px solid #2a2a5a;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #2a2a5a;
+  border-radius: 20px;
+  background: #1a1a2e;
+  color: #ffffff;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #b366ff;
+}
+
+.chat-send {
+  background: #b366ff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.chat-send:hover {
+  background: #a855f7;
+}
+
+.chat-send:disabled {
+  background: #666;
+  cursor: not-allowed;
+}
+
+/* ローディング表示 */
+.loading {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- ナビゲーション -->
+  <nav class="nav-pair">
+    <a href="index.html">Genie (Generate)</a>
+    <a href="aladdin.html">Aladdin (Analyze)</a>
+    <a href="jasmine.html">Jasmine (Join)</a>
+    <span class="current">Whitepaper 📝</span>
+  </nav>
+  
+  <!-- ホワイトペーパーコンテンツ -->
+  <div class="whitepaper-content" id="whitepaper-content">
+    <div style="text-align: center; color: #b366ff; margin: 50px 0;">
+      <h2>読み込み中...</h2>
+    </div>
+  </div>
+</div>
+
+<!-- ジャスミンチャットUI -->
+<div class="jasmine-container">
+  <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
+  
+  <div class="jasmine-bubble" id="jasmine-bubble">
+    <span id="bubble-text">このホワイトペーパーについて何でも聞いてね！💜</span>
+  </div>
+  
+  <div class="chat-interface" id="chat-interface">
+    <div class="chat-header">
+      <span>ジャスミンとのチャット</span>
+      <button class="chat-close" id="chat-close">&times;</button>
+    </div>
+    
+    <div class="chat-history" id="chat-history">
+      <div class="chat-message jasmine">
+        <div class="chat-message-bubble">
+          ホワイトペーパーの内容について何でも質問してね！💜<br>
+          わからないことがあったら正直に教えるよ～
+        </div>
+      </div>
+    </div>
+    
+    <div class="chat-input-area">
+      <div class="chat-input-row">
+        <input type="text" class="chat-input" id="chat-input" placeholder="ホワイトペーパーについて聞きたいことを入力...">
+        <button class="chat-send" id="chat-send">送信</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  // Mermaid初期化
+  mermaid.initialize({ theme: 'dark', background: '#0a0a14' });
+  
+  let whitepaperContent = '';
+  
+  // ホワイトペーパー読み込み
+  try {
+    const response = await fetch('docs/whitepaper.md');
+    if (!response.ok) throw new Error('Failed to fetch whitepaper');
+    
+    const markdown = await response.text();
+    whitepaperContent = markdown;
+    
+    // Marked.jsでHTML変換
+    const html = marked.parse(markdown);
+    document.getElementById('whitepaper-content').innerHTML = html;
+    
+    // Mermaid図をレンダリング
+    const mermaidElements = document.querySelectorAll('.language-mermaid');
+    mermaidElements.forEach(async (element, index) => {
+      const graphDefinition = element.textContent;
+      const graphId = `mermaid-graph-${index}`;
+      try {
+        const { svg } = await mermaid.render(graphId, graphDefinition);
+        element.outerHTML = `<div class="mermaid">${svg}</div>`;
+      } catch (error) {
+        console.error('Mermaid render error:', error);
+      }
+    });
+  } catch (error) {
+    console.error('Error loading whitepaper:', error);
+    document.getElementById('whitepaper-content').innerHTML = `
+      <div style="text-align: center; color: #ff6b6b; margin: 50px 0;">
+        <h2>エラー</h2>
+        <p>ホワイトペーパーの読み込みに失敗しました。</p>
+        <p>サーバーが起動しているか確認してください。</p>
+      </div>
+    `;
+  }
+  
+  // チャット機能
+  const bubble = document.getElementById('jasmine-bubble');
+  const chatInterface = document.getElementById('chat-interface');
+  const chatClose = document.getElementById('chat-close');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatHistory = document.getElementById('chat-history');
+  const bubbleText = document.getElementById('bubble-text');
+  
+  let chatMessages = [];
+  
+  // APIキー確認
+  function checkApiKey() {
+    const apiKey = localStorage.getItem('xpathgenie_api_key');
+    if (!apiKey) {
+      bubbleText.innerHTML = 'まずAPIキーを設定してね → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">Setup Guide</a>';
+      return null;
+    }
+    return apiKey;
+  }
+  
+  // チャット開閉
+  bubble.addEventListener('click', function() {
+    if (!checkApiKey()) return;
+    chatInterface.classList.add('active');
+    bubble.style.display = 'none';
+  });
+  
+  chatClose.addEventListener('click', function() {
+    chatInterface.classList.remove('active');
+    bubble.style.display = 'block';
+  });
+  
+  // メッセージ追加
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${isUser ? 'user' : 'jasmine'}`;
+    
+    const bubbleDiv = document.createElement('div');
+    bubbleDiv.className = 'chat-message-bubble';
+    bubbleDiv.innerHTML = text;
+    
+    messageDiv.appendChild(bubbleDiv);
+    chatHistory.appendChild(messageDiv);
+    
+    // スクロールを下部に
+    chatHistory.scrollTop = chatHistory.scrollHeight;
+    
+    // メッセージ履歴に保存
+    chatMessages.push({
+      role: isUser ? 'user' : 'model',
+      parts: [{ text: text }]
+    });
+  }
+  
+  // チャット送信
+  async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+    
+    const apiKey = checkApiKey();
+    if (!apiKey) return;
+    
+    // ユーザーメッセージ表示
+    addMessage(message, true);
+    chatInput.value = '';
+    
+    // 送信ボタン無効化とローディング表示
+    chatSend.disabled = true;
+    chatSend.textContent = '送信中...';
+    
+    // ローディングメッセージ
+    const loadingId = Date.now();
+    addMessage('<em>考え中...💭</em>', false);
+    
+    try {
+      // システムプロンプト作成
+      const systemPrompt = `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
+以下のホワイトペーパーの内容に基づいて、ユーザーの質問に日本語で答えてください。
+明るくフレンドリーな口調で。わからないことは正直に「ホワイトペーパーには書いてないかも」と答えてください。
+
+[ホワイトペーパー全文]
+${whitepaperContent}`;
+      
+      // Gemini API呼び出し
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: systemPrompt }]
+            },
+            ...chatMessages
+          ],
+          generationConfig: {
+            temperature: 0.9,
+            topK: 1,
+            topP: 1,
+            maxOutputTokens: 2048,
+          }
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API Error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 'すみません、うまく答えられませんでした...';
+      
+      // ローディングメッセージを削除
+      const lastMessage = chatHistory.lastElementChild;
+      if (lastMessage) {
+        lastMessage.remove();
+        chatMessages.pop(); // ローディングメッセージを履歴からも削除
+      }
+      
+      // AI回答を表示
+      addMessage(aiResponse, false);
+      
+    } catch (error) {
+      console.error('Chat error:', error);
+      
+      // ローディングメッセージを削除
+      const lastMessage = chatHistory.lastElementChild;
+      if (lastMessage) {
+        lastMessage.remove();
+        chatMessages.pop();
+      }
+      
+      addMessage('ごめん、エラーが起きちゃった...💦<br>APIキーが正しいか確認してみて！', false);
+    } finally {
+      // 送信ボタンを復元
+      chatSend.disabled = false;
+      chatSend.textContent = '送信';
+    }
+  }
+  
+  // イベントリスナー
+  chatSend.addEventListener('click', sendMessage);
+  
+  chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  
+  // 初期APIキーチェック
+  checkApiKey();
+});
+</script>
+
+</body>
+</html>

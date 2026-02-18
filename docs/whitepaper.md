@@ -540,7 +540,7 @@ To assess multi-language generalizability, we conducted an additional cross-doma
 | 4 | Goodreads | Books/Reviews | 3 | 0 | — | **0%** | — | 740KB+ React SSR, structure lost in compression |
 | 5 | IMDb | Entertainment | 3 | — | — | — | timeout | 1.5MB HTML, compression+validation exceeded timeout |
 
-Of the 5 sites, **3 produced successful multi-page evaluations** (60%). The macro-average hit rate across the 3 successful sites is **74.6%** (weighted by field count: 21/32 = **65.6%**).
+Of the 5 sites, **3 produced successful multi-page evaluations** (60%), while **2 sites failed** (40%)—Goodreads due to React SSR structure loss during compression, and IMDb due to HTML size (1.5MB) exceeding processing limits. Including all 5 sites, the **all-inclusive macro-average hit rate is 44.8%** (counting Goodreads as 0% and IMDb as 0%); excluding the 2 failed sites, the **successful-site macro-average is 74.6%** (weighted by field count: 21/32 = 65.6%). The 3-page-per-site protocol (compared to 10 pages in the Japanese evaluation) reflects the manual cost of snapshot-based evaluation with URL curation; future evaluations should scale to 10+ pages for statistical robustness.
 
 **Table 9: Per-Field Validation Detail (GitHub — 100% hit rate)**
 
@@ -824,3 +824,27 @@ The following shows the LLM's intermediate reasoning when analyzing a Hacker New
 ```
 
 This example demonstrates that the LLM correctly identifies (1) the page type from HTML attributes, (2) structural patterns including nested comment trees, (3) relevant data fields while excluding navigation/boilerplate, and (4) appropriate XPath strategies for each pattern type.
+
+### B.2 Failure Case: Goodreads (0% — React SSR)
+
+To illustrate why certain sites fail, we examined the LLM's reasoning on Goodreads (https://www.goodreads.com/book/show/11127), which returned 0 fields.
+
+**Compressed HTML (278 characters — from 740KB original):**
+
+```html
+<html lang="en"><body><div><!-- This is a random-length HTML comment:
+GG5q7MffqRiWLiIKn2Nl07ClU7nVXOa*D1ndg5L[8uE^h... --></div></body></html>
+```
+
+**LLM reasoning:**
+
+> **1. What kind of page is this?**
+> This appears to be an extremely minimal, empty, or placeholder page. The `div` element's sole content is a long, seemingly random HTML comment. This could indicate a page that failed to load its actual content, or a very early stage of a web application before content is dynamically injected by JavaScript.
+>
+> **3. What data fields are available?**
+> Virtually no useful data fields are available. The only explicit piece of information is the `lang="en"` attribute.
+>
+> **4. Why might XPath extraction be difficult?**
+> The primary challenge is the absence of actual data. The content exists only in JavaScript bundles that execute client-side, not in the server-rendered HTML.
+
+**Analysis:** Goodreads serves a minimal HTML shell with a randomized comment (likely a cache-busting token), and renders all visible content via client-side JavaScript. The 97% compression ratio that works well on semantic HTML (6.4KB → 278 bytes for Hacker News preserves all structure) becomes destructive on React SSR pages (740KB → 278 bytes, losing 100% of content). This confirms that XPathGenie's failure mode is not in XPath generation but in the **HTML acquisition layer**: the server-rendered HTML simply does not contain the data that users see in their browsers. This is a fundamental limitation shared by all non-JavaScript scraping approaches.

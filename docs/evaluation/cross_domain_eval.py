@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# ⚠️ Superseded by cross_domain_eval2.py
 """Cross-domain evaluation for XPathGenie whitepaper.
 Evaluates 5 non-medical sites across different domains.
 Uses the actual API response format (auto-discovery, mappings with confidence).

@@ -1,3 +1,5 @@
+> ⚠️ Superseded by ablation_report_v2.md
+
 # XPathGenie 実験2: Ablation Study
 
 実行日時: 2026-02-17 05:40:39 UTC

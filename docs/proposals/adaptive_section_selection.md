@@ -1,3 +1,9 @@
+## Implementation Status
+
+- Proposal C: ✅ Implemented as jasmine.html (2026-02)
+- Proposals A and B: Not yet implemented
+- Note: Jasmine extracts HTML client-side rather than passing selectors to the API
+
 # Proposal: Adaptive Section Selection with Fallback
 
 ## 問題

@@ -14,16 +14,16 @@ URLを入力するだけで、ページから取得可能なデータ要素とXP
 
 AIを使うのは**マッピング生成時の1回だけ**。生成されたXPathで以降はAI不要のデータ取得が可能。
 
-## Genie & Aladdin — 2つのツール
+## Genie, Aladdin & Jasmine — 3つのツール
 
-### XPathGenie（生成）
+### 🧞 XPathGenie（Generate — 生成）
 
 AIがXPathマッピングを自動生成する。2つのモードを持つ：
 
 - **Auto Discover** — URLだけ渡せばAIが全要素を自動発見
 - **Want List** — 欲しいフィールドのJSONスキーマを渡して狙い撃ち
 
-### XPathAladdin（検証）
+### 🪔 XPathAladdin（Analyze — 検証）
 
 Genieが生成したXPathを実ページで検証するリサーチツール。
 
@@ -33,15 +33,27 @@ Genieが生成したXPathを実ページで検証するリサーチツール。
 - **XPathリアルタイム編集** — その場で修正して即再評価
 - **Genieとの連携** — 「Open in Aladdin」ボタンでURL+マッピングを自動引き継ぎ
 
+### 🌸 XPathJasmine（Join — セクション選択）
+
+分析前にメインコンテンツ範囲をインタラクティブに選択するツール。
+
+- **プレビュー＋クリック選択** — fetchしたページをプレビュー表示し、分析対象セクションをクリックで指定
+- **Include/Exclude** — メインコンテンツ（緑枠）と除外部分（赤枠）を視覚的に選択
+- **選択結果をGenieに引き渡し** — localStorageを通じてシームレスに連携
+- **i18n対応** — 日本語/英語UI切り替え
+- **クライアントサイドHTML抽出** — 選択範囲のHTMLをブラウザ側で抽出してからAPIに送信
+
 ### ワークフロー
 
 ```
+Jasmine: URL入力 → プレビュー → セクション選択（オプション）
+                                        ↓
 Genie: URL入力 → AI分析 → XPathマッピング生成 → [Open in Aladdin]
                                                         ↓
 Aladdin: 10ページ一括Fetch → XPath検証 → 手修正 → Export (JSON/YAML)
 ```
 
-localStorage共有でシームレスに連携。
+localStorage共有でG-A-J間をシームレスに連携。
 
 ## 2つのモード（Genie）
 
@@ -169,6 +181,7 @@ mapping:
 - Want Listモードで値にヒントを書く（例: `"contract": "雇用形態（正社員、パート等）"`）
 - 信頼度0%のフィールドがあったら、Auto Discoverで全要素を確認してみる
 - フィールド名をダブルクリックしてリネーム → 自分のスキーマに合わせられる
+- Jasmineでメインコンテンツを事前選択すると、ノイズの多いサイトでも精度向上
 
 ### 注意点
 
@@ -177,6 +190,7 @@ mapping:
 - **サイト構造が変わるとXPathが壊れる**。定期クロールする場合は定期的に再解析を推奨
 - **1回のリクエストで最大10URL**。それ以上はバッチ分割してください
 - **Gemini APIのトークンを消費する**。1回あたり約8,000〜18,000トークン（モードとページ構造による）
+- **レート制限**: APIは30リクエスト/分のレート制限あり。Origin/Refererチェックによるアクセス制御も実施
 
 ## 技術スタック
 
@@ -197,6 +211,42 @@ mapping:
 
 従来の手作業: **1サイト5〜6時間** × 33サイト = **150〜200時間**
 XPathGenie: **1サイト30秒** × 33サイト = **約15分**
+
+## ディレクトリ構成
+
+```
+XPathGenie/
+├── app.py                  # Flask API サーバー
+├── index.html              # Genie フロントエンド
+├── aladdin.html            # Aladdin フロントエンド
+├── jasmine.html            # Jasmine フロントエンド
+├── requirements.txt
+├── genie/                  # バックエンドモジュール
+│   ├── __init__.py
+│   ├── fetcher.py          # HTML取得（SSRF防御）
+│   ├── compressor.py       # HTML構造圧縮
+│   ├── analyzer.py         # Gemini API呼び出し
+│   └── validator.py        # XPath検証・Refine
+├── templates/
+│   └── index.html          # Flask root route用
+├── static/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── wallpapers/             # 壁紙ギャラリーページ
+│   ├── index.html
+│   └── images/
+├── scripts/                # 評価・実験スクリプト
+│   ├── evaluate_site.py
+│   └── ...
+├── docs/
+│   ├── whitepaper.md
+│   ├── ISSUES.md
+│   ├── evaluation/         # 実験レポート・結果
+│   └── proposals/          # 設計提案
+├── README.md
+└── LICENSE
+```
 
 ## アーキテクチャ
 
@@ -307,8 +357,9 @@ ProxyPassReverse /xpathgenie/api/ http://127.0.0.1:8789/api/
   }
 }
 
-// Response
+// Response (success)
 {
+  "status": "ok",
   "site": "example.com",
   "mappings": {
     "title": {
@@ -322,7 +373,19 @@ ProxyPassReverse /xpathgenie/api/ http://127.0.0.1:8789/api/
   "pages_failed": 0,
   "tokens_used": 8749,
   "elapsed_seconds": 12.3,
-  "refined_fields": ["original_id"]
+  "refined_fields": ["original_id"],
+  "diagnostics": {
+    "compressed_size_bytes": 15234
+  }
+}
+
+// Response (error)
+{
+  "status": "error",
+  "reason": "fetch_failed",
+  "message": "Failed to fetch all URLs",
+  "suggestion": "Check if the site requires JavaScript rendering (SPA).",
+  "diagnostics": {}
 }
 ```
 
@@ -337,6 +400,10 @@ Aladdin用のサーバーサイドHTMLフェッチ（CORS回避）。
   "url": "https://example.com/page"
 }
 ```
+
+## おまけ
+
+- **Wallpapers** — XPathGenieテーマの壁紙ギャラリー (`/wallpapers/`)
 
 ## ホワイトペーパー
 

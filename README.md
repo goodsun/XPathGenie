@@ -283,7 +283,32 @@ graph TD
 ### 前提条件
 
 - Python 3.9+
-- Gemini APIキー（`~/.config/google/gemini_api_key` に配置）
+- Gemini APIキー（以下いずれかの方法で設定）
+
+### APIキーの設定（BYOK — Bring Your Own Key）
+
+XPathGenieは**BYOK方式**を採用しています。ユーザーが自分のGemini APIキーを持ち込んで利用します。
+
+#### 方法1: Web UIで入力（推奨）
+
+1. [Google AI Studio](https://aistudio.google.com/apikey) でGemini APIキーを取得（無料枠あり）
+2. XPathGenieのWeb UIでAPIキー欄に入力
+3. 「Remember key」にチェックを入れるとブラウザのlocalStorageに保存（オプション）
+
+詳しくは [Setup Guide](setup-guide.html) を参照。
+
+#### 方法2: サーバーサイド設定（開発・セルフホスト用）
+
+```bash
+# APIキーをファイルに配置
+mkdir -p ~/.config/google
+echo "YOUR_API_KEY" > ~/.config/google/gemini_api_key
+
+# サーバーキーでのフォールバックを許可（環境変数）
+export XPATHGENIE_ALLOW_SERVER_KEY=1
+```
+
+> ⚠️ 公開サーバーでは `XPATHGENIE_ALLOW_SERVER_KEY` を設定しないでください。全リクエストがサーバーオーナーのAPIキーで課金されます。
 
 ### インストール
 
@@ -341,7 +366,8 @@ ProxyPassReverse /xpathgenie/api/ http://127.0.0.1:8789/api/
   "urls": [
     "https://example.com/detail?id=100",
     "https://example.com/detail?id=101"
-  ]
+  ],
+  "api_key": "YOUR_GEMINI_API_KEY"
 }
 
 // Request — Want List
@@ -350,6 +376,7 @@ ProxyPassReverse /xpathgenie/api/ http://127.0.0.1:8789/api/
     "https://example.com/detail?id=100",
     "https://example.com/detail?id=101"
   ],
+  "api_key": "YOUR_GEMINI_API_KEY",
   "wantlist": {
     "title": "ページタイトル",
     "price": "価格・料金",

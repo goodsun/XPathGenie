@@ -125,7 +125,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 <!-- Spinner overlay -->
 <div id="spinnerOverlay" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; flex-direction:column; gap:12px;">
-  <img src="wallpapers/images/genie_bustup.png" style="height:200px; animation:float 2s ease-in-out infinite; filter:drop-shadow(0 0 20px rgba(179,102,255,0.5));">
+  <img src="wallpapers/images/genie_main.png" style="height:300px; animation:float 2s ease-in-out infinite; filter:drop-shadow(0 0 20px rgba(179,102,255,0.5));">
   <div style="color:#ffd700; font-size:1.1rem; font-weight:600; text-shadow:0 0 10px rgba(179,102,255,0.5); animation:pulse 1.5s ease-in-out infinite;">✨ 驚異の大宇宙パワー！✨</div>
 </div>
 <style>
@@ -598,7 +598,7 @@ async function analyze() {
     Object.entries(mappings).forEach(([f, info]) => { mappingObj[f] = info.xpath; });
     localStorage.setItem('xpathgenie_mappings', JSON.stringify(mappingObj));
     
-    setStatus(`やったね！${count}フィールド見つけたよ ✨ → <a href="aladdin.html" style="color:#7c5cfc;">Aladdin</a>に渡したよ！`);
+    setStatus(`やったね！${count}フィールド見つけたよ ✨ → <a href="aladdin.html" style="color:#fff; font-weight:bold; text-decoration:none;">Aladdin</a>に渡したよ！`);
     setMode('ready');
     document.getElementById('analyzeBtn').disabled = false;
     

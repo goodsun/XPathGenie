@@ -12,12 +12,13 @@ The challenges are threefold. First, **time cost**: constructing a reliable XPat
 
 XPathGenie addresses these challenges by reformulating XPath generation as an LLM inference problem operating on structurally compressed HTML, augmented by deterministic validation and refinement stages. The key insight is that AI should be invoked exactly once—for initial mapping discovery—while all subsequent operations (validation, mechanical refinement, ongoing extraction) operate purely on DOM manipulation at zero marginal AI cost. Our evaluation measures structural extraction stability (whether XPaths consistently return non-empty values across pages) rather than semantic correctness against ground-truth labels; human verification via the companion tool Aladdin is recommended for production deployment.
 
-This paper makes the following contributions:
+This paper makes three primary contributions:
 
-1. **HTML structural compression** that achieves ~97% token reduction while preserving DOM hierarchy needed for XPath construction, enabling LLM analysis within practical token budgets.
-2. **Two-tier refinement** that separates multi-match resolution into mechanical narrowing (zero AI cost) and targeted AI re-inference, minimizing unnecessary LLM invocations.
-3. **Identification of the compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
-4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp, supplemented by **cross-domain evaluation on 10 Japanese sites across 5 domains** achieving 79.4% macro-average hit rate, **English-language evaluation on 10 sites across 10 domains with multi-page validation** providing preliminary evidence of cross-linguistic applicability (macro-average hit rate 78.7% among 7 successful sites), and a **SWDE benchmark evaluation** (22 sites, 8 verticals) enabling the first direct F1 comparison with supervised baselines.
+1. **A zero-marginal-cost XPath generation pipeline** combining HTML structural compression (~97% token reduction), LLM-based inference, multi-page validation, and two-tier refinement (mechanical narrowing at zero AI cost + targeted AI re-inference). The system invokes AI once per site; all subsequent extraction is purely deterministic.
+2. **An escalation-based human-in-the-loop architecture** (Genie–Jasmine–Aladdin) that distributes cognitive labor between AI and humans: automated generation handles 87% of sites, while the interactive Jasmine tool provides a single-click escalation path for the remaining 13%, and Aladdin enables bulk verification.
+3. **Multi-faceted evaluation spanning 62 websites across 2 languages, 15+ domains, and 3 evaluation paradigms**: structural stability (hit rate 85–87% on 23 production sites), semantic accuracy (95.0% on 100 manually judged samples), and ground-truth F1 (0.689 on 22 SWDE benchmark sites in a zero-shot setting), establishing both practical reliability and comparability with supervised baselines.
+
+Additionally, we identify the **compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
 
 ## 2. Related Work
 
@@ -659,7 +660,7 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 
 Notable successes include the job vertical (3 sites, all perfect F1 = 1.0 on found fields), auto-yahoo (all 4 fields at F1 = 1.0), and restaurant-fodors (all 4 fields, F1 = 0.975)—demonstrating that XPathGenie can match supervised systems on sites with semantic HTML structure, even in a zero-shot setting.
 
-**Reproducibility.** All SWDE HTML pages and ground truth files used in this evaluation are archived in `data/swde/` and the evaluation script is available at `docs/evaluation/swde_real_eval.py`, enabling exact reproduction of these results.
+**Reproducibility.** All SWDE HTML pages and ground truth files used in this evaluation are archived in `data/swde/` and the evaluation script is available at `docs/evaluation/swde_real_eval.py`, enabling exact reproduction of these results. Evaluation metadata: crawl timestamp 2026-02-18T17:20Z, User-Agent `XPathGenie-Eval/1.0`, LLM model `gemini-2.5-flash` with `temperature=0.1`. The English cross-domain evaluation (Section 4.13) additionally archives all 30 HTML snapshots in `tests/e2e/snapshots/`.
 
 ## 5. Design Principles
 

@@ -4,6 +4,8 @@ from flask import Flask, request, jsonify, send_from_directory
 from urllib.parse import urlparse
 import os
 import time
+import threading
+import ipaddress
 
 from genie.fetcher import fetch_all
 from genie.compressor import compress
@@ -12,19 +14,21 @@ from genie.validator import validate, find_multi_matches, narrow_by_first_match
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 
-# Simple rate limiting for API endpoints
+# Simple rate limiting for API endpoints (thread-safe)
 _rate_limit = {}
+_rate_lock = threading.Lock()
 RATE_LIMIT_WINDOW = 60  # seconds
 RATE_LIMIT_MAX = 30  # requests per window
 
 def _check_rate_limit(key: str) -> bool:
     now = time.time()
-    if key not in _rate_limit:
-        _rate_limit[key] = []
-    _rate_limit[key] = [t for t in _rate_limit[key] if now - t < RATE_LIMIT_WINDOW]
-    if len(_rate_limit[key]) >= RATE_LIMIT_MAX:
-        return False
-    _rate_limit[key].append(now)
+    with _rate_lock:
+        if key not in _rate_limit:
+            _rate_limit[key] = []
+        _rate_limit[key] = [t for t in _rate_limit[key] if now - t < RATE_LIMIT_WINDOW]
+        if len(_rate_limit[key]) >= RATE_LIMIT_MAX:
+            return False
+        _rate_limit[key].append(now)
     return True
 
 ALLOWED_ORIGINS = {"corp.bon-soleil.com", "bizendao.github.io", "localhost", "127.0.0.1"}
@@ -41,9 +45,7 @@ def _check_origin() -> bool:
                     return True
             except Exception:
                 pass
-    # Allow direct server-side calls (no Referer)
-    if not referer and not origin:
-        return True
+    # Block requests with empty Origin/Referer (prevent open proxy abuse)
     return False
 
 
@@ -62,6 +64,16 @@ def api_fetch():
     url = request.args.get("url", "").strip()
     if not url:
         return jsonify({"error": "url required"}), 400
+    # SSRF protection: block internal/private IPs
+    try:
+        host = urlparse(url).hostname or ""
+        addr = ipaddress.ip_address(host) if host.replace(".", "").isdigit() or ":" in host else None
+        if addr and (addr.is_private or addr.is_loopback or addr.is_reserved):
+            return jsonify({"error": "Internal addresses not allowed"}), 403
+        if host.lower() in ("localhost", "127.0.0.1", "0.0.0.0", "::1"):
+            return jsonify({"error": "Internal addresses not allowed"}), 403
+    except (ValueError, TypeError):
+        pass
     try:
         pages = fetch_all([url])
         if pages and pages[0].get("html"):

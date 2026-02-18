@@ -954,3 +954,34 @@ GG5q7MffqRiWLiIKn2Nl07ClU7nVXOa*D1ndg5L[8uE^h... --></div></body></html>
 > The primary challenge is the absence of actual data. The content exists only in JavaScript bundles that execute client-side, not in the server-rendered HTML.
 
 **Analysis:** Goodreads serves a minimal HTML shell with a randomized comment (likely a cache-busting token), and renders all visible content via client-side JavaScript. The 97% compression ratio that works well on semantic HTML (6.4KB → 278 bytes for Hacker News preserves all structure) becomes destructive on React SSR pages (740KB → 278 bytes, losing 100% of content). This confirms that XPathGenie's failure mode is not in XPath generation but in the **HTML acquisition layer**: the server-rendered HTML simply does not contain the data that users see in their browsers. This is a fundamental limitation shared by all non-JavaScript scraping approaches.
+
+## Appendix C: Reproducibility Metadata
+
+### C.1 Evaluation Environment
+
+| Parameter | Value |
+|---|---|
+| **LLM** | Gemini 2.5 Flash (google/gemini-2.5-flash) |
+| **Temperature** | 0.1 |
+| **Response format** | JSON (responseMimeType=application/json) |
+| **XPath engine** | lxml 5.x (Python) |
+| **Compression cap** | 8,000 characters per page |
+| **Evaluation dates** | February 2026 |
+| **User-Agent** | Python urllib / requests (default) |
+
+### C.2 Data Availability
+
+| Dataset | Location | Contents |
+|---|---|---|
+| **Primary evaluation** (23 JP sites) | `docs/evaluation/results/` | JSON result files per site (no HTML snapshots) |
+| **Cross-domain JP** (10 sites) | `docs/evaluation/cross_domain_eval.py` | Evaluation script + results |
+| **English evaluation** (10 sites) | `tests/e2e/snapshots/260218_en_v2/`, `260218_en_v3/` | Archived HTML pages (30 files) |
+| **SWDE benchmark** (22 sites) | `data/swde/html/`, `data/swde/groundtruth/` | Archived HTML pages (220 files) + ground truth annotations |
+| **SWDE evaluation script** | `docs/evaluation/swde_real_eval.py` | Fully reproducible evaluation pipeline |
+| **XPath mappings** | `docs/evaluation/xpath_mappings.json` | All generated XPath expressions |
+
+### C.3 Reproducibility Notes
+
+- The primary evaluation on 23 Japanese medical sites did **not** archive HTML snapshots at evaluation time. Because production websites evolve, exact reproduction of these results may not be possible. Result JSON files preserve the generated XPaths and validation outcomes.
+- The English-language and SWDE evaluations archive all HTML pages, enabling exact reproduction.
+- LLM non-determinism (despite `temperature=0.1`) may cause minor variations across runs. The 3-run reproducibility study (Section 4.10) quantifies this: 8 of 21 sites showed SD=0 across runs, with an overall mean hit rate of 83.1%.

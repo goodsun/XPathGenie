@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression (~97% reduction), LLM-based inference, multi-page validation, and two-tier refinement. Unlike per-page LLM extraction systems, XPathGenie invokes AI once to generate reusable XPath expressions, ensuring zero marginal AI cost per page. Evaluation across 23 medical job-listing websites achieved 85.1–87.3% field-level hit rate—deliberately measuring structural extraction stability rather than semantic accuracy, as the goal is reusable XPath generation rather than value extraction benchmarking—with 11 sites at 100%; supplementary cross-domain evaluation on 10 sites across 5 non-medical domains (e-commerce, real estate, recipe, restaurant reviews, news) achieved a macro-average hit rate of 79.4%, confirming domain generalizability. An additional English-language evaluation on 5 production sites (3 pages each) across 5 domains achieved a macro-average hit rate of 74.6%, with GitHub reaching 100%, providing preliminary evidence of cross-linguistic applicability. Core-field analysis reveals that schema-guided extraction primarily expands coverage (+13.1pp) over open-ended discovery. We identify the compression-generation gap—a mismatch between compressed and raw HTML whitespace—resolved via `normalize-space()` predicates.
+We present XPathGenie, a system that automates XPath mapping generation from raw URLs using HTML structural compression (~97% reduction), LLM-based inference, multi-page validation, and two-tier refinement. Unlike per-page LLM extraction systems, XPathGenie invokes AI once to generate reusable XPath expressions, ensuring zero marginal AI cost per page. Evaluation across 23 medical job-listing websites achieved 85.1–87.3% field-level hit rate—deliberately measuring structural extraction stability rather than semantic accuracy, as the goal is reusable XPath generation rather than value extraction benchmarking—with 11 sites at 100%; supplementary cross-domain evaluation on 10 sites across 5 non-medical domains (e-commerce, real estate, recipe, restaurant reviews, news) achieved a macro-average hit rate of 79.4%, confirming domain generalizability. An additional English-language evaluation on 10 sites (3 pages each) across 10 domains achieved a macro-average hit rate of 78.7% among successful sites (7/10), with GitHub and Quotes to Scrape reaching 100%, providing preliminary evidence of cross-linguistic applicability. Core-field analysis reveals that schema-guided extraction primarily expands coverage (+13.1pp) over open-ended discovery. We identify the compression-generation gap—a mismatch between compressed and raw HTML whitespace—resolved via `normalize-space()` predicates.
 
 ## 1. Introduction
 
@@ -17,7 +17,7 @@ This paper makes the following contributions:
 1. **HTML structural compression** that achieves ~97% token reduction while preserving DOM hierarchy needed for XPath construction, enabling LLM analysis within practical token budgets.
 2. **Two-tier refinement** that separates multi-match resolution into mechanical narrowing (zero AI cost) and targeted AI re-inference, minimizing unnecessary LLM invocations.
 3. **Identification of the compression-generation gap** — a systematic mismatch between whitespace-normalized compressed HTML and raw-HTML execution contexts — and its resolution via `normalize-space()` predicates.
-4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp, supplemented by **cross-domain evaluation on 10 Japanese sites across 5 domains** achieving 79.4% macro-average hit rate, and **English-language evaluation on 5 production sites with multi-page validation** providing preliminary evidence of cross-linguistic applicability (macro-average hit rate 74.6%).
+4. **Real-world evaluation on 23 production sites** showing 85–87% field-level hit rate, with schema guidance boosting core-field coverage by 13.1pp, supplemented by **cross-domain evaluation on 10 Japanese sites across 5 domains** achieving 79.4% macro-average hit rate, and **English-language evaluation on 10 sites across 10 domains with multi-page validation** providing preliminary evidence of cross-linguistic applicability (macro-average hit rate 78.7% among 7 successful sites).
 
 ## 2. Related Work
 
@@ -308,7 +308,7 @@ These results confirm that XPathGenie's structural hit rate (87.3%) translates t
 
 ### 4.1 Experimental Setup
 
-XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. Additionally, a cross-domain evaluation was conducted on 10 websites across 5 non-medical domains (e-commerce, real estate, recipe/UGC, restaurant reviews, news) to assess generalizability beyond the medical job-listing domain (Section 4.12), and an English-language cross-domain evaluation on 5 production sites across 5 domains (3 pages each) to assess multi-language generalizability (Section 4.13).
+XPathGenie was evaluated on a portfolio of 35 Japanese medical/healthcare job-listing websites spanning pharmacist, nursing, caregiving, and general medical domains. Of the 35 sites, 23 had SSR (server-side rendered) detail pages accessible via standard HTTP requests. The remaining 12 were excluded: 7 required JavaScript rendering (SPA), 3 returned HTTP errors (403/500) or required authentication, and 2 had other access issues. Additionally, a cross-domain evaluation was conducted on 10 websites across 5 non-medical domains (e-commerce, real estate, recipe/UGC, restaurant reviews, news) to assess generalizability beyond the medical job-listing domain (Section 4.12), and an English-language cross-domain evaluation on 10 sites across 10 domains (3 pages each, 30 pages total) to assess multi-language generalizability (Section 4.13).
 
 Each site was analyzed using a single detail-page URL, and the generated XPath mappings were cross-validated against 10 detail pages from the same site. All evaluation results reported in this paper are from a single experimental run conducted on February 17, 2026, using Gemini 2.5 Flash with `temperature=0.1`. Raw results for each site and mode are archived in `docs/evaluation/results/` with filenames encoding site number, name, and evaluation mode. Note that field counts differ between Auto Discover and Want List modes because each mode generates a different set of field mappings; earlier evaluation runs (documented in `EVALUATION_REPORT.md`) used different configurations and should not be compared directly with the tables below.
 
@@ -528,59 +528,57 @@ Excluding access-denied sites (2) and the mis-targeted page (1), the cross-domai
 
 ### 4.13 English-Language Cross-Domain Evaluation
 
-To assess multi-language generalizability, we conducted an additional cross-domain evaluation on English-language websites using the same multi-page validation protocol as the primary evaluation (Section 4.1). While XPathGenie's XPath generation is structurally driven (DOM hierarchy, tag names, class names) rather than linguistically driven, the LLM's ability to interpret semantic field names and HTML content in a non-Japanese language had not been empirically validated. We evaluated 5 major English-language websites across 5 domains, each with 3 pages, using Auto Discover mode.
+To assess multi-language generalizability, we conducted an additional cross-domain evaluation on English-language websites using the same multi-page validation protocol as the primary evaluation (Section 4.1). While XPathGenie's XPath generation is structurally driven (DOM hierarchy, tag names, class names) rather than linguistically driven, the LLM's ability to interpret semantic field names and HTML content in a non-Japanese language had not been empirically validated. We evaluated **10 English-language websites across 10 domains**, each with 3 pages (30 pages total), using Auto Discover mode.
 
-**Table 8: English-Language Cross-Domain Evaluation — Multi-Page Hit Rate**
+**Table 8: English-Language Cross-Domain Evaluation — Multi-Page Hit Rate (10 sites)**
 
 | # | Site | Domain | Pages | Fields | Perfect | Hit Rate | Time (s) | Notes |
 |---|------|--------|-------|--------|---------|----------|----------|-------|
-| 1 | GitHub | Developer/OSS | 3 | 6 | 6/6 | **100%** | 10.7 | react, vue, svelte repos |
-| 2 | PyPI | Package Registry | 3 | 10 | 8/10 | **80%** | 45.5 | requests, flask, numpy |
-| 3 | Hacker News | News/Forum | 3 | 16 | 7/16 | **43.8%** | 32.1 | Items with varying comment counts |
-| 4 | Goodreads | Books/Reviews | 3 | 0 | — | **0%** | — | 740KB+ React SSR, structure lost in compression |
-| 5 | IMDb | Entertainment | 3 | — | — | — | timeout | 1.5MB HTML, compression+validation exceeded timeout |
+| 1 | GitHub | Developer/OSS | 3 | 6 | 6/6 | **100%** | 10.7 | react, vue, svelte |
+| 2 | Quotes to Scrape | Quote listing | 3 | 4 | 4/4 | **100%** | 18.2 | /page/1-3/ |
+| 3 | Hacker News | News/Forum | 3 | 3 | 2/3 | **89%** | 33.5 | Comment-heavy threads |
+| 4 | StackOverflow | Q&A | 3 | 12 | 7/12 | **86%** | 44.3 | Core Q&A 100%, author fields 67% |
+| 5 | PyPI | Package Registry | 3 | 10 | 8/10 | **80%** | 45.5 | requests, flask, numpy |
+| 6 | Wikipedia | Encyclopedia | 3 | 4 | 3/4 | **75%** | 33.5 | Core 100%, section headings failed |
+| 7 | Python PEP | Documentation | 3 | 13 | 2/13 | **21%** | 16.5 | PEP-8 vs PEP-20 structure mismatch |
+| 8 | Amazon | E-commerce | 3 | 2 | 2/2 | **100%**† | — | Bot protection: minimal HTML returned |
+| 9 | Goodreads | Books/Reviews | 3 | 0 | — | **0%** | — | React SSR: 740KB→278 bytes after compression |
+| 10 | IMDb | Entertainment | 3 | — | — | — | timeout | 1.5MB HTML exceeded processing limits |
 
-Of the 5 sites, **3 produced successful multi-page evaluations** (60%), while **2 sites failed** (40%)—Goodreads due to React SSR structure loss during compression, and IMDb due to HTML size (1.5MB) exceeding processing limits. Including all 5 sites, the **all-inclusive macro-average hit rate is 44.8%** (counting Goodreads as 0% and IMDb as 0%); excluding the 2 failed sites, the **successful-site macro-average is 74.6%** (weighted by field count: 21/32 = 65.6%). The 3-page-per-site protocol (compared to 10 pages in the Japanese evaluation) reflects the manual cost of snapshot-based evaluation with URL curation; future evaluations should scale to 10+ pages for statistical robustness.
+†Amazon returned only 2 metadata fields (product_path, search_keywords) with empty values, indicating bot-protection HTML.
 
-**Table 9: Per-Field Validation Detail (GitHub — 100% hit rate)**
+**All-inclusive metrics (10 sites):** Counting Goodreads as 0%, IMDb as 0%, and Amazon as excluded (bot-protected), the **macro-average hit rate across 9 scorable sites is 61.2%**. Among the **7 sites with meaningful field extraction** (excluding Amazon, Goodreads, IMDb), the macro-average is **78.7%**.
 
-| Field | Confidence | Sample Values (3 repos) |
-|-------|-----------|------------------------|
-| repository_name | 100% | react, vue, svelte |
-| owner | 100% | facebook, vuejs, sveltejs |
-| description | 100% | "The library for web and native user interfaces." |
-| stars_count | 100% | 243k, 208k, 83.3k |
-| forks_count | 100% | 50.6k, 33.9k, 4.8k |
-| homepage_url | 100% | https://react.dev, http://v2.vuejs.org, https://svelte.dev |
+**Table 9: Per-Field Validation Detail — Top Performers**
 
-**Table 10: Per-Field Validation Detail (PyPI — 80% hit rate)**
-
-| Field | Confidence | Notes |
-|-------|-----------|-------|
-| project_title | 100% | Requests, Flask, numpy |
-| description_text | 100% | Full project descriptions |
-| latest_version | 100% | Version strings |
-| latest_release_date | 100% | Release dates |
-| all_versions | 100% | Version history |
-| all_release_dates | 100% | Date history |
-| code_snippets | 100% | README code blocks |
-| external_links | 100% | Project links |
-| badge_image_alts | 67% | Optional: absent on flask |
-| badge_image_links | 67% | Optional: absent on flask |
+| Site | Field | Confidence | Sample Values |
+|------|-------|-----------|---------------|
+| GitHub | repository_name | 100% | react, vue, svelte |
+| GitHub | stars_count | 100% | 243k, 208k, 83.3k |
+| StackOverflow | question_title | 100% | "Why is processing a sorted array faster..." |
+| StackOverflow | vote_count | 100% | Vote counts across 3 questions |
+| StackOverflow | tags | 100% | java, c++, python tags |
+| Wikipedia | title | 100% | Web scraping, Data mining, Machine learning |
+| Quotes to Scrape | quote_text | 100% | Quotes with correct attribution |
+| Quotes to Scrape | author_name | 100% | Albert Einstein, J.K. Rowling, etc. |
+| Hacker News | comment_text | 100% | Full comment bodies |
+| PyPI | project_title | 100% | Requests, Flask, numpy |
 
 **Key findings:**
 
-- **Preliminary evidence of cross-linguistic applicability.** GitHub achieved 100% hit rate across 3 repository pages (6 fields), and PyPI achieved 80% (8/10 fields), demonstrating that XPathGenie's structural approach works effectively on English-language sites with semantic HTML. These results are comparable to the primary Japanese evaluation where 11 of 23 sites achieved 100%.
+- **Preliminary evidence of cross-linguistic applicability across 10 domains.** Two sites achieved 100% hit rate (GitHub, Quotes to Scrape), and four more exceeded 75% (Hacker News 89%, StackOverflow 86%, PyPI 80%, Wikipedia 75%), demonstrating that XPathGenie's structural approach works effectively on English-language sites with semantic HTML. These results are comparable to the primary Japanese evaluation where 11 of 23 sites achieved 100%.
 
-- **Content-dependent field stability.** Hacker News's 43.8% hit rate is explained by page content variation: comment-related fields (9 fields) returned values only on pages with comments (1 of 3 test pages), while submission-level fields (title, author, points, domain, timestamps) achieved 100% across all pages. This mirrors the optional-field behavior observed in Japanese sites (Section 4.6) and does not indicate extraction failure.
+- **StackOverflow: deep field discovery.** Auto Discover identified 12 fields including question metadata (title, votes, views, dates, tags — all 100%) and author profile details (reputation, badges — 67% due to community wiki posts lacking author cards). This demonstrates the system's ability to discover fields beyond basic page metadata.
 
-- **Large HTML remains challenging.** Goodreads (740KB+ React SSR) and IMDb (1.5MB) failed—consistent with the semi-structured content hypothesis (Section 4.12). These sites use extensive JavaScript-rendered content where the server-side HTML lacks semantic structure after compression.
+- **Page structure heterogeneity limits generalization.** Python PEP's 21% hit rate illustrates a specific failure mode: PEP-8 (comprehensive style guide with metadata table) and PEP-20 (minimal "Zen of Python") have fundamentally different page structures. Auto Discover generated 13 XPaths from PEP-8 that did not generalize. Want List mode with targeted fields would likely improve this result.
 
-- **Domain breadth across languages.** The 3 successful English sites span Developer/OSS, Package Registry, and News/Forum domains, none of which overlap with the Japanese evaluation domains (medical, real estate, recipe, etc.), extending the total cross-domain coverage to **8+ domains across 2 languages**.
+- **Large/dynamic HTML remains challenging.** Goodreads (React SSR: 740KB→278 bytes, see Appendix B.2), IMDb (1.5MB timeout), and Amazon (bot protection) confirm that XPathGenie requires accessible, server-rendered HTML with semantic structure. This limitation is shared by all non-JavaScript scraping approaches.
 
-**Comparison with Japanese cross-domain evaluation.** The English evaluation's macro-average hit rate (74.6%) is comparable to the Japanese cross-domain evaluation (79.4%, Section 4.12). Both evaluations show the same pattern: high accuracy on semantically structured HTML (GitHub 100%, SUUMO 100%, Cookpad 100%) and failure on React/CSS-in-JS sites (Goodreads 0%, Yahoo! News 14%).
+- **Domain breadth across languages.** The 7 successful English sites span Developer/OSS, Quote listing, News/Forum, Q&A, Package Registry, Encyclopedia, and Documentation domains—none overlapping with the Japanese evaluation domains (medical, real estate, recipe, restaurant, news)—extending the total cross-domain coverage to **12+ domains across 2 languages**.
 
-**HTML snapshots archived.** All HTML pages (15 files across 5 sites) were archived as reproducibility snapshots (`tests/e2e/snapshots/260218_en_v2/`), enabling offline re-evaluation. This addresses the reproducibility limitation noted in Section 6 and establishes a protocol for future evaluations.
+**Comparison with Japanese cross-domain evaluation.** The English evaluation's macro-average hit rate among successful sites (78.7%) is comparable to the Japanese cross-domain evaluation (79.4%, Section 4.12). Both evaluations show the same pattern: high accuracy on semantically structured HTML (GitHub 100%, SUUMO 100%, Cookpad 100%) and degradation on heterogeneous page structures (PEP 21%, Yahoo! News 14%) or JavaScript-rendered sites (Goodreads 0%).
+
+**HTML snapshots archived.** All HTML pages (30 files across 10 sites) were archived as reproducibility snapshots (`tests/e2e/snapshots/260218_en_v2/` and `260218_en_v3/`), enabling offline re-evaluation and establishing a reproducible evaluation protocol. The 3-page-per-site protocol (compared to 10 pages in the Japanese evaluation) reflects the cost of snapshot-based evaluation with manual URL curation; future evaluations should scale to 10+ pages for statistical robustness.
 
 ## 5. Design Principles
 
@@ -641,13 +639,13 @@ The two-tier refinement further optimizes cost: Tier 1 mechanical narrowing reso
 Several factors limit the validity of the current evaluation:
 
 - **LLM non-determinism.** Although the system uses `temperature=0.1` for near-deterministic output, LLM responses can still vary across runs due to model updates, API-level batching, and inherent sampling stochasticity. The reported results reflect single runs and may not be perfectly reproducible.
-- **Domain coverage.** The primary evaluation covers 23 websites in one domain (Japanese medical job listings), supplemented by a Japanese cross-domain evaluation of 10 sites across 5 domains (Section 4.12) and an English-language cross-domain evaluation of 5 production sites across 5 domains with multi-page validation (Section 4.13). While these results demonstrate generalizability across languages and domains for structured HTML sites, performance on CSS-in-JS frameworks and SPAs remains limited.
+- **Domain coverage.** The primary evaluation covers 23 websites in one domain (Japanese medical job listings), supplemented by a Japanese cross-domain evaluation of 10 sites across 5 domains (Section 4.12) and an English-language cross-domain evaluation of 10 sites across 10 domains with multi-page validation (Section 4.13). While these results demonstrate generalizability across languages and domains for structured HTML sites, performance on CSS-in-JS frameworks and SPAs remains limited.
 - **Subjectivity of manual effort estimates.** The 5–6 hour manual baseline is based on the authors' own experience with a specific site portfolio and engineering workflow. Different engineers, tools, or site complexities could yield substantially different baselines, making the effort reduction comparison inherently approximate.
 - **Hit rate vs accuracy.** The evaluation metric (hit rate) measures whether XPaths return non-empty values, not whether the returned values are semantically correct. A field might achieve 100% hit rate while extracting incorrect data. Human verification via Aladdin is still recommended for production use.
 
 ## 7. Conclusion
 
-XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites and 10 cross-domain sites spanning 5 additional domains (e-commerce, real estate, recipe, restaurant reviews, news), the system achieved a field-level hit rate of 87.3% (337/386 fields returning non-empty values across all validation pages) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%. This metric measures extraction stability rather than semantic accuracy; human verification via Aladdin remains recommended for production use. Cross-domain evaluation on 7 accessible non-medical Japanese sites achieved a macro-average hit rate of 79.4%, with 2 sites at 100%, confirming that the approach generalizes beyond the original medical job-listing domain. An English-language evaluation on 5 production sites (3 pages each) across 5 domains achieved a macro-average hit rate of 74.6%, with GitHub at 100% and PyPI at 80%, providing preliminary evidence that XPathGenie's structural approach generalizes across languages.
+XPathGenie demonstrates that LLM-based XPath generation, when combined with aggressive HTML compression, deterministic multi-page validation, and a two-tier refinement mechanism, can achieve high extraction coverage on production websites. In evaluation across 23 Japanese medical job-listing sites and 10 cross-domain sites spanning 5 additional domains (e-commerce, real estate, recipe, restaurant reviews, news), the system achieved a field-level hit rate of 87.3% (337/386 fields returning non-empty values across all validation pages) with schema-guided generation (Want List mode), with 11 of 23 sites reaching 100%. This metric measures extraction stability rather than semantic accuracy; human verification via Aladdin remains recommended for production use. Cross-domain evaluation on 7 accessible non-medical Japanese sites achieved a macro-average hit rate of 79.4%, with 2 sites at 100%, confirming that the approach generalizes beyond the original medical job-listing domain. An English-language evaluation on 10 sites (3 pages each) across 10 domains achieved a macro-average hit rate of 78.7% among 7 successful sites, with GitHub and Quotes to Scrape at 100% and StackOverflow at 86%, providing preliminary evidence that XPathGenie's structural approach generalizes across languages. Failure analysis on React SSR sites (Appendix B.2) confirmed that the limitation lies in the HTML acquisition layer, not in XPath generation.
 
 A practical evaluation using 7 "core fields" universally present on job-listing sites (salary, location, employment type, occupation, facility name, working hours, holidays) showed that Auto Discover achieves 96.0% hit rate on detected core fields, while Want List improves core field coverage from 62.1% to 75.2%. This finding confirms that schema guidance primarily improves *what* the system looks for rather than *how accurately* it extracts—analogous to providing a human scraper with a data dictionary before inspecting an unfamiliar site.
 

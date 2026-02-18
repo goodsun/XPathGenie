@@ -548,9 +548,10 @@ async function fetchPage() {
     const resp = await fetch(`${API_BASE}/api/fetch?url=${encodeURIComponent(url)}`);
     const data = await resp.json();
     
-    if (data.error) {
-      setStatus(`${t('statusError')}: ${data.error} 😢`);
-      document.getElementById('loadingMsg').textContent = `${t('statusLoadError')}: ${data.error}`;
+    if (data.error || data.message) {
+      const errMsg = data.error || data.message;
+      setStatus(`${t('statusError')}: ${errMsg} 😢`);
+      document.getElementById('loadingMsg').textContent = `${t('statusLoadError')}: ${errMsg}`;
       return;
     }
     

@@ -82,7 +82,8 @@ createApp({
         });
         const data = await resp.json();
         if (!resp.ok) {
-          error.value = data.error || 'Unknown error';
+          error.value = data.error || data.message || 'Unknown error';
+          if (data.suggestion) error.value += ' — ' + data.suggestion;
         } else {
           result.value = data;
           // Persist full result for page reload + save flat mappings for Aladdin

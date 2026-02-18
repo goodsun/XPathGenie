@@ -107,6 +107,23 @@ Raw HTML pages from modern websites routinely exceed 500 KB, far exceeding pract
 
 The result is a structural skeleton that preserves the DOM hierarchy, class names, and label text essential for XPath construction while achieving approximately 97% size reduction (e.g., 695 KB → 20 KB). Each compressed page is further capped at 8,000 characters before being sent to the LLM.
 
+```mermaid
+graph TD
+    Raw["Raw HTML<br/>&gt;500 KB"] --> A["1. Tag Removal<br/>script / style / svg / head"]
+    A --> B["2. Structural Strip<br/>header / footer / nav / aside"]
+    B --> C["3. Noise Pre-removal<br/>sidebar / widget / recommend / ad"]
+    C --> D["4. Main Section Detection<br/>main → structured-data scoring → largest div"]
+    D --> E["5. Residual Noise Removal"]
+    E --> F["6. Text Truncation<br/>30 chars per node"]
+    F --> G["7. Empty Element Pruning"]
+    G --> H["8. Whitespace Normalization"]
+    H --> Out["Compressed HTML<br/>~20 KB (97% reduction)"]
+
+    style Raw fill:#e53e3e,color:#fff
+    style Out fill:#4caf50,color:#fff
+    style D fill:#7c5cfc,color:#fff
+```
+
 ### 3.2 LLM-Based XPath Generation
 
 The system offers two inference modes, both implemented as single-call prompts to Gemini 2.5 Flash with `temperature=0.1` for near-deterministic output and `responseMimeType=application/json` for structured responses.
@@ -157,6 +174,23 @@ After:  //div[contains(@class,'p-offerContainer')]//div[contains(@class,'p-jobDe
 The refinement prompt explicitly guides the LLM to look for intermediate structural containers with meaningful class names, producing XPaths that are specific enough for single-match accuracy while remaining readable and maintainable.
 
 After refinement, all mappings are re-validated to confirm that the refined XPaths maintain cross-page accuracy.
+
+```mermaid
+graph TD
+    V{"Multi-match<br/>detected?"}
+    V -- "No" --> OK["✓ Use XPath as-is"]
+    V -- "Yes" --> Check{"Values<br/>identical?"}
+    Check -- "Yes (e.g., same ID<br/>in 3 places)" --> T1["Tier 1: Mechanical Narrowing<br/>Ancestor class insertion<br/>Zero AI cost"]
+    Check -- "No (e.g., main vs.<br/>sidebar location)" --> T2["Tier 2: AI Re-inference<br/>Context-aware refinement<br/>1 LLM call"]
+    T1 --> RV["Re-validate<br/>all pages"]
+    T2 --> RV
+    RV --> OK
+
+    style OK fill:#4caf50,color:#fff
+    style T1 fill:#7c5cfc,color:#fff
+    style T2 fill:#ff9800,color:#fff
+    style V fill:#90caf9,color:#000
+```
 
 ### 3.5 Depth-Weighted Content Scoring
 

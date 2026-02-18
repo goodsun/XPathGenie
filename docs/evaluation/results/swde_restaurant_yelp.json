@@ -1,0 +1,19 @@
+{
+  "site_id": "yelp",
+  "vertical": "restaurant",
+  "name": "Yelp",
+  "urls": [
+    "https://www.yelp.com/biz/lombards-seafood-grille-seattle"
+  ],
+  "expected_fields": [
+    "name",
+    "address",
+    "phone",
+    "cuisine"
+  ],
+  "elapsed_sec": 0.0,
+  "status": "error",
+  "timestamp": "2026-02-18T17:01:12.464171",
+  "error": "Failed to fetch all URLs",
+  "reason": "access_denied"
+}

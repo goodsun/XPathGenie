@@ -1,0 +1,19 @@
+{
+  "site_id": "cars_com",
+  "vertical": "auto",
+  "name": "Cars.com",
+  "urls": [
+    "https://www.cars.com/shopping/results/?stock_type=used&makes%5B%5D=toyota&models%5B%5D=toyota-camry&list_price_max=&maximum_distance=20&zip=10001"
+  ],
+  "expected_fields": [
+    "model",
+    "price",
+    "year",
+    "mileage"
+  ],
+  "elapsed_sec": 15.2,
+  "status": "error",
+  "timestamp": "2026-02-18T17:00:36.726486",
+  "error": "Failed to fetch all URLs",
+  "reason": "timeout"
+}

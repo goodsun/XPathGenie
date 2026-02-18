@@ -1,0 +1,171 @@
+{
+  "site_id": "imdb",
+  "vertical": "movie",
+  "name": "IMDb",
+  "urls": [
+    "https://www.imdb.com/title/tt0111161/"
+  ],
+  "expected_fields": [
+    "title",
+    "director",
+    "genre",
+    "rating"
+  ],
+  "elapsed_sec": 20.8,
+  "status": "ok",
+  "timestamp": "2026-02-18T17:01:10.418840",
+  "fields_count": 10,
+  "pages_analyzed": 1,
+  "tokens_used": 7303,
+  "refined_fields": [
+    "imdb_rating_score",
+    "imdb_rating_count",
+    "popularity_score"
+  ],
+  "fields": {
+    "content_rating": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[2]/a",
+      "confidence": 1.0,
+      "samples": [
+        "PG-12"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "duration": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[3]",
+      "confidence": 1.0,
+      "samples": [
+        "2h 22m"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "imdb_rating_count": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__aggregate-rating__score']/following-sibling::div[1]",
+      "confidence": 1.0,
+      "samples": [
+        "(empty)"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "imdb_rating_score": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__aggregate-rating__score']/span[1]",
+      "confidence": 1.0,
+      "samples": [
+        "9.3"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "original_title": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]",
+      "confidence": 1.0,
+      "samples": [
+        "Original title: The Shawshank Redemption"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "popularity_score": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__popularity__score']",
+      "confidence": 1.0,
+      "samples": [
+        "58"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "poster_image_alt": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[@data-testid='hero-media__poster']//img/@alt",
+      "confidence": 1.0,
+      "samples": [
+        "Tim Robbins in Shôshanku no sora ni (1994)"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "poster_image_url": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[@data-testid='hero-media__poster']//img/@src",
+      "confidence": 1.0,
+      "samples": [
+        "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "release_year": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[1]/a",
+      "confidence": 1.0,
+      "samples": [
+        "1994"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "title": {
+      "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/span[@data-testid='hero__primary-text']",
+      "confidence": 1.0,
+      "samples": [
+        "Shôshanku no sora ni"
+      ],
+      "optional": false,
+      "warning": null
+    }
+  },
+  "discovered_fields": [
+    "content_rating",
+    "duration",
+    "imdb_rating_count",
+    "imdb_rating_score",
+    "original_title",
+    "popularity_score",
+    "poster_image_alt",
+    "poster_image_url",
+    "release_year",
+    "title"
+  ],
+  "avg_confidence": 1.0,
+  "perfect_fields": 10,
+  "field_coverage": {
+    "expected": [
+      "rating",
+      "director",
+      "title",
+      "genre"
+    ],
+    "discovered": [
+      "imdb_rating_count",
+      "duration",
+      "poster_image_alt",
+      "poster_image_url",
+      "release_year",
+      "original_title",
+      "content_rating",
+      "title",
+      "imdb_rating_score",
+      "popularity_score"
+    ],
+    "matched": [
+      "title"
+    ],
+    "missing": [
+      "director",
+      "genre",
+      "rating"
+    ],
+    "extra": [
+      "imdb_rating_count",
+      "duration",
+      "poster_image_alt",
+      "poster_image_url",
+      "release_year",
+      "original_title",
+      "content_rating",
+      "imdb_rating_score",
+      "popularity_score"
+    ]
+  },
+  "coverage_score": 0.25
+}

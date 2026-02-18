@@ -1,0 +1,113 @@
+{
+  "site_id": "harvard",
+  "vertical": "university",
+  "name": "Harvard University",
+  "urls": [
+    "https://www.harvard.edu/"
+  ],
+  "expected_fields": [
+    "name",
+    "location",
+    "website",
+    "type"
+  ],
+  "elapsed_sec": 39.2,
+  "status": "ok",
+  "timestamp": "2026-02-18T17:01:53.672646",
+  "fields_count": 5,
+  "pages_analyzed": 1,
+  "tokens_used": 6874,
+  "refined_fields": [
+    "title",
+    "description",
+    "url",
+    "link_text",
+    "image_url"
+  ],
+  "fields": {
+    "description": {
+      "xpath": "//div[contains(@class,'c-card__description')]//p",
+      "confidence": 1.0,
+      "samples": [
+        "Harvard Kennedy and Divinity School alum Dan Cnossen is one of the most decorated athletes in U.S. P"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "image_url": {
+      "xpath": "//div[contains(@class,'c-card__media')]//div[contains(@class,'c-image__image')]/@data-bgset",
+      "confidence": 1.0,
+      "samples": [
+        "https://www.harvard.edu/wp-content/uploads/2020/07/Remi_Drolet_Olympics_2-crop.jpg?w=900 900w 600h"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "link_text": {
+      "xpath": "//a[contains(@class,'c-card__wrapper-link')]",
+      "confidence": 1.0,
+      "samples": [
+        "Learn more about Emerance"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "title": {
+      "xpath": "//h3[contains(@class,'c-card__title')]",
+      "confidence": 1.0,
+      "samples": [
+        "Kristin Della Rovere"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "url": {
+      "xpath": "//a[contains(@class,'c-card__wrapper-link')]/@href",
+      "confidence": 1.0,
+      "samples": [
+        "https://admin.gocrimson.com/news/2026/1/9/womens-ice-hockey-emerance-maschmeyer-16-named-to-canadian"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    }
+  },
+  "discovered_fields": [
+    "description",
+    "image_url",
+    "link_text",
+    "title",
+    "url"
+  ],
+  "avg_confidence": 1.0,
+  "perfect_fields": 5,
+  "field_coverage": {
+    "expected": [
+      "type",
+      "location",
+      "name",
+      "website"
+    ],
+    "discovered": [
+      "url",
+      "description",
+      "title",
+      "link_text",
+      "image_url"
+    ],
+    "matched": [],
+    "missing": [
+      "type",
+      "location",
+      "name",
+      "website"
+    ],
+    "extra": [
+      "url",
+      "description",
+      "title",
+      "link_text",
+      "image_url"
+    ]
+  },
+  "coverage_score": 0.0
+}

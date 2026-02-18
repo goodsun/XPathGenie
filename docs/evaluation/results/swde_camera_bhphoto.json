@@ -1,0 +1,19 @@
+{
+  "site_id": "bhphoto",
+  "vertical": "camera",
+  "name": "B&H Photo",
+  "urls": [
+    "https://www.bhphotovideo.com/c/products/Digital-Cameras/ci/9811/N/4288586282"
+  ],
+  "expected_fields": [
+    "model",
+    "price",
+    "manufacturer",
+    "features"
+  ],
+  "elapsed_sec": 0.2,
+  "status": "error",
+  "timestamp": "2026-02-18T17:00:45.605520",
+  "error": "Failed to fetch all URLs",
+  "reason": "access_denied"
+}

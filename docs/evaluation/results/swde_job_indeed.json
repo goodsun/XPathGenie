@@ -1,0 +1,19 @@
+{
+  "site_id": "indeed",
+  "vertical": "job",
+  "name": "Indeed",
+  "urls": [
+    "https://www.indeed.com/jobs?q=software+engineer&l=San+Francisco%2C+CA"
+  ],
+  "expected_fields": [
+    "title",
+    "company",
+    "location",
+    "salary"
+  ],
+  "elapsed_sec": 0.1,
+  "status": "error",
+  "timestamp": "2026-02-18T17:00:47.665084",
+  "error": "Failed to fetch all URLs",
+  "reason": "access_denied"
+}

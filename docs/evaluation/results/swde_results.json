@@ -1,0 +1,425 @@
+{
+  "evaluation_type": "SWDE-style",
+  "timestamp": "2026-02-18T17:01:55.676471",
+  "summary": {
+    "total_sites": 7,
+    "successful_sites": 2,
+    "failed_sites": 5,
+    "overall_success_rate": 0.2857142857142857,
+    "field_metrics": {
+      "total_fields_discovered": 15,
+      "total_perfect_fields": 15,
+      "avg_fields_per_site": 7.5,
+      "perfect_field_ratio": 1.0
+    },
+    "performance_metrics": {
+      "macro_avg_confidence": 1.0,
+      "macro_avg_coverage": 0.125,
+      "combined_f1_score": 0.222
+    },
+    "vertical_breakdown": {
+      "movie": {
+        "sites": 1,
+        "total_fields": 10,
+        "perfect_fields": 10,
+        "avg_confidence": 1.0,
+        "avg_coverage": 0.25,
+        "fields_per_site": 10.0
+      },
+      "university": {
+        "sites": 1,
+        "total_fields": 5,
+        "perfect_fields": 5,
+        "avg_confidence": 1.0,
+        "avg_coverage": 0.0,
+        "fields_per_site": 5.0
+      }
+    },
+    "comparison_with_axe": {
+      "axe_f1_score": 0.881,
+      "xpathgenie_f1_score": 0.222,
+      "note": "XPathGenie is zero-shot, AXE is supervised learning"
+    }
+  },
+  "individual_results": [
+    {
+      "site_id": "cars_com",
+      "vertical": "auto",
+      "name": "Cars.com",
+      "urls": [
+        "https://www.cars.com/shopping/results/?stock_type=used&makes%5B%5D=toyota&models%5B%5D=toyota-camry&list_price_max=&maximum_distance=20&zip=10001"
+      ],
+      "expected_fields": [
+        "model",
+        "price",
+        "year",
+        "mileage"
+      ],
+      "elapsed_sec": 15.2,
+      "status": "error",
+      "timestamp": "2026-02-18T17:00:36.726486",
+      "error": "Failed to fetch all URLs",
+      "reason": "timeout"
+    },
+    {
+      "site_id": "goodreads",
+      "vertical": "book",
+      "name": "Goodreads",
+      "urls": [
+        "https://www.goodreads.com/book/show/2767052-the-hunger-games"
+      ],
+      "expected_fields": [
+        "title",
+        "author",
+        "rating",
+        "genre"
+      ],
+      "elapsed_sec": 4.7,
+      "status": "error",
+      "timestamp": "2026-02-18T17:00:43.447737",
+      "error": "AI analysis completed but returned 0 fields",
+      "reason": "no_fields_detected"
+    },
+    {
+      "site_id": "bhphoto",
+      "vertical": "camera",
+      "name": "B&H Photo",
+      "urls": [
+        "https://www.bhphotovideo.com/c/products/Digital-Cameras/ci/9811/N/4288586282"
+      ],
+      "expected_fields": [
+        "model",
+        "price",
+        "manufacturer",
+        "features"
+      ],
+      "elapsed_sec": 0.2,
+      "status": "error",
+      "timestamp": "2026-02-18T17:00:45.605520",
+      "error": "Failed to fetch all URLs",
+      "reason": "access_denied"
+    },
+    {
+      "site_id": "indeed",
+      "vertical": "job",
+      "name": "Indeed",
+      "urls": [
+        "https://www.indeed.com/jobs?q=software+engineer&l=San+Francisco%2C+CA"
+      ],
+      "expected_fields": [
+        "title",
+        "company",
+        "location",
+        "salary"
+      ],
+      "elapsed_sec": 0.1,
+      "status": "error",
+      "timestamp": "2026-02-18T17:00:47.665084",
+      "error": "Failed to fetch all URLs",
+      "reason": "access_denied"
+    },
+    {
+      "site_id": "imdb",
+      "vertical": "movie",
+      "name": "IMDb",
+      "urls": [
+        "https://www.imdb.com/title/tt0111161/"
+      ],
+      "expected_fields": [
+        "title",
+        "director",
+        "genre",
+        "rating"
+      ],
+      "elapsed_sec": 20.8,
+      "status": "ok",
+      "timestamp": "2026-02-18T17:01:10.418840",
+      "fields_count": 10,
+      "pages_analyzed": 1,
+      "tokens_used": 7303,
+      "refined_fields": [
+        "imdb_rating_score",
+        "imdb_rating_count",
+        "popularity_score"
+      ],
+      "fields": {
+        "content_rating": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[2]/a",
+          "confidence": 1.0,
+          "samples": [
+            "PG-12"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "duration": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[3]",
+          "confidence": 1.0,
+          "samples": [
+            "2h 22m"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "imdb_rating_count": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__aggregate-rating__score']/following-sibling::div[1]",
+          "confidence": 1.0,
+          "samples": [
+            "(empty)"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "imdb_rating_score": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__aggregate-rating__score']/span[1]",
+          "confidence": 1.0,
+          "samples": [
+            "9.3"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "original_title": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]",
+          "confidence": 1.0,
+          "samples": [
+            "Original title: The Shawshank Redemption"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "popularity_score": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[contains(@class,'sc-af040695-1')]//div[@data-testid='hero-rating-bar__popularity__score']",
+          "confidence": 1.0,
+          "samples": [
+            "58"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "poster_image_alt": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[@data-testid='hero-media__poster']//img/@alt",
+          "confidence": 1.0,
+          "samples": [
+            "Tim Robbins in Shôshanku no sora ni (1994)"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "poster_image_url": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//div[@data-testid='hero-media__poster']//img/@src",
+          "confidence": 1.0,
+          "samples": [
+            "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "release_year": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/following-sibling::div[contains(@class,'baseAlt')]/following-sibling::ul[contains(@class,'ipc-inline-list')]/li[1]/a",
+          "confidence": 1.0,
+          "samples": [
+            "1994"
+          ],
+          "optional": false,
+          "warning": null
+        },
+        "title": {
+          "xpath": "//div[contains(@class,'ipc-page-content-container')]//h1[@data-testid='hero__pageTitle']/span[@data-testid='hero__primary-text']",
+          "confidence": 1.0,
+          "samples": [
+            "Shôshanku no sora ni"
+          ],
+          "optional": false,
+          "warning": null
+        }
+      },
+      "discovered_fields": [
+        "content_rating",
+        "duration",
+        "imdb_rating_count",
+        "imdb_rating_score",
+        "original_title",
+        "popularity_score",
+        "poster_image_alt",
+        "poster_image_url",
+        "release_year",
+        "title"
+      ],
+      "avg_confidence": 1.0,
+      "perfect_fields": 10,
+      "field_coverage": {
+        "expected": [
+          "rating",
+          "director",
+          "title",
+          "genre"
+        ],
+        "discovered": [
+          "imdb_rating_count",
+          "duration",
+          "poster_image_alt",
+          "poster_image_url",
+          "release_year",
+          "original_title",
+          "content_rating",
+          "title",
+          "imdb_rating_score",
+          "popularity_score"
+        ],
+        "matched": [
+          "title"
+        ],
+        "missing": [
+          "director",
+          "genre",
+          "rating"
+        ],
+        "extra": [
+          "imdb_rating_count",
+          "duration",
+          "poster_image_alt",
+          "poster_image_url",
+          "release_year",
+          "original_title",
+          "content_rating",
+          "imdb_rating_score",
+          "popularity_score"
+        ]
+      },
+      "coverage_score": 0.25
+    },
+    {
+      "site_id": "yelp",
+      "vertical": "restaurant",
+      "name": "Yelp",
+      "urls": [
+        "https://www.yelp.com/biz/lombards-seafood-grille-seattle"
+      ],
+      "expected_fields": [
+        "name",
+        "address",
+        "phone",
+        "cuisine"
+      ],
+      "elapsed_sec": 0.0,
+      "status": "error",
+      "timestamp": "2026-02-18T17:01:12.464171",
+      "error": "Failed to fetch all URLs",
+      "reason": "access_denied"
+    },
+    {
+      "site_id": "harvard",
+      "vertical": "university",
+      "name": "Harvard University",
+      "urls": [
+        "https://www.harvard.edu/"
+      ],
+      "expected_fields": [
+        "name",
+        "location",
+        "website",
+        "type"
+      ],
+      "elapsed_sec": 39.2,
+      "status": "ok",
+      "timestamp": "2026-02-18T17:01:53.672646",
+      "fields_count": 5,
+      "pages_analyzed": 1,
+      "tokens_used": 6874,
+      "refined_fields": [
+        "title",
+        "description",
+        "url",
+        "link_text",
+        "image_url"
+      ],
+      "fields": {
+        "description": {
+          "xpath": "//div[contains(@class,'c-card__description')]//p",
+          "confidence": 1.0,
+          "samples": [
+            "Harvard Kennedy and Divinity School alum Dan Cnossen is one of the most decorated athletes in U.S. P"
+          ],
+          "optional": false,
+          "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+        },
+        "image_url": {
+          "xpath": "//div[contains(@class,'c-card__media')]//div[contains(@class,'c-image__image')]/@data-bgset",
+          "confidence": 1.0,
+          "samples": [
+            "https://www.harvard.edu/wp-content/uploads/2020/07/Remi_Drolet_Olympics_2-crop.jpg?w=900 900w 600h"
+          ],
+          "optional": false,
+          "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+        },
+        "link_text": {
+          "xpath": "//a[contains(@class,'c-card__wrapper-link')]",
+          "confidence": 1.0,
+          "samples": [
+            "Learn more about Emerance"
+          ],
+          "optional": false,
+          "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+        },
+        "title": {
+          "xpath": "//h3[contains(@class,'c-card__title')]",
+          "confidence": 1.0,
+          "samples": [
+            "Kristin Della Rovere"
+          ],
+          "optional": false,
+          "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+        },
+        "url": {
+          "xpath": "//a[contains(@class,'c-card__wrapper-link')]/@href",
+          "confidence": 1.0,
+          "samples": [
+            "https://admin.gocrimson.com/news/2026/1/9/womens-ice-hockey-emerance-maschmeyer-16-named-to-canadian"
+          ],
+          "optional": false,
+          "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+        }
+      },
+      "discovered_fields": [
+        "description",
+        "image_url",
+        "link_text",
+        "title",
+        "url"
+      ],
+      "avg_confidence": 1.0,
+      "perfect_fields": 5,
+      "field_coverage": {
+        "expected": [
+          "type",
+          "location",
+          "name",
+          "website"
+        ],
+        "discovered": [
+          "url",
+          "description",
+          "title",
+          "link_text",
+          "image_url"
+        ],
+        "matched": [],
+        "missing": [
+          "type",
+          "location",
+          "name",
+          "website"
+        ],
+        "extra": [
+          "url",
+          "description",
+          "title",
+          "link_text",
+          "image_url"
+        ]
+      },
+      "coverage_score": 0.0
+    }
+  ]
+}

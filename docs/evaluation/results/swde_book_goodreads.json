@@ -1,0 +1,19 @@
+{
+  "site_id": "goodreads",
+  "vertical": "book",
+  "name": "Goodreads",
+  "urls": [
+    "https://www.goodreads.com/book/show/2767052-the-hunger-games"
+  ],
+  "expected_fields": [
+    "title",
+    "author",
+    "rating",
+    "genre"
+  ],
+  "elapsed_sec": 4.7,
+  "status": "error",
+  "timestamp": "2026-02-18T17:00:43.447737",
+  "error": "AI analysis completed but returned 0 fields",
+  "reason": "no_fields_detected"
+}

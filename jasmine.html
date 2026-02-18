@@ -71,13 +71,26 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 </div>
 
 <!-- Want List Modal -->
-<div id="wantListModal" style="display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
-  <div style="background:#12101f; border:1px solid #3a2a5a; border-radius:12px; padding:20px; width:90%; max-width:500px;">
+<div id="wantListModal" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+  <div style="background:#12101f; border:1px solid #3a2a5a; border-radius:12px; padding:20px; width:90%; max-width:560px; max-height:80vh; overflow-y:auto;">
     <h3 style="color:#ffd700; margin-bottom:12px;">📋 Want List</h3>
-    <p style="color:#8a7aaa; font-size:0.8rem; margin-bottom:8px;">取得したいフィールド名をカンマ区切りで入力</p>
-    <textarea id="wantListInput" rows="6" placeholder="例: job_title, salary, location, company_name, ..." style="width:100%; padding:10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.85rem; resize:vertical;"></textarea>
+    <!-- Tabs -->
+    <div style="display:flex; gap:0; margin-bottom:12px;">
+      <button onclick="switchWLTab('form')" id="wlTabForm" style="flex:1; padding:8px; background:#b366ff; border:1px solid #3a2a5a; border-radius:6px 0 0 6px; color:#fff; font-weight:600; cursor:pointer; font-size:0.8rem;">📝 フォーム入力</button>
+      <button onclick="switchWLTab('json')" id="wlTabJson" style="flex:1; padding:8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:0 6px 6px 0; color:#8a7aaa; cursor:pointer; font-size:0.8rem;">{ } JSON</button>
+    </div>
+    <!-- Form tab -->
+    <div id="wlFormTab">
+      <div id="wlFields" style="display:flex; flex-direction:column; gap:6px;"></div>
+      <button onclick="addWLField()" style="margin-top:8px; padding:6px 12px; background:#1a1a2a; border:1px dashed #3a2a5a; border-radius:6px; color:#b366ff; cursor:pointer; font-size:0.8rem; width:100%;">＋ フィールド追加</button>
+    </div>
+    <!-- JSON tab -->
+    <div id="wlJsonTab" style="display:none;">
+      <textarea id="wantListJsonInput" rows="10" placeholder='{"job_title": "薬剤師", "salary": "年収500万円", ...}' style="width:100%; padding:10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.8rem; font-family:monospace; resize:vertical;"></textarea>
+    </div>
+    <!-- Buttons -->
     <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:12px;">
-      <button onclick="document.getElementById('wantListInput').value=''; localStorage.removeItem('xpathgenie_wantlist')" style="padding:8px 16px; background:#2a1a2a; border:1px solid #4a3a5a; border-radius:6px; color:#8a7aaa; cursor:pointer;">クリア</button>
+      <button onclick="clearWantList()" style="padding:8px 16px; background:#2a1a2a; border:1px solid #4a3a5a; border-radius:6px; color:#8a7aaa; cursor:pointer;">クリア</button>
       <button onclick="saveWantList()" style="padding:8px 16px; background:#b366ff; border:none; border-radius:6px; color:#fff; font-weight:600; cursor:pointer;">保存</button>
     </div>
   </div>
@@ -125,26 +138,81 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 <script>
 const API_BASE = '/xpathgenie';
 
+let wlCurrentTab = 'form';
+
+function switchWLTab(tab) {
+  wlCurrentTab = tab;
+  document.getElementById('wlFormTab').style.display = tab === 'form' ? 'block' : 'none';
+  document.getElementById('wlJsonTab').style.display = tab === 'json' ? 'block' : 'none';
+  document.getElementById('wlTabForm').style.background = tab === 'form' ? '#b366ff' : '#1a1a2a';
+  document.getElementById('wlTabForm').style.color = tab === 'form' ? '#fff' : '#8a7aaa';
+  document.getElementById('wlTabJson').style.background = tab === 'json' ? '#b366ff' : '#1a1a2a';
+  document.getElementById('wlTabJson').style.color = tab === 'json' ? '#fff' : '#8a7aaa';
+  // Sync between tabs
+  if (tab === 'json') {
+    document.getElementById('wantListJsonInput').value = JSON.stringify(getWLFromForm(), null, 2);
+  } else {
+    try {
+      const obj = JSON.parse(document.getElementById('wantListJsonInput').value);
+      loadWLToForm(obj);
+    } catch(e) {}
+  }
+}
+
+function addWLField(key, val) {
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex; gap:6px; align-items:center;';
+  row.innerHTML = `<input type="text" placeholder="フィールド名" value="${key||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#ffd700; font-size:0.8rem;">
+    <input type="text" placeholder="例題（任意）" value="${val||''}" style="flex:1; padding:6px 8px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:4px; color:#a0d0a0; font-size:0.8rem;">
+    <button onclick="this.parentElement.remove()" style="background:none; border:none; color:#ff5050; cursor:pointer; font-size:1rem;">✕</button>`;
+  document.getElementById('wlFields').appendChild(row);
+}
+
+function getWLFromForm() {
+  const wl = {};
+  document.querySelectorAll('#wlFields > div').forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    const k = inputs[0].value.trim();
+    if (k) wl[k] = inputs[1].value.trim();
+  });
+  return wl;
+}
+
+function loadWLToForm(obj) {
+  document.getElementById('wlFields').innerHTML = '';
+  Object.entries(obj).forEach(([k, v]) => addWLField(k, v));
+}
+
+function saveWantList() {
+  let wl;
+  if (wlCurrentTab === 'json') {
+    try { wl = JSON.parse(document.getElementById('wantListJsonInput').value); } catch(e) { alert('JSONが不正です'); return; }
+  } else {
+    wl = getWLFromForm();
+  }
+  if (Object.keys(wl).length > 0) {
+    localStorage.setItem('xpathgenie_wantlist', JSON.stringify(wl));
+  }
+  document.getElementById('wantListModal').style.display = 'none';
+}
+
+function clearWantList() {
+  document.getElementById('wlFields').innerHTML = '';
+  document.getElementById('wantListJsonInput').value = '';
+  localStorage.removeItem('xpathgenie_wantlist');
+}
+
 // Restore wantlist from localStorage
 (function() {
   const saved = localStorage.getItem('xpathgenie_wantlist');
   if (saved) {
     try {
       const wl = JSON.parse(saved);
-      document.getElementById('wantListInput').value = Object.keys(wl).join(', ');
+      loadWLToForm(wl);
     } catch(e) {}
   }
+  if (!document.querySelectorAll('#wlFields > div').length) addWLField();
 })();
-
-function saveWantList() {
-  const raw = document.getElementById('wantListInput').value.trim();
-  if (raw) {
-    const wl = {};
-    raw.split(',').map(s => s.trim()).filter(Boolean).forEach(f => { wl[f] = ''; });
-    localStorage.setItem('xpathgenie_wantlist', JSON.stringify(wl));
-  }
-  document.getElementById('wantListModal').style.display = 'none';
-}
 let includeSelector = null;
 let excludeSelectors = [];
 let fetchedHTML = '';
@@ -417,12 +485,9 @@ async function analyze() {
     if (excludeSelectors.length > 0) {
       payload.exclude = excludeSelectors;
     }
-    const wantListRaw = document.getElementById('wantListInput').value.trim();
-    if (wantListRaw) {
-      const wantlist = {};
-      wantListRaw.split(',').map(s => s.trim()).filter(Boolean).forEach(f => { wantlist[f] = ''; });
+    const wantlist = getWLFromForm();
+    if (Object.keys(wantlist).length > 0) {
       payload.wantlist = wantlist;
-      localStorage.setItem('xpathgenie_wantlist', JSON.stringify(wantlist));
     }
     
     const resp = await fetch(`${API_BASE}/api/analyze`, {

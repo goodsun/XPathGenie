@@ -1,0 +1,12 @@
+{
+  "site": "cd9_hotpepper",
+  "name": "ホットペッパーグルメ (グルメ)",
+  "domain": "Restaurant",
+  "urls": [
+    "https://www.hotpepper.jp/SA11/"
+  ],
+  "elapsed_sec": 0.0,
+  "status": "error",
+  "error": "Failed to fetch all URLs",
+  "reason": "access_denied"
+}

@@ -1,0 +1,63 @@
+{
+  "site": "cd3_cookpad",
+  "name": "Cookpad (レシピ/UGC)",
+  "domain": "Recipe/UGC",
+  "urls": [
+    "https://cookpad.com/search/%E3%82%AB%E3%83%AC%E3%83%BC"
+  ],
+  "elapsed_sec": 30.6,
+  "status": "ok",
+  "fields_count": 5,
+  "pages_analyzed": 1,
+  "tokens_used": 5256,
+  "refined_fields": [],
+  "fields": {
+    "author_avatar_url": {
+      "xpath": "//div[contains(@class,'navigation-container')]//img[contains(@class, 'rounded-full')]/@src",
+      "confidence": 1.0,
+      "samples": [
+        "//global-web-assets.cpcdn.com/assets/guest_user-411965b370bbbfc1433c4478633d4974e180b506f29555ff5803"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "author_name": {
+      "xpath": "//div[contains(@class,'navigation-container')]//span[contains(@class, 'break-all') and contains(@class, 'clamp-1')]//span",
+      "confidence": 1.0,
+      "samples": [
+        "九州くまもと老舗みそ・醤油醸造元ホシサン【公式】"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "ingredients": {
+      "xpath": "//div[contains(@class,'navigation-container')]//div[@data-ingredients-redesign-target='ingredients']",
+      "confidence": 1.0,
+      "samples": [
+        "豚ミンチ\n         • \n      玉ねぎ\n         • \n      トマト缶\n         • \n      にんにく\n         • \n      オリーブオイル\n "
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "recipe_title": {
+      "xpath": "//div[contains(@class,'navigation-container')]//h2[contains(@class, 'clamp-2')]//a",
+      "confidence": 1.0,
+      "samples": [
+        "【買い物用】チキン・カレー大盛り１人前"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "recipe_url": {
+      "xpath": "//div[contains(@class,'navigation-container')]//h2[contains(@class, 'clamp-2')]//a/@href",
+      "confidence": 1.0,
+      "samples": [
+        "/jp/recipes/25418811"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    }
+  },
+  "avg_confidence": 1.0,
+  "perfect_fields": 5
+}

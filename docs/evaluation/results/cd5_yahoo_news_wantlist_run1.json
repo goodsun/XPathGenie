@@ -1,0 +1,88 @@
+{
+  "site": "cd5_yahoo_news",
+  "name": "Yahoo!ニュース (ニュース)",
+  "domain": "News",
+  "urls": [
+    "https://news.yahoo.co.jp/categories/domestic"
+  ],
+  "elapsed_sec": 26.4,
+  "status": "ok",
+  "fields_count": 7,
+  "pages_analyzed": 1,
+  "tokens_used": 8610,
+  "refined_fields": [
+    "rank",
+    "title",
+    "source",
+    "time",
+    "url",
+    "thumbnail_url"
+  ],
+  "fields": {
+    "date": {
+      "xpath": "//time/span[contains(@class, 'sc-1t7ra5j-10')][1]",
+      "confidence": 1.0,
+      "samples": [
+        "2/18(水)"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "rank": {
+      "xpath": "//a[@data-cl-position='1']//span[contains(@class, 'sc-1t7ra5j-4')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "source": {
+      "xpath": "//a[@data-cl-position='1']//span[contains(@class, 'sc-1t7ra5j-9')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "thumbnail_url": {
+      "xpath": "//a[@data-cl-position='1']//img[contains(@class, 'riff-Thumbnail__image--image')]/@src",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "time": {
+      "xpath": "//a[@data-cl-position='1']//time/span[contains(@class, 'sc-1t7ra5j-10')][2]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "title": {
+      "xpath": "//a[@data-cl-position='1']//p[contains(@class, 'sc-1t7ra5j-7')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "url": {
+      "xpath": "//a[contains(@class, 'sc-1t7ra5j-11')][@data-cl-position='1']/@href",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    }
+  },
+  "avg_confidence": 0.143,
+  "perfect_fields": 1
+}

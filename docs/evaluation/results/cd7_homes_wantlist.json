@@ -1,0 +1,96 @@
+{
+  "site": "cd7_homes",
+  "name": "LIFULL HOME'S (不動産/賃貸)",
+  "domain": "Real Estate",
+  "urls": [
+    "https://www.homes.co.jp/chintai/tokyo/chiyoda-city/list/"
+  ],
+  "elapsed_sec": 31.9,
+  "status": "ok",
+  "fields": {
+    "access": {
+      "xpath": "//th[normalize-space()='交通']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "samples": [
+        "JR京浜東北・根岸線 神田駅 徒歩3分JR総武本線 新日本橋駅 徒歩6分東京メトロ日比谷線 小伝馬町駅 徒歩9分"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "address": {
+      "xpath": "//th[normalize-space()='所在地']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "samples": [
+        "東京都千代田区神田神保町2丁目20-28"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "area_layout_raw": {
+      "xpath": "//th[normalize-space()='専有面積/間取り']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "samples": [
+        "57.41m² / 1LDK"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "building_name": {
+      "xpath": "//a[contains(@class, 'detailLink')]//span[contains(@class, 'bukkenName')]",
+      "confidence": 1.0,
+      "samples": [
+        "東京メトロ半蔵門線 半蔵門駅 徒歩2分"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "detail_url": {
+      "xpath": "//a[contains(@class, 'detailLink')]/@href",
+      "confidence": 1.0,
+      "samples": [
+        "https://www.homes.co.jp/chintai/b-1256380060056/"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "fixed_term_lease_icon": {
+      "xpath": "//th[normalize-space()='賃料/管理費等']/following-sibling::td[1]//span[contains(@class, 'icon-teikishakka')]",
+      "confidence": 1.0,
+      "samples": [
+        "(empty)"
+      ],
+      "warning": null
+    },
+    "image_url": {
+      "xpath": "//p[contains(@class, 'bukkenPhoto')]//img/@src",
+      "confidence": 1.0,
+      "samples": [
+        "https://image4.homes.jp/smallimg/image.php?file=https%3A%2F%2Fcdn-lambda-img.cloud.ielove.jp%2Fimage"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "property_type": {
+      "xpath": "//span[contains(@class, 'bukkenType')]",
+      "confidence": 1.0,
+      "samples": [
+        "賃貸マンション"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "rent_management_fee_raw": {
+      "xpath": "//th[normalize-space()='賃料/管理費等']/following-sibling::td[1]",
+      "confidence": 1.0,
+      "samples": [
+        "38.4万円 / 15,000円"
+      ],
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "room_number": {
+      "xpath": "//a[contains(@class, 'detailLink')]//span[contains(@class, 'bukkenRoom')]",
+      "confidence": 1.0,
+      "samples": [
+        "4階"
+      ],
+      "warning": null
+    }
+  },
+  "fields_count": 10,
+  "avg_confidence": 1.0,
+  "perfect_fields": 10,
+  "tokens_used": 6922
+}

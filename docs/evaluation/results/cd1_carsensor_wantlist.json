@@ -1,0 +1,79 @@
+{
+  "site": "cd1_carsensor",
+  "name": "カーセンサー (EC/中古車)",
+  "domain": "E-commerce",
+  "urls": [
+    "https://www.carsensor.net/usedcar/bTO/index.html"
+  ],
+  "elapsed_sec": 25.4,
+  "status": "ok",
+  "fields_count": 6,
+  "pages_analyzed": 1,
+  "tokens_used": 4706,
+  "refined_fields": [
+    "total_price",
+    "base_price",
+    "plan_a_price",
+    "plan_b_price",
+    "plan_description",
+    "monthly_loan_price"
+  ],
+  "fields": {
+    "base_price": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]//div[contains(@class,'basePrice')]/p[contains(@class,'basePrice__content')]",
+      "confidence": 1.0,
+      "samples": [
+        "249.8\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "monthly_loan_price": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]//div[contains(@class,'loanPrice__content')]/p/span[contains(@class,'monthlyPrice')]",
+      "confidence": 1.0,
+      "samples": [
+        "11,100"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "plan_a_price": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]//dt[contains(@class,'planPrice__title') and contains(.,'Aプラン')]/following-sibling::dd[contains(@class,'planPrice__priceNum')][1]",
+      "confidence": 1.0,
+      "samples": [
+        "271.9万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "plan_b_price": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]//dt[contains(@class,'planPrice__title') and contains(.,'Bプラン')]/following-sibling::dd[contains(@class,'planPrice__priceNum')][1]",
+      "confidence": 1.0,
+      "samples": [
+        "265.7万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "plan_description": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]/p[contains(@class,'cassetteMain__planDesc')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "total_price": {
+      "xpath": "//div[contains(@class,'cassetteMain__detailInfoBlock')]//div[contains(@class,'totalPrice')]/p[contains(@class,'totalPrice__content')]",
+      "confidence": 1.0,
+      "samples": [
+        "132.8\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    }
+  },
+  "avg_confidence": 0.833,
+  "perfect_fields": 5
+}

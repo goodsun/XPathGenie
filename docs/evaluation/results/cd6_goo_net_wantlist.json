@@ -1,0 +1,176 @@
+{
+  "site": "cd6_goo_net",
+  "name": "goo-net (EC/中古車)",
+  "domain": "E-commerce",
+  "urls": [
+    "https://www.goo-net.com/usedcar/brand-TOYOTA/"
+  ],
+  "elapsed_sec": 30.1,
+  "status": "ok",
+  "fields": {
+    "body_type": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='ボディタイプ']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "capacity": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='乗車定員']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "car_name": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//h1[contains(@class,'carName')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "color": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='色']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "dealer_address": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//div[contains(@class,'shopInfo')]//address",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "dealer_name": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//div[contains(@class,'shopInfo')]//p[contains(@class,'shopName')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "dealer_phone": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//div[contains(@class,'shopInfo')]//span[contains(@class,'tel')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "description": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//div[contains(@class,'carDetailTxt')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "displacement": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='排気量']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "door_count": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='ドア数']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "features": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//div[contains(@class,'equipmentList')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "fuel_type": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='燃料']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "inspection_date": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='車検有無']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "mileage": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='走行距離']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "model_year": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='年式']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "prefecture": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='都道府県']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "price": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//p[contains(@class,'price')]//span[contains(@class,'value')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "repair_history": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='修復歴']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "total_payment": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='支払総額']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "transmission": {
+      "xpath": "//div[contains(@class,'kurumaPage')]//dt[normalize-space()='ミッション']/following-sibling::dd[1]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    }
+  },
+  "fields_count": 20,
+  "avg_confidence": 0.0,
+  "perfect_fields": 0,
+  "tokens_used": 9716
+}

@@ -1,0 +1,115 @@
+{
+  "site": "cd2_suumo",
+  "name": "SUUMO (不動産/賃貸)",
+  "domain": "Real Estate",
+  "urls": [
+    "https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=030&bs=040&ta=13&sc=13101"
+  ],
+  "elapsed_sec": 64.8,
+  "status": "ok",
+  "fields_count": 10,
+  "pages_analyzed": 1,
+  "tokens_used": 10824,
+  "refined_fields": [
+    "rent",
+    "administration_fee",
+    "deposit",
+    "gratuity_fee",
+    "layout",
+    "area"
+  ],
+  "fields": {
+    "administration_fee": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_price--administration')]",
+      "confidence": 1.0,
+      "samples": [
+        "15000円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "area": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_menseki')]",
+      "confidence": 1.0,
+      "samples": [
+        "107.18m2"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "deposit": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_price--deposit')]",
+      "confidence": 1.0,
+      "samples": [
+        "15.6万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "details_url": {
+      "xpath": ".//a[contains(@class, 'js-cassette_link_href')]",
+      "confidence": 1.0,
+      "samples": [
+        "詳細を見る"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "floor": {
+      "xpath": ".//td[2]",
+      "confidence": 1.0,
+      "samples": [
+        "(empty)"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "gratuity_fee": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_price--gratuity')]",
+      "confidence": 1.0,
+      "samples": [
+        "16.63万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "has_video": {
+      "xpath": ".//span[contains(@class, 'cassetteitem-tag') and normalize-space()='動画']",
+      "confidence": 1.0,
+      "samples": [
+        "動画"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "is_new_arrival": {
+      "xpath": ".//td[contains(@class, 'cassetteitem_other-checkbox--newarrival')]",
+      "confidence": 1.0,
+      "samples": [
+        "(empty)"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "layout": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_madori')]",
+      "confidence": 1.0,
+      "samples": [
+        "2SLDK"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "rent": {
+      "xpath": "//div[contains(@class, 'cassetteitem')][1]//span[contains(@class, 'cassetteitem_price--rent')]",
+      "confidence": 1.0,
+      "samples": [
+        "18.48万円"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    }
+  },
+  "avg_confidence": 1.0,
+  "perfect_fields": 10
+}

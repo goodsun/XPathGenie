@@ -1,0 +1,156 @@
+{
+  "site": "cd4_tabelog",
+  "name": "食べログ (グルメ/レビュー)",
+  "domain": "Restaurant/Review",
+  "urls": [
+    "https://tabelog.com/tokyo/rstLst/RC1201/"
+  ],
+  "elapsed_sec": 40.4,
+  "status": "ok",
+  "fields_count": 14,
+  "pages_analyzed": 1,
+  "tokens_used": 7317,
+  "refined_fields": [
+    "tpoint_status",
+    "restaurant_name",
+    "restaurant_url",
+    "area_genre",
+    "catchphrase",
+    "rating_score",
+    "review_count",
+    "saved_count",
+    "latest_review_title",
+    "latest_review_snippet",
+    "latest_review_author"
+  ],
+  "fields": {
+    "area_genre": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//div[contains(@class,'list-rst__area-genre')]",
+      "confidence": 1.0,
+      "samples": [
+        "恵比寿駅 558m / タイ料理、アジア・エスニック、カレー"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "catchphrase": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//p[contains(@class,'list-rst__pr-title')]",
+      "confidence": 1.0,
+      "samples": [
+        "【創業35年】【神保町駅A9出口徒歩２分】WEST INDIA GROUPが贈る本格タイ料理！"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "dinner_price_range": {
+      "xpath": "(//ul[contains(@class,'list-rst__info')]/li[contains(@class,'list-rst__info-item')])[1]/span[contains(@class,'c-rating-v3__val')]",
+      "confidence": 1.0,
+      "samples": [
+        "￥1,000～￥1,999"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "image_url": {
+      "xpath": "(//ul[contains(@class,'list-rst__thumb-list')]//img[contains(@class,'js-thumbnail-img')])[1]/@data-lazy",
+      "confidence": 1.0,
+      "samples": [
+        "https://tblg.k-img.com/restaurant/images/Rvw/305059/320x320_square_132383fb7c67e1462a2a90bb94c08488."
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "latest_review_author": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//span[contains(@class,'list-rst__author')]//a[contains(@class,'list-rst__author-name')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "latest_review_snippet": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//span[contains(@class,'list-rst__author-rvw-txt')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "latest_review_title": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//a[contains(@class,'list-rst__comment-text')]",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "optional": true,
+      "warning": null
+    },
+    "lunch_price_range": {
+      "xpath": "(//ul[contains(@class,'list-rst__info')]/li[contains(@class,'list-rst__info-item')])[2]/span[contains(@class,'c-rating-v3__val')]",
+      "confidence": 1.0,
+      "samples": [
+        "～￥999"
+      ],
+      "optional": false,
+      "warning": null
+    },
+    "rating_score": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//p[contains(@class,'list-rst__rating-total')]//span[contains(@class,'c-rating__val')]",
+      "confidence": 1.0,
+      "samples": [
+        "3.47"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "restaurant_name": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//h3[contains(@class,'list-rst__rst-name')]/a",
+      "confidence": 1.0,
+      "samples": [
+        "麻布十番 薬膳カレー 新海 虎ノ門店"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "restaurant_url": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//h3[contains(@class,'list-rst__rst-name')]/a/@href",
+      "confidence": 1.0,
+      "samples": [
+        "https://tabelog.com/tokyo/A1323/A132302/13225555/"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "review_count": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//p[contains(@class,'list-rst__rvw-count')]//em[contains(@class,'list-rst__rvw-count-num')]",
+      "confidence": 1.0,
+      "samples": [
+        "1169"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "saved_count": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__rst-data')][1]//span[contains(@class,'list-rst__save-count-target')]//span[contains(@class,'u-text-num')]",
+      "confidence": 1.0,
+      "samples": [
+        "12843"
+      ],
+      "optional": false,
+      "warning": "Multiple matches on 1/1 pages — may include sidebar/recommended items"
+    },
+    "tpoint_status": {
+      "xpath": "//div[contains(@class,'flexible-rstlst-main')]//div[contains(@class,'list-rst__body--no-thumb')]//p[contains(@class,'list-rst__tpoint-info')]",
+      "confidence": 1.0,
+      "samples": [
+        "Vpoint貯まる・使える"
+      ],
+      "optional": false,
+      "warning": null
+    }
+  },
+  "avg_confidence": 0.786,
+  "perfect_fields": 11
+}

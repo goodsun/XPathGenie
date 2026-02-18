@@ -1,0 +1,56 @@
+{
+  "site": "cd8_rakuten_recipe",
+  "name": "楽天レシピ (レシピ)",
+  "domain": "Recipe",
+  "urls": [
+    "https://recipe.rakuten.co.jp/category/30/"
+  ],
+  "elapsed_sec": 19.8,
+  "status": "ok",
+  "fields": {
+    "category_image_url": {
+      "xpath": "//div[contains(@class,'container')]//ul[contains(@class,'refine_recipe__list')]//img[contains(@class,'refine_recipe__img')]/@src",
+      "confidence": 0.0,
+      "samples": [
+        null
+      ],
+      "warning": null
+    },
+    "category_name": {
+      "xpath": "(//div[contains(@class,'container')]//ul[contains(@class,'refine_recipe__list')]//span[contains(@class,'refine_recipe__text')])[1]",
+      "confidence": 1.0,
+      "samples": [
+        "ハンバーグ"
+      ],
+      "warning": null
+    },
+    "category_url": {
+      "xpath": "(//div[contains(@class,'container')]//ul[contains(@class,'refine_recipe__list')]//a[contains(@class,'refine_recipe__link')])[1]/@href",
+      "confidence": 1.0,
+      "samples": [
+        "/category/30-300/"
+      ],
+      "warning": null
+    },
+    "description": {
+      "xpath": "//div[contains(@class,'container')]//p[contains(@class,'page_lead__text')]",
+      "confidence": 1.0,
+      "samples": [
+        "人気メニューのレシピ・作り方の総合情報ページです。\n          \n          \n          みんな大好きなハンバーグ、唐揚げなど定番おかずを作って楽しみましょう！牛肉のしぐれ煮"
+      ],
+      "warning": null
+    },
+    "title": {
+      "xpath": "//div[contains(@class,'container')]//h1[contains(@class,'page_title__text')]",
+      "confidence": 1.0,
+      "samples": [
+        "人気メニューのレシピ・作り方\n         総合情報"
+      ],
+      "warning": null
+    }
+  },
+  "fields_count": 5,
+  "avg_confidence": 0.8,
+  "perfect_fields": 4,
+  "tokens_used": 5418
+}

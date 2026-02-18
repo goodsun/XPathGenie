@@ -1,0 +1,12 @@
+{
+  "site": "cd10_nhk_news",
+  "name": "NHK NEWS WEB (ニュース)",
+  "domain": "News",
+  "urls": [
+    "https://www3.nhk.or.jp/news/cat01.html"
+  ],
+  "elapsed_sec": 0.1,
+  "status": "error",
+  "error": "Failed to fetch all URLs",
+  "reason": "access_denied"
+}

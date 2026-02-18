@@ -69,6 +69,10 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
   <button class="btn-analyze" id="analyzeBtn" onclick="analyze()" disabled>分析実行</button>
 </div>
 
+<div style="padding:4px 20px; background:#0e0e1a; display:flex; align-items:center; gap:8px; flex-shrink:0;">
+  <label style="color:#ffd700; font-size:0.8rem; white-space:nowrap;">Want List</label>
+  <input type="text" id="wantListInput" placeholder='例: job_title, salary, location, ...' style="flex:1; padding:6px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#e0d0f0; font-size:0.8rem;">
+</div>
 <div class="info-bar">
   <span>💡 クリックでメインコンテンツを選択（緑）</span>
   <span>💡 Shift+クリックで除外（赤）</span>
@@ -110,6 +114,17 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 <script>
 const API_BASE = '/xpathgenie';
+
+// Restore wantlist from localStorage
+(function() {
+  const saved = localStorage.getItem('xpathgenie_wantlist');
+  if (saved) {
+    try {
+      const wl = JSON.parse(saved);
+      document.getElementById('wantListInput').value = Object.keys(wl).join(', ');
+    } catch(e) {}
+  }
+})();
 let includeSelector = null;
 let excludeSelectors = [];
 let fetchedHTML = '';
@@ -381,6 +396,13 @@ async function analyze() {
     };
     if (excludeSelectors.length > 0) {
       payload.exclude = excludeSelectors;
+    }
+    const wantListRaw = document.getElementById('wantListInput').value.trim();
+    if (wantListRaw) {
+      const wantlist = {};
+      wantListRaw.split(',').map(s => s.trim()).filter(Boolean).forEach(f => { wantlist[f] = ''; });
+      payload.wantlist = wantlist;
+      localStorage.setItem('xpathgenie_wantlist', JSON.stringify(wantlist));
     }
     
     const resp = await fetch(`${API_BASE}/api/analyze`, {

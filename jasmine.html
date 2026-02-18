@@ -271,7 +271,15 @@ function updateSelectionList() {
   if (includeSelector) {
     const li = document.createElement('li');
     li.className = 'include';
-    li.innerHTML = `<span class="remove" onclick="removeInclude()">✕</span>🟢 ${includeSelector}`;
+    const parts = includeSelector.split(' > ');
+    const clickableParts = parts.map((part, i) => {
+      const parentSel = parts.slice(0, i + 1).join(' > ');
+      if (i === parts.length - 1) {
+        return `<span style="color:#00c864; font-weight:600;">${part}</span>`;
+      }
+      return `<span style="cursor:pointer; color:#00c864; opacity:0.6; text-decoration:underline dotted;" onclick="event.stopPropagation(); changeIncludeTo('${parentSel.replace(/'/g, "\\'")}')" title="ここまで選択">${part}</span>`;
+    }).join(' <span style="opacity:0.3;">&gt;</span> ');
+    li.innerHTML = `<span class="remove" onclick="removeInclude()">✕</span>🟢 ${clickableParts}`;
     list.appendChild(li);
     document.getElementById('analyzeBtn').disabled = false;
     setMode('ready');
@@ -283,6 +291,35 @@ function updateSelectionList() {
     li.innerHTML = `<span class="remove" onclick="removeExclude(${i})">✕</span>🔴 ${sel}`;
     list.appendChild(li);
   });
+}
+
+function changeIncludeTo(newSelector) {
+  const frame = document.getElementById('previewFrame');
+  const doc = frame.contentDocument;
+  if (doc) {
+    // Remove old highlights
+    doc.querySelectorAll('.xpg-include').forEach(e => e.classList.remove('xpg-include'));
+    doc.querySelectorAll('.xpg-blackout').forEach(e => e.classList.remove('xpg-blackout'));
+    // Apply new
+    const el = doc.querySelector(newSelector);
+    if (el) {
+      el.classList.add('xpg-include');
+      // Re-blackout siblings
+      function blackoutSiblings(node) {
+        if (!node.parentElement) return;
+        const parent = node.parentElement;
+        Array.from(parent.children).forEach(child => {
+          if (child !== node && !child.classList.contains('xpg-exclude')) {
+            child.classList.add('xpg-blackout');
+          }
+        });
+        blackoutSiblings(parent);
+      }
+      blackoutSiblings(el);
+    }
+  }
+  includeSelector = newSelector;
+  updateSelectionList();
 }
 
 function removeInclude() {

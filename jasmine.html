@@ -411,7 +411,14 @@ async function analyze() {
     });
     
     resultSection.style.display = 'block';
-    setStatus(`やったね！${count}フィールド見つけたよ ✨`);
+    
+    // Share with Aladdin via localStorage
+    const url = document.getElementById('urlInput').value.trim();
+    localStorage.setItem('xpathgenie_urls', url);
+    const mappingStr = Object.entries(mappings).map(([f, info]) => `${f}: ${info.xpath}`).join('\n');
+    localStorage.setItem('xpathgenie_mappings', mappingStr);
+    
+    setStatus(`やったね！${count}フィールド見つけたよ ✨ → Aladdinに渡したよ！`);
     setMode('ready');
     document.getElementById('analyzeBtn').disabled = false;
     

@@ -63,11 +63,11 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 <div class="header">
   <h1>✨ XPath Jasmine</h1>
+  <button onclick="document.getElementById('wantListModal').style.display='flex'" style="padding:8px 12px; background:#2a1a3a; border:1px solid #b366ff; border-radius:6px; color:#b366ff; font-size:0.8rem; cursor:pointer;">📋 Want List</button>
   <input type="text" id="urlInput" placeholder="URLを入力..." value="">
   <button class="btn-fetch" onclick="fetchPage()">読み込み</button>
   <button class="btn-reset" onclick="resetSelections()">リセット</button>
   <button class="btn-analyze" id="analyzeBtn" onclick="analyze()" disabled>分析実行</button>
-  <button onclick="document.getElementById('wantListModal').style.display='flex'" style="padding:8px 12px; background:#2a1a3a; border:1px solid #b366ff; border-radius:6px; color:#b366ff; font-size:0.8rem; cursor:pointer;">📋 Want List</button>
 </div>
 
 <!-- Want List Modal -->

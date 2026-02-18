@@ -45,6 +45,9 @@ def _check_origin() -> bool:
                     return True
             except Exception:
                 pass
+    # Allow requests from reverse proxy (Apache on same host)
+    if request.remote_addr in ("127.0.0.1", "::1"):
+        return True
     # Block requests with empty Origin/Referer (prevent open proxy abuse)
     return False
 

@@ -117,7 +117,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
     </ul>
     
     <div class="result-section" id="resultSection" style="display:none;">
-      <h3 style="display:inline;">📊 分析結果</h3> <button onclick="copyResults()" style="padding:4px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#b366ff; font-size:0.75rem; cursor:pointer; vertical-align:middle;">📋 JSONコピー</button>
+      <h3 style="display:inline;">📊 分析結果</h3> <button id="copyBtn" onclick="copyResults(this)" style="padding:4px 10px; background:#1a1a2a; border:1px solid #3a2a5a; border-radius:6px; color:#b366ff; font-size:0.75rem; cursor:pointer; vertical-align:middle;" onmouseover="this.style.background='#2a1a3a';this.style.borderColor='#b366ff'" onmouseout="this.style.background='#1a1a2a';this.style.borderColor='#3a2a5a'">📋 JSONコピー</button>
       <div id="resultFields"></div>
     </div>
   </div>
@@ -182,16 +182,22 @@ function loadWLToForm(obj) {
 
 let lastMappings = null;
 
-function copyResults() {
+function copyResults(btn) {
   if (!lastMappings) return;
   const simple = {};
   Object.entries(lastMappings).forEach(([k, v]) => { simple[k] = v.xpath || v; });
   const json = JSON.stringify(simple, null, 2);
   navigator.clipboard.writeText(json).then(() => {
-    const btn = event.target;
-    const orig = btn.textContent;
     btn.textContent = '✅ コピーした！';
-    setTimeout(() => btn.textContent = orig, 1500);
+    setTimeout(() => { btn.textContent = '📋 JSONコピー'; }, 1500);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = json; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ コピーした！';
+    setTimeout(() => { btn.textContent = '📋 JSONコピー'; }, 1500);
   });
 }
 

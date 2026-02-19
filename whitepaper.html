@@ -265,6 +265,35 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+.bubble-text {
+  display: block;
+}
+
+.jasmine-bubble.rotating {
+  min-height: 60px;
+}
+
+.jasmine-bubble.rotating .bubble-text {
+  position: absolute;
+  top: 12px; left: 16px; right: 16px;
+}
+
+.jasmine-bubble.rotating #bubble-text-a {
+  animation: bubbleFade 8s ease-in-out infinite;
+}
+
+.jasmine-bubble.rotating #bubble-text-b {
+  animation: bubbleFade 8s ease-in-out infinite;
+  animation-delay: 4s;
+  opacity: 0;
+}
+
+@keyframes bubbleFade {
+  0%, 40% { opacity: 1; }
+  50%, 90% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -542,7 +571,8 @@ body {
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
   <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text">本論文についてご質問があればお答えいたします。</span>
+    <span id="bubble-text-a" class="bubble-text">本論文についてご質問があればお答えいたします。</span>
+    <span id="bubble-text-b" class="bubble-text"></span>
   </div>
 
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
@@ -688,34 +718,20 @@ document.addEventListener('DOMContentLoaded', async function() {
   const chatInput = document.getElementById('chat-input');
   const chatSend = document.getElementById('chat-send');
   const chatHistory = document.getElementById('chat-history');
-  const bubbleText = document.getElementById('bubble-text');
+  const bubbleTextA = document.getElementById('bubble-text-a');
+  const bubbleTextB = document.getElementById('bubble-text-b');
   
   let chatMessages = [];
-  let bubbleRotationTimer = null;
-  let bubbleShowingAlt = false;
-  
-  // 吹き出しテキスト交互表示
+
   function startBubbleRotation(defaultText, altHtml) {
-    stopBubbleRotation();
-    bubbleShowingAlt = false;
-    bubbleText.textContent = defaultText;
-    bubble.style.transition = 'opacity 0.5s ease';
-    bubbleRotationTimer = setInterval(() => {
-      bubble.style.opacity = '0';
-      setTimeout(() => {
-        bubbleShowingAlt = !bubbleShowingAlt;
-        if (bubbleShowingAlt) {
-          bubbleText.innerHTML = altHtml;
-        } else {
-          bubbleText.textContent = defaultText;
-        }
-        bubble.style.opacity = '1';
-      }, 500);
-    }, 4000);
+    bubbleTextA.textContent = defaultText;
+    bubbleTextB.innerHTML = altHtml;
+    bubble.classList.add('rotating');
   }
   
   function stopBubbleRotation() {
-    if (bubbleRotationTimer) { clearInterval(bubbleRotationTimer); bubbleRotationTimer = null; }
+    bubble.classList.remove('rotating');
+    bubbleTextB.innerHTML = '';
   }
 
   // APIキー確認
@@ -731,7 +747,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     stopBubbleRotation();
     const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
-    bubbleText.textContent = isJp
+    bubbleTextA.textContent = isJp
       ? `${docNames[currentDocType]}についてご質問があればお答えいたします。`
       : `I can answer questions regarding this ${docNames[currentDocType]}.`;
     return apiKey;

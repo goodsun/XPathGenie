@@ -688,6 +688,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       
       // ジャスミンの吹き出しメッセージを更新
             checkApiKey(); // ドキュメント切り替え時に吹き出し更新
+            updateChatLang();
     });
   });
   
@@ -750,6 +751,25 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 
   // APIキー確認
+  let isLoading = false;
+
+  function updateChatLang() {
+    const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+    document.querySelector('.chat-header span').textContent = isJp
+      ? 'ジャスミン — 研究アシスタント' : 'Jasmine — Research Assistant';
+    chatInput.placeholder = isJp
+      ? `${docNames[currentDocType]}について聞きたいことを入力...`
+      : `Ask about the ${docNames[currentDocType]}...`;
+    if (!isLoading) chatSend.textContent = isJp ? '送信' : 'Send';
+    // 初期メッセージ更新
+    const welcomeMsg = document.querySelector('.chat-history .chat-message.jasmine .chat-message-bubble');
+    if (welcomeMsg && chatMessages.length === 0) {
+      welcomeMsg.innerHTML = isJp
+        ? '本論文の内容についてご質問をお受けいたします。<br>該当セクションを参照しながらお答えいたします。'
+        : 'I can answer your questions about this paper.<br>I will reference the relevant sections in my responses.';
+    }
+  }
+
   function checkApiKey() {
     const apiKey = wpApiKeyInput.value.trim() || localStorage.getItem('xpathgenie_api_key');
     if (!apiKey) {
@@ -864,7 +884,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // 送信ボタン無効化とローディング表示
     chatSend.disabled = true;
-    chatSend.textContent = '送信中...';
+    const isJpSend = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+    chatSend.textContent = isJpSend ? '送信中...' : 'Sending...';
     
     // ローディングメッセージ（chatMessagesには追加しない）
     const loadingDiv = document.createElement('div');
@@ -952,7 +973,7 @@ ${currentDocContent}`;
     } finally {
       // 送信ボタンを復元
       chatSend.disabled = false;
-      chatSend.textContent = '送信';
+      chatSend.textContent = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme') ? '送信' : 'Send';
     }
   }
   
@@ -968,6 +989,7 @@ ${currentDocContent}`;
   
   // 初期APIキーチェック
   checkApiKey();
+  updateChatLang();
 });
 </script>
 

@@ -22,6 +22,26 @@ createApp({
     const editName = ref('');
     let timer = null;
 
+    // API Key validation
+    const keyStatus = ref(''); // '', 'valid', 'invalid', 'error'
+    let validateTimer = null;
+    function validateApiKey() {
+      const key = apiKey.value.trim();
+      if (!key) { keyStatus.value = ''; return; }
+      if (validateTimer) clearTimeout(validateTimer);
+      validateTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(
+            'https://generativelanguage.googleapis.com/v1beta/models?pageSize=1',
+            { method: 'GET', headers: { 'x-goog-api-key': key } }
+          );
+          keyStatus.value = res.ok ? 'valid' : 'invalid';
+        } catch {
+          keyStatus.value = 'error';
+        }
+      }, 500);
+    }
+
     const elapsedStr = computed(() => elapsed.value + 's');
     const savedAtStr = computed(() => {
       if (!result.value?._savedAt) return '';
@@ -169,6 +189,7 @@ createApp({
         if (v.trim()) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v));
         else localStorage.removeItem('xpathgenie_api_key');
       }
+      validateApiKey();
     });
     watch(rememberKey, (v) => {
       if (v) {
@@ -186,7 +207,7 @@ createApp({
     watch(mode, (v) => localStorage.setItem('xpathgenie_mode', v));
 
     return {
-      apiKey, showKey, rememberKey, saveApiKey,
+      apiKey, showKey, rememberKey, saveApiKey, keyStatus,
       urlText, wantlistText, mode, wantlistPlaceholder,
       loading, error, result, elapsed, elapsedStr, savedAtStr, copied,
       editing, editName,

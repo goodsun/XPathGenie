@@ -22,7 +22,7 @@
         <div class="api-key-row">
           <label>Gemini API Key <a href="setup-guide.html" class="hint" style="margin-left:6px;">How to get one?</a></label>
           <div class="api-key-input-wrap">
-            <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." class="api-key-input" @change="saveApiKey">
+            <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." class="api-key-input" @change="saveApiKey" :style="{ borderColor: keyStatus === 'valid' ? '#22c55e' : keyStatus === 'invalid' ? '#ef4444' : keyStatus === 'error' ? '#f59e0b' : '' }" :title="keyStatus === 'valid' ? '✅ API key valid' : keyStatus === 'invalid' ? '❌ Invalid API key' : keyStatus === 'error' ? '⚠️ Connection error' : ''">
             <button @click="showKey=!showKey" class="btn-toggle-key" :title="showKey ? 'Hide' : 'Show'">{{ showKey ? '🙈' : '👁' }}</button>
           </div>
           <label class="remember-key-label"><input type="checkbox" v-model="rememberKey"> Remember API key</label>

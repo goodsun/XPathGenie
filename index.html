@@ -22,7 +22,7 @@
         <div style="margin-bottom: 12px;">
           <label>Gemini API Key <span class="hint">(<a href="setup-guide.html" target="_blank" style="color:#b366ff;">How to get one</a>)</span></label>
           <div style="display:flex; align-items:center; gap:8px;">
-            <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." style="flex:1; font-family:monospace;" :disabled="loading">
+            <input :type="showKey ? 'text' : 'password'" v-model="apiKey" placeholder="AIza..." style="flex:1; font-family:monospace;" :disabled="loading" :style="{ borderColor: keyStatus === 'valid' ? '#22c55e' : keyStatus === 'invalid' ? '#ef4444' : keyStatus === 'error' ? '#f59e0b' : '' }" :title="keyStatus === 'valid' ? '✅ API key valid' : keyStatus === 'invalid' ? '❌ Invalid API key' : keyStatus === 'error' ? '⚠️ Connection error' : ''">
             <button @click="showKey=!showKey" type="button" style="background:none;border:1px solid #ddd;border-radius:4px;padding:4px 8px;cursor:pointer;font-size:0.8rem;">{{ showKey ? '🙈' : '👁️' }}</button>
           </div>
           <div style="margin-top:4px; display:flex; align-items:flex-start; gap:6px;">

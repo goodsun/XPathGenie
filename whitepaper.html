@@ -745,13 +745,30 @@ document.addEventListener('DOMContentLoaded', async function() {
           fitIframe.src = 'docs/fit2026.pdf';
         }
         currentDocType = 'fit2026';
-        currentDocContent = '';
+        // LaTeXソースをチャットコンテキストとして読み込み
+        try {
+          const texRes = await fetch('docs/fit2026.tex');
+          if (texRes.ok) currentDocContent = await texRes.text();
+        } catch(e) { currentDocContent = ''; }
+        // チャット履歴をリセット（新しいドキュメントのため）
+        chatMessages = [];
       } else {
         // Markdown系タブ
         docContent.style.display = 'block';
         fitContent.style.display = 'none';
+        fitIframe.src = '';
         await loadDocument(docType);
+        // チャット履歴をリセット
+        chatMessages = [];
       }
+      
+      // チャットUIリセット
+      chatHistory.innerHTML = '';
+      const isJpWelcome = (docType !== 'whitepaper');
+      const welcomeHtml = isJpWelcome
+        ? `${docNames[docType]}の内容についてご質問をお受けいたします。<br>該当セクションを参照しながらお答えいたします。`
+        : `I can answer your questions about this ${docNames[docType]}.<br>I will reference the relevant sections in my responses.`;
+      chatHistory.innerHTML = `<div class="chat-message jasmine"><div class="chat-message-bubble">${welcomeHtml}</div></div>`;
       
       // ジャスミンの吹き出しメッセージを更新
       checkApiKey();
@@ -1010,8 +1027,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       // システムプロンプト作成
       const isJpDoc = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
       
+      const fitNote = currentDocType === 'fit2026'
+        ? '\n【注意】以下はFIT 2026投稿用LaTeXソースです。LaTeX記法を解釈して内容を理解してください。\n'
+        : '';
       const systemPrompt = isJpDoc 
-        ? `あなたはXPathGenieプロジェクトの研究アシスタント「ジャスミン」です。
+        ? `あなたはXPathGenieプロジェクトの研究アシスタント「ジャスミン」です。${fitNote}
 以下の${docNames[currentDocType]}の内容に基づいて、ユーザーの質問に日本語で丁寧にお答えください。
 学術的で正確な表現を心がけ、根拠に基づいた説明を行ってください。内容に記載がない事項については「${docNames[currentDocType]}では言及されておりません」と率直にお伝えください。
 

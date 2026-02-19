@@ -663,7 +663,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 例: 「それはSection 3.4（二段階精緻化）に詳しく書いてあるよ！」
 ページ内アンカーリンクも付けてね。例: [Section 3.4](#34-二段階精緻化)
 
-回答はMarkdown形式で記述してください。`
+回答はMarkdown形式で記述してください。
+
+[${docNames[currentDocType]}全文]
+${currentDocContent}`
         : `You are "Jasmine", the assistant for the XPathGenie project.
 Answer the user's questions based on the ${docNames[currentDocType]} content below.
 Be friendly and approachable. If something isn't covered, honestly say "That might not be in the ${docNames[currentDocType]}."
@@ -672,9 +675,9 @@ IMPORTANT: When answering, reference the relevant section numbers.
 Example: "That's covered in Section 3.4 (Two-Tier Refinement)!"
 Include anchor links so users can click to jump there. Example: [Section 3.4](#34-two-tier-refinement)
 
-Use Markdown formatting in your responses.`;
+Use Markdown formatting in your responses.
 
-[${docNames[currentDocType]}全文]
+[${docNames[currentDocType]} full text]
 ${currentDocContent}`;
       
       // Gemini API呼び出し

@@ -1,9 +1,13 @@
 const { createApp, ref, computed, watch } = Vue;
 
+// Key obfuscation (not encryption — just hides from casual DevTools inspection)
+function obfuscateKey(key) { return btoa(key.split('').reverse().join('')); }
+function deobfuscateKey(stored) { try { return atob(stored).split('').reverse().join(''); } catch { return ''; } }
+
 createApp({
   setup() {
     const rememberKey = ref(localStorage.getItem('xpathgenie_remember_key') === '1');
-    const apiKey = ref(rememberKey.value ? (localStorage.getItem('xpathgenie_api_key') || '') : '');
+    const apiKey = ref(rememberKey.value ? deobfuscateKey(localStorage.getItem('xpathgenie_api_key') || '') : '');
     const showKey = ref(false);
     const urlText = ref(localStorage.getItem('xpathgenie_urls') || '');
     const wantlistText = ref(localStorage.getItem('xpathgenie_wantlist') || '');
@@ -157,16 +161,16 @@ createApp({
     }
 
     function saveApiKey() {
-      if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', apiKey.value);
+      if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', obfuscateKey(apiKey.value));
     }
 
-    watch(apiKey, (v) => { if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', v); });
+    watch(apiKey, (v) => { if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v)); });
     watch(rememberKey, (v) => {
       if (v) {
         const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');
         if (!ok) { rememberKey.value = false; return; }
         localStorage.setItem('xpathgenie_remember_key', '1');
-        localStorage.setItem('xpathgenie_api_key', apiKey.value);
+        localStorage.setItem('xpathgenie_api_key', obfuscateKey(apiKey.value));
       } else {
         localStorage.setItem('xpathgenie_remember_key', '0');
         localStorage.removeItem('xpathgenie_api_key');

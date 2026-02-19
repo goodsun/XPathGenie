@@ -237,15 +237,45 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 const API_BASE = '/xpathgenie';
 
 // API Key management
+// Key obfuscation (not encryption — just hides from casual DevTools inspection)
+function obfuscateKey(key) { return btoa(key.split('').reverse().join('')); }
+function deobfuscateKey(stored) { try { return atob(stored).split('').reverse().join(''); } catch { return ''; } }
+
 let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
 (function() {
-  const saved = _rememberKey ? (localStorage.getItem('xpathgenie_api_key') || '') : '';
+  const saved = _rememberKey ? deobfuscateKey(localStorage.getItem('xpathgenie_api_key') || '') : '';
   document.addEventListener('DOMContentLoaded', () => {
     const inp = document.getElementById('apiKeyInput');
     const cb = document.getElementById('rememberKeyCb');
+
+    // API Key validation
+    let validateTimer = null;
+    function validateApiKey() {
+      const key = inp.value.trim();
+      if (!key) { inp.style.borderColor = ''; return; }
+      if (validateTimer) clearTimeout(validateTimer);
+      validateTimer = setTimeout(async () => {
+        try {
+          const res = await fetch(
+            'https://generativelanguage.googleapis.com/v1beta/models?pageSize=1',
+            { method: 'GET', headers: { 'x-goog-api-key': key } }
+          );
+          inp.style.borderColor = res.ok ? '#22c55e' : '#ef4444';
+          inp.title = res.ok ? '✅ API key valid' : '❌ Invalid API key';
+        } catch {
+          inp.style.borderColor = '#f59e0b';
+          inp.title = '⚠️ Connection error';
+        }
+      }, 500);
+    }
+
     if (inp) {
       inp.value = saved;
-      inp.addEventListener('change', () => { if (_rememberKey) localStorage.setItem('xpathgenie_api_key', inp.value); });
+      inp.addEventListener('change', () => {
+        if (_rememberKey) localStorage.setItem('xpathgenie_api_key', obfuscateKey(inp.value));
+        validateApiKey();
+      });
+      inp.addEventListener('blur', validateApiKey);
     }
     if (cb) {
       cb.checked = _rememberKey;
@@ -255,7 +285,7 @@ let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
           if (!ok) { cb.checked = false; return; }
           _rememberKey = true;
           localStorage.setItem('xpathgenie_remember_key', '1');
-          localStorage.setItem('xpathgenie_api_key', inp.value);
+          localStorage.setItem('xpathgenie_api_key', obfuscateKey(inp.value));
         } else {
           _rememberKey = false;
           localStorage.setItem('xpathgenie_remember_key', '0');

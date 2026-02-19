@@ -405,7 +405,8 @@ body {
   
   <!-- ドキュメント切り替えタブ -->
   <div class="doc-tabs">
-    <button class="doc-tab active" data-doc="whitepaper">Whitepaper</button>
+    <button class="doc-tab active" data-doc="whitepaper">Whitepaper (EN)</button>
+    <button class="doc-tab" data-doc="whitepaper_jp">Whitepaper (JP)</button>
     <button class="doc-tab" data-doc="readme">README</button>
   </div>
   
@@ -464,6 +465,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
       const docPaths = {
         whitepaper: 'docs/whitepaper.md',
+        whitepaper_jp: 'docs/whitepaper_jp.md',
         readme: 'README.md'
       };
       
@@ -518,11 +520,15 @@ document.addEventListener('DOMContentLoaded', async function() {
       
       // ジャスミンの吹き出しメッセージを更新
       const docNames = {
-        whitepaper: 'ホワイトペーパー',
+        whitepaper: 'Whitepaper',
+        whitepaper_jp: 'ホワイトペーパー',
         readme: 'README'
       };
+      const isJp = (docType === 'whitepaper_jp' || docType === 'readme');
       const bubbleText = document.getElementById('bubble-text');
-      bubbleText.textContent = `この${docNames[docType]}について何でも聞いてね！💜`;
+      bubbleText.textContent = isJp 
+        ? `この${docNames[docType]}について何でも聞いてね！💜`
+        : `Ask me anything about this ${docNames[docType]}! 💜`;
     });
   });
   
@@ -642,20 +648,31 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
       // システムプロンプト作成
       const docNames = {
-        whitepaper: 'ホワイトペーパー',
+        whitepaper: 'Whitepaper',
+        whitepaper_jp: 'ホワイトペーパー',
         readme: 'README'
       };
+      const isJpDoc = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
       
-      const systemPrompt = `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
+      const systemPrompt = isJpDoc 
+        ? `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
 以下の${docNames[currentDocType]}の内容に基づいて、ユーザーの質問に日本語で答えてください。
 明るくフレンドリーな口調で。わからないことは正直に「${docNames[currentDocType]}には書いてないかも」と答えてください。
 
 【重要】回答する際は、該当するセクション番号を明示してください。
 例: 「それはSection 3.4（二段階精緻化）に詳しく書いてあるよ！」
-また、ページ内リンク（アンカーリンク）も付けて、クリックで該当箇所に飛べるようにしてね。
-例: 「詳しくは[Section 3.4（二段階精緻化）](#3-4-two-tier-refinement)を見てね！」
+ページ内アンカーリンクも付けてね。例: [Section 3.4](#34-二段階精緻化)
 
-回答はMarkdown形式で記述してください（リンクやリストなど）。
+回答はMarkdown形式で記述してください。`
+        : `You are "Jasmine", the assistant for the XPathGenie project.
+Answer the user's questions based on the ${docNames[currentDocType]} content below.
+Be friendly and approachable. If something isn't covered, honestly say "That might not be in the ${docNames[currentDocType]}."
+
+IMPORTANT: When answering, reference the relevant section numbers.
+Example: "That's covered in Section 3.4 (Two-Tier Refinement)!"
+Include anchor links so users can click to jump there. Example: [Section 3.4](#34-two-tier-refinement)
+
+Use Markdown formatting in your responses.`;
 
 [${docNames[currentDocType]}全文]
 ${currentDocContent}`;

@@ -651,7 +651,10 @@ document.addEventListener('DOMContentLoaded', async function() {
       // Sanitize document body — permissive config since content is our own markdown,
       // but still blocks script/iframe/event handlers as defense-in-depth
       const html = typeof DOMPurify !== 'undefined'
-        ? DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true }, ADD_ATTR: ['id', 'class'] })
+        ? DOMPurify.sanitize(rawHtml, {
+            FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'form'],
+            FORBID_ATTR: ['onerror', 'onclick', 'onload', 'onmouseover']
+          })
         : rawHtml;
       document.getElementById('document-content').innerHTML = html;
       

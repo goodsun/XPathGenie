@@ -632,12 +632,12 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 | Job | 3/3 | 8/12 | 0.667 | **1.000** | dice (F1=1.0, 4/4 fields) |
 | Movie | 1/2 | 1/8 | 0.125 | **1.000** | yahoo (title F1=1.0) |
 | Restaurant | 1/3 | 4/12 | 0.325 | **0.975** | fodors (F1=0.975, 4/4 fields) |
-| Auto | 3/3 | 6/12 | 0.500 | **0.857** | yahoo (F1=1.0, 4/4 fields) |
-| University | 2/3 | 3/12 | 0.246 | **0.737** | usnews (F1=1.0, 2/2 found) |
-| NBA Player | 2/3 | 4/12 | 0.333 | **0.500** | wiki (name/team F1=1.0) |
-| Book | 2/2 | 2/10 | 0.157 | 0.262 | borders (author F1=0.87) |
-| Camera | 1/3 | 1/9 | 0.015 | 0.067 | beachaudio (model F1=0.13) |
-| **Overall** | **15/22** | **29/87** | **0.317** | **0.689** | — |
+| Auto | 3/3 | 7/12 | 0.500 | **0.857** | yahoo (F1=1.0, 4/4 fields) |
+| University | 2/3 | 4/12 | 0.246 | **0.737** | usnews (F1=1.0, 2/2 found) |
+| NBA Player | 2/3 | 8/12 | 0.333 | **0.500** | wiki (name/team F1=1.0) |
+| Book | 2/2 | 6/10 | 0.157 | 0.262 | borders (author F1=0.87) |
+| Camera | 1/3 | 2/9 | 0.015 | 0.067 | beachaudio (model F1=0.13) |
+| **Overall** | **15/22** | **40/87** | **0.317** | **0.689** | — |
 
 ![Figure 2: SWDE Benchmark Results by Vertical](figures/swde_results.png)
 
@@ -650,7 +650,7 @@ To enable comparison with supervised web extraction systems, we evaluated XPathG
 
 1. **Architectural scope mismatch**: XPathGenie's compression pipeline targets `<body>` content, discarding `<head>` elements including `<title>` tags. Several SWDE fields (e.g., `title` in the job vertical) are most naturally extracted from `<title>`, which XPathGenie does not attempt. Similarly, fields like `date_posted` may not be present as structurally identifiable elements in the page body (e.g., embedded in unstructured prose or absent entirely). These cases represent a design boundary rather than an extraction failure—XPathGenie is architected for structured body content, not metadata extraction.
 
-2. **Field detection coverage (46%)**: XPathGenie detected XPaths for only 29 of 87 attempted fields. Beyond the architectural scope mismatch above, the LLM sometimes failed to locate fields in complex or legacy HTML structures (2008–2011 era pages), particularly when field values were embedded in non-semantic containers without clear structural markers. For fields that *were* detected, 70% achieved F1 ≥ 0.5 and 60% achieved F1 = 1.0 (perfect extraction).
+2. **Field detection coverage (46%)**: XPathGenie generated XPaths for 40 of 87 target fields. Beyond the architectural scope mismatch above, the LLM sometimes failed to locate fields in complex or legacy HTML structures (2008–2011 era pages), particularly when field values were embedded in non-semantic containers without clear structural markers. For fields that *were* detected, 70% achieved F1 ≥ 0.5 and 60% achieved F1 = 1.0 (perfect extraction).
 
 3. **Site-level failures (23%)**: 5 of 22 sites returned zero fields. Two failure modes dominate: (a) compressed HTML exceeding the LLM's effective analysis capacity (camera-amazon: 114KB compressed, camera-buy: 396KB compressed), and (b) HTML structures too complex for the compression pipeline to preserve meaningful structural signals (restaurant-opentable: 2.3KB compressed from a JavaScript-heavy page).
 

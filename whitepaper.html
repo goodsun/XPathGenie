@@ -755,7 +755,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       const defaultMsg = currentDocType === 'whitepaper_jp' || currentDocType === 'readme'
         ? `${docNames[currentDocType]}についてご質問があればお答えいたします。`
         : `I can answer questions regarding this ${docNames[currentDocType]}.`;
-      const altMsg = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      const altMsg = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
       startBubbleRotation(defaultMsg, altMsg);
       return null;
     }
@@ -768,8 +768,16 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
   
   // チャット開閉
-  bubble.addEventListener('click', function() {
-    if (!checkApiKey()) return;
+  bubble.addEventListener('click', function(e) {
+    // リンククリックはそのまま通す
+    if (e.target.tagName === 'A') return;
+    const apiKey = checkApiKey();
+    if (!apiKey) {
+      // APIキーなし→即座にaltメッセージ表示
+      stopBubbleRotation();
+      bubbleTextA.innerHTML = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      return;
+    }
     chatInterface.classList.add('active');
     bubble.style.display = 'none';
   });

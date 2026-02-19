@@ -544,6 +544,7 @@ body {
     cursor: pointer;
   }
 }
+/* Security modal styles injected by common.js */
 </style>
 <script src="static/js/common.js"></script>
 </head>
@@ -782,14 +783,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     validateApiKey();
   });
 
-  rememberCb.addEventListener('change', () => {
+  // showSecurityModal() loaded from common.js
+
+  rememberCb.addEventListener('change', async () => {
     if (rememberCb.checked) {
-      const isJpConfirm = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
-      const confirmMsg = isJpConfirm
-        ? '⚠️ APIキーがlocalStorageに保存されます。\n\nブラウザ拡張機能やXSS攻撃でアクセスされる可能性があります。\nキーはGoogle AI Studioでいつでも再生成できます。\n\n保存しますか？'
-        : '⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?';
-      const ok = confirm(confirmMsg);
-      if (!ok) { rememberCb.checked = false; return; }
+      const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+      if (!await showSecurityModal(isJp)) { rememberCb.checked = false; return; }
       localStorage.setItem('xpathgenie_remember_key', '1');
       const v = wpApiKeyInput.value.trim();
       if (v) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v));
@@ -1077,5 +1076,6 @@ ${currentDocContent}`;
 });
 </script>
 
+<!-- Security modal auto-created by common.js -->
 </body>
 </html>

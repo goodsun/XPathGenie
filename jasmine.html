@@ -148,6 +148,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 
 /* Status */
 .status { padding: 12px 20px; background: #12101f; border-top: 1px solid #2a1a3a; font-size: 0.85rem; color: #8a7aaa; flex-shrink: 0; }
+/* Security modal styles injected by common.js */
 </style>
 <script src="static/js/common.js"></script>
 </head>
@@ -284,12 +285,13 @@ let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
       });
       inp.addEventListener('blur', validateApiKey);
     }
+    // showSecurityModal() loaded from common.js
+
     if (cb) {
       cb.checked = _rememberKey;
-      cb.addEventListener('change', () => {
+      cb.addEventListener('change', async () => {
         if (cb.checked) {
-          const ok = confirm(t('confirmRemember'));
-          if (!ok) { cb.checked = false; return; }
+          if (!await showSecurityModal()) { cb.checked = false; return; }
           _rememberKey = true;
           localStorage.setItem('xpathgenie_remember_key', '1');
           localStorage.setItem('xpathgenie_api_key', obfuscateKey(inp.value));
@@ -840,5 +842,6 @@ function applyLang() {
 document.addEventListener('DOMContentLoaded', applyLang);
 </script>
 
+<!-- Security modal auto-created by common.js -->
 </body>
 </html>

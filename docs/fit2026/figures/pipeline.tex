@@ -1,0 +1,56 @@
+\begin{figure}[t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+  node distance=0.55cm and 0.3cm,
+  every node/.style={font=\small},
+  box/.style={rectangle, draw, rounded corners=2pt, minimum width=2.2cm, minimum height=0.55cm, align=center, text width=2.2cm},
+  io/.style={box, fill=gray!15},
+  normal/.style={box, fill=blue!10},
+  llm/.style={box, fill=violet!25},
+  green/.style={box, fill=green!20},
+  orange/.style={box, fill=orange!25},
+  decision/.style={diamond, draw, aspect=2.2, fill=yellow!15, align=center, inner sep=1pt, font=\small},
+  arr/.style={-{Stealth[length=2mm]}, thick},
+]
+% Main flow
+\node[io] (url) {URL入力};
+\node[normal, below=of url] (fetch) {HTML取得};
+\node[normal, below=of fetch] (compress) {HTML圧縮\\{\scriptsize (97\%削減)}};
+\node[llm, below=of compress] (llm) {LLM推論\\{\scriptsize (Gemini, 1回)}};
+\node[normal, below=of llm] (validate) {複数ページ\\検証};
+\node[decision, below=0.7cm of validate] (branch) {\scriptsize 複数一致?};
+
+% Branches
+\node[green, below left=0.8cm and 1.1cm of branch] (mech) {機械的\\絞り込み\\{\scriptsize (AI費用ゼロ)}};
+\node[orange, below right=0.8cm and 1.1cm of branch] (airef) {AI\\再推論};
+
+% Re-validate and final
+\node[normal, below=0.7cm of branch] (reval) {再検証};
+\node[io, below=of reval] (final) {最終\\マッピング};
+\node[normal, below=of final] (aladdin) {Aladdin\\{\scriptsize (10ページ検証)}};
+\node[io, below=of aladdin] (export) {エクスポート};
+
+% Arrows - main flow
+\draw[arr] (url) -- (fetch);
+\draw[arr] (fetch) -- (compress);
+\draw[arr] (compress) -- (llm);
+\draw[arr] (llm) -- (validate);
+\draw[arr] (validate) -- (branch);
+
+% Branch arrows
+\draw[arr] (branch) -- node[left, font=\scriptsize] {同一値} (mech);
+\draw[arr] (branch) -- node[right, font=\scriptsize] {異なる値} (airef);
+\draw[arr] (branch) -- node[right, font=\scriptsize, xshift=3pt] {なし} (reval);
+\draw[arr] (mech) |- (reval);
+\draw[arr] (airef) |- (reval);
+
+% Bottom flow
+\draw[arr] (reval) -- (final);
+\draw[arr] (final) -- (aladdin);
+\draw[arr] (aladdin) -- (export);
+\end{tikzpicture}%
+}
+\caption{XPathGenieシステムパイプライン}
+\label{fig:pipeline}
+\end{figure}

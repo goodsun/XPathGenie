@@ -1,0 +1,11 @@
+*.aux
+*.dvi
+*.log
+*.pdf
+*.synctex.gz
+esample.*
+jsample.*
+tech-jsample.*
+bibsample.bib
+ebibsample.bib
+read me.txt

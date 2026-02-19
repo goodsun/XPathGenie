@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src https://generativelanguage.googleapis.com 'self'; img-src 'self' data: https:; font-src 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src https://generativelanguage.googleapis.com 'self'; img-src 'self' data: https:; font-src 'self'; frame-src 'self' blob:;">
 <title>XPathGenie Whitepaper</title>
 <!-- CDN imports -->
 <script src="https://cdn.jsdelivr.net/npm/marked@15/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
@@ -571,6 +571,7 @@ body {
   <div class="doc-tabs">
     <button class="doc-tab active" data-doc="whitepaper_jp">Whitepaper (JP)</button>
     <button class="doc-tab" data-doc="whitepaper">Whitepaper (EN)</button>
+    <button class="doc-tab" data-doc="fit2026">FIT 2026</button>
     <button class="doc-tab" data-doc="readme">README</button>
   </div>
   
@@ -580,12 +581,21 @@ body {
       <h2>読み込み中...</h2>
     </div>
   </div>
+  
+  <!-- FIT PDF表示 -->
+  <div id="fit-pdf-content" style="display:none;">
+    <div style="margin-bottom:16px; color:#c8a2fa; font-size:0.9rem;">
+      📄 FIT 2026（第25回情報科学技術フォーラム）投稿用原稿 — 6ページ版
+      <a href="docs/fit2026.pdf" download style="color:#b366ff; margin-left:12px;">⬇ PDFダウンロード</a>
+    </div>
+    <iframe id="fit-pdf-iframe" src="" style="width:100%; height:calc(100vh - 160px); border:1px solid #2a2a5a; border-radius:8px; background:#222;"></iframe>
+  </div>
 </div>
 
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
   <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text-a" class="bubble-text">本論文についてご質問があればお答えいたします。</span>
+    <span id="bubble-text-a" class="bubble-text">各ドキュメントについてご質問があればお答えいたします。</span>
     <span id="bubble-text-b" class="bubble-text"></span>
     <span id="bubble-text-c" class="bubble-text">「この吹き出し」をクリックしてください。</span>
   </div>
@@ -626,6 +636,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   const docNames = {
     whitepaper: 'Whitepaper',
     whitepaper_jp: 'ホワイトペーパー',
+    fit2026: 'FIT 2026論文',
     readme: 'README'
   };
   
@@ -722,12 +733,29 @@ document.addEventListener('DOMContentLoaded', async function() {
       document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
       
-      // ドキュメント読み込み
-      await loadDocument(docType);
+      const docContent = document.getElementById('document-content');
+      const fitContent = document.getElementById('fit-pdf-content');
+      const fitIframe = document.getElementById('fit-pdf-iframe');
+      
+      if (docType === 'fit2026') {
+        // FIT PDFタブ
+        docContent.style.display = 'none';
+        fitContent.style.display = 'block';
+        if (!fitIframe.src || fitIframe.src === window.location.href) {
+          fitIframe.src = 'docs/fit2026.pdf';
+        }
+        currentDocType = 'fit2026';
+        currentDocContent = '';
+      } else {
+        // Markdown系タブ
+        docContent.style.display = 'block';
+        fitContent.style.display = 'none';
+        await loadDocument(docType);
+      }
       
       // ジャスミンの吹き出しメッセージを更新
-            checkApiKey(); // ドキュメント切り替え時に吹き出し更新
-            updateChatLang();
+      checkApiKey();
+      updateChatLang();
     });
   });
   
@@ -828,12 +856,16 @@ document.addEventListener('DOMContentLoaded', async function() {
   let isLoading = false;
 
   function updateChatLang() {
-    const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+    const isJp = (currentDocType !== 'whitepaper');
     document.querySelector('.chat-header span').textContent = isJp
       ? 'ジャスミン — 研究アシスタント' : 'Jasmine — Research Assistant';
-    chatInput.placeholder = isJp
-      ? `${docNames[currentDocType]}について聞きたいことを入力...`
-      : `Ask about the ${docNames[currentDocType]}...`;
+    if (currentDocType === 'fit2026') {
+      chatInput.placeholder = 'FIT 2026論文について聞きたいことを入力...';
+    } else {
+      chatInput.placeholder = isJp
+        ? `${docNames[currentDocType]}について聞きたいことを入力...`
+        : `Ask about the ${docNames[currentDocType]}...`;
+    }
     if (!isLoading) chatSend.textContent = isJp ? '送信' : 'Send';
     // 初期メッセージ更新
     const welcomeMsg = document.querySelector('.chat-history .chat-message.jasmine .chat-message-bubble');

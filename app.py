@@ -287,5 +287,12 @@ def serve_whitepaper():
     return send_from_directory(app_dir, "whitepaper.html")
 
 
+@app.route("/README.md")
+def serve_readme():
+    """Serve the README.md file from current directory."""
+    app_dir = os.path.dirname(__file__)
+    return send_from_directory(app_dir, "README.md")
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8789, threaded=True, debug=False)

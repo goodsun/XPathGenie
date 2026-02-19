@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
       const docPaths = {
         whitepaper: 'docs/whitepaper.md',
-        readme: '../README.md'
+        readme: 'README.md'
       };
       
       const response = await fetch(docPaths[docType]);
@@ -524,7 +524,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     } else {
       // ジャスミンの返答はMarkdownをHTMLに変換
       try {
-        bubbleDiv.innerHTML = marked.parse(text);
+        const html = marked.parse(text);
+        bubbleDiv.innerHTML = html;
+        
+        // リンクの処理: ページ内リンクはそのまま、外部リンクは新しいタブで開く
+        const links = bubbleDiv.querySelectorAll('a');
+        links.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            // ページ内リンク: そのまま
+            link.addEventListener('click', function(e) {
+              // チャットを閉じる
+              document.getElementById('chat-interface').classList.remove('active');
+              document.getElementById('jasmine-bubble').style.display = 'block';
+            });
+          } else if (href && (href.startsWith('http') || href.startsWith('https'))) {
+            // 外部リンク: 新しいタブで開く
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+          }
+        });
       } catch (error) {
         console.error('Markdown parse error:', error);
         bubbleDiv.innerHTML = text;
@@ -566,16 +585,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     try {
       // システムプロンプト作成
+      const docNames = {
+        whitepaper: 'ホワイトペーパー',
+        readme: 'README'
+      };
+      
       const systemPrompt = `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
-以下のドキュメントの内容に基づいて、ユーザーの質問に日本語で答えてください。
-明るくフレンドリーな口調で。わからないことは正直に「ドキュメントには書いてないかも」と答えてください。
+以下の${docNames[currentDocType]}の内容に基づいて、ユーザーの質問に日本語で答えてください。
+明るくフレンドリーな口調で。わからないことは正直に「${docNames[currentDocType]}には書いてないかも」と答えてください。
 
-回答する際は、該当するセクション番号を明示してください。
+【重要】回答する際は、該当するセクション番号を明示してください。
 例: 「それはSection 3.4（二段階精緻化）に詳しく書いてあるよ！」
-ページ内アンカーリンクも付けてね。Markdownリンク形式で [Section 3.4](#34-二段階精緻化) のように書いてくれれば、クリックで該当箇所に飛べるよ。
+また、ページ内リンク（アンカーリンク）も付けて、クリックで該当箇所に飛べるようにしてね。
+例: 「詳しくは[Section 3.4（二段階精緻化）](#3-4-two-tier-refinement)を見てね！」
 
-[ドキュメント全文]
-${whitepaperContent}`;
+回答はMarkdown形式で記述してください（リンクやリストなど）。
+
+[${docNames[currentDocType]}全文]
+${currentDocContent}`;
       
       // Gemini API呼び出し
       const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {

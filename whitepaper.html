@@ -6,6 +6,7 @@
 <title>XPathGenie Whitepaper</title>
 <!-- CDN imports -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <style>
 /* ダークテーマベーススタイル */
@@ -168,9 +169,8 @@ body {
   bottom: 0;
   right: 0;
   width: 320px;
-  height: 300px;
+  height: auto;
   z-index: 1000;
-  overflow: hidden;
   pointer-events: none;
 }
 
@@ -179,26 +179,24 @@ body {
 }
 
 .jasmine-image {
-  width: 250px;
+  width: 200px;
   height: auto;
   display: block;
-  position: absolute;
-  bottom: -150px;
-  right: -30px;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 .jasmine-bubble {
-  position: absolute;
-  bottom: 140px;
-  right: 20px;
+  margin: 0 20px 8px auto;
   background: #b366ff;
   color: #ffffff;
-  padding: 15px 20px;
+  padding: 12px 16px;
   border-radius: 20px;
   max-width: 250px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 0.85rem;
 }
 
 .jasmine-bubble:hover {
@@ -209,13 +207,13 @@ body {
 .jasmine-bubble::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  right: 30px;
+  bottom: -8px;
+  right: 40px;
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #b366ff;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #b366ff;
 }
 
 .jasmine-bubble:hover::after {
@@ -224,7 +222,7 @@ body {
 
 /* チャットインターフェース */
 .chat-interface {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 320px;
@@ -386,6 +384,10 @@ body {
     display: none;
   }
 
+  #api-key-row {
+    display: none !important;
+  }
+
   .chat-interface {
     width: 100vw;
     right: 0;
@@ -428,17 +430,17 @@ body {
 
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
-  <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
-  
-  <div id="api-key-row" style="position:absolute; bottom:155px; right:20px; display:flex; align-items:center; gap:4px; max-width:250px;">
+  <div class="jasmine-bubble" id="jasmine-bubble">
+    <span id="bubble-text">このホワイトペーパーについて何でも聞いてね！💜</span>
+  </div>
+
+  <div id="api-key-row" style="margin: 0 20px 8px auto; display:flex; align-items:center; gap:4px; max-width:250px;">
     <input id="wp-api-key" type="password" placeholder="Gemini API Key" style="flex:1; padding:4px 8px; border-radius:6px; border:1px solid #3a2a5a; background:#1a1a2e; color:#e0d0f0; font-size:0.75rem; font-family:monospace;">
     <button onclick="document.getElementById('wp-api-key').type = document.getElementById('wp-api-key').type==='password'?'text':'password'" style="background:none; border:1px solid #3a2a5a; border-radius:4px; padding:2px 6px; cursor:pointer; font-size:0.7rem;">👁</button>
     <a href="setup-guide.html" target="_blank" style="color:#b366ff; font-size:0.7rem; white-space:nowrap;">取得</a>
   </div>
 
-  <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text">このホワイトペーパーについて何でも聞いてね！💜</span>
-  </div>
+  <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
   
   <div class="chat-interface" id="chat-interface">
     <div class="chat-header">
@@ -606,7 +608,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     } else {
       // ジャスミンの返答はMarkdownをHTMLに変換
       try {
-        const html = marked.parse(text);
+        const html = DOMPurify.sanitize(marked.parse(text));
         bubbleDiv.innerHTML = html;
         
         // リンクの処理: ページ内リンクはそのまま、外部リンクは新しいタブで開く
@@ -628,7 +630,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
       } catch (error) {
         console.error('Markdown parse error:', error);
-        bubbleDiv.innerHTML = text;
+        bubbleDiv.textContent = text;
       }
     }
     

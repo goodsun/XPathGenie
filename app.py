@@ -105,7 +105,7 @@ def api_fetch():
 def add_security_headers(response):
     response.headers['Content-Security-Policy'] = (
         "default-src 'self'; "
-        "script-src 'self' https://unpkg.com; "
+        "script-src 'self' 'unsafe-eval' https://unpkg.com; "
         "style-src 'self' 'unsafe-inline'; "
         "img-src 'self' data:; "
         "connect-src 'self'"

@@ -542,7 +542,7 @@ body {
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
   <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text">本論文についてご質問があればお答えいたします。</span>
+    <span id="bubble-text" style="transition: opacity 0.5s ease;">本論文についてご質問があればお答えいたします。</span>
   </div>
 
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
@@ -700,12 +700,16 @@ document.addEventListener('DOMContentLoaded', async function() {
     bubbleShowingAlt = false;
     bubbleText.textContent = defaultText;
     bubbleRotationTimer = setInterval(() => {
-      bubbleShowingAlt = !bubbleShowingAlt;
-      if (bubbleShowingAlt) {
-        bubbleText.innerHTML = altHtml;
-      } else {
-        bubbleText.textContent = defaultText;
-      }
+      bubbleText.style.opacity = '0';
+      setTimeout(() => {
+        bubbleShowingAlt = !bubbleShowingAlt;
+        if (bubbleShowingAlt) {
+          bubbleText.innerHTML = altHtml;
+        } else {
+          bubbleText.textContent = defaultText;
+        }
+        bubbleText.style.opacity = '1';
+      }, 500);
     }, 4000);
   }
   

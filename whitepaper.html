@@ -263,7 +263,6 @@ body {
   transition: all 0.5s ease;
   font-size: 0.85rem;
   animation: float 3s ease-in-out infinite;
-  overflow: hidden;
 }
 
 @keyframes float {
@@ -543,7 +542,7 @@ body {
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
   <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text" style="transition: opacity 0.5s ease; display: inline-block;">本論文についてご質問があればお答えいたします。</span>
+    <span id="bubble-text">本論文についてご質問があればお答えいたします。</span>
   </div>
 
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
@@ -700,10 +699,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     stopBubbleRotation();
     bubbleShowingAlt = false;
     bubbleText.textContent = defaultText;
+    bubble.style.transition = 'opacity 0.5s ease';
     bubbleRotationTimer = setInterval(() => {
-      const currentH = bubble.scrollHeight;
-      bubble.style.maxHeight = currentH + 'px';
-      bubbleText.style.opacity = '0';
+      bubble.style.opacity = '0';
       setTimeout(() => {
         bubbleShowingAlt = !bubbleShowingAlt;
         if (bubbleShowingAlt) {
@@ -711,10 +709,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } else {
           bubbleText.textContent = defaultText;
         }
-        bubbleText.style.opacity = '1';
-        requestAnimationFrame(() => {
-          bubble.style.maxHeight = bubble.scrollHeight + 'px';
-        });
+        bubble.style.opacity = '1';
       }, 500);
     }, 4000);
   }

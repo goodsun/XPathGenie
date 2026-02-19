@@ -579,7 +579,12 @@ document.addEventListener('DOMContentLoaded', async function() {
   mermaid.initialize({ theme: 'dark', background: '#0a0a14' });
   
   let currentDocContent = '';
-  let currentDocType = 'whitepaper';
+  let currentDocType = 'whitepaper_jp';
+  const docNames = {
+    whitepaper: 'Whitepaper',
+    whitepaper_jp: 'ホワイトペーパー',
+    readme: 'README'
+  };
   
   // Marked.jsオプション設定
   
@@ -642,16 +647,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       await loadDocument(docType);
       
       // ジャスミンの吹き出しメッセージを更新
-      const docNames = {
-        whitepaper: 'Whitepaper',
-        whitepaper_jp: 'ホワイトペーパー',
-        readme: 'README'
-      };
-      const isJp = (docType === 'whitepaper_jp' || docType === 'readme');
-      const bubbleText = document.getElementById('bubble-text');
-      bubbleText.textContent = isJp 
-        ? `${docNames[docType]}についてご質問があればお答えいたします。`
-        : `I can answer questions regarding this ${docNames[docType]}.`;
+            checkApiKey(); // ドキュメント切り替え時に吹き出し更新
     });
   });
   
@@ -671,6 +667,7 @@ document.addEventListener('DOMContentLoaded', async function() {
       if (v) localStorage.setItem('xpathgenie_api_key', v);
       else localStorage.removeItem('xpathgenie_api_key');
     }
+    checkApiKey();
   });
 
   rememberCb.addEventListener('change', () => {
@@ -696,14 +693,44 @@ document.addEventListener('DOMContentLoaded', async function() {
   const bubbleText = document.getElementById('bubble-text');
   
   let chatMessages = [];
+  let bubbleRotationTimer = null;
+  let bubbleShowingAlt = false;
   
+  // 吹き出しテキスト交互表示
+  function startBubbleRotation(defaultText, altHtml) {
+    stopBubbleRotation();
+    bubbleShowingAlt = false;
+    bubbleText.textContent = defaultText;
+    bubbleRotationTimer = setInterval(() => {
+      bubbleShowingAlt = !bubbleShowingAlt;
+      if (bubbleShowingAlt) {
+        bubbleText.innerHTML = altHtml;
+      } else {
+        bubbleText.textContent = defaultText;
+      }
+    }, 4000);
+  }
+  
+  function stopBubbleRotation() {
+    if (bubbleRotationTimer) { clearInterval(bubbleRotationTimer); bubbleRotationTimer = null; }
+  }
+
   // APIキー確認
   function checkApiKey() {
     const apiKey = wpApiKeyInput.value.trim() || localStorage.getItem('xpathgenie_api_key');
     if (!apiKey) {
-      bubbleText.innerHTML = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      const defaultMsg = currentDocType === 'whitepaper_jp' || currentDocType === 'readme'
+        ? `${docNames[currentDocType]}についてご質問があればお答えいたします。`
+        : `I can answer questions regarding this ${docNames[currentDocType]}.`;
+      const altMsg = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      startBubbleRotation(defaultMsg, altMsg);
       return null;
     }
+    stopBubbleRotation();
+    const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+    bubbleText.textContent = isJp
+      ? `${docNames[currentDocType]}についてご質問があればお答えいたします。`
+      : `I can answer questions regarding this ${docNames[currentDocType]}.`;
     return apiKey;
   }
   
@@ -798,11 +825,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     try {
       // システムプロンプト作成
-      const docNames = {
-        whitepaper: 'Whitepaper',
-        whitepaper_jp: 'ホワイトペーパー',
-        readme: 'README'
-      };
       const isJpDoc = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
       
       const systemPrompt = isJpDoc 

@@ -762,6 +762,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         chatMessages = [];
       }
       
+      // URLパラメータ更新（履歴に残す）
+      const newUrl = new URL(window.location);
+      newUrl.searchParams.set('tab', docType);
+      if (docType !== currentDocType) newUrl.hash = '';
+      history.pushState({tab: docType}, '', newUrl);
+      
       // チャットUIリセット
       chatHistory.innerHTML = '';
       const isJpWelcome = (docType !== 'whitepaper');
@@ -776,8 +782,31 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
   });
   
+  // URLパラメータからタブ選択
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialTab = urlParams.get('tab') || 'whitepaper_jp';
+  
+  // 初期タブをアクティブに
+  document.querySelectorAll('.doc-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.doc === initialTab);
+  });
+  
   // 初期ドキュメント読み込み
-  await loadDocument('whitepaper_jp');
+  if (initialTab === 'fit2026') {
+    const docContent = document.getElementById('document-content');
+    const fitContent = document.getElementById('fit-pdf-content');
+    const fitIframe = document.getElementById('fit-pdf-iframe');
+    docContent.style.display = 'none';
+    fitContent.style.display = 'block';
+    fitIframe.src = 'docs/fit2026.pdf';
+    currentDocType = 'fit2026';
+    try {
+      const texRes = await fetch('docs/fit2026.tex');
+      if (texRes.ok) currentDocContent = await texRes.text();
+    } catch(e) { currentDocContent = ''; }
+  } else {
+    await loadDocument(initialTab);
+  }
   
   // APIキー入力欄の初期化
   const wpApiKeyInput = document.getElementById('wp-api-key');
@@ -1120,6 +1149,13 @@ ${currentDocContent}`;
       e.preventDefault();
       sendMessage();
     }
+  });
+  
+  // ブラウザ戻る/進む対応
+  window.addEventListener('popstate', function(e) {
+    const tab = e.state?.tab || new URLSearchParams(window.location.search).get('tab') || 'whitepaper_jp';
+    const tabBtn = document.querySelector(`.doc-tab[data-doc="${tab}"]`);
+    if (tabBtn) tabBtn.click();
   });
   
   // 初期APIキーチェック

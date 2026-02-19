@@ -279,18 +279,24 @@ body {
 }
 
 .jasmine-bubble.rotating #bubble-text-a {
-  animation: bubbleFade 8s ease-in-out infinite;
+  animation: bubbleFade3 12s ease-in-out infinite;
 }
 
 .jasmine-bubble.rotating #bubble-text-b {
-  animation: bubbleFade 8s ease-in-out infinite;
+  animation: bubbleFade3 12s ease-in-out infinite;
   animation-delay: 4s;
   opacity: 0;
 }
 
-@keyframes bubbleFade {
-  0%, 40% { opacity: 1; }
-  50%, 90% { opacity: 0; }
+.jasmine-bubble.rotating #bubble-text-c {
+  animation: bubbleFade3 12s ease-in-out infinite;
+  animation-delay: 8s;
+  opacity: 0;
+}
+
+@keyframes bubbleFade3 {
+  0%, 28% { opacity: 1; }
+  33%, 95% { opacity: 0; }
   100% { opacity: 1; }
 }
 
@@ -573,6 +579,7 @@ body {
   <div class="jasmine-bubble" id="jasmine-bubble">
     <span id="bubble-text-a" class="bubble-text">本論文についてご質問があればお答えいたします。</span>
     <span id="bubble-text-b" class="bubble-text"></span>
+    <span id="bubble-text-c" class="bubble-text">↑ この吹き出しをクリックしてください。</span>
   </div>
 
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
@@ -722,6 +729,8 @@ document.addEventListener('DOMContentLoaded', async function() {
   const bubbleTextB = document.getElementById('bubble-text-b');
   
   let chatMessages = [];
+
+  const bubbleTextC = document.getElementById('bubble-text-c');
 
   function startBubbleRotation(defaultText, altHtml) {
     bubbleTextA.textContent = defaultText;

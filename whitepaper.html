@@ -922,9 +922,7 @@ document.addEventListener('DOMContentLoaded', async function() {
               if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }
-              // チャットを閉じる
-              document.getElementById('chat-interface').classList.remove('active');
-              document.getElementById('jasmine-bubble').style.display = 'block';
+              // チャットは開いたまま（会話を続けられるように）
             });
           } else if (href && (href.startsWith('http') || href.startsWith('https'))) {
             // 外部リンク: 新しいタブで開く

@@ -272,7 +272,11 @@ let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
     if (inp) {
       inp.value = saved;
       inp.addEventListener('change', () => {
-        if (_rememberKey) localStorage.setItem('xpathgenie_api_key', obfuscateKey(inp.value));
+        if (_rememberKey) {
+          const v = inp.value.trim();
+          if (v) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v));
+          else localStorage.removeItem('xpathgenie_api_key');
+        }
         validateApiKey();
       });
       inp.addEventListener('blur', validateApiKey);

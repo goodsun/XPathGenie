@@ -164,7 +164,12 @@ createApp({
       if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', obfuscateKey(apiKey.value));
     }
 
-    watch(apiKey, (v) => { if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v)); });
+    watch(apiKey, (v) => {
+      if (rememberKey.value) {
+        if (v.trim()) localStorage.setItem('xpathgenie_api_key', obfuscateKey(v));
+        else localStorage.removeItem('xpathgenie_api_key');
+      }
+    });
     watch(rememberKey, (v) => {
       if (v) {
         const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');

@@ -168,20 +168,28 @@ body {
   bottom: 0;
   right: 0;
   width: 320px;
+  height: 300px;
   z-index: 1000;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.jasmine-container > * {
+  pointer-events: auto;
 }
 
 .jasmine-image {
-  width: 200px;
+  width: 250px;
   height: auto;
   display: block;
-  margin-left: auto;
-  margin-right: 20px;
+  position: absolute;
+  bottom: -150px;
+  right: -30px;
 }
 
 .jasmine-bubble {
   position: absolute;
-  bottom: 200px;
+  bottom: 140px;
   right: 20px;
   background: #b366ff;
   color: #ffffff;

@@ -663,6 +663,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
       }
 
+      // 見出しにセクション番号ベースのショートIDを追加（例: id="41" for "4.1 ..."）
+      document.querySelectorAll('#document-content h1, #document-content h2, #document-content h3, #document-content h4').forEach(heading => {
+        const match = heading.textContent.match(/^(\d[\d.]*)/);
+        if (match) {
+          const shortId = match[1].replace(/\./g, '');
+          heading.setAttribute('id', shortId);
+          // markedが生成した既存idも保持（data属性に退避）
+        }
+      });
+
       // ドキュメント内のアンカーリンクをSPA対応
       document.querySelectorAll('#document-content a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -672,6 +682,13 @@ document.addEventListener('DOMContentLoaded', async function() {
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
+
+      // URLハッシュからのジャンプ対応
+      if (window.location.hash) {
+        const id = window.location.hash.slice(1);
+        const target = document.getElementById(id);
+        if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
 
     } catch (error) {
       console.error(`Error loading ${docType}:`, error);

@@ -337,6 +337,59 @@ body {
 .loading {
   opacity: 0.7;
 }
+
+/* Mermaid図のスタイル */
+.mermaid {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* チャット内のMarkdownスタイル */
+.chat-message-bubble p {
+  margin: 0.3em 0;
+}
+.chat-message-bubble p:first-child {
+  margin-top: 0;
+}
+.chat-message-bubble p:last-child {
+  margin-bottom: 0;
+}
+.chat-message-bubble a {
+  color: #b366ff;
+  text-decoration: underline;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .container {
+    margin-right: 0;
+    padding: 10px;
+  }
+
+  .jasmine-container {
+    width: 80px;
+  }
+
+  .jasmine-image {
+    width: 70px;
+  }
+
+  .jasmine-bubble {
+    display: none;
+  }
+
+  .chat-interface {
+    width: 100vw;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px 15px 0 0;
+  }
+
+  /* モバイルではジャスミン画像タップでチャット開く */
+  .jasmine-image {
+    cursor: pointer;
+  }
+}
 </style>
 </head>
 <body>
@@ -404,11 +457,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   let currentDocContent = '';
   let currentDocType = 'whitepaper';
   
-  // Marked.jsオプション設定（見出しにid自動付与）
-  marked.setOptions({
-    headerIds: true,
-    headerPrefix: ''
-  });
+  // Marked.jsオプション設定
   
   // ドキュメント読み込み関数
   async function loadDocument(docType) {
@@ -429,18 +478,20 @@ document.addEventListener('DOMContentLoaded', async function() {
       const html = marked.parse(markdown);
       document.getElementById('document-content').innerHTML = html;
       
-      // Mermaid図をレンダリング
-      const mermaidElements = document.querySelectorAll('.language-mermaid');
-      mermaidElements.forEach(async (element, index) => {
+      // Mermaid図をレンダリング（配列コピーしてからfor...ofで順次処理）
+      const mermaidElements = [...document.querySelectorAll('.language-mermaid')];
+      for (const [index, element] of mermaidElements.entries()) {
         const graphDefinition = element.textContent;
-        const graphId = `mermaid-graph-${index}-${currentDocType}`;
+        const graphId = `mermaid-graph-${index}-${currentDocType}-${Date.now()}`;
         try {
           const { svg } = await mermaid.render(graphId, graphDefinition);
-          element.outerHTML = `<div class="mermaid">${svg}</div>`;
+          // <pre><code class="language-mermaid">...</code></pre> → <div class="mermaid">...</div>
+          const preElement = element.closest('pre') || element.parentElement;
+          preElement.outerHTML = `<div class="mermaid">${svg}</div>`;
         } catch (error) {
           console.error('Mermaid render error:', error);
         }
-      });
+      }
     } catch (error) {
       console.error(`Error loading ${docType}:`, error);
       document.getElementById('document-content').innerHTML = `
@@ -520,8 +571,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     bubbleDiv.className = 'chat-message-bubble';
     
     if (isUser) {
-      // ユーザーメッセージはプレーンテキスト
-      bubbleDiv.innerHTML = text;
+      // ユーザーメッセージはプレーンテキスト（XSS防止）
+      bubbleDiv.textContent = text;
     } else {
       // ジャスミンの返答はMarkdownをHTMLに変換
       try {
@@ -580,9 +631,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     chatSend.disabled = true;
     chatSend.textContent = '送信中...';
     
-    // ローディングメッセージ
-    const loadingId = Date.now();
-    addMessage('<em>考え中...💭</em>', false);
+    // ローディングメッセージ（chatMessagesには追加しない）
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'chat-message jasmine';
+    loadingDiv.id = 'loading-message';
+    loadingDiv.innerHTML = '<div class="chat-message-bubble"><em>考え中...💭</em></div>';
+    chatHistory.appendChild(loadingDiv);
+    chatHistory.scrollTop = chatHistory.scrollHeight;
     
     try {
       // システムプロンプト作成
@@ -636,11 +691,8 @@ ${currentDocContent}`;
       const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 'すみません、うまく答えられませんでした...';
       
       // ローディングメッセージを削除
-      const lastMessage = chatHistory.lastElementChild;
-      if (lastMessage) {
-        lastMessage.remove();
-        chatMessages.pop(); // ローディングメッセージを履歴からも削除
-      }
+      const loadingMsg = document.getElementById('loading-message');
+      if (loadingMsg) loadingMsg.remove();
       
       // AI回答を表示
       addMessage(aiResponse, false);
@@ -649,11 +701,8 @@ ${currentDocContent}`;
       console.error('Chat error:', error);
       
       // ローディングメッセージを削除
-      const lastMessage = chatHistory.lastElementChild;
-      if (lastMessage) {
-        lastMessage.remove();
-        chatMessages.pop();
-      }
+      const loadingMsg2 = document.getElementById('loading-message');
+      if (loadingMsg2) loadingMsg2.remove();
       
       addMessage('ごめん、エラーが起きちゃった...💦<br>APIキーが正しいか確認してみて！', false);
     } finally {

@@ -187,8 +187,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
   </div>
 </div>
 
-<div id="keyNotice" style="display:none; padding:4px 20px; background:#0f0f1a; font-size:0.7rem; color:#555; line-height:1.5; border-bottom:1px solid #1a1a2a;">Your API key is stored in your browser's local storage. While convenient, it could be accessed by browser extensions or XSS attacks. You can regenerate your key anytime at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color:#7c5cfc;">Google AI Studio</a>. Uncheck to keep the key in memory only (cleared when you close the tab).</div>
-<script>document.addEventListener('DOMContentLoaded',()=>{if(localStorage.getItem('xpathgenie_remember_key')==='1')document.getElementById('keyNotice').style.display='block';});</script>
+<!-- Remember warning shown as confirm dialog -->
 <div class="info-bar">
   <span>💡 クリックでメインコンテンツを選択（緑）</span>
   <span>💡 Shift+クリックで除外（赤）</span>
@@ -251,11 +250,17 @@ let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
     if (cb) {
       cb.checked = _rememberKey;
       cb.addEventListener('change', () => {
-        _rememberKey = cb.checked;
-        localStorage.setItem('xpathgenie_remember_key', _rememberKey ? '1' : '0');
-        if (_rememberKey) localStorage.setItem('xpathgenie_api_key', inp.value);
-        else localStorage.removeItem('xpathgenie_api_key');
-        document.getElementById('keyNotice').style.display = _rememberKey ? 'block' : 'none';
+        if (cb.checked) {
+          const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');
+          if (!ok) { cb.checked = false; return; }
+          _rememberKey = true;
+          localStorage.setItem('xpathgenie_remember_key', '1');
+          localStorage.setItem('xpathgenie_api_key', inp.value);
+        } else {
+          _rememberKey = false;
+          localStorage.setItem('xpathgenie_remember_key', '0');
+          localStorage.removeItem('xpathgenie_api_key');
+        }
       });
     }
   });

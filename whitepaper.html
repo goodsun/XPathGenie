@@ -891,7 +891,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'chat-message jasmine';
     loadingDiv.id = 'loading-message';
-    loadingDiv.innerHTML = '<div class="chat-message-bubble"><em>考え中...💭</em></div>';
+    const isJpLoad = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+    loadingDiv.innerHTML = `<div class="chat-message-bubble"><em>${isJpLoad ? '考え中...💭' : 'Thinking...💭'}</em></div>`;
     chatHistory.appendChild(loadingDiv);
     chatHistory.scrollTop = chatHistory.scrollHeight;
     
@@ -969,7 +970,10 @@ ${currentDocContent}`;
       const loadingMsg2 = document.getElementById('loading-message');
       if (loadingMsg2) loadingMsg2.remove();
       
-      addMessage('ごめん、エラーが起きちゃった...💦<br>APIキーが正しいか確認してみて！', false);
+      const isJpErr = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+      addMessage(isJpErr
+        ? 'エラーが発生しました。APIキーが正しいかご確認ください。'
+        : 'An error occurred. Please verify your API key is correct.', false);
     } finally {
       // 送信ボタンを復元
       chatSend.disabled = false;

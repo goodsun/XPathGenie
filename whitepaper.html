@@ -26,7 +26,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  margin-left: 320px; /* ジャスミンチャット分の余白 */
+  margin-right: 340px; /* ジャスミンチャット分の余白 */
 }
 
 /* ナビゲーション */
@@ -162,12 +162,12 @@ body {
   background: rgba(179, 102, 255, 0.05);
 }
 
-/* ジャスミンチャットUI（左下固定） */
+/* ジャスミンチャットUI（右カラム固定） */
 .jasmine-container {
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 300px;
+  right: 0;
+  width: 320px;
   z-index: 1000;
 }
 
@@ -175,13 +175,14 @@ body {
   width: 200px;
   height: auto;
   display: block;
-  margin-left: 20px;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .jasmine-bubble {
   position: absolute;
   bottom: 200px;
-  left: 20px;
+  right: 20px;
   background: #b366ff;
   color: #ffffff;
   padding: 15px 20px;
@@ -201,7 +202,7 @@ body {
   content: '';
   position: absolute;
   bottom: -10px;
-  left: 30px;
+  right: 30px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
@@ -217,8 +218,8 @@ body {
 .chat-interface {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 300px;
+  right: 0;
+  width: 320px;
   background: rgba(16, 33, 62, 0.95);
   border-radius: 15px 15px 0 0;
   display: none;
@@ -346,7 +347,7 @@ body {
     <a href="index.html">Genie (Generate)</a>
     <a href="aladdin.html">Aladdin (Analyze)</a>
     <a href="jasmine.html">Jasmine (Join)</a>
-    <span class="current">Whitepaper 📝</span>
+    <span class="current">Whitepaper</span>
   </nav>
   
   <!-- ドキュメント切り替えタブ -->

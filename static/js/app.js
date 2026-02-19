@@ -162,9 +162,15 @@ createApp({
 
     watch(apiKey, (v) => { if (rememberKey.value) localStorage.setItem('xpathgenie_api_key', v); });
     watch(rememberKey, (v) => {
-      localStorage.setItem('xpathgenie_remember_key', v ? '1' : '0');
-      if (v) { localStorage.setItem('xpathgenie_api_key', apiKey.value); }
-      else { localStorage.removeItem('xpathgenie_api_key'); }
+      if (v) {
+        const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');
+        if (!ok) { rememberKey.value = false; return; }
+        localStorage.setItem('xpathgenie_remember_key', '1');
+        localStorage.setItem('xpathgenie_api_key', apiKey.value);
+      } else {
+        localStorage.setItem('xpathgenie_remember_key', '0');
+        localStorage.removeItem('xpathgenie_api_key');
+      }
     });
     watch(urlText, (v) => localStorage.setItem('xpathgenie_urls', v));
     watch(wantlistText, (v) => localStorage.setItem('xpathgenie_wantlist', v));

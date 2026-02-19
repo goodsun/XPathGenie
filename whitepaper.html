@@ -264,11 +264,19 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.85rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .jasmine-bubble:hover {
   background: #a855f7;
-  transform: translateY(-2px);
+  animation-play-state: paused;
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(179, 102, 255, 0.4);
 }
 
 .jasmine-bubble::after {

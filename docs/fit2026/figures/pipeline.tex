@@ -21,12 +21,14 @@
 \node[normal, below=of llm] (validate) {複数ページ\\検証};
 \node[decision, below=0.7cm of validate] (branch) {\scriptsize 複数一致?};
 
-% Branches
-\node[green, below left=0.8cm and 1.1cm of branch] (mech) {機械的\\絞り込み\\{\scriptsize (AI費用ゼロ)}};
-\node[orange, below right=0.8cm and 1.1cm of branch] (airef) {AI\\再推論};
+% Center: AI再推論 directly below diamond
+\node[orange, below=0.8cm of branch] (airef) {AI\\再推論};
 
-% Re-validate and final
-\node[normal, below=0.7cm of branch] (reval) {再検証};
+% Left branch: 機械的絞り込み
+\node[green, left=1.3cm of airef] (mech) {機械的\\絞り込み\\{\scriptsize (AI費用ゼロ)}};
+
+% Re-validate below AI再推論
+\node[normal, below=0.6cm of airef] (reval) {再検証};
 \node[io, below=of reval] (final) {最終\\マッピング};
 \node[normal, below=of final] (aladdin) {Aladdin\\{\scriptsize (10ページ検証)}};
 \node[io, below=of aladdin] (export) {エクスポート};
@@ -38,12 +40,20 @@
 \draw[arr] (llm) -- (validate);
 \draw[arr] (validate) -- (branch);
 
-% Branch arrows
-\draw[arr] (branch) -- node[left, font=\scriptsize] {同一値} (mech);
+% Branch: 異なる値 → AI再推論 (straight down center)
 \draw[arr] (branch) -- node[right, font=\scriptsize] {異なる値} (airef);
-\draw[arr] (branch) -- node[right, font=\scriptsize, xshift=3pt] {なし} (reval);
-\draw[arr] (mech) |- (reval);
-\draw[arr] (airef) |- (reval);
+
+% Branch: 同一値 → 機械的絞り込み (left)
+\draw[arr] (branch) -| node[near start, left, font=\scriptsize, yshift=5pt] {同一値} (mech);
+
+% 機械的絞り込み → 再検証 (from bottom)
+\draw[arr] (mech.south) |- (reval);
+
+% AI再推論 → 再検証 (straight down)
+\draw[arr] (airef) -- (reval);
+
+% "なし" bypasses via right side to final mapping
+\draw[arr] (branch.east) -- ++(1.2,0) node[above, font=\scriptsize] {なし} |- (final.east);
 
 % Bottom flow
 \draw[arr] (reval) -- (final);

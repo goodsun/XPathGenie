@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src https://generativelanguage.googleapis.com 'self'; img-src 'self' data: https:; font-src 'self';">
 <title>XPathGenie Whitepaper</title>
 <!-- CDN imports -->
 <script src="https://cdn.jsdelivr.net/npm/marked@15/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
@@ -544,6 +545,7 @@ body {
   }
 }
 </style>
+<script src="static/js/common.js"></script>
 </head>
 <body>
 
@@ -645,7 +647,12 @@ document.addEventListener('DOMContentLoaded', async function() {
       currentDocType = docType;
       
       // Marked.jsでHTML変換
-      const html = marked.parse(markdown);
+      const rawHtml = marked.parse(markdown);
+      // Sanitize document body — permissive config since content is our own markdown,
+      // but still blocks script/iframe/event handlers as defense-in-depth
+      const html = typeof DOMPurify !== 'undefined'
+        ? DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true }, ADD_ATTR: ['id', 'class'] })
+        : rawHtml;
       document.getElementById('document-content').innerHTML = html;
       
       // Mermaid図をレンダリング（配列コピーしてからfor...ofで順次処理）
@@ -726,9 +733,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   // APIキー入力欄の初期化
   const wpApiKeyInput = document.getElementById('wp-api-key');
   const rememberCb = document.getElementById('rememberKeyCb');
-  // Key obfuscation (not encryption — just hides from casual DevTools inspection)
-  function obfuscateKey(key) { return btoa(key.split('').reverse().join('')); }
-  function deobfuscateKey(stored) { try { return atob(stored).split('').reverse().join(''); } catch { return ''; } }
+  // obfuscateKey/deobfuscateKey loaded from common.js
 
   const isRemember = localStorage.getItem('xpathgenie_remember_key') === '1';
   rememberCb.checked = isRemember;
@@ -776,7 +781,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   rememberCb.addEventListener('change', () => {
     if (rememberCb.checked) {
-      const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');
+      const isJpConfirm = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+      const confirmMsg = isJpConfirm
+        ? '⚠️ APIキーがlocalStorageに保存されます。\n\nブラウザ拡張機能やXSS攻撃でアクセスされる可能性があります。\nキーはGoogle AI Studioでいつでも再生成できます。\n\n保存しますか？'
+        : '⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?';
+      const ok = confirm(confirmMsg);
       if (!ok) { rememberCb.checked = false; return; }
       localStorage.setItem('xpathgenie_remember_key', '1');
       const v = wpApiKeyInput.value.trim();

@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; connect-src https://generativelanguage.googleapis.com http://localhost:* http://127.0.0.1:* 'self'; img-src 'self' data: https:; font-src 'self'; frame-src blob:;">
 <title>XPath Jasmine — Section Selector</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" integrity="sha384-80VlBZnyAwkkqtSfg5NhPyZff6nU4K/qniLBL8Jnm4KDv6jZhLiYtJbhglg/i9ww" crossorigin="anonymous"></script>
 <script>
 const i18n = {
   ja: {
@@ -44,6 +46,7 @@ const i18n = {
     multiMatch: '⚠ 複数マッチ',
     selectUpTo: 'ここまで選択',
     jsonInvalid: 'JSONが不正です',
+    confirmRemember: '⚠️ APIキーがlocalStorageに保存されます。\n\nブラウザ拡張機能やXSS攻撃でアクセスされる可能性があります。\nキーはGoogle AI Studioでいつでも再生成できます。\n\n保存しますか？',
     error: 'エラー',
   },
   en: {
@@ -83,6 +86,7 @@ const i18n = {
     noValue: '(no value)',
     multiMatch: '⚠ Multiple matches',
     selectUpTo: 'Select up to here',
+    confirmRemember: '⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?',
     jsonInvalid: 'Invalid JSON',
     error: 'Error',
   }
@@ -145,6 +149,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 /* Status */
 .status { padding: 12px 20px; background: #12101f; border-top: 1px solid #2a1a3a; font-size: 0.85rem; color: #8a7aaa; flex-shrink: 0; }
 </style>
+<script src="static/js/common.js"></script>
 </head>
 <body>
 
@@ -237,9 +242,7 @@ body { background: #0a0a14; color: #e0d0f0; font-family: 'Segoe UI', sans-serif;
 const API_BASE = '/xpathgenie';
 
 // API Key management
-// Key obfuscation (not encryption — just hides from casual DevTools inspection)
-function obfuscateKey(key) { return btoa(key.split('').reverse().join('')); }
-function deobfuscateKey(stored) { try { return atob(stored).split('').reverse().join(''); } catch { return ''; } }
+// obfuscateKey/deobfuscateKey loaded from common.js
 
 let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
 (function() {
@@ -285,7 +288,7 @@ let _rememberKey = localStorage.getItem('xpathgenie_remember_key') === '1';
       cb.checked = _rememberKey;
       cb.addEventListener('change', () => {
         if (cb.checked) {
-          const ok = confirm('⚠️ Your API key will be stored in localStorage.\n\nIt could be accessed by browser extensions or XSS attacks.\nYou can regenerate your key anytime at Google AI Studio.\n\nProceed?');
+          const ok = confirm(t('confirmRemember'));
           if (!ok) { cb.checked = false; return; }
           _rememberKey = true;
           localStorage.setItem('xpathgenie_remember_key', '1');
@@ -753,7 +756,9 @@ async function analyze() {
       div.className = 'result-field' + (hasWarning ? ' multi-warn' : '');
       const val = (info.samples && info.samples[0]) ? info.samples[0] : t('noValue');
       const warnBadge = hasWarning ? `<span style="color:#ff9800; font-size:0.75rem; margin-left:6px;">${t('multiMatch')}</span>` : '';
-      div.innerHTML = `<div class="fname">${field}${warnBadge}</div><div class="fval" style="color:#a0d0a0; font-size:0.85rem; word-break:break-all;">${val}</div>`;
+      const safeField = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(field) : field.replace(/</g, '&lt;');
+      const safeVal = typeof DOMPurify !== 'undefined' ? DOMPurify.sanitize(val) : val.replace(/</g, '&lt;');
+      div.innerHTML = `<div class="fname">${safeField}${warnBadge}</div><div class="fval" style="color:#a0d0a0; font-size:0.85rem; word-break:break-all;">${safeVal}</div>`;
       resultFields.appendChild(div);
     });
     

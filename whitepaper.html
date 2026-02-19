@@ -24,10 +24,9 @@ body {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 20px;
-  margin-right: 340px; /* ジャスミンチャット分の余白 */
+  padding-right: 340px; /* ジャスミンチャット分の余白 */
 }
 
 /* ヘッダー（Jasmine風フルワイド） */
@@ -291,7 +290,7 @@ body {
 /* チャットインターフェース */
 .chat-interface {
   position: fixed;
-  bottom: 0;
+  bottom: 200px;
   right: 0;
   width: 320px;
   background: rgba(16, 33, 62, 0.95);
@@ -328,11 +327,11 @@ body {
 .chat-history {
   max-height: 400px;
   overflow-y: auto;
-  padding: 15px;
+  padding: 8px;
 }
 
 .chat-message {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .chat-message.user {
@@ -345,10 +344,12 @@ body {
 
 .chat-message-bubble {
   display: inline-block;
-  max-width: 80%;
-  padding: 10px 15px;
-  border-radius: 15px;
+  max-width: 90%;
+  padding: 8px 10px;
+  border-radius: 12px;
   word-wrap: break-word;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .chat-message.user .chat-message-bubble {
@@ -364,7 +365,7 @@ body {
 }
 
 .chat-input-area {
-  padding: 15px;
+  padding: 8px;
   border-top: 1px solid #2a2a5a;
 }
 
@@ -428,6 +429,21 @@ body {
 .chat-message-bubble p:last-child {
   margin-bottom: 0;
 }
+.chat-message-bubble ul, .chat-message-bubble ol {
+  margin: 0.3em 0;
+  padding-left: 1.2em;
+}
+.chat-message-bubble blockquote {
+  margin: 0.3em 0;
+  padding-left: 0.8em;
+  border-left: 2px solid #b366ff;
+}
+.chat-message-bubble pre {
+  margin: 0.3em 0;
+  padding: 6px 8px;
+  overflow-x: auto;
+  font-size: 0.8rem;
+}
 .chat-message-bubble a {
   color: #b366ff;
   text-decoration: underline;
@@ -449,7 +465,7 @@ body {
     width: auto;
   }
   .container {
-    margin-right: 0;
+    padding-right: 10px;
     padding: 10px;
   }
 
@@ -504,8 +520,8 @@ body {
 <div class="container">
   <!-- ドキュメント切り替えタブ -->
   <div class="doc-tabs">
-    <button class="doc-tab active" data-doc="whitepaper">Whitepaper (EN)</button>
-    <button class="doc-tab" data-doc="whitepaper_jp">Whitepaper (JP)</button>
+    <button class="doc-tab" data-doc="whitepaper">Whitepaper (EN)</button>
+    <button class="doc-tab active" data-doc="whitepaper_jp">Whitepaper (JP)</button>
     <button class="doc-tab" data-doc="readme">README</button>
   </div>
   
@@ -520,14 +536,14 @@ body {
 <!-- ジャスミンチャットUI -->
 <div class="jasmine-container">
   <div class="jasmine-bubble" id="jasmine-bubble">
-    <span id="bubble-text">このホワイトペーパーについて何でも聞いてね！💜</span>
+    <span id="bubble-text">本論文についてご質問があればお答えいたします。</span>
   </div>
 
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
   
   <div class="chat-interface" id="chat-interface">
     <div class="chat-header">
-      <span>ジャスミンとのチャット</span>
+      <span>Jasmine — Research Assistant</span>
       <button class="chat-close" id="chat-close">&times;</button>
     </div>
     
@@ -626,13 +642,13 @@ document.addEventListener('DOMContentLoaded', async function() {
       const isJp = (docType === 'whitepaper_jp' || docType === 'readme');
       const bubbleText = document.getElementById('bubble-text');
       bubbleText.textContent = isJp 
-        ? `この${docNames[docType]}について何でも聞いてね！💜`
-        : `Ask me anything about this ${docNames[docType]}! 💜`;
+        ? `${docNames[docType]}についてご質問があればお答えいたします。`
+        : `I can answer questions regarding this ${docNames[docType]}.`;
     });
   });
   
   // 初期ドキュメント読み込み
-  await loadDocument('whitepaper');
+  await loadDocument('whitepaper_jp');
   
   // APIキー入力欄の初期化
   const wpApiKeyInput = document.getElementById('wp-api-key');
@@ -677,7 +693,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   function checkApiKey() {
     const apiKey = wpApiKeyInput.value.trim() || localStorage.getItem('xpathgenie_api_key');
     if (!apiKey) {
-      bubbleText.innerHTML = 'まずヘッダーのAPIキー欄にキーを入れてね → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      bubbleText.innerHTML = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
       return null;
     }
     return apiKey;
@@ -782,27 +798,27 @@ document.addEventListener('DOMContentLoaded', async function() {
       const isJpDoc = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
       
       const systemPrompt = isJpDoc 
-        ? `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
-以下の${docNames[currentDocType]}の内容に基づいて、ユーザーの質問に日本語で答えてください。
-明るくフレンドリーな口調で。わからないことは正直に「${docNames[currentDocType]}には書いてないかも」と答えてください。
+        ? `あなたはXPathGenieプロジェクトの研究アシスタント「ジャスミン」です。
+以下の${docNames[currentDocType]}の内容に基づいて、ユーザーの質問に日本語で丁寧にお答えください。
+学術的で正確な表現を心がけ、根拠に基づいた説明を行ってください。内容に記載がない事項については「${docNames[currentDocType]}では言及されておりません」と率直にお伝えください。
 
 【重要】回答する際は、該当するセクション番号を明示してください。
-例: 「それはSection 3.4（二段階精緻化）に詳しく書いてあるよ！」
-ページ内アンカーリンクも付けてね。例: [Section 3.4](#34-二段階精緻化)
+例: 「この点についてはSection 3.4（二段階精緻化）にて詳述されています。」
+ページ内アンカーリンクも付与してください。例: [Section 3.4](#34-二段階精緻化)
 
-回答はMarkdown形式で記述してください。
+回答はMarkdown形式で簡潔に記述してください。
 
 [${docNames[currentDocType]}全文]
 ${currentDocContent}`
-        : `You are "Jasmine", the assistant for the XPathGenie project.
+        : `You are "Jasmine", a research assistant for the XPathGenie project.
 Answer the user's questions based on the ${docNames[currentDocType]} content below.
-Be friendly and approachable. If something isn't covered, honestly say "That might not be in the ${docNames[currentDocType]}."
+Use a professional, academic tone with precise and evidence-based explanations. If something isn't covered, state clearly: "That is not addressed in the ${docNames[currentDocType]}."
 
 IMPORTANT: When answering, reference the relevant section numbers.
-Example: "That's covered in Section 3.4 (Two-Tier Refinement)!"
+Example: "This is discussed in Section 3.4 (Two-Tier Refinement)."
 Include anchor links so users can click to jump there. Example: [Section 3.4](#34-two-tier-refinement)
 
-Use Markdown formatting in your responses.
+Use Markdown formatting. Be concise.
 
 [${docNames[currentDocType]} full text]
 ${currentDocContent}`;

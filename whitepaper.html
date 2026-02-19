@@ -430,6 +430,12 @@ body {
 <div class="jasmine-container">
   <img src="wallpapers/images/jasmine_bustup.png" alt="Jasmine" class="jasmine-image">
   
+  <div id="api-key-row" style="position:absolute; bottom:155px; right:20px; display:flex; align-items:center; gap:4px; max-width:250px;">
+    <input id="wp-api-key" type="password" placeholder="Gemini API Key" style="flex:1; padding:4px 8px; border-radius:6px; border:1px solid #3a2a5a; background:#1a1a2e; color:#e0d0f0; font-size:0.75rem; font-family:monospace;">
+    <button onclick="document.getElementById('wp-api-key').type = document.getElementById('wp-api-key').type==='password'?'text':'password'" style="background:none; border:1px solid #3a2a5a; border-radius:4px; padding:2px 6px; cursor:pointer; font-size:0.7rem;">👁</button>
+    <a href="setup-guide.html" target="_blank" style="color:#b366ff; font-size:0.7rem; white-space:nowrap;">取得</a>
+  </div>
+
   <div class="jasmine-bubble" id="jasmine-bubble">
     <span id="bubble-text">このホワイトペーパーについて何でも聞いてね！💜</span>
   </div>
@@ -543,6 +549,16 @@ document.addEventListener('DOMContentLoaded', async function() {
   // 初期ドキュメント読み込み
   await loadDocument('whitepaper');
   
+  // APIキー入力欄の初期化
+  const wpApiKeyInput = document.getElementById('wp-api-key');
+  const savedKey = localStorage.getItem('xpathgenie_api_key') || '';
+  wpApiKeyInput.value = savedKey;
+  wpApiKeyInput.addEventListener('change', () => {
+    const v = wpApiKeyInput.value.trim();
+    if (v) localStorage.setItem('xpathgenie_api_key', v);
+    else localStorage.removeItem('xpathgenie_api_key');
+  });
+
   // チャット機能
   const bubble = document.getElementById('jasmine-bubble');
   const chatInterface = document.getElementById('chat-interface');

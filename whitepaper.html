@@ -737,9 +737,10 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   const bubbleTextC = document.getElementById('bubble-text-c');
 
-  function startBubbleRotation(defaultText, altHtml) {
+  function startBubbleRotation(defaultText, altHtml, clickText) {
     bubbleTextA.textContent = defaultText;
     bubbleTextB.innerHTML = altHtml;
+    if (clickText) bubbleTextC.textContent = clickText;
     bubble.classList.add('rotating');
   }
   
@@ -755,8 +756,14 @@ document.addEventListener('DOMContentLoaded', async function() {
       const defaultMsg = currentDocType === 'whitepaper_jp' || currentDocType === 'readme'
         ? `${docNames[currentDocType]}についてご質問があればお答えいたします。`
         : `I can answer questions regarding this ${docNames[currentDocType]}.`;
-      const altMsg = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
-      startBubbleRotation(defaultMsg, altMsg);
+      const isJp = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+      const altMsg = isJp
+        ? 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>'
+        : 'An API key is required. Please enter it in the header → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">Get one</a>';
+      const clickMsg = isJp
+        ? '「この吹き出し」をクリックしてください。'
+        : 'Click this bubble to start.';
+      startBubbleRotation(defaultMsg, altMsg, clickMsg);
       return null;
     }
     stopBubbleRotation();
@@ -775,7 +782,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (!apiKey) {
       // APIキーなし→即座にaltメッセージ表示
       stopBubbleRotation();
-      bubbleTextA.innerHTML = 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>';
+      const isJp2 = (currentDocType === 'whitepaper_jp' || currentDocType === 'readme');
+      bubbleTextA.innerHTML = isJp2
+        ? 'ご利用にはAPIキーが必要です。ヘッダー欄にご入力ください → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">取得方法</a>'
+        : 'An API key is required. Please enter it in the header → <a href="setup-guide.html" target="_blank" style="color:#ffffff; text-decoration:underline;">Get one</a>';
       return;
     }
     chatInterface.classList.add('active');

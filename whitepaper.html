@@ -269,6 +269,16 @@ body {
   display: block;
 }
 
+#bubble-text-b, #bubble-text-c {
+  display: none;
+}
+
+.jasmine-bubble.rotating #bubble-text-b,
+.jasmine-bubble.rotating #bubble-text-c {
+  display: block;
+  opacity: 0;
+}
+
 .jasmine-bubble.rotating {
   min-height: 60px;
 }
@@ -285,13 +295,11 @@ body {
 .jasmine-bubble.rotating #bubble-text-b {
   animation: bubbleFade3 12s ease-in-out infinite;
   animation-delay: 4s;
-  opacity: 0;
 }
 
 .jasmine-bubble.rotating #bubble-text-c {
   animation: bubbleFade3 12s ease-in-out infinite;
   animation-delay: 8s;
-  opacity: 0;
 }
 
 @keyframes bubbleFade3 {

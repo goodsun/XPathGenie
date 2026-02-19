@@ -33,7 +33,7 @@ body {
 .nav-pair {
   display: flex;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 16px;
 }
 
@@ -54,6 +54,36 @@ body {
   background: #b366ff;
   padding: 8px 16px;
   border-radius: 6px;
+  font-weight: bold;
+}
+
+/* ドキュメント切り替えタブ */
+.doc-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #2a2a5a;
+}
+
+.doc-tab {
+  background: transparent;
+  border: none;
+  color: #8a8a8a;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.doc-tab:hover {
+  color: #b366ff;
+  background: rgba(179, 102, 255, 0.05);
+}
+
+.doc-tab.active {
+  color: #b366ff;
+  border-bottom-color: #b366ff;
   font-weight: bold;
 }
 
@@ -319,8 +349,14 @@ body {
     <span class="current">Whitepaper 📝</span>
   </nav>
   
-  <!-- ホワイトペーパーコンテンツ -->
-  <div class="whitepaper-content" id="whitepaper-content">
+  <!-- ドキュメント切り替えタブ -->
+  <div class="doc-tabs">
+    <button class="doc-tab active" data-doc="whitepaper">Whitepaper</button>
+    <button class="doc-tab" data-doc="readme">README</button>
+  </div>
+  
+  <!-- ドキュメントコンテンツ -->
+  <div class="whitepaper-content" id="document-content">
     <div style="text-align: center; color: #b366ff; margin: 50px 0;">
       <h2>読み込み中...</h2>
     </div>
@@ -364,42 +400,82 @@ document.addEventListener('DOMContentLoaded', async function() {
   // Mermaid初期化
   mermaid.initialize({ theme: 'dark', background: '#0a0a14' });
   
-  let whitepaperContent = '';
+  let currentDocContent = '';
+  let currentDocType = 'whitepaper';
   
-  // ホワイトペーパー読み込み
-  try {
-    const response = await fetch('docs/whitepaper.md');
-    if (!response.ok) throw new Error('Failed to fetch whitepaper');
-    
-    const markdown = await response.text();
-    whitepaperContent = markdown;
-    
-    // Marked.jsでHTML変換
-    const html = marked.parse(markdown);
-    document.getElementById('whitepaper-content').innerHTML = html;
-    
-    // Mermaid図をレンダリング
-    const mermaidElements = document.querySelectorAll('.language-mermaid');
-    mermaidElements.forEach(async (element, index) => {
-      const graphDefinition = element.textContent;
-      const graphId = `mermaid-graph-${index}`;
-      try {
-        const { svg } = await mermaid.render(graphId, graphDefinition);
-        element.outerHTML = `<div class="mermaid">${svg}</div>`;
-      } catch (error) {
-        console.error('Mermaid render error:', error);
-      }
-    });
-  } catch (error) {
-    console.error('Error loading whitepaper:', error);
-    document.getElementById('whitepaper-content').innerHTML = `
-      <div style="text-align: center; color: #ff6b6b; margin: 50px 0;">
-        <h2>エラー</h2>
-        <p>ホワイトペーパーの読み込みに失敗しました。</p>
-        <p>サーバーが起動しているか確認してください。</p>
-      </div>
-    `;
+  // Marked.jsオプション設定（見出しにid自動付与）
+  marked.setOptions({
+    headerIds: true,
+    headerPrefix: ''
+  });
+  
+  // ドキュメント読み込み関数
+  async function loadDocument(docType) {
+    try {
+      const docPaths = {
+        whitepaper: 'docs/whitepaper.md',
+        readme: '../README.md'
+      };
+      
+      const response = await fetch(docPaths[docType]);
+      if (!response.ok) throw new Error(`Failed to fetch ${docType}`);
+      
+      const markdown = await response.text();
+      currentDocContent = markdown;
+      currentDocType = docType;
+      
+      // Marked.jsでHTML変換
+      const html = marked.parse(markdown);
+      document.getElementById('document-content').innerHTML = html;
+      
+      // Mermaid図をレンダリング
+      const mermaidElements = document.querySelectorAll('.language-mermaid');
+      mermaidElements.forEach(async (element, index) => {
+        const graphDefinition = element.textContent;
+        const graphId = `mermaid-graph-${index}-${currentDocType}`;
+        try {
+          const { svg } = await mermaid.render(graphId, graphDefinition);
+          element.outerHTML = `<div class="mermaid">${svg}</div>`;
+        } catch (error) {
+          console.error('Mermaid render error:', error);
+        }
+      });
+    } catch (error) {
+      console.error(`Error loading ${docType}:`, error);
+      document.getElementById('document-content').innerHTML = `
+        <div style="text-align: center; color: #ff6b6b; margin: 50px 0;">
+          <h2>エラー</h2>
+          <p>${docType === 'whitepaper' ? 'ホワイトペーパー' : 'README'}の読み込みに失敗しました。</p>
+          <p>サーバーが起動しているか確認してください。</p>
+        </div>
+      `;
+    }
   }
+  
+  // タブ切り替えイベント
+  document.querySelectorAll('.doc-tab').forEach(tab => {
+    tab.addEventListener('click', async function() {
+      const docType = this.dataset.doc;
+      
+      // アクティブタブの切り替え
+      document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // ドキュメント読み込み
+      await loadDocument(docType);
+      
+      // ジャスミンの吹き出しメッセージを更新
+      const docNames = {
+        whitepaper: 'ホワイトペーパー',
+        readme: 'README'
+      };
+      const bubbleText = document.getElementById('bubble-text');
+      bubbleText.textContent = `この${docNames[docType]}について何でも聞いてね！💜`;
+    });
+  });
+  
+  // 初期ドキュメント読み込み
+  await loadDocument('whitepaper');
   
   // チャット機能
   const bubble = document.getElementById('jasmine-bubble');
@@ -441,7 +517,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     const bubbleDiv = document.createElement('div');
     bubbleDiv.className = 'chat-message-bubble';
-    bubbleDiv.innerHTML = text;
+    
+    if (isUser) {
+      // ユーザーメッセージはプレーンテキスト
+      bubbleDiv.innerHTML = text;
+    } else {
+      // ジャスミンの返答はMarkdownをHTMLに変換
+      try {
+        bubbleDiv.innerHTML = marked.parse(text);
+      } catch (error) {
+        console.error('Markdown parse error:', error);
+        bubbleDiv.innerHTML = text;
+      }
+    }
     
     messageDiv.appendChild(bubbleDiv);
     chatHistory.appendChild(messageDiv);
@@ -449,7 +537,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // スクロールを下部に
     chatHistory.scrollTop = chatHistory.scrollHeight;
     
-    // メッセージ履歴に保存
+    // メッセージ履歴に保存（プレーンテキストとして保存）
     chatMessages.push({
       role: isUser ? 'user' : 'model',
       parts: [{ text: text }]
@@ -479,10 +567,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
       // システムプロンプト作成
       const systemPrompt = `あなたはXPathGenieプロジェクトのアシスタント「ジャスミン」です。
-以下のホワイトペーパーの内容に基づいて、ユーザーの質問に日本語で答えてください。
-明るくフレンドリーな口調で。わからないことは正直に「ホワイトペーパーには書いてないかも」と答えてください。
+以下のドキュメントの内容に基づいて、ユーザーの質問に日本語で答えてください。
+明るくフレンドリーな口調で。わからないことは正直に「ドキュメントには書いてないかも」と答えてください。
 
-[ホワイトペーパー全文]
+回答する際は、該当するセクション番号を明示してください。
+例: 「それはSection 3.4（二段階精緻化）に詳しく書いてあるよ！」
+ページ内アンカーリンクも付けてね。Markdownリンク形式で [Section 3.4](#34-二段階精緻化) のように書いてくれれば、クリックで該当箇所に飛べるよ。
+
+[ドキュメント全文]
 ${whitepaperContent}`;
       
       // Gemini API呼び出し

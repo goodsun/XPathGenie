@@ -103,7 +103,7 @@
       #tag-info .idx { background: #4a2a2a; border: 1px solid #fc5c5c44; color: #fc5c5c; font-size: 10px; padding: 0 5px; border-radius: 8px; margin-left: 2px; display: inline-block; line-height: 16px; font-weight: 700; cursor: pointer; }
       #tag-info .idx:hover { background: #fc5c5c; color: #fff; }
       #text-preview {
-        background: #0d0d1a no-repeat calc(100% + 40px) bottom/300px; border: 1px solid #333; border-radius: 6px;
+        background: #0d0d1a no-repeat calc(100% + 80px) bottom/300px; border: 1px solid #333; border-radius: 6px;
         padding: 8px; font-size: 12px; color: #ccc;
         width: 100%; outline: none; resize: none; flex: 1; min-height: 60px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

@@ -3,7 +3,7 @@
   "name": "XPathAbu — DomCatcher 🐒",
   "version": "0.2.0",
   "description": "Click any DOM element to grab its XPath. Part of XPathGenie family.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "clipboardWrite"],
   "action": {
     "default_icon": "icon48.png",
     "default_title": "XPathAbu — Toggle Panel"

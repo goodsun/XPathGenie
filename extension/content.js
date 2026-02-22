@@ -130,7 +130,7 @@
       <div id="body">
         <div>
           <label>XPath</label>
-          <input type="text" id="xpath-display" value="クリックで要素を選択..." spellcheck="false">
+          <input type="text" id="xpath-display" value="Click to select element..." spellcheck="false">
         </div>
         <div id="tag-info"></div>
         <div style="display:flex;flex-direction:column;flex:1;min-height:0;">

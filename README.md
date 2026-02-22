@@ -440,6 +440,13 @@ Aladdin用のサーバーサイドHTMLフェッチ（CORS回避）。
 
 技術的な詳細は [Technical Whitepaper](docs/whitepaper.md) を参照。
 
+## XPathAbu — Chrome拡張
+
+DOM要素をクリックしてXPathを即座に取得するChrome拡張機能。
+
+- 📖 [English README](extension/README.md)
+- 📖 [日本語 README](extension/README_JP.md)
+
 ## ライセンス
 
 MIT License — see [LICENSE](LICENSE)

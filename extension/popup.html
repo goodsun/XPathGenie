@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 380px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #e0e0e0;
+      background: #1a1a2e;
+    }
+    .header {
+      background: linear-gradient(135deg, #7c5cfc, #5a3fd6);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header h1 {
+      font-size: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .toggle-btn {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .toggle-btn.active { background: rgba(255,255,255,0.4); }
+    .toggle-btn:hover { background: rgba(255,255,255,0.35); }
+    .body { padding: 12px; }
+    label { display: block; font-size: 11px; color: #aaa; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    textarea, .result-box {
+      width: 100%;
+      background: #16162a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #e0e0e0;
+      padding: 8px;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 12px;
+      resize: vertical;
+    }
+    textarea { height: 56px; }
+    textarea:focus { outline: none; border-color: #7c5cfc; }
+    .result-box {
+      min-height: 70px;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .buttons {
+      display: flex;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .btn {
+      flex: 1;
+      padding: 7px 0;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .btn-copy {
+      background: #333;
+      color: #e0e0e0;
+    }
+    .btn-copy:hover { background: #444; }
+    .btn-analyze {
+      background: #7c5cfc;
+      color: #fff;
+    }
+    .btn-analyze:hover { background: #6a4be0; }
+    .btn:disabled { opacity: 0.5; cursor: default; }
+    .status { font-size: 11px; color: #888; text-align: center; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🐒 XPathAbu</h1>
+    <button id="toggleBtn" class="toggle-btn">OFF</button>
+  </div>
+  <div class="body">
+    <label>XPath</label>
+    <textarea id="xpathInput" placeholder="Click an element on the page..."></textarea>
+    <div class="buttons">
+      <button class="btn btn-copy" id="copyBtn">📋 Copy</button>
+      <button class="btn btn-analyze" id="analyzeBtn">🔍 Analyze</button>
+    </div>
+    <label>Result</label>
+    <div class="result-box" id="resultBox">—</div>
+    <div class="status" id="status"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

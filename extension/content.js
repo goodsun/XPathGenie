@@ -139,7 +139,6 @@
       </div>
       <div id="footer">
         <button class="btn" id="btn-copy">📋 Copy XPath</button>
-        <button class="btn" id="btn-analyze">🔍 Analyze</button>
       </div>
       <div id="status">inspect mode: ON</div>
       <div id="resize-grip">⋮⋱</div>
@@ -163,7 +162,6 @@
   const btnToggle = shadow.getElementById('btn-toggle');
   const btnClose = shadow.getElementById('btn-close');
   const btnCopy = shadow.getElementById('btn-copy');
-  const btnAnalyze = shadow.getElementById('btn-analyze');
   const statusEl = shadow.getElementById('status');
   const resizeGrip = shadow.getElementById('resize-grip');
 
@@ -441,23 +439,7 @@
     setTimeout(() => { statusEl.textContent = `inspect mode: ${inspecting ? 'ON' : 'OFF'}`; statusEl.style.color = ''; }, 1500);
   });
 
-  btnAnalyze.addEventListener('mousedown', (e) => { e.preventDefault(); e.stopPropagation();
-    if (!lastResult) return;
-    btnAnalyze.textContent = '⏳...';
-    chrome.runtime.sendMessage({
-      type: 'analyze',
-      xpath: xpathDisplay.value,
-      url: location.href,
-      html: lastResult.tag
-    }, (resp) => {
-      btnAnalyze.textContent = '🔍 Analyze';
-      if (resp && !resp.error) {
-        textPreview.value = JSON.stringify(resp, null, 2).substring(0, 500);
-      } else {
-        textPreview.value = 'Error: ' + (resp?.error || 'no response');
-      }
-    });
-  });
+
 
   // --- Cleanup ---
   function cleanup() {

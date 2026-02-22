@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "XPathGenie: LLM-Driven XPath Auto-Generation with Multi-Page Validation"
+authors:
+  - family-names: Kawashima
+    given-names: Chikara
+    orcid: "https://orcid.org/0009-0008-9457-0181"
+repository-code: "https://github.com/goodsun/XPathGenie"
+license: MIT
+version: "1.0.0"
+date-released: "2026-02-22"
+keywords:
+  - XPath
+  - LLM
+  - web scraping
+  - DOM analysis
+  - automated testing
+abstract: >-
+  XPathGenie is an LLM-driven XPath auto-generation system that achieves
+  87.3% hit rate and 95.0% semantic accuracy across 23 real-world websites
+  through a novel pipeline of HTML compression, LLM inference, multi-page
+  validation, and two-stage refinement.

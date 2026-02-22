@@ -103,7 +103,7 @@
       #tag-info .idx { background: #4a2a2a; border: 1px solid #fc5c5c44; color: #fc5c5c; font-size: 10px; padding: 0 5px; border-radius: 8px; margin-left: 2px; display: inline-block; line-height: 16px; font-weight: 700; cursor: pointer; }
       #tag-info .idx:hover { background: #fc5c5c; color: #fff; }
       #text-preview {
-        background: #0d0d1a no-repeat right bottom/200px; border: 1px solid #333; border-radius: 6px;
+        background: #0d0d1a no-repeat right bottom/300px; border: 1px solid #333; border-radius: 6px;
         padding: 8px; font-size: 12px; color: #ccc;
         width: 100%; outline: none; resize: none; flex: 1; min-height: 60px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -121,7 +121,7 @@
     </style>
     <div id="panel">
       <div id="header">
-        <span id="title">🐒 XPathAbu</span>
+        <span id="title"><img id="title-icon" style="width:20px;height:20px;vertical-align:middle;margin-right:4px;"> XPathAbu</span>
         <div class="header-btns">
           <button class="btn active" id="btn-toggle">ON</button>
           <button class="btn close" id="btn-close">✕</button>
@@ -156,6 +156,7 @@
   // Set Abu watermark on textarea
   const abuUrl = chrome.runtime.getURL('abu.png');
   shadow.getElementById('text-preview').style.backgroundImage = `url(${abuUrl})`;
+  shadow.getElementById('title-icon').src = chrome.runtime.getURL('icon32.png');
   const xpathDisplay = shadow.getElementById('xpath-display');
   const tagInfo = shadow.getElementById('tag-info');
   const textPreview = shadow.getElementById('text-preview');

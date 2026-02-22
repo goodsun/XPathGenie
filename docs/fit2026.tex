@@ -2,15 +2,23 @@
 %% FIT2026 投稿用原稿
 %% カテゴリ: D-2 情報基礎とアクセス技術（IFAT）
 %%
-\documentclass[submit,techrep,noauthor]{ipsj}
+\documentclass[a4paper,10pt,twocolumn]{article}
 
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{latexsym}
 \usepackage{url}
 \usepackage{tikz}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[rotate=45,scale=6,opacity=0.15] at (current page.center) {DRAFT};
+  \end{tikzpicture}%
+}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\usepackage[margin=2cm]{geometry}
 
 \def\Underline{\setbox0\hbox\bgroup\let\\\endUnderline}
 \def\endUnderline{\vphantom{y}\egroup\smash{\underline{\box0}}\\}
@@ -20,10 +28,8 @@
 
 \title{XPathGenie: LLM駆動による自動XPath生成\\
 ——マルチページ検証と二段階精緻化}
-
-\affiliate{BS}{bon soleil}
-
-\author{川嶋 力}{Tsutomu Kawashima}{BS}
+\author{川嶋 力 (Tsutomu Kawashima)\\bon soleil}
+\date{Draft — Not yet submitted}
 
 \begin{abstract}
 本稿では，LLMを設計時のXPathコンパイラとして活用し，

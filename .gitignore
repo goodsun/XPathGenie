@@ -10,3 +10,6 @@ build/
 .pytest_cache/
 *.log
 .playwright-cli/
+docs/fit2026.aux
+docs/fit2026.dvi
+docs/fit2026.log

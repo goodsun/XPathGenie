@@ -103,7 +103,7 @@
       #tag-info .idx { background: #4a2a2a; border: 1px solid #fc5c5c44; color: #fc5c5c; font-size: 10px; padding: 0 5px; border-radius: 8px; margin-left: 2px; display: inline-block; line-height: 16px; font-weight: 700; cursor: pointer; }
       #tag-info .idx:hover { background: #fc5c5c; color: #fff; }
       #text-preview {
-        background: #0d0d1a url("data:image/jpeg;base64,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") no-repeat right bottom/80px; border: 1px solid #333; border-radius: 6px;
+        background: #0d0d1a no-repeat right bottom/200px; border: 1px solid #333; border-radius: 6px;
         padding: 8px; font-size: 12px; color: #ccc;
         width: 100%; outline: none; resize: none; flex: 1; min-height: 60px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -153,6 +153,9 @@
   document.body.appendChild(highlightOverlay);
 
   const panel = shadow.getElementById('panel');
+  // Set Abu watermark on textarea
+  const abuUrl = chrome.runtime.getURL('abu.png');
+  shadow.getElementById('text-preview').style.backgroundImage = `url(${abuUrl})`;
   const xpathDisplay = shadow.getElementById('xpath-display');
   const tagInfo = shadow.getElementById('tag-info');
   const textPreview = shadow.getElementById('text-preview');

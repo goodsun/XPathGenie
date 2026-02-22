@@ -11,6 +11,10 @@
   "background": {
     "service_worker": "background.js"
   },
+  "web_accessible_resources": [{
+    "resources": ["abu.png"],
+    "matches": ["<all_urls>"]
+  }],
   "icons": {
     "48": "icon48.png",
     "128": "icon128.png"

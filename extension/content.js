@@ -185,8 +185,14 @@
 
   document.addEventListener('mousemove', e => {
     if (!dragging) return;
-    host.style.left = (e.clientX - dx) + 'px';
-    host.style.top = (e.clientY - dy) + 'px';
+    const hw = host.offsetWidth, hh = host.offsetHeight;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const minVisible = 40;
+    let nx = e.clientX - dx, ny = e.clientY - dy;
+    nx = Math.max(-hw + minVisible, Math.min(vw - minVisible, nx));
+    ny = Math.max(0, Math.min(vh - minVisible, ny));
+    host.style.left = nx + 'px';
+    host.style.top = ny + 'px';
     host.style.right = 'auto';
     host.style.bottom = 'auto';
   });

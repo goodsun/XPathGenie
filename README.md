@@ -440,12 +440,51 @@ Aladdin用のサーバーサイドHTMLフェッチ（CORS回避）。
 
 技術的な詳細は [Technical Whitepaper](docs/whitepaper.md) を参照。
 
-## XPathAbu — Chrome拡張
+## 🐒 XPathAbu — DomCatcher（Chrome拡張）
 
-DOM要素をクリックしてXPathを即座に取得するChrome拡張機能。
+XPathGenieファミリーの第4のツール。ページ上の任意のDOM要素をクリックしてXPathを即座に取得するChrome拡張機能。
 
-- 📖 [English README](extension/README.md)
-- 📖 [日本語 README](extension/README_JP.md)
+**Abu** = アラジンの相棒の猿 + **Abuse**（DOM abuse）。ページからデータを直接かっさらう小さくていたずら好きな相棒。
+
+### 主な機能
+
+- **🎯 クリックでキャプチャ** — DOM要素をクリックしてXPathを取得。`<a>`タグは自動で`/@href`を付与
+- **🍞 パンくずナビゲーション** — XPathを視覚的に表示。クリックで上位に移動、Shift+クリックで`//`相対パスに切り替え
+- **🔴 インデックスバッジ** — `div[5]`は赤い`5`バッジで表示。クリックでインデックス除去→全マッチモード
+- **✏️ リアルタイム編集** — XPathを直接編集すると300msデバウンスで結果がリアルタイム更新
+- **🔍 マルチマッチ** — 複数要素にマッチした場合、全結果をリスト表示＆ハイライト
+- **📋 ワンクリックコピー** — 現在のXPath（手動編集後も含む）をクリップボードにコピー
+
+### インストール
+
+```bash
+# 1. リポジトリをクローン
+git clone https://github.com/goodsun/XPathGenie.git
+
+# 2. Chrome で chrome://extensions/ を開く
+# 3. デベロッパーモードを有効化
+# 4. 「パッケージ化されていない拡張機能を読み込む」→ extension/ フォルダを選択
+```
+
+### 使い方
+
+1. Chromeツールバーの **Abuアイコン** をクリック → パネルが表示
+2. 要素上で **ホバー** → 紫のハイライトで範囲表示
+3. 要素を **クリック** → XPathが入力フィールドに表示
+4. **パンくず** で上位に移動、または手動編集で絞り込み
+5. **Copy XPath** → スクレイパーやGenieに渡す
+
+### XPathGenieファミリー
+
+| ツール | キャラ | 役割 |
+|--------|--------|------|
+| **Genie** 🧞 | ランプの精霊 | AI駆動XPath生成エンジン |
+| **Jasmine** 🌸 | 姫 | インタラクティブUI＆セクション選択 |
+| **Aladdin** 🔮 | 勇者 | マルチページ解析＆バリデーション |
+| **Abu** 🐒 | ギャングスター猿 | DOM要素キャッチャー（Chrome拡張） |
+
+- 📖 [Abu English README](extension/README.md)
+- 📖 [Abu 日本語 README](extension/README_JP.md)
 
 ## ライセンス
 
